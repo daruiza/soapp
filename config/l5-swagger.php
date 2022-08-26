@@ -8,7 +8,7 @@ return [
         |--------------------------------------------------------------------------
         */
 
-        'title' => 'COFIN Swagger UI',
+        'title' => 'SOAPP Swagger UI',
     ],
 
     'routes' => [
