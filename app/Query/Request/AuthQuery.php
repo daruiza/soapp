@@ -53,7 +53,7 @@ class AuthQuery implements IAuthQuery
         // $user->permits = $permits;
         // $user->rol = $usrAuxi->rol;
         // $user->acount = $usrAuxi->acount;
-        // $user->commerce = $usrAuxi->commerce;
+
         return response()->json($user);
     }
 

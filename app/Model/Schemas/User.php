@@ -1,4 +1,5 @@
 <?php
+
 /**
  * @OA\Schema(
  *      title="User",
@@ -6,7 +7,8 @@
  *      type="object"
  * )
  */
-class User {
+class User
+{
     /**
      * @OA\Property(
      *      title="name",
@@ -29,7 +31,7 @@ class User {
      */
     public $email;
 
-     /**
+    /**
      * @OA\Property(
      *      title="password",
      *      description="Password of the user",
