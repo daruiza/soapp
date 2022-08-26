@@ -15,12 +15,16 @@ class UserSeeder extends Seeder
     {
         DB::table('users')->insert(array(
             'name' => 'super',
+            'lastname' => 'super',
+            'phone' => '0000',
             'email' => 'super@yopmail.com',
             'password' => Hash::make('0000'),
         ));
 
         DB::table('users')->insert(array(
             'name' => 'admin',
+            'lastname' => 'super',
+            'phone' => '0000',
             'email' => 'admin@yopmail.com',
             'password' => Hash::make('0000'),
         ));
