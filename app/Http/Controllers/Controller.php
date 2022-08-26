@@ -31,6 +31,12 @@ use Illuminate\Routing\Controller as BaseController;
  *     description="API EndPoints of Auth"
  * ) 
  *   
+ * @OA\SecuritySchemes(
+ *     securityDefinition="bearer",
+ *     type="apiKey",
+ *     in="header",
+ *     name="Authorization"
+ * )
  * 
  */
 
