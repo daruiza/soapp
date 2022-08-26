@@ -9,8 +9,8 @@ use Illuminate\Routing\Controller as BaseController;
 /**
  * @OA\Info(
  *      version="1.0.0",
- *      title="Cofin Documentation",
- *      description="APP Portfolio Management",
+ *      title="SOAPP Documentación",
+ *      description="Salud Ocupacional APP",
  *      
  *      @OA\Contact(
  *          email="daruiza@gmail.com"
@@ -23,7 +23,7 @@ use Illuminate\Routing\Controller as BaseController;
  *
  * @OA\Server(
  *      url=L5_SWAGGER_CONST_HOST,
- *      description="Cofin API Server"
+ *      description="SOAPP API Server"
  * )
  *
  * @OA\Tag(

@@ -1,8 +1,8 @@
 {
     "openapi": "3.0.0",
     "info": {
-        "title": "Cofin Documentation",
-        "description": "APP Portfolio Management",
+        "title": "SOAPP Documentación",
+        "description": "Salud Ocupacional APP",
         "contact": {
             "email": "daruiza@gmail.com"
         },
@@ -15,7 +15,7 @@
     "servers": [
         {
             "url": "http://127.0.0.1:8080/api",
-            "description": "Cofin API Server"
+            "description": "SOAPP API Server"
         }
     ],
     "paths": {
@@ -43,9 +43,6 @@
                     },
                     "401": {
                         "description": "Unauthenticated"
-                    },
-                    "403": {
-                        "description": "Forbidden"
                     }
                 }
             }
