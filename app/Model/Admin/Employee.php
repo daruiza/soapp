@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Employee extends Model
 {
-    protected $fillable = ['id', 'user_id', 'commerce_id',];
+    protected $fillable = ['id', 'commerce_id',];
 
     //un empleado solo puede tener un comercio
     public function commerces()

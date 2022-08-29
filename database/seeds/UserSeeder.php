@@ -19,14 +19,16 @@ class UserSeeder extends Seeder
             'phone' => '0000',
             'email' => 'super@yopmail.com',
             'password' => Hash::make('0000'),
+            'rol_id' => '1',
         ));
 
         DB::table('users')->insert(array(
             'name' => 'admin',
             'lastname' => 'super',
             'phone' => '0000',
-            'email' => 'admin@yopmail.com',
+            'email' => 'admin@gmail.com',
             'password' => Hash::make('0000'),
+            'rol_id' => '2',
         ));
     }
 }
