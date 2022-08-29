@@ -4,7 +4,6 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-
 use App\Query\Abstraction\ICommerceQuery;
 
 class CommerceController extends Controller
@@ -25,7 +24,7 @@ class CommerceController extends Controller
      *      tags={"Commerce"},
      *      summary="Get All Commerces",
      *      description="Return Commerces",
-     *      security={ {"bearer": {} }},     
+     *      security={ {"bearer": {} }},
      *      @OA\Response(
      *          response=200,
      *          description="Successful operation",
@@ -63,7 +62,7 @@ class CommerceController extends Controller
      *      tags={"Commerce"},
      *      summary="Store Commerce",
      *      description="Store Commerce",
-     *      security={ {"bearer": {} }},  
+     *      security={ {"bearer": {} }},
      *      @OA\RequestBody(
      *          required=true,
      *          @OA\JsonContent(ref="#/components/schemas/Commerce")
@@ -93,7 +92,7 @@ class CommerceController extends Controller
      *      operationId="getIdCommerce",
      *      tags={"Commerce"},
      *      summary="Get One IdCommerce",
-     *      description="Return Commerces",     
+     *      description="Return Commerces",
      *      @OA\Parameter(
      *          name="id",
      *          description="Commerce id",
@@ -102,7 +101,7 @@ class CommerceController extends Controller
      *          @OA\Schema(
      *              type="integer"
      *          )
-     *      ),  
+     *      ),
      *      @OA\Parameter(
      *          name="name",
      *          description="Commerce name",
@@ -138,7 +137,7 @@ class CommerceController extends Controller
      *          @OA\Schema(
      *              type="integer"
      *          )
-     *      ), 
+     *      ),
      *      @OA\Parameter(
      *          name="sort",
      *          description="Table Commerce sort",
@@ -147,7 +146,7 @@ class CommerceController extends Controller
      *          @OA\Schema(
      *              type="string"
      *          )
-     *      ),    
+     *      ),
      *      @OA\Parameter(
      *          name="page",
      *          description="Table Commerce page",
@@ -156,7 +155,7 @@ class CommerceController extends Controller
      *          @OA\Schema(
      *              type="integer"
      *          )
-     *      ), 
+     *      ),
      *      @OA\Response(
      *          response=200,
      *          description="Successful operation",
@@ -192,7 +191,7 @@ class CommerceController extends Controller
      *          @OA\Schema(
      *              type="integer"
      *          )
-     *      ),  
+     *      ),
      *      @OA\Response(
      *          response=200,
      *          description="Successful operation",
