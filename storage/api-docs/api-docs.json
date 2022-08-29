@@ -100,6 +100,92 @@
                     }
                 },
                 "type": "object"
+            },
+            "Commerce": {
+                "title": "Commerce",
+                "description": "Commerce body data",
+                "properties": {
+                    "id": {
+                        "title": "id",
+                        "description": "Id of the commerce",
+                        "type": "string",
+                        "example": "1"
+                    },
+                    "name": {
+                        "title": "name",
+                        "description": "Name of the commerce",
+                        "type": "string",
+                        "example": "TempoSolutions"
+                    },
+                    "nit": {
+                        "title": "nit",
+                        "description": "Nit of the Commerce",
+                        "type": "string",
+                        "example": "1039420535-4"
+                    },
+                    "department": {
+                        "title": "department",
+                        "description": "Department of the commerce",
+                        "type": "string",
+                        "example": "Antioquia"
+                    },
+                    "city": {
+                        "title": "city",
+                        "description": "Name of the commerce",
+                        "type": "string",
+                        "example": "Medellin"
+                    },
+                    "adress": {
+                        "title": "adress",
+                        "description": "adress of the commerce",
+                        "type": "string",
+                        "example": "Cll 60 # 75 - 150"
+                    },
+                    "description": {
+                        "title": "description",
+                        "description": "description of the commerce",
+                        "type": "string",
+                        "example": "super"
+                    },
+                    "logo": {
+                        "title": "logo",
+                        "description": "Logo of the commerce",
+                        "type": "string",
+                        "example": "default.png"
+                    },
+                    "currency": {
+                        "title": "currency",
+                        "description": "currency of the commerce",
+                        "type": "string",
+                        "example": "COP"
+                    },
+                    "label": {
+                        "title": "label",
+                        "description": "label of the commerce",
+                        "type": "string",
+                        "example": "{}"
+                    }
+                },
+                "type": "object"
+            },
+            "Employee": {
+                "title": "Employee",
+                "description": "Employee body data",
+                "properties": {
+                    "user_id": {
+                        "title": "user_id",
+                        "description": "user_id of the Employee",
+                        "type": "integer",
+                        "example": "1"
+                    },
+                    "commerce_id": {
+                        "title": "nit",
+                        "description": "commerce_id of the Employee",
+                        "type": "integer",
+                        "example": "1"
+                    }
+                },
+                "type": "object"
             }
         },
         "securitySchemes": {

@@ -23,6 +23,13 @@ class CreateUsersTable extends Migration
             $table->string('password');
             $table->rememberToken();
             $table->timestamps();
+
+            $table->unsignedBigInteger('rol_id')->nullable();
+            $table->foreign('rol_id')
+                ->references('id')
+                ->on('rols')
+                ->onUpdate('cascade')
+                ->onDelete('set null');
         });
     }
 
