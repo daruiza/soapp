@@ -5,6 +5,7 @@ namespace App\Model\Core;
 use Illuminate\Database\Eloquent\Model;
 
 use App\User;
+use App\Model\Core\Employee;
 
 class Commerce extends Model
 {
@@ -17,12 +18,7 @@ class Commerce extends Model
         'city',
         'adress',
         'description',
-        'logo',
-        'currency',
-        'country',
-        'label',
-        'apiLogin',
-        'apiKey',
+        'logo',       
         'active'
     ];
 
@@ -37,5 +33,9 @@ class Commerce extends Model
     {
         return $this->belongsTo(User::class,  'id', 'commerce_id')->where('rol_id', 2);
     }
+
+    public function employees(){		
+        return $this->hasMany(Employee::class);
+    }   
 
 }

@@ -19,6 +19,7 @@ class UserSeeder extends Seeder
             'phone' => '0000',
             'email' => 'super@yopmail.com',
             'password' => Hash::make('0000'),
+            'rol_id' => '1',
         ));
 
         DB::table('users')->insert(array(

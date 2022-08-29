@@ -14,25 +14,22 @@ class RolSeeder extends Seeder
     {
         DB::table('rols')->insert(
             array(
-                'name' => 'Super-Administrador',
-                'description' => 'superAdmin',
-                'label' => '{"options":["editProfile","passwordChange","acountSummary","termsConditions"]}'
+                'name' => 'superadmin',
+                'description' => 'Super-Administrador',
             )
         );
 
         DB::table('rols')->insert(
             array(
-                'name' => 'Propietario',
-                'description' => 'propietario',
-                'label' => '{"options":["editProfile","editStore","passwordChange"],"options_dashboard":["consultClousure","editClousure"]}'
+                'name' => 'cliente',
+                'description' => 'Cliente',
             )
         );
 
         DB::table('rols')->insert(
             array(
-                'name' => 'Cliente',
-                'description' => 'cliente',
-                'label' => '{"options":["editProfile","passwordChange"],"options_dashboard":["sendMessage"]}'
+                'name' => 'responsable',
+                'description' => 'Responsable',
             )
         );
     }
