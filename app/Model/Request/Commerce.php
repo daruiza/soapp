@@ -95,29 +95,6 @@ class Commerce {
      * @var string
      */
     public $logo;
-
-    /**
-     * @OA\Property(
-     *      title="currency",
-     *      description="currency of the commerce",
-     *      example="COP"
-     * )
-     *
-     * @var string
-     */
-    public $currency;
-
-    /**
-     * @OA\Property(
-     *      title="label",
-     *      description="label of the commerce",
-     *      example="{}"
-     * )
-     *
-     * @var string
-     */
-    public $label;
-
    
 }
 

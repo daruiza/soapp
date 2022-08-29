@@ -4,9 +4,14 @@ namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Facades\Schema;
+
+use App\Http\Controllers\Api\AuthController;
 use App\Query\Abstraction\IAuthQuery;
 use App\Query\Request\AuthQuery;
-use App\Http\Controllers\Api\AuthController;
+
+use App\Http\Controllers\Api\CommerceController;
+use App\Query\Abstraction\ICommerceQuery;
+use App\Query\Request\CommerceQuery;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -19,6 +24,9 @@ class AppServiceProvider extends ServiceProvider
     {
         $this->app->bind(IAuthQuery::class, AuthQuery::class);
         $this->app->make(AuthController::class);
+
+        $this->app->bind(ICommerceQuery::class, CommerceQuery::class);
+        $this->app->make(CommerceController::class);
     }
 
     /**

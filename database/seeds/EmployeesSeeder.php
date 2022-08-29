@@ -13,14 +13,13 @@ class EmployeesSeeder extends Seeder
     public function run()
     {
         DB::table('employees')->insert(array(
-
-            'document_type' => 1,
-            'commerce_id' => 1
+            'name' => 'Pedro',
+            'commerce_id' => null
         ));
 
         DB::table('employees')->insert(array(
-            'document_type' => 1,
-            'commerce_id' => 1
+            'name' => 'Jose',
+            'commerce_id' => null
         ));
     }
 }

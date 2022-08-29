@@ -16,7 +16,6 @@ class CommerceController extends Controller
         $this->CommerceQuery = $CommerceQuery;
     }
 
-
     /**
      * @OA\Get(
      *      path="/commerce/index",
@@ -209,6 +208,69 @@ class CommerceController extends Controller
     public function display(Request $request, $id)
     {
         return $this->CommerceQuery->display($request, $id);
+    }
+
+    /**
+     * @OA\Get(
+     *      path="/commerce/showbyuser",
+     *      operationId="getCommerceByUser",
+     *      tags={"Commerce"},
+     *      summary="Get One Commerce By one UserId",
+     *      description="Return One Commerce",
+     *      security={ {"bearer": {} }},     
+     *      @OA\Response(
+     *          response=200,
+     *          description="Successful operation",
+     *       ),
+     *      @OA\Response(
+     *          response=401,
+     *          description="Unauthenticated"
+     *      ),
+     *      @OA\Response(
+     *          response=403,
+     *          description="Forbidden"
+     *      )
+     *     )
+     */
+    public function showByUser(Request $request)
+    {
+        return $this->CommerceQuery->showByUser($request);
+    }
+
+    /**
+     * @OA\Get(
+     *      path="/commerce/showbyuser/{id}",
+     *      operationId="getCommerceByUserId",
+     *      tags={"Commerce"},
+     *      summary="Get One Commerce By one UserId",
+     *      description="Return One Commerce",
+     *      security={ {"bearer": {} }},
+     *      @OA\Parameter(
+     *          name="id",
+     *          description="User Id",
+     *          required=true,
+     *          in="path",
+     *          @OA\Schema(
+     *              type="integer"
+     *          )
+     *      ),
+     *      @OA\Response(
+     *          response=200,
+     *          description="Successful operation",
+     *       ),
+     *      @OA\Response(
+     *          response=401,
+     *          description="Unauthenticated"
+     *      ),
+     *      @OA\Response(
+     *          response=403,
+     *          description="Forbidden"
+     *      )
+     *     )
+     */
+    public function showByUserId(Request $request, $id)
+    {
+        return $this->CommerceQuery->showByUserId($request, $id);
     }
 
 

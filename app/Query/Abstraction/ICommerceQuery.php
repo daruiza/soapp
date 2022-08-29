@@ -11,4 +11,8 @@ interface ICommerceQuery {
     public function update(Request $request, int $id);
     public function destroy(Int $id);
     public function display(Request $request, String $id);
+    public function showByUser(Request $request);
+    public function showByUserId(Request $request, int $id);
+    
+    
 }

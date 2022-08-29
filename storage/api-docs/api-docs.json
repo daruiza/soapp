@@ -257,35 +257,73 @@
                     }
                 ]
             }
+        },
+        "/commerce/showbyuser": {
+            "get": {
+                "tags": [
+                    "Commerce"
+                ],
+                "summary": "Get One Commerce By one UserId",
+                "description": "Return One Commerce",
+                "operationId": "getCommerceByUser",
+                "responses": {
+                    "200": {
+                        "description": "Successful operation"
+                    },
+                    "401": {
+                        "description": "Unauthenticated"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    }
+                },
+                "security": [
+                    {
+                        "bearer": []
+                    }
+                ]
+            }
+        },
+        "/commerce/showbyuser/{id}": {
+            "get": {
+                "tags": [
+                    "Commerce"
+                ],
+                "summary": "Get One Commerce By one UserId",
+                "description": "Return One Commerce",
+                "operationId": "getCommerceByUserId",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "User Id",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful operation"
+                    },
+                    "401": {
+                        "description": "Unauthenticated"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    }
+                },
+                "security": [
+                    {
+                        "bearer": []
+                    }
+                ]
+            }
         }
     },
     "components": {
         "schemas": {
-            "User": {
-                "title": "User",
-                "description": "User body data",
-                "properties": {
-                    "name": {
-                        "title": "name",
-                        "description": "Name of the user",
-                        "type": "string",
-                        "example": "super"
-                    },
-                    "email": {
-                        "title": "email",
-                        "description": "Email of the user",
-                        "type": "string",
-                        "example": "super@yopmail.com"
-                    },
-                    "password": {
-                        "title": "password",
-                        "description": "Password of the user",
-                        "type": "string",
-                        "example": "0000"
-                    }
-                },
-                "type": "object"
-            },
             "Commerce": {
                 "title": "Commerce",
                 "description": "Commerce body data",
@@ -337,18 +375,6 @@
                         "description": "Logo of the commerce",
                         "type": "string",
                         "example": "default.png"
-                    },
-                    "currency": {
-                        "title": "currency",
-                        "description": "currency of the commerce",
-                        "type": "string",
-                        "example": "COP"
-                    },
-                    "label": {
-                        "title": "label",
-                        "description": "label of the commerce",
-                        "type": "string",
-                        "example": "{}"
                     }
                 },
                 "type": "object"
@@ -368,6 +394,31 @@
                         "description": "commerce_id of the Employee",
                         "type": "integer",
                         "example": "1"
+                    }
+                },
+                "type": "object"
+            },
+            "User": {
+                "title": "User",
+                "description": "User body data",
+                "properties": {
+                    "name": {
+                        "title": "name",
+                        "description": "Name of the user",
+                        "type": "string",
+                        "example": "super"
+                    },
+                    "email": {
+                        "title": "email",
+                        "description": "Email of the user",
+                        "type": "string",
+                        "example": "super@yopmail.com"
+                    },
+                    "password": {
+                        "title": "password",
+                        "description": "Password of the user",
+                        "type": "string",
+                        "example": "0000"
                     }
                 },
                 "type": "object"

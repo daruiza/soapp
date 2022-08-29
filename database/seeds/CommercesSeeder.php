@@ -12,11 +12,6 @@ class CommercesSeeder extends Seeder
      */
     public function run()
     {
-        $apiLogin = '58R4DHj7iE1L48E';
-        $apiKey = '7C1Y8cqoPP7r8m29a8ik1X33Bj';
-        $EPapiKey = 'ff5bc2b276e6ec690e3162727eb78ebb';
-        $EPprivateKey = '7834f75927375f0d1c0db003ee2abcbd';
-
         DB::table('commerces')->insert(
             array(
                 'name' => 'Fabrica Romano',
@@ -26,13 +21,7 @@ class CommercesSeeder extends Seeder
                 'adress' => 'Cr 1 - 1 # 1',
                 'description' => 'default store',
                 'logo' => 'default.png',
-                'currency' => 'COP',
-                'country' => 'CO',
-                'apiLogin' => $apiLogin,
-                'apiKey' => $apiKey,
-                'EPapiKey' => $EPapiKey,
-                'EPprivateKey' => $EPprivateKey,
-                'label' => '',
+                'user_id' => '1'
             )
         );
 
@@ -44,14 +33,7 @@ class CommercesSeeder extends Seeder
                 'city' => 'Tarso',
                 'adress' => 'Cr 2 - 2 # 1',
                 'description' => 'tempo store',
-                'logo' => 'tempo.png',
-                'currency' => 'COP',
-                'country' => 'CO',
-                'apiLogin' => $apiLogin,
-                'apiKey' => $apiKey,
-                'EPapiKey' => $EPapiKey,
-                'EPprivateKey' => $EPprivateKey,
-                'label' => '',
+                'logo' => 'tempo.png',                
             )
         );
 
@@ -63,14 +45,7 @@ class CommercesSeeder extends Seeder
                 'city' => 'Amaga',
                 'adress' => 'Cr 3 - 3 # 1',
                 'description' => 'mrs store',
-                'logo' => 'mrs.png',
-                'currency' => 'COP',
-                'country' => 'CO',
-                'apiLogin' => $apiLogin,
-                'apiKey' => $apiKey,
-                'EPapiKey' => $EPapiKey,
-                'EPprivateKey' => $EPprivateKey,
-                'label' => '',
+                'logo' => 'mrs.png',                
             )
         );
 
@@ -82,14 +57,7 @@ class CommercesSeeder extends Seeder
                 'city' => 'Amaga',
                 'adress' => 'Cr 3 - 5 # 1',
                 'description' => 'glitch store',
-                'logo' => 'glitch34.png',
-                'currency' => 'COP',
-                'country' => 'CO',
-                'apiLogin' => $apiLogin,
-                'apiKey' => $apiKey,
-                'EPapiKey' => $EPapiKey,
-                'EPprivateKey' => $EPprivateKey,
-                'label' => '',
+                'logo' => 'glitch34.png',                
             )
         );
 
@@ -101,14 +69,7 @@ class CommercesSeeder extends Seeder
                 'city' => 'Bolombolo',
                 'adress' => 'Cr 3 - 9 # 1',
                 'description' => 'five store',
-                'logo' => 'glitch300.png',
-                'currency' => 'COP',
-                'country' => 'CO',
-                'apiLogin' => $apiLogin,
-                'apiKey' => $apiKey,
-                'EPapiKey' => $EPapiKey,
-                'EPprivateKey' => $EPprivateKey,
-                'label' => '',
+                'logo' => 'glitch300.png',                
             )
         );
 
@@ -120,14 +81,7 @@ class CommercesSeeder extends Seeder
                 'city' => 'Bolombolo',
                 'adress' => 'Cr 3 - 40 # 1',
                 'description' => 'six store',
-                'logo' => 'six.png',
-                'currency' => 'COP',
-                'country' => 'CO',
-                'apiLogin' => $apiLogin,
-                'apiKey' => $apiKey,
-                'EPapiKey' => $EPapiKey,
-                'EPprivateKey' => $EPprivateKey,
-                'label' => '',
+                'logo' => 'six.png',                
             )
         );
 
@@ -139,14 +93,7 @@ class CommercesSeeder extends Seeder
                 'city' => 'Bolombolo',
                 'adress' => 'Cr 3 - 47 # 1',
                 'description' => 'combox store',
-                'logo' => 'conbox.png',
-                'currency' => 'COP',
-                'country' => 'CO',
-                'apiLogin' => $apiLogin,
-                'apiKey' => $apiKey,
-                'EPapiKey' => $EPapiKey,
-                'EPprivateKey' => $EPprivateKey,
-                'label' => '',
+                'logo' => 'conbox.png',                
             )
         );
 
@@ -158,14 +105,7 @@ class CommercesSeeder extends Seeder
                 'city' => 'Pueblorrico',
                 'adress' => 'Cr 3 - 11 # 1',
                 'description' => 'macalu store',
-                'logo' => 'macalu.png',
-                'currency' => 'COP',
-                'country' => 'CO',
-                'apiLogin' => $apiLogin,
-                'apiKey' => $apiKey,
-                'EPapiKey' => $EPapiKey,
-                'EPprivateKey' => $EPprivateKey,
-                'label' => '',
+                'logo' => 'macalu.png',                
             )
         );
 
@@ -177,14 +117,7 @@ class CommercesSeeder extends Seeder
                 'city' => 'Pueblorrico',
                 'adress' => 'Cr 3 - 88 # 1',
                 'description' => 'cocolu store',
-                'logo' => 'cocolu.png',
-                'currency' => 'COP',
-                'country' => 'CO',
-                'apiLogin' => $apiLogin,
-                'apiKey' => $apiKey,
-                'EPapiKey' => $EPapiKey,
-                'EPprivateKey' => $EPprivateKey,
-                'label' => '',
+                'logo' => 'cocolu.png',                
             )
         );
 
@@ -196,14 +129,7 @@ class CommercesSeeder extends Seeder
                 'city' => 'Medellín',
                 'adress' => 'Cr 1 - 1 # 1',
                 'description' => 'coPidefault store',
-                'logo' => 'default.png',
-                'currency' => 'COP',
-                'country' => 'CO',
-                'apiLogin' => $apiLogin,
-                'apiKey' => $apiKey,
-                'EPapiKey' => $EPapiKey,
-                'EPprivateKey' => $EPprivateKey,
-                'label' => '',
+                'logo' => 'default.png',                
             )
         );
 
@@ -215,14 +141,7 @@ class CommercesSeeder extends Seeder
                 'city' => 'Tarso',
                 'adress' => 'Cr 2 - 2 # 1',
                 'description' => 'coPitempo store',
-                'logo' => 'tempo.png',
-                'currency' => 'COP',
-                'country' => 'CO',
-                'apiLogin' => $apiLogin,
-                'apiKey' => $apiKey,
-                'EPapiKey' => $EPapiKey,
-                'EPprivateKey' => $EPprivateKey,
-                'label' => '',
+                'logo' => 'tempo.png',                
             )
         );
 
@@ -234,14 +153,7 @@ class CommercesSeeder extends Seeder
                 'city' => 'Amaga',
                 'adress' => 'Cr 3 - 3 # 1',
                 'description' => 'coPimrs store',
-                'logo' => 'mrs.png',
-                'currency' => 'COP',
-                'country' => 'CO',
-                'apiLogin' => $apiLogin,
-                'apiKey' => $apiKey,
-                'EPapiKey' => $EPapiKey,
-                'EPprivateKey' => $EPprivateKey,
-                'label' => '',
+                'logo' => 'mrs.png',                
             )
         );
 
@@ -253,14 +165,7 @@ class CommercesSeeder extends Seeder
                 'city' => 'Amaga',
                 'adress' => 'Cr 3 - 5 # 1',
                 'description' => 'coPiglitch store',
-                'logo' => 'glitch.png',
-                'currency' => 'COP',
-                'country' => 'CO',
-                'apiLogin' => $apiLogin,
-                'apiKey' => $apiKey,
-                'EPapiKey' => $EPapiKey,
-                'EPprivateKey' => $EPprivateKey,
-                'label' => '',
+                'logo' => 'glitch.png',                
             )
         );
 
@@ -272,14 +177,7 @@ class CommercesSeeder extends Seeder
                 'city' => 'Bolombolo',
                 'adress' => 'Cr 3 - 9 # 1',
                 'description' => 'coPifive store',
-                'logo' => 'glitch.png',
-                'currency' => 'COP',
-                'country' => 'CO',
-                'apiLogin' => $apiLogin,
-                'apiKey' => $apiKey,
-                'EPapiKey' => $EPapiKey,
-                'EPprivateKey' => $EPprivateKey,
-                'label' => '',
+                'logo' => 'glitch.png',                
             )
         );
 
@@ -291,14 +189,7 @@ class CommercesSeeder extends Seeder
                 'city' => 'Bolombolo',
                 'adress' => 'Cr 3 - 40 # 1',
                 'description' => 'coPisix store',
-                'logo' => 'six.png',
-                'currency' => 'COP',
-                'country' => 'CO',
-                'apiLogin' => $apiLogin,
-                'apiKey' => $apiKey,
-                'EPapiKey' => $EPapiKey,
-                'EPprivateKey' => $EPprivateKey,
-                'label' => '',
+                'logo' => 'six.png',                
             )
         );
 
@@ -310,14 +201,7 @@ class CommercesSeeder extends Seeder
                 'city' => 'Bolombolo',
                 'adress' => 'Cr 3 - 47 # 1',
                 'description' => 'coPicombox store',
-                'logo' => 'conbox.png',
-                'currency' => 'COP',
-                'country' => 'CO',
-                'apiLogin' => $apiLogin,
-                'apiKey' => $apiKey,
-                'EPapiKey' => $EPapiKey,
-                'EPprivateKey' => $EPprivateKey,
-                'label' => '',
+                'logo' => 'conbox.png',                
             )
         );
 
@@ -329,14 +213,7 @@ class CommercesSeeder extends Seeder
                 'city' => 'Pueblorrico',
                 'adress' => 'Cr 3 - 11 # 1',
                 'description' => 'coPimacalu store',
-                'logo' => 'macalu.png',
-                'currency' => 'COP',
-                'country' => 'CO',
-                'apiLogin' => $apiLogin,
-                'apiKey' => $apiKey,
-                'EPapiKey' => $EPapiKey,
-                'EPprivateKey' => $EPprivateKey,
-                'label' => '',
+                'logo' => 'macalu.png',                
             )
         );
 
@@ -348,14 +225,7 @@ class CommercesSeeder extends Seeder
                 'city' => 'Pueblorrico',
                 'adress' => 'Cr 3 - 88 # 1',
                 'description' => 'coPicocolu store',
-                'logo' => 'cocolu.png',
-                'currency' => 'COP',
-                'country' => 'CO',
-                'apiLogin' => $apiLogin,
-                'apiKey' => $apiKey,
-                'EPapiKey' => $EPapiKey,
-                'EPprivateKey' => $EPprivateKey,
-                'label' => '',
+                'logo' => 'cocolu.png',                
             )
         );
     }

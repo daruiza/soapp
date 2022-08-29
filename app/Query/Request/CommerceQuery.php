@@ -72,6 +72,24 @@ class CommerceQuery implements ICommerceQuery
             response()->json(['message' => 'Commerce no exist!'], 404);
     }
 
+    public function showByUser(Request $request)
+    {
+        $user = User::findOrFail($request->user()->id);
+        $user->commerce;
+        return response()->json(['User'=>$user], 200);
+    }
+
+    public function showByUserId(Request $request, $id)
+    {
+        if($id){
+            $user = User::findOrFail($id);
+            $user->commerce;
+            return response()->json(['User'=>$user], 200);
+        }
+        return response()->json(['message' => 'Commerce no exist!'], 404);
+    }
+
+
     public function update(Request $request, Int $id)
     {
         return response()->json(['message' => 'Commerce update!'], 201);
