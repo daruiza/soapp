@@ -17,7 +17,6 @@ class CreateRolsTable extends Migration
             $table->id('id');
             $table->string('name', 60)->unique();
             $table->string('description', 255)->nullable();
-            $table->string('label', 255)->nullable();
             $table->boolean('active')->default(true);
             $table->timestamps();
         });

@@ -24,12 +24,12 @@ class CreateUsersTable extends Migration
             $table->rememberToken();
             $table->timestamps();
 
-            $table->unsignedBigInteger('rol_id')->nullable();
+            $table->unsignedBigInteger('rol_id')->unique()->nullable()->default(2);
             $table->foreign('rol_id')
                 ->references('id')
                 ->on('rols')
                 ->onUpdate('cascade')
-                ->onDelete('set null');
+                ->onDelete('set null');          
         });
     }
 

@@ -17,7 +17,14 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'id', 'name', 'email', 'password', 'phone', 'lastname',
+        'id',
+        'name',
+        'email',
+        'password',
+        'phone',
+        'lastname',
+        'rol_id',
+        'commerce_id'
     ];
 
     /**
@@ -37,4 +44,16 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    //un usuario posee/pertenece un rol
+    public function rol()
+    {
+        return $this->belongsTo(Model\Admin\Rol::class);
+    }
+
+     //a user may belongs a commerce or is owner to commerce
+     public function commerce()
+     {
+         return $this->hasOne(Model\Core\Commerce::class);
+     }
 }
