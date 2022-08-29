@@ -11,16 +11,16 @@ class EmployeesSeeder extends Seeder
      * @return void
      */
     public function run()
-	{
-		DB::table('employees')->insert(array(
-			'document_type' => 1,			
-			'commerce_id' => 1
-		));
+    {
+        DB::table('employees')->insert(array(
 
-		DB::table('employees')->insert(array(
-			'document_type' => 1,
-			'user_id' => 4,
-			'commerce_id' => 1
-		));
-	}
+            'document_type' => 1,
+            'commerce_id' => 1
+        ));
+
+        DB::table('employees')->insert(array(
+            'document_type' => 1,
+            'commerce_id' => 1
+        ));
+    }
 }

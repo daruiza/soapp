@@ -15,10 +15,18 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::group(['prefix' => 'auth'], function () {
-    Route::post('login', 'Api\AuthController@login')->name('login');    
+    Route::post('login', 'Api\AuthController@login')->name('login');
 
     Route::group(['middleware' => 'auth:api'], function () {
         Route::get('logout', 'Api\AuthController@logout');
         Route::get('user', 'Api\AuthController@user');
     });
+});
+
+Route::group(['prefix' => 'commerce'], function () {
+    Route::group(['middleware' => 'auth:api'], function () {
+        Route::get('index', 'Api\CommerceController@index');
+        Route::post('store', 'Api\CommerceController@store');
+    });
+    Route::get('show', 'Api\CommerceController@show');
 });

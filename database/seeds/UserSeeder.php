@@ -26,8 +26,9 @@ class UserSeeder extends Seeder
             'name' => 'admin',
             'lastname' => 'super',
             'phone' => '0000',
-            'email' => 'admin@yopmail.com',
+            'email' => 'admin@gmail.com',
             'password' => Hash::make('0000'),
+            'rol_id' => '2',
         ));
     }
 }
