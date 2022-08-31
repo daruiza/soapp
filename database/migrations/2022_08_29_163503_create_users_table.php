@@ -29,7 +29,7 @@ class CreateUsersTable extends Migration
                 ->references('id')
                 ->on('rols')
                 ->onUpdate('cascade')
-                ->onDelete('set null');          
+                ->onDelete('set null');
         });
     }
 
