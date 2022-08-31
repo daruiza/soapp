@@ -27,7 +27,7 @@ class UserQuery implements IUserQuery
             $request->validate([
                 $this->name     => 'required|string',
                 $this->lastname     => 'required|string',
-                $this->phone     => 'required|integer',
+                $this->phone     => 'required|numeric',
                 $this->email    => 'required|string|email|unique:users',
                 $this->password => 'required|string',
             ]);
@@ -40,21 +40,11 @@ class UserQuery implements IUserQuery
             $this->lastname     => $request->lastname,
             $this->phone     => $request->phone,
             $this->email    => $request->email,
-            $this->password => $request->password,
+            $this->password => bcrypt($request->password),
         ]);
 
         $user->save();
         return response()->json(['message' => 'Usuario creado correctamente!'], 201);
-
-        /*  if (User::where('name', $request->input('name'))->first()) {
-            return response()->json(['message' => 'User exist!'], 400);
-        }
-
-        // Creamos el nuevo usuario
-        $user = new User();
-        $newUser = $user->create($request->input());
-
-        return response()->json(['id' => $newUser->id], 201); */
     }
 
     /*  public function show(Request $request)

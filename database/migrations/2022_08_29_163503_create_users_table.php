@@ -24,7 +24,7 @@ class CreateUsersTable extends Migration
             $table->rememberToken();
             $table->timestamps();
 
-            $table->unsignedBigInteger('rol_id')->unique()->nullable()->default(2);
+            $table->unsignedBigInteger('rol_id')->nullable()->default(2);
             $table->foreign('rol_id')
                 ->references('id')
                 ->on('rols')

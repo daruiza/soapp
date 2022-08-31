@@ -322,7 +322,7 @@
                     "content": {
                         "application/json": {
                             "schema": {
-                                "$ref": "#/components/schemas/User"
+                                "$ref": "#/components/schemas/UserStore"
                             }
                         }
                     }
@@ -480,6 +480,43 @@
                         "description": "Password of the user",
                         "type": "string",
                         "example": "0000"
+                    }
+                },
+                "type": "object"
+            },
+            "UserStore": {
+                "title": "UserStore",
+                "description": "User body data",
+                "properties": {
+                    "name": {
+                        "title": "name",
+                        "description": "Name of the user",
+                        "type": "string",
+                        "example": "super"
+                    },
+                    "email": {
+                        "title": "email",
+                        "description": "Email of the user",
+                        "type": "string",
+                        "example": "super@yopmail.com"
+                    },
+                    "password": {
+                        "title": "password",
+                        "description": "Password of the user",
+                        "type": "string",
+                        "example": "0000"
+                    },
+                    "lastname": {
+                        "title": "lastname",
+                        "description": "Lastname of the user",
+                        "type": "string",
+                        "example": "LastName"
+                    },
+                    "phone": {
+                        "title": "phone",
+                        "description": "phone of the user",
+                        "type": "string",
+                        "example": 100394
                     }
                 },
                 "type": "object"

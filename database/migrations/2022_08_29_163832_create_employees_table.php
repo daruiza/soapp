@@ -18,11 +18,11 @@ class CreateEmployeesTable extends Migration
             $table->string('name');
 
             $table->unsignedBigInteger('commerce_id')->nullable();
-            $table->foreign('commerce_id')
-                ->references('id')
-                ->on('commerces')
-                ->onUpdate('cascade')
-                ->onDelete('set null');
+            // $table->foreign('commerce_id')
+            //     ->references('id')
+            //     ->on('commerces')
+            //     ->onUpdate('cascade')
+            //     ->onDelete('set null');
 
             $table->timestamps();
         });

@@ -98,7 +98,7 @@ class UserController extends Controller
      *      security={ {"bearer": {} }},
      *      @OA\RequestBody(
      *          required=true,
-     *          @OA\JsonContent(ref="#/components/schemas/User")
+     *          @OA\JsonContent(ref="#/components/schemas/UserStore")
      *      ),
      *      @OA\Response(
      *          response=200,
