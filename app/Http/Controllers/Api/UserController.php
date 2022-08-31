@@ -4,25 +4,24 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Query\Abstraction\ICommerceQuery;
+use App\Query\Abstraction\IUserQuery;
 
-class CommerceController extends Controller
+class UserController extends Controller
 {
+    private $UserQuery;
 
-    private $CommerceQuery;
-
-    public function __construct(ICommerceQuery $CommerceQuery)
+    public function __construct(IUserQuery $UserQuery)
     {
-        $this->CommerceQuery = $CommerceQuery;
+        $this->UserQuery = $UserQuery;
     }
 
     /**
      * @OA\Get(
-     *      path="/commerce/index",
-     *      operationId="getAllCommerces",
-     *      tags={"Commerce"},
-     *      summary="Get All Commerces",
-     *      description="Return Commerces",
+     *      path="/user/index",
+     *      operationId="getAllUser",
+     *      tags={"user"},
+     *      summary="Get All Users",
+     *      description="Return Users",
      *      security={ {"bearer": {} }},
      *      @OA\Response(
      *          response=200,
@@ -40,93 +39,16 @@ class CommerceController extends Controller
      */
     public function index()
     {
-        return $this->CommerceQuery->index();
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        return '';
-    }
-
-    /**
-     * @OA\Post(
-     *      path="/commerce/store",
-     *      operationId="storeCommerce",
-     *      tags={"Commerce"},
-     *      summary="Store Commerce",
-     *      description="Store Commerce",
-     *      security={ {"bearer": {} }},
-     *      @OA\RequestBody(
-     *          required=true,
-     *          @OA\JsonContent(ref="#/components/schemas/Commerce")
-     *      ),
-     *      @OA\Response(
-     *          response=200,
-     *          description="Successful operation",
-     *       ),
-     *      @OA\Response(
-     *          response=401,
-     *          description="Unauthenticated",
-     *      ),
-     *      @OA\Response(
-     *          response=403,
-     *          description="Forbidden"
-     *      )
-     *     )
-     */
-    public function store(Request $request)
-    {
-        return $this->CommerceQuery->store($request);
+        return $this->UserQuery->index();
     }
 
     /**
      * @OA\Get(
-     *      path="/commerce/display/{id}",
-     *      operationId="getNameCommerce",
-     *      tags={"Commerce"},
-     *      summary="Get One NameCommerce",
-     *      description="Return Commerces",
-     *      security={ {"bearer": {} }},
-     *      @OA\Parameter(
-     *          name="id",
-     *          description="Commerce name",
-     *          required=true,
-     *          in="path",
-     *          @OA\Schema(
-     *              type="integer"
-     *          )
-     *      ),
-     *      @OA\Response(
-     *          response=200,
-     *          description="Successful operation",
-     *       ),
-     *      @OA\Response(
-     *          response=401,
-     *          description="Unauthenticated"
-     *      ),
-     *      @OA\Response(
-     *          response=403,
-     *          description="Forbidden"
-     *      )
-     *     )
-     */
-    public function display(Request $request, $id)
-    {
-        return $this->CommerceQuery->display($request, $id);
-    }
-
-    /**
-     * @OA\Get(
-     *      path="/commerce/showByCommerceId/{id}",
-     *      operationId="getCommerceByUserId",
-     *      tags={"Commerce"},
-     *      summary="Get One Commerce By one UserId",
-     *      description="Return One Commerce",
+     *      path="/user/showbyuser/{id}",
+     *      operationId="getUserById",
+     *      tags={"user"},
+     *      summary="Get One User By one Id",
+     *      description="Return One User",
      *      security={ {"bearer": {} }},
      *      @OA\Parameter(
      *          name="id",
@@ -151,11 +73,62 @@ class CommerceController extends Controller
      *      )
      *     )
      */
-    public function showByCommerceId(Request $request, $id)
+    public function showByUserId(Request $request, $id)
     {
-        return $this->CommerceQuery->showByCommerceId($request, $id);
+        return $this->UserQuery->showByUserId($request, $id);
     }
 
+    /**
+     * Show the form for creating a new resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function create()
+    {
+        //
+    }
+
+    /**
+     * @OA\Post(
+     *      path="/user/store",
+     *      operationId="storeUser",
+     *      tags={"user"},
+     *      summary="Store User",
+     *      description="Store User",
+     *      security={ {"bearer": {} }},
+     *      @OA\RequestBody(
+     *          required=true,
+     *          @OA\JsonContent(ref="#/components/schemas/User")
+     *      ),
+     *      @OA\Response(
+     *          response=200,
+     *          description="Successful operation",
+     *       ),
+     *      @OA\Response(
+     *          response=401,
+     *          description="Unauthenticated",
+     *      ),
+     *      @OA\Response(
+     *          response=403,
+     *          description="Forbidden"
+     *      )
+     *     )
+     */
+    public function store(Request $request)
+    {
+        return $this->UserQuery->store($request);
+    }
+
+    /**
+     * Display the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function show($id)
+    {
+        //
+    }
 
     /**
      * Show the form for editing the specified resource.
@@ -165,7 +138,7 @@ class CommerceController extends Controller
      */
     public function edit($id)
     {
-        return '';
+        //
     }
 
     /**
@@ -177,16 +150,16 @@ class CommerceController extends Controller
      */
     public function update(Request $request, $id)
     {
-        return '';
+        //
     }
 
     /**
-     * @OA\Delete(
-     *      path="/commerce/destroy/{id}",
-     *      operationId="getCommerceByUserId",
-     *      tags={"Commerce"},
-     *      summary="Delete One Commerce By one Id",
-     *      description="Delete One Commerce",
+     * @OA\DELETE(
+     *      path="/user/destroy/{id}",
+     *      operationId="getUserId",
+     *      tags={"user"},
+     *      summary="Delete One user By one UserId",
+     *      description="Delete One user",
      *      security={ {"bearer": {} }},
      *      @OA\Parameter(
      *          name="id",
@@ -213,6 +186,6 @@ class CommerceController extends Controller
      */
     public function destroy($id)
     {
-        return $this->CommerceQuery->destroy($id);
+        return $this->UserQuery->destroy($id);
     }
 }

@@ -135,92 +135,6 @@
                 ]
             }
         },
-        "/commerce/show": {
-            "get": {
-                "tags": [
-                    "Commerce"
-                ],
-                "summary": "Get One IdCommerce",
-                "description": "Return Commerces",
-                "operationId": "getIdCommerce",
-                "parameters": [
-                    {
-                        "name": "id",
-                        "in": "query",
-                        "description": "Commerce id",
-                        "required": false,
-                        "schema": {
-                            "type": "integer"
-                        }
-                    },
-                    {
-                        "name": "name",
-                        "in": "query",
-                        "description": "Commerce name",
-                        "required": false,
-                        "schema": {
-                            "type": "string"
-                        }
-                    },
-                    {
-                        "name": "description",
-                        "in": "query",
-                        "description": "Commerce Description",
-                        "required": false,
-                        "schema": {
-                            "type": "string"
-                        }
-                    },
-                    {
-                        "name": "active",
-                        "in": "query",
-                        "description": "Commerce active",
-                        "required": false,
-                        "schema": {
-                            "type": "integer"
-                        }
-                    },
-                    {
-                        "name": "limit",
-                        "in": "query",
-                        "description": "Table Commerce limit",
-                        "required": false,
-                        "schema": {
-                            "type": "integer"
-                        }
-                    },
-                    {
-                        "name": "sort",
-                        "in": "query",
-                        "description": "Table Commerce sort",
-                        "required": false,
-                        "schema": {
-                            "type": "string"
-                        }
-                    },
-                    {
-                        "name": "page",
-                        "in": "query",
-                        "description": "Table Commerce page",
-                        "required": false,
-                        "schema": {
-                            "type": "integer"
-                        }
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "Successful operation"
-                    },
-                    "401": {
-                        "description": "Unauthenticated"
-                    },
-                    "403": {
-                        "description": "Forbidden"
-                    }
-                }
-            }
-        },
         "/commerce/display/{id}": {
             "get": {
                 "tags": [
@@ -258,14 +172,25 @@
                 ]
             }
         },
-        "/commerce/showbyuser": {
+        "/commerce/showByCommerceId/{id}": {
             "get": {
                 "tags": [
                     "Commerce"
                 ],
                 "summary": "Get One Commerce By one UserId",
                 "description": "Return One Commerce",
-                "operationId": "getCommerceByUser",
+                "operationId": "getCommerceByUserId",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "User Id",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
                 "responses": {
                     "200": {
                         "description": "Successful operation"
@@ -284,14 +209,150 @@
                 ]
             }
         },
-        "/commerce/showbyuser/{id}": {
-            "get": {
+        "/commerce/destroy/{id}": {
+            "delete": {
                 "tags": [
                     "Commerce"
                 ],
-                "summary": "Get One Commerce By one UserId",
-                "description": "Return One Commerce",
+                "summary": "Delete One Commerce By one Id",
+                "description": "Delete One Commerce",
                 "operationId": "getCommerceByUserId",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "User Id",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful operation"
+                    },
+                    "401": {
+                        "description": "Unauthenticated"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    }
+                },
+                "security": [
+                    {
+                        "bearer": []
+                    }
+                ]
+            }
+        },
+        "/user/index": {
+            "get": {
+                "tags": [
+                    "user"
+                ],
+                "summary": "Get All Users",
+                "description": "Return Users",
+                "operationId": "getAllUser",
+                "responses": {
+                    "200": {
+                        "description": "Successful operation"
+                    },
+                    "401": {
+                        "description": "Unauthenticated"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    }
+                },
+                "security": [
+                    {
+                        "bearer": []
+                    }
+                ]
+            }
+        },
+        "/user/showbyuser/{id}": {
+            "get": {
+                "tags": [
+                    "user"
+                ],
+                "summary": "Get One User By one Id",
+                "description": "Return One User",
+                "operationId": "getUserById",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "User Id",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful operation"
+                    },
+                    "401": {
+                        "description": "Unauthenticated"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    }
+                },
+                "security": [
+                    {
+                        "bearer": []
+                    }
+                ]
+            }
+        },
+        "/user/store": {
+            "post": {
+                "tags": [
+                    "user"
+                ],
+                "summary": "Store User",
+                "description": "Store User",
+                "operationId": "storeUser",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/User"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Successful operation"
+                    },
+                    "401": {
+                        "description": "Unauthenticated"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    }
+                },
+                "security": [
+                    {
+                        "bearer": []
+                    }
+                ]
+            }
+        },
+        "/user/destroy/{id}": {
+            "delete": {
+                "tags": [
+                    "user"
+                ],
+                "summary": "Delete One user By one UserId",
+                "description": "Delete One user",
+                "operationId": "getUserId",
                 "parameters": [
                     {
                         "name": "id",
