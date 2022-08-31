@@ -19,37 +19,6 @@ class CommerceQuery implements ICommerceQuery
             response()->json(['message' => 'No Commerces!'], 404);
     }
 
-    public function show(Request $request)
-    {
-
-        $object = new Commerce();
-        $object->id = $request->input('id');
-        $object->name = trim($request->input('name'));
-        $object->description = trim($request->input('name'));
-        $object->active = $request->input('active') ? $request->input('active') : 1;
-
-        $limit = $request->input('limit') ? $request->input('limit') : 3;
-        $sort = $request->input('sort') ? $request->input('sort') : 'ASC';
-        $page = $request->input('page') ? $request->input('page') : 1;
-
-        $commerce =  Commerce::select();
-
-        $commerce = $object->id ? $commerce->where('id', $object->id) : $commerce;
-        $commerce = $object->name && !$commerce ?
-            $commerce->where('name', 'LIKE', '%' . $object->name . '%') :
-            $commerce;
-
-        $commerce = $commerce
-            ->active($object->active)
-            ->orderBy('id',  $sort)
-            ->paginate($limit, ['*'], '', $page);
-
-
-        return $commerce ?
-            response()->json($commerce, 200) :
-            response()->json(['message' => 'Commerce no exist!'], 404);
-    }
-
     public function store(Request $request)
     {
         if (Commerce::where('name', $request->input('name'))->first()) {
@@ -72,19 +41,12 @@ class CommerceQuery implements ICommerceQuery
             response()->json(['message' => 'Commerce no exist!'], 404);
     }
 
-    public function showByUser(Request $request)
+    public function showByCommerceId(Request $request, $id)
     {
-        $user = User::findOrFail($request->user()->id);
-        $user->commerce;
-        return response()->json(['User'=>$user], 200);
-    }
-
-    public function showByUserId(Request $request, $id)
-    {
-        if($id){
-            $user = User::findOrFail($id);
-            $user->commerce;
-            return response()->json(['User'=>$user], 200);
+        if ($id) {
+            $commerce = Commerce::findOrFail($id);
+            $commerce->user;
+            return response()->json(['Commerce' => $commerce], 200);
         }
         return response()->json(['message' => 'Commerce no exist!'], 404);
     }
@@ -97,6 +59,12 @@ class CommerceQuery implements ICommerceQuery
 
     public function destroy(Int $id)
     {
-        return response()->json(['message' => 'Commerce destroy!'], 201);
+        if ($id) {
+            $commerce = Commerce::findOrFail($id);
+            $commerce->delete();
+            return response()->json(['message' => 'Commerce destroy!'], 201);
+        } else {
+            return response()->json(['message' => 'Commerce no exist!'], 404);
+        }
     }
 }

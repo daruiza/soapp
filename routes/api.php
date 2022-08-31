@@ -26,9 +26,17 @@ Route::group(['prefix' => 'commerce'], function () {
     Route::group(['middleware' => 'auth:api'], function () {
         Route::get('index', 'Api\CommerceController@index');
         Route::post('store', 'Api\CommerceController@store');
-        Route::get('show', 'Api\CommerceController@show');
-        Route::get('showbyuser', 'Api\CommerceController@showByUser');
-        Route::get('showbyuser/{user_id}', 'Api\CommerceController@showByUserId');
-        
+        Route::get('showByCommerceId/{user_id}', 'Api\CommerceController@showByCommerceId');
+        Route::delete('destroy/{user_id}', 'Api\CommerceController@destroy');
+
+    });
+});
+
+Route::group(['prefix' => 'user'], function () {
+    Route::group(['middleware' => 'auth:api'], function () {
+        Route::get('index', 'Api\UserController@index');
+        Route::post('store', 'Api\UserController@store');
+        Route::get('showbyuser/{user_id}', 'Api\UserController@showByUserId');
+        Route::delete('destroy/{user_id}', 'Api\UserController@destroy');
     });
 });
