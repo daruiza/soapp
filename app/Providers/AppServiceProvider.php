@@ -13,6 +13,10 @@ use App\Http\Controllers\Api\CommerceController;
 use App\Query\Abstraction\ICommerceQuery;
 use App\Query\Request\CommerceQuery;
 
+use App\Http\Controllers\Api\UserController;
+use App\Query\Abstraction\IUserQuery;
+use App\Query\Request\UserQuery;
+
 class AppServiceProvider extends ServiceProvider
 {
     /**
@@ -27,6 +31,9 @@ class AppServiceProvider extends ServiceProvider
 
         $this->app->bind(ICommerceQuery::class, CommerceQuery::class);
         $this->app->make(CommerceController::class);
+
+        $this->app->bind(IUserQuery::class, UserQuery::class);
+        $this->app->make(UserController::class);
     }
 
     /**
