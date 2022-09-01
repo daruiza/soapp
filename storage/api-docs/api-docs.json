@@ -1,0 +1,557 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "SOAPP Documentación",
+        "description": "Salud Ocupacional APP",
+        "contact": {
+            "email": "daruiza@gmail.com"
+        },
+        "license": {
+            "name": "Apache 2.0",
+            "url": "http://www.apache.org/licenses/LICENSE-2.0.html"
+        },
+        "version": "1.0.0"
+    },
+    "servers": [
+        {
+            "url": "http://127.0.0.1:8080/api",
+            "description": "SOAPP API Server"
+        }
+    ],
+    "paths": {
+        "/auth/login": {
+            "post": {
+                "tags": [
+                    "Auth"
+                ],
+                "summary": "Get User Token",
+                "description": "Return Token",
+                "operationId": "getToken",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/User"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Successful operation"
+                    },
+                    "401": {
+                        "description": "Unauthenticated"
+                    }
+                }
+            }
+        },
+        "/auth/user": {
+            "get": {
+                "tags": [
+                    "Auth"
+                ],
+                "summary": "Get User Auth",
+                "description": "Return User",
+                "operationId": "getUser",
+                "responses": {
+                    "200": {
+                        "description": "Successful operation"
+                    },
+                    "401": {
+                        "description": "Unauthenticated"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    }
+                },
+                "security": [
+                    {
+                        "bearer": []
+                    }
+                ]
+            }
+        },
+        "/commerce/index": {
+            "get": {
+                "tags": [
+                    "Commerce"
+                ],
+                "summary": "Get All Commerces",
+                "description": "Return Commerces",
+                "operationId": "getAllCommerces",
+                "responses": {
+                    "200": {
+                        "description": "Successful operation"
+                    },
+                    "401": {
+                        "description": "Unauthenticated"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    }
+                },
+                "security": [
+                    {
+                        "bearer": []
+                    }
+                ]
+            }
+        },
+        "/commerce/store": {
+            "post": {
+                "tags": [
+                    "Commerce"
+                ],
+                "summary": "Store Commerce",
+                "description": "Store Commerce",
+                "operationId": "storeCommerce",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/Commerce"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Successful operation"
+                    },
+                    "401": {
+                        "description": "Unauthenticated"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    }
+                },
+                "security": [
+                    {
+                        "bearer": []
+                    }
+                ]
+            }
+        },
+        "/commerce/display/{id}": {
+            "get": {
+                "tags": [
+                    "Commerce"
+                ],
+                "summary": "Get One NameCommerce",
+                "description": "Return Commerces",
+                "operationId": "getNameCommerce",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Commerce name",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful operation"
+                    },
+                    "401": {
+                        "description": "Unauthenticated"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    }
+                },
+                "security": [
+                    {
+                        "bearer": []
+                    }
+                ]
+            }
+        },
+        "/commerce/showByCommerceId/{id}": {
+            "get": {
+                "tags": [
+                    "Commerce"
+                ],
+                "summary": "Get One Commerce By one UserId",
+                "description": "Return One Commerce",
+                "operationId": "getCommerceByUserId",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "User Id",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful operation"
+                    },
+                    "401": {
+                        "description": "Unauthenticated"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    }
+                },
+                "security": [
+                    {
+                        "bearer": []
+                    }
+                ]
+            }
+        },
+        "/commerce/destroy/{id}": {
+            "delete": {
+                "tags": [
+                    "Commerce"
+                ],
+                "summary": "Delete One Commerce By one Id",
+                "description": "Delete One Commerce",
+                "operationId": "getCommerceByUserId",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "User Id",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful operation"
+                    },
+                    "401": {
+                        "description": "Unauthenticated"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    }
+                },
+                "security": [
+                    {
+                        "bearer": []
+                    }
+                ]
+            }
+        },
+        "/user/index": {
+            "get": {
+                "tags": [
+                    "user"
+                ],
+                "summary": "Get All Users",
+                "description": "Return Users",
+                "operationId": "getAllUser",
+                "responses": {
+                    "200": {
+                        "description": "Successful operation"
+                    },
+                    "401": {
+                        "description": "Unauthenticated"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    }
+                },
+                "security": [
+                    {
+                        "bearer": []
+                    }
+                ]
+            }
+        },
+        "/user/showbyuser/{id}": {
+            "get": {
+                "tags": [
+                    "user"
+                ],
+                "summary": "Get One User By one Id",
+                "description": "Return One User",
+                "operationId": "getUserById",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "User Id",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful operation"
+                    },
+                    "401": {
+                        "description": "Unauthenticated"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    }
+                },
+                "security": [
+                    {
+                        "bearer": []
+                    }
+                ]
+            }
+        },
+        "/user/store": {
+            "post": {
+                "tags": [
+                    "user"
+                ],
+                "summary": "Store User",
+                "description": "Store User",
+                "operationId": "storeUser",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/UserStore"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Successful operation"
+                    },
+                    "401": {
+                        "description": "Unauthenticated"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    }
+                },
+                "security": [
+                    {
+                        "bearer": []
+                    }
+                ]
+            }
+        },
+        "/user/destroy/{id}": {
+            "delete": {
+                "tags": [
+                    "user"
+                ],
+                "summary": "Delete One user By one UserId",
+                "description": "Delete One user",
+                "operationId": "getUserId",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "User Id",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful operation"
+                    },
+                    "401": {
+                        "description": "Unauthenticated"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    }
+                },
+                "security": [
+                    {
+                        "bearer": []
+                    }
+                ]
+            }
+        }
+    },
+    "components": {
+        "schemas": {
+            "Commerce": {
+                "title": "Commerce",
+                "description": "Commerce body data",
+                "properties": {
+                    "id": {
+                        "title": "id",
+                        "description": "Id of the commerce",
+                        "type": "string",
+                        "example": "1"
+                    },
+                    "name": {
+                        "title": "name",
+                        "description": "Name of the commerce",
+                        "type": "string",
+                        "example": "TempoSolutions"
+                    },
+                    "nit": {
+                        "title": "nit",
+                        "description": "Nit of the Commerce",
+                        "type": "string",
+                        "example": "1039420535-4"
+                    },
+                    "department": {
+                        "title": "department",
+                        "description": "Department of the commerce",
+                        "type": "string",
+                        "example": "Antioquia"
+                    },
+                    "city": {
+                        "title": "city",
+                        "description": "Name of the commerce",
+                        "type": "string",
+                        "example": "Medellin"
+                    },
+                    "adress": {
+                        "title": "adress",
+                        "description": "adress of the commerce",
+                        "type": "string",
+                        "example": "Cll 60 # 75 - 150"
+                    },
+                    "description": {
+                        "title": "description",
+                        "description": "description of the commerce",
+                        "type": "string",
+                        "example": "super"
+                    },
+                    "logo": {
+                        "title": "logo",
+                        "description": "Logo of the commerce",
+                        "type": "string",
+                        "example": "default.png"
+                    }
+                },
+                "type": "object"
+            },
+            "Employee": {
+                "title": "Employee",
+                "description": "Employee body data",
+                "properties": {
+                    "user_id": {
+                        "title": "user_id",
+                        "description": "user_id of the Employee",
+                        "type": "integer",
+                        "example": "1"
+                    },
+                    "commerce_id": {
+                        "title": "nit",
+                        "description": "commerce_id of the Employee",
+                        "type": "integer",
+                        "example": "1"
+                    }
+                },
+                "type": "object"
+            },
+            "Report": {
+                "title": "Report",
+                "description": "Report body data",
+                "properties": {
+                    "id": {
+                        "title": "id",
+                        "description": "Id of the Report",
+                        "type": "string",
+                        "example": "1"
+                    },
+                    "name": {
+                        "title": "name",
+                        "description": "Name of the Report",
+                        "type": "string",
+                        "example": "jajfja jajajaj"
+                    }
+                },
+                "type": "object"
+            },
+            "User": {
+                "title": "User",
+                "description": "User body data",
+                "properties": {
+                    "name": {
+                        "title": "name",
+                        "description": "Name of the user",
+                        "type": "string",
+                        "example": "super"
+                    },
+                    "email": {
+                        "title": "email",
+                        "description": "Email of the user",
+                        "type": "string",
+                        "example": "super@yopmail.com"
+                    },
+                    "password": {
+                        "title": "password",
+                        "description": "Password of the user",
+                        "type": "string",
+                        "example": "0000"
+                    }
+                },
+                "type": "object"
+            },
+            "UserStore": {
+                "title": "UserStore",
+                "description": "User body data",
+                "properties": {
+                    "name": {
+                        "title": "name",
+                        "description": "Name of the user",
+                        "type": "string",
+                        "example": "super"
+                    },
+                    "email": {
+                        "title": "email",
+                        "description": "Email of the user",
+                        "type": "string",
+                        "example": "super@yopmail.com"
+                    },
+                    "password": {
+                        "title": "password",
+                        "description": "Password of the user",
+                        "type": "string",
+                        "example": "0000"
+                    },
+                    "lastname": {
+                        "title": "lastname",
+                        "description": "Lastname of the user",
+                        "type": "string",
+                        "example": "LastName"
+                    },
+                    "phone": {
+                        "title": "phone",
+                        "description": "phone of the user",
+                        "type": "string",
+                        "example": 100394
+                    }
+                },
+                "type": "object"
+            }
+        },
+        "securitySchemes": {
+            "bearer": {
+                "type": "http",
+                "scheme": "bearer"
+            }
+        }
+    },
+    "tags": [
+        {
+            "name": "Auth",
+            "description": "API EndPoints of Auth"
+        }
+    ]
+}

@@ -1,6 +1,10 @@
 {
     "private": true,
     "scripts": {
+        "run": "php artisan serve --port=8080",
+        "mr": "php artisan migrate:refresh --seed",        
+        "pi": "php artisan passport:install",
+        "l5": "php artisan l5-swagger:generate",        
         "dev": "npm run development",
         "development": "cross-env NODE_ENV=development node_modules/webpack/bin/webpack.js --progress --hide-modules --config=node_modules/laravel-mix/setup/webpack.config.js",
         "watch": "npm run development -- --watch",
