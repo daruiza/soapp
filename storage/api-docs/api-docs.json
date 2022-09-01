@@ -459,6 +459,25 @@
                 },
                 "type": "object"
             },
+            "Report": {
+                "title": "Report",
+                "description": "Report body data",
+                "properties": {
+                    "id": {
+                        "title": "id",
+                        "description": "Id of the Report",
+                        "type": "string",
+                        "example": "1"
+                    },
+                    "name": {
+                        "title": "name",
+                        "description": "Name of the Report",
+                        "type": "string",
+                        "example": "jajfja jajajaj"
+                    }
+                },
+                "type": "object"
+            },
             "User": {
                 "title": "User",
                 "description": "User body data",

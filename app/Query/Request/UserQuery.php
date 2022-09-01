@@ -23,28 +23,32 @@ class UserQuery implements IUserQuery
 
     public function store(Request $request)
     {
-        try {
-            $request->validate([
-                $this->name     => 'required|string',
-                $this->lastname     => 'required|string',
-                $this->phone     => 'required|numeric',
-                $this->email    => 'required|string|email|unique:users',
-                $this->password => 'required|string',
+        if (auth()->check() && auth()->user()->rol_id == 1) {
+            try {
+                $request->validate([
+                    $this->name     => 'required|string',
+                    $this->lastname     => 'required|string',
+                    $this->phone     => 'required|numeric',
+                    $this->email    => 'required|string|email|unique:users',
+                    $this->password => 'required|string',
+                ]);
+            } catch (\Exception $e) {
+                return response()->json(['message' => $e->getMessage()], 402);
+            }
+
+            $user = new User([
+                $this->name     => $request->name,
+                $this->lastname     => $request->lastname,
+                $this->phone     => $request->phone,
+                $this->email    => $request->email,
+                $this->password => bcrypt($request->password),
             ]);
-        } catch (\Exception $e) {
-            return response()->json(['message' => $e->getMessage()], 402);
+
+            $user->save();
+            return response()->json(['message' => 'Usuario creado correctamente!'], 201);
+        } else {
+            return response()->json(['message' => 'No tiene permiso para crear usuarios!'], 403);
         }
-
-        $user = new User([
-            $this->name     => $request->name,
-            $this->lastname     => $request->lastname,
-            $this->phone     => $request->phone,
-            $this->email    => $request->email,
-            $this->password => bcrypt($request->password),
-        ]);
-
-        $user->save();
-        return response()->json(['message' => 'Usuario creado correctamente!'], 201);
     }
 
     /*  public function show(Request $request)

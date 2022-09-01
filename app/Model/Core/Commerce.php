@@ -9,7 +9,7 @@ use App\Model\Core\Employee;
 
 class Commerce extends Model
 {
-    protected $fillable = 
+    protected $fillable =
     [
         'id',
         'name',
@@ -18,24 +18,25 @@ class Commerce extends Model
         'city',
         'adress',
         'description',
-        'logo',       
+        'logo',
         'active'
     ];
 
     public function scopeActive($query, $active)
     {
-        return $active ? 
-        $query->where('active', intval($active)) : 
-        $query->where('active', 1);        
+        return $active ?
+            $query->where('active', intval($active)) :
+            $query->where('active', 1);
     }
 
-    public function owner()
+    public function user()
     {
-        return $this->belongsTo(User::class,  'id', 'commerce_id')->where('rol_id', 2);
+        return $this->belongsTo(User::class);
     }
 
-    public function employees(){		
-        return $this->hasMany(Employee::class);
-    }   
-
+    //a un commerce le pertenecen varios reportes
+    public function reports()
+    {
+        return $this->hasMany(Report::class);
+    }
 }

@@ -28,7 +28,6 @@ Route::group(['prefix' => 'commerce'], function () {
         Route::post('store', 'Api\CommerceController@store');
         Route::get('showByCommerceId/{user_id}', 'Api\CommerceController@showByCommerceId');
         Route::delete('destroy/{user_id}', 'Api\CommerceController@destroy');
-
     });
 });
 
