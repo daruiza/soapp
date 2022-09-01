@@ -6,11 +6,11 @@ use Illuminate\Database\Eloquent\Model;
 
 class Employee extends Model
 {
-    protected $fillable = ['id', 'commerce_id',];
+    protected $fillable = ['id', 'name',];
 
-    //un empleado solo puede tener un comercio/Pertenece a un comercio
-    public function commerce()
+    //varios empleados le Pertenece a varios reportes
+    public function reports()
     {
-        return $this->belongsTo(Commerce::class, 'commerce_id');
+        return $this->belongsToMany(Report::class);
     }
 }
