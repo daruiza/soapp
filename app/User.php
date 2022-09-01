@@ -24,7 +24,6 @@ class User extends Authenticatable
         'phone',
         'lastname',
         'rol_id',
-        'commerce_id'
     ];
 
     /**

@@ -25,7 +25,7 @@ class CreateCommercesTable extends Migration
             $table->boolean('active')->default(true);
             $table->timestamps();
 
-            $table->unsignedBigInteger('user_id')->unique()->nullable();
+            $table->unsignedBigInteger('user_id')->nullable();
             $table->foreign('user_id')
                 ->references('id')
                 ->on('users')
