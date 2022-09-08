@@ -17,7 +17,10 @@ class UserQuery implements IUserQuery
 
     public function index()
     {
-        $user = User::all();
+        $user = User::query()
+            ->select(['id', 'name', 'lastname', 'phone', 'email', 'rol_id'])
+            ->with('rol')
+            ->get();
         return response()->json(['User' => $user], 200);
     }
 
