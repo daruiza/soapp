@@ -49,6 +49,10 @@ class UserQuery implements IUserQuery
 
             $user->save();
             return response()->json(['message' => 'Usuario creado correctamente!'], 201);
+        } elseif (auth()->check() && auth()->user()->rol_id == 2) {
+            return response()->json(['message' => 'Soy el rol cliente, no puedo hacer ni puta mierda!'], 201);
+        } elseif (auth()->check() && auth()->user()->rol_id == 3) {
+            return response()->json(['message' => 'Soy el rol Responsable, solo puedo crear clientes!'], 201);
         } else {
             return response()->json(['message' => 'No tiene permiso para crear usuarios!'], 403);
         }
@@ -79,20 +83,38 @@ class UserQuery implements IUserQuery
         return response()->json(['message' => 'User no exist!'], 404);
     }
 
-
-    /*  public function update(Request $request, Int $id)
+    public function update(Request $request, Int $id)
     {
-        return response()->json(['message' => 'Commerce update!'], 201);
-    }*/
+        if ($id > 0) {
+            $user = User::findOrFail($id);
+            if (is_null($user)) {
+                return response()->json(['message' => 'User no exist!'], 404);
+            } else {
+                $user->name = $request->name;
+                $user->lastname = $request->lastname;
+                $user->phone = $request->phone;
+                $user->email = $request->email;
+                $user->password = bcrypt($request->password);
+                $user->save();
+                return response()->json(['message' => 'User update!'], 201);
+            }
+        } else {
+            return response()->json(['message' => 'El id debe ser positivo!'], 404);
+        }
+    }
 
     public function destroy(Int $id)
     {
-        if ($id) {
-            $user = User::findOrFail($id);
-            $user->delete();
-            return response()->json(['message' => 'User destroy!'], 201);
+        if (auth()->check() && auth()->user()->rol_id == 1) {
+            if ($id) {
+                $user = User::findOrFail($id);
+                $user->delete();
+                return response()->json(['message' => 'User destroy!'], 201);
+            } else {
+                return response()->json(['message' => 'User no exist!'], 404);
+            }
         } else {
-            return response()->json(['message' => 'User no exist!'], 404);
+            return response()->json(['message' => 'No tiene permiso para Eliminar usuarios!'], 403);
         }
     }
 }

@@ -47,12 +47,18 @@ class AuthQuery implements IAuthQuery
 
     public function user(Request $request)
     {
-        $user = User::findOrFail($request->user()->id);
-        $user->rol;
+       /*  $user = User::findOrFail($request->user()->id);
+        $user->rol; */
         // $permits = $usrAuxi->userPermitsApi($request->user()->id);
         // $user->permits = $permits;
         // $user->acount = $usrAuxi->acount;
 
+        //return response()->json($user);
+
+        $user = User::findOrFail($request->user()->id)
+            ->select(['id', 'name', 'lastname', 'phone', 'email', 'rol_id'])
+            ->with(['rol:id,name,description,active'])
+            ->get();
         return response()->json($user);
     }
 
