@@ -33,7 +33,7 @@ class AuthController extends Controller
      *      @OA\Response(
      *          response=401,
      *          description="Unauthenticated",
-     *      )     
+     *      )
      *     )
      */
     public function login(Request $request)
@@ -43,12 +43,39 @@ class AuthController extends Controller
 
     /**
      * @OA\Get(
+     *      path="/auth/logout",
+     *      tags={"Auth"},
+     *      summary="GetOut",
+     *      description="Close session",
+     *      security={ {"bearer": {} }},
+     *      @OA\Response(
+     *          response=200,
+     *          description="Successful operation",
+     *       ),
+     *      @OA\Response(
+     *          response=401,
+     *          description="Unauthenticated"
+     *      ),
+     *      @OA\Response(
+     *          response=403,
+     *          description="Forbidden"
+     *      )
+     *     )
+     */
+    public function logout(Request $request)
+    {
+        $request->user()->token()->revoke();
+        return response()->json(['message' => 'Successfully logged out']);
+    }
+
+    /**
+     * @OA\Get(
      *      path="/auth/user",
      *      operationId="getUser",
      *      tags={"Auth"},
      *      summary="Get User Auth",
      *      description="Return User",
-     *      security={ {"bearer": {} }},     
+     *      security={ {"bearer": {} }},
      *      @OA\Response(
      *          response=200,
      *          description="Successful operation",
