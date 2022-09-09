@@ -14,6 +14,7 @@ class UserQuery implements IUserQuery
     private $phone = 'phone';
     private $email = 'email';
     private $password = 'password';
+    private $rol_id = 'rol_id';
 
     public function index()
     {
@@ -34,6 +35,7 @@ class UserQuery implements IUserQuery
                     $this->phone     => 'required|numeric',
                     $this->email    => 'required|string|email|unique:users',
                     $this->password => 'required|string',
+                    $this->rol_id => 'required|numeric',
                 ]);
             } catch (\Exception $e) {
                 return response()->json(['message' => $e->getMessage()], 402);
@@ -45,19 +47,27 @@ class UserQuery implements IUserQuery
                 $this->phone     => $request->phone,
                 $this->email    => $request->email,
                 $this->password => bcrypt($request->password),
+                $this->rol_id => $request->rol_id,
             ]);
 
             $user->save();
             return response()->json(['message' => 'Usuario creado correctamente!'], 201);
-        } elseif (auth()->check() && auth()->user()->rol_id == 2) {
 
-            return response()->json(['message' => 'Soy el rol cliente, no puedo hacer ni puta mierda!'], 201);
+        } elseif (auth()->check() && auth()->user()->rol_id == 2) {
+            return response()->json(['message' => 'Rol de cliente, no tiene permisos de Admin!'], 201);
+
         } elseif (auth()->check() && auth()->user()->rol_id == 3) {
 
-            $user = new User();
-            $request->request->add(['rol_id' => 2]);
-            $user->create($request->input());
+            $user = new User([
+                $this->name     => $request->name,
+                $this->lastname     => $request->lastname,
+                $this->phone     => $request->phone,
+                $this->email    => $request->email,
+                $this->password => bcrypt($request->password),
+                $this->rol_id => $request-> rol_id = 2,
+            ]);
 
+            $user->save();
             return response()->json(['message' => 'Usurio creado con Rol cliente!'], 201);
         } else {
             return response()->json(['message' => 'No tiene permiso para crear usuarios!'], 403);
