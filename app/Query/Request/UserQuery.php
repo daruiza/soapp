@@ -50,9 +50,15 @@ class UserQuery implements IUserQuery
             $user->save();
             return response()->json(['message' => 'Usuario creado correctamente!'], 201);
         } elseif (auth()->check() && auth()->user()->rol_id == 2) {
+
             return response()->json(['message' => 'Soy el rol cliente, no puedo hacer ni puta mierda!'], 201);
         } elseif (auth()->check() && auth()->user()->rol_id == 3) {
-            return response()->json(['message' => 'Soy el rol Responsable, solo puedo crear clientes!'], 201);
+
+            $user = new User();
+            $request->request->add(['rol_id' => 2]);
+            $user->create($request->input());
+
+            return response()->json(['message' => 'Usurio creado con Rol cliente!'], 201);
         } else {
             return response()->json(['message' => 'No tiene permiso para crear usuarios!'], 403);
         }
@@ -106,12 +112,13 @@ class UserQuery implements IUserQuery
     public function destroy(Int $id)
     {
         if (auth()->check() && auth()->user()->rol_id == 1) {
+
             if ($id) {
                 $user = User::findOrFail($id);
                 $user->delete();
                 return response()->json(['message' => 'User destroy!'], 201);
             } else {
-                return response()->json(['message' => 'User no exist!'], 404);
+                return response()->json(['message' => 'User no existe!'], 403);
             }
         } else {
             return response()->json(['message' => 'No tiene permiso para Eliminar usuarios!'], 403);
