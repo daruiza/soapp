@@ -35,6 +35,7 @@ Route::group(['prefix' => 'user'], function () {
     Route::group(['middleware' => 'auth:api'], function () {
         Route::get('index', 'Api\UserController@index');
         Route::post('store', 'Api\UserController@store');
+        Route::put('update/{user_id}', 'Api\UserController@update');
         Route::get('showbyuser/{user_id}', 'Api\UserController@showByUserId');
         Route::delete('destroy/{user_id}', 'Api\UserController@destroy');
     });

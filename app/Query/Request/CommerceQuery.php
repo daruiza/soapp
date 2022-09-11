@@ -21,16 +21,20 @@ class CommerceQuery implements ICommerceQuery
 
     public function store(Request $request)
     {
-        if (Commerce::where('name', $request->input('name'))->first()) {
-            return response()->json(['message' => 'Commerce exist!'], 400);
+        if (auth()->check() && auth()->user()->rol_id == 1) {
+            if (Commerce::where('name', $request->input('name'))->first()) {
+                return response()->json(['message' => 'Commerce exist!'], 400);
+            }
+
+            // Creamos el nuevo comercio
+            $commerce = new Commerce();
+            $request->request->add(['active' => 1]);
+            $newCommerce = $commerce->create($request->input());
+
+            return response()->json(['message' => 'Commerce creado correctamente!'], 201);
+        } else {
+            return response()->json(['message' => 'No tiene permiso para crear commerce!'], 403);
         }
-
-        // Creamos el nuevo comercio
-        $commerce = new Commerce();
-        $request->request->add(['active' => 1]);
-        $newCommerce = $commerce->create($request->input());
-
-        return response()->json(['id' => $newCommerce->id], 201);
     }
 
     public function display(Request $request, String $id)
@@ -59,12 +63,16 @@ class CommerceQuery implements ICommerceQuery
 
     public function destroy(Int $id)
     {
-        if ($id) {
-            $commerce = Commerce::findOrFail($id);
-            $commerce->delete();
-            return response()->json(['message' => 'Commerce destroy!'], 201);
+        if (auth()->check() && auth()->user()->rol_id == 1) {
+            if ($id) {
+                $commerce = Commerce::findOrFail($id);
+                $commerce->delete();
+                return response()->json(['message' => 'Commerce destroy!'], 201);
+            }else{
+                return response()->json(['message' => 'Commerce no existe!'], 403);
+            }
         } else {
-            return response()->json(['message' => 'Commerce no exist!'], 404);
+            return response()->json(['message' => 'No tiene permiso para Eliminar commerce!'], 403);
         }
     }
 }
