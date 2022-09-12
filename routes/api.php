@@ -26,7 +26,7 @@ Route::group(['prefix' => 'commerce'], function () {
     Route::group(['middleware' => 'auth:api'], function () {
         Route::get('index', 'Api\CommerceController@index');
         Route::post('store', 'Api\CommerceController@store');
-        Route::get('showByCommerceId/{user_id}', 'Api\CommerceController@showByCommerceId');
+        Route::get('showbycommerceid/{user_id}', 'Api\CommerceController@showByCommerceId');
         Route::delete('destroy/{user_id}', 'Api\CommerceController@destroy');
     });
 });
@@ -36,7 +36,7 @@ Route::group(['prefix' => 'user'], function () {
         Route::get('index', 'Api\UserController@index');
         Route::post('store', 'Api\UserController@store');
         Route::put('update/{user_id}', 'Api\UserController@update');
-        Route::get('showbyuser/{user_id}', 'Api\UserController@showByUserId');
+        Route::get('showbyuserid/{user_id}', 'Api\UserController@showByUserId');
         Route::delete('destroy/{user_id}', 'Api\UserController@destroy');
     });
 });
