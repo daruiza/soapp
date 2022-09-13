@@ -198,7 +198,7 @@
                 ]
             }
         },
-        "/commerce/showByCommerceId/{id}": {
+        "/commerce/showbycommerceid/{id}": {
             "get": {
                 "tags": [
                     "Commerce"
@@ -298,7 +298,7 @@
                 ]
             }
         },
-        "/user/showbyuser/{id}": {
+        "/user/showbyuserid/{id}": {
             "get": {
                 "tags": [
                     "user"
