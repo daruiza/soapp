@@ -44,7 +44,7 @@ class UserController extends Controller
 
     /**
      * @OA\Get(
-     *      path="/user/showbyuser/{id}",
+     *      path="/user/showbyuserid/{id}",
      *      operationId="getUserById",
      *      tags={"user"},
      *      summary="Get One User By one Id",

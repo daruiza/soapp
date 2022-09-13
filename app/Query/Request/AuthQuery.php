@@ -36,30 +36,36 @@ class AuthQuery implements IAuthQuery
         // $token->expires_at = Carbon::now()->addWeeks(1);
         $token->save();
         return response()->json([
-            'access_token' => $tokenResult->accessToken,
-            'token_type'   => 'Bearer',
-            'expires_at'   => Carbon::parse(
-                $tokenResult->token->expires_at
-            )->toDateTimeString(),
-
+            'data' => [
+                'access_token' => $tokenResult->accessToken,
+                'token_type'   => 'Bearer',
+                'expires_at'   => Carbon::parse(
+                    $tokenResult->token->expires_at
+                )->toDateTimeString(),
+            ],
+            'message' => 'Usuario logueado con éxito!'
         ]);
     }
 
     public function user(Request $request)
     {
-       /*  $user = User::findOrFail($request->user()->id);
-        $user->rol; */
-        // $permits = $usrAuxi->userPermitsApi($request->user()->id);
-        // $user->permits = $permits;
-        // $user->acount = $usrAuxi->acount;
+        try {
 
-        //return response()->json($user);
-
-        $user = User::findOrFail($request->user()->id)
-            ->select(['id', 'name', 'lastname', 'phone', 'email', 'rol_id'])
-            ->with(['rol:id,name,description,active'])
-            ->get();
-        return response()->json($user);
+            $user = User::findOrFail($request->user()->id)
+                ->select(['id', 'name', 'lastname', 'phone', 'email', 'rol_id'])
+                ->where('id', '=', $request->user()->id)
+                ->with(['rol:id,name,description,active'])
+                ->get();
+            //return response()->json($user);
+            return response()->json([
+                'data' => [
+                    'User' => $user,
+                ],
+                'message' => 'Usuarios activos!'
+            ]);
+        } catch (\Exception $e) {
+            return response()->json(['message' => $e->getMessage()], 402);
+        }
     }
 
     public function signup(Request $request)

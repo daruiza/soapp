@@ -122,7 +122,7 @@ class CommerceController extends Controller
 
     /**
      * @OA\Get(
-     *      path="/commerce/showByCommerceId/{id}",
+     *      path="/commerce/showbycommerceid/{id}",
      *      operationId="getCommerceByUserId",
      *      tags={"Commerce"},
      *      summary="Get One Commerce By one UserId",
