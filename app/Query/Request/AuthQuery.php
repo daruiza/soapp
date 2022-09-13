@@ -55,13 +55,13 @@ class AuthQuery implements IAuthQuery
                 ->select(['id', 'name', 'lastname', 'phone', 'email', 'rol_id'])
                 ->where('id', '=', $request->user()->id)
                 ->with(['rol:id,name,description,active'])
-                ->get();
+                ->first();
             //return response()->json($user);
             return response()->json([
                 'data' => [
                     'User' => $user,
                 ],
-                'message' => 'Usuarios activos!'
+                'message' => 'Datos de Usuario Consultados Correctamente!'
             ]);
         } catch (\Exception $e) {
             return response()->json(['message' => $e->getMessage()], 402);
