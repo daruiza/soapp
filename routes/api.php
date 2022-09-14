@@ -40,3 +40,9 @@ Route::group(['prefix' => 'user'], function () {
         Route::delete('destroy/{user_id}', 'Api\UserController@destroy');
     });
 });
+
+Route::group(['prefix' => 'upload'], function () {
+    Route::group(['middleware' => 'auth:api'], function () {
+        Route::post('photo', 'Api\UploadController@photo');        
+    });
+});
