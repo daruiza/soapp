@@ -272,6 +272,39 @@
                 ]
             }
         },
+        "/upload/photo": {
+            "post": {
+                "tags": [
+                    "Upload"
+                ],
+                "summary": "Get User Photo url",
+                "description": "Return Url Photo",
+                "operationId": "push User Photo",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "multipart/form-data": {
+                            "schema": {
+                                "$ref": "#/components/schemas/Upload"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Successful operation"
+                    },
+                    "401": {
+                        "description": "Unauthenticated"
+                    }
+                },
+                "security": [
+                    {
+                        "bearer": []
+                    }
+                ]
+            }
+        },
         "/user/index": {
             "get": {
                 "tags": [
@@ -547,6 +580,24 @@
                         "description": "Name of the Report",
                         "type": "string",
                         "example": "jajfja jajajaj"
+                    }
+                },
+                "type": "object"
+            },
+            "Upload": {
+                "title": "Upload",
+                "description": "Upload body data",
+                "properties": {
+                    "folder": {
+                        "title": "folder",
+                        "description": "Ubication Image",
+                        "type": "string",
+                        "example": ""
+                    },
+                    "file": {
+                        "title": "file",
+                        "description": "File to Upload",
+                        "type": "file"
                     }
                 },
                 "type": "object"
