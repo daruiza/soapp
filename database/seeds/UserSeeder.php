@@ -14,20 +14,24 @@ class UserSeeder extends Seeder
     public function run()
     {
         DB::table('users')->insert(array(
-            'name' => 'super',
+            'name' => 'super-admin',
             'lastname' => 'super',
             'phone' => '0000',
-            'email' => 'super@yopmail.com',
+            'email' => 'superadmin@yopmail.com',
             'password' => Hash::make('0000'),
+            'theme' => 'blue',
+            'photo' => 'avatar',
             'rol_id' => '1',
         ));
 
         DB::table('users')->insert(array(
-            'name' => 'admin',
+            'name' => 'cliente',
             'lastname' => 'super',
             'phone' => '0000',
-            'email' => 'admin@gmail.com',
+            'email' => 'cliente@gmail.com',
             'password' => Hash::make('0000'),
+            'theme' => 'dark',
+            'photo' => 'avatar',
             'rol_id' => '2',
         ));
 
@@ -37,6 +41,8 @@ class UserSeeder extends Seeder
             'phone' => '0000',
             'email' => 'responsable@gmail.com',
             'password' => Hash::make('0000'),
+            'theme' => 'grey',
+            'photo' => 'avatar',
             'rol_id' => '3',
         ));
     }

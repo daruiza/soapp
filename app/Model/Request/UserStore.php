@@ -64,6 +64,28 @@ class UserStore
      */
     public $phone;
 
+     /**
+     * @OA\Property(
+     *      title="theme",
+     *      description="theme of the user",
+     *      example="blue"
+     * )
+     *
+     * @var string
+     */
+    public $theme;
+
+    /**
+     * @OA\Property(
+     *      title="photo",
+     *      description="photo of the user",
+     *      example="avatar"
+     * )
+     *
+     * @var string
+     */
+    public $photo;
+
     /**
      * @OA\Property(
      *      title="rol_id",

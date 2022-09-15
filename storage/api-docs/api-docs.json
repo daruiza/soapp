@@ -203,20 +203,67 @@
                 "tags": [
                     "Commerce"
                 ],
-                "summary": "Get One Commerce By one UserId",
+                "summary": "Get One Commerce By one Id",
                 "description": "Return One Commerce",
-                "operationId": "getCommerceByUserId",
+                "operationId": "getCommerceById",
                 "parameters": [
                     {
                         "name": "id",
                         "in": "path",
-                        "description": "User Id",
+                        "description": "Commerce Id",
                         "required": true,
                         "schema": {
                             "type": "integer"
                         }
                     }
                 ],
+                "responses": {
+                    "200": {
+                        "description": "Successful operation"
+                    },
+                    "401": {
+                        "description": "Unauthenticated"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    }
+                },
+                "security": [
+                    {
+                        "bearer": []
+                    }
+                ]
+            }
+        },
+        "/commerce/update/{id}": {
+            "put": {
+                "tags": [
+                    "Commerce"
+                ],
+                "summary": "Delete One Commerce By one Id",
+                "description": "Update One Commerce",
+                "operationId": "getUpdateCommerceById",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Commerce Id",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/Commerce"
+                            }
+                        }
+                    }
+                },
                 "responses": {
                     "200": {
                         "description": "Successful operation"
@@ -242,12 +289,12 @@
                 ],
                 "summary": "Delete One Commerce By one Id",
                 "description": "Delete One Commerce",
-                "operationId": "getCommerceByUserId",
+                "operationId": "getDestroyCommerceById",
                 "parameters": [
                     {
                         "name": "id",
                         "in": "path",
-                        "description": "User Id",
+                        "description": "Commerce Id",
                         "required": true,
                         "schema": {
                             "type": "integer"
@@ -495,12 +542,6 @@
                 "title": "Commerce",
                 "description": "Commerce body data",
                 "properties": {
-                    "id": {
-                        "title": "id",
-                        "description": "Id of the commerce",
-                        "type": "string",
-                        "example": "1"
-                    },
                     "name": {
                         "title": "name",
                         "description": "Name of the commerce",
@@ -542,6 +583,12 @@
                         "description": "Logo of the commerce",
                         "type": "string",
                         "example": "default.png"
+                    },
+                    "user_id": {
+                        "title": "user_id",
+                        "description": "id of the user",
+                        "type": "string",
+                        "example": "1"
                     }
                 },
                 "type": "object"
@@ -610,13 +657,13 @@
                         "title": "name",
                         "description": "Name of the user",
                         "type": "string",
-                        "example": "super"
+                        "example": "super-admin"
                     },
                     "email": {
                         "title": "email",
                         "description": "Email of the user",
                         "type": "string",
-                        "example": "super@yopmail.com"
+                        "example": "superadmin@yopmail.com"
                     },
                     "password": {
                         "title": "password",
@@ -660,6 +707,18 @@
                         "description": "phone of the user",
                         "type": "string",
                         "example": 100394
+                    },
+                    "theme": {
+                        "title": "theme",
+                        "description": "theme of the user",
+                        "type": "string",
+                        "example": "blue"
+                    },
+                    "photo": {
+                        "title": "photo",
+                        "description": "photo of the user",
+                        "type": "string",
+                        "example": "avatar"
                     },
                     "rol_id": {
                         "title": "rol_id",

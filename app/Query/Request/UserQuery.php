@@ -6,6 +6,7 @@ use App\User;
 
 use Illuminate\Http\Request;
 use App\Query\Abstraction\IUserQuery;
+use App\Http\Requests\StoreUser;
 
 class UserQuery implements IUserQuery
 {
@@ -14,6 +15,8 @@ class UserQuery implements IUserQuery
     private $phone = 'phone';
     private $email = 'email';
     private $password = 'password';
+    private $theme = 'theme';
+    private $photo = 'photo';
     private $rol_id = 'rol_id';
 
     public function index()
@@ -27,43 +30,66 @@ class UserQuery implements IUserQuery
 
     public function store(Request $request)
     {
+        try {
+            $request->validate([
+                $this->name     => 'required|string',
+                $this->lastname     => 'required|string',
+                $this->phone     => 'required|numeric',
+                $this->email    => 'required|string|email|unique:users',
+                $this->password => 'required|string',
+                $this->theme => 'required|string',
+                $this->photo => 'required|string',
+                $this->rol_id => 'required|numeric',
+            ]);
+        } catch (\Exception $e) {
+            return response()->json(['message' => $e->getMessage()], 402);
+        }
+
         if (auth()->check() && auth()->user()->rol_id == 1) {
             try {
-                $request->validate([
-                    $this->name     => 'required|string',
-                    $this->lastname     => 'required|string',
-                    $this->phone     => 'required|numeric',
-                    $this->email    => 'required|string|email|unique:users',
-                    $this->password => 'required|string',
-                    $this->rol_id => 'required|numeric',
+                $user = new User([
+                    $this->name     => $request->name,
+                    $this->lastname     => $request->lastname,
+                    $this->phone     => $request->phone,
+                    $this->email    => $request->email,
+                    $this->password => bcrypt($request->password),
+                    $this->theme => $request->theme,
+                    $this->photo => $request->photo,
+                    $this->rol_id => $request->rol_id,
                 ]);
+                $user->save();
+                return response()->json([
+                    'data' => [
+                        'user' => $user,
+                    ],
+                    'message' => 'Usuario creado correctamente!'
+                ], 201);
             } catch (\Exception $e) {
-                return response()->json(['message' => $e->getMessage()], 402);
+                return response()->json(['message' => 'Usuario no existe!', 'error' => $e->getMessage()], 403);
             }
-
-            $user = new User([
-                $this->name     => $request->name,
-                $this->lastname     => $request->lastname,
-                $this->phone     => $request->phone,
-                $this->email    => $request->email,
-                $this->password => bcrypt($request->password),
-                $this->rol_id => $request->rol_id,
-            ]);
-
-            $user->save();
-            return response()->json(['message' => 'Usuario creado correctamente!', 'user' => $user], 201);
         } elseif (auth()->check() && auth()->user()->rol_id == 3) {
-            $user = new User([
-                $this->name     => $request->name,
-                $this->lastname     => $request->lastname,
-                $this->phone     => $request->phone,
-                $this->email    => $request->email,
-                $this->password => bcrypt($request->password),
-                $this->rol_id => $request->rol_id = 2,
-            ]);
 
-            $user->save();
-            return response()->json(['message' => 'Usurio creado con Rol cliente!'], 201);
+            try {
+                $user = new User([
+                    $this->name     => $request->name,
+                    $this->lastname     => $request->lastname,
+                    $this->phone     => $request->phone,
+                    $this->email    => $request->email,
+                    $this->password => bcrypt($request->password),
+                    $this->theme => $request->theme,
+                    $this->photo => $request->photo,
+                    $this->rol_id => $request->rol_id = 2,
+                ]);
+                $user->save();
+                return response()->json([
+                    'data' => [
+                        'user' => $user,
+                    ],
+                    'message' => 'Usurio creado con Rol cliente!'
+                ], 201);
+            } catch (\Exception $e) {
+                return response()->json(['message' => 'Usuario no existe!', 'error' => $e->getMessage()], 403);
+            }
         } else {
             return response()->json(['message' => 'No tiene permiso para crear usuarios!'], 403);
         }
@@ -90,7 +116,12 @@ class UserQuery implements IUserQuery
             try {
                 $user = User::findOrFail($id);
                 $user->rol;
-                return response()->json(['User' => $user], 200);
+                return response()->json([
+                    'data' => [
+                        'user' => $user,
+                    ],
+                    'message' => 'Datos de Usuario Consultados Correctamente!!'
+                ], 200);
             } catch (\Exception $e) {
                 return response()->json(['message' => 'Usuario no existe!', 'error' => $e->getMessage()], 403);
             }
@@ -109,14 +140,23 @@ class UserQuery implements IUserQuery
                     $user->phone = $request->phone;
                     $user->email = $request->email;
                     $user->password = bcrypt($request->password);
+                    $user->theme = $request->theme;
+                    $user->photo = $request->photo;
                     $user->rol_id = $request->rol_id;
                     $user->save();
-                    return response()->json(['message' => 'Usuario actualizado con éxito!'], 201);
+
+                    return response()->json([
+                        'data' => [
+                            'user' => $user,
+                        ],
+                        'message' => 'Usuario actualizado con éxito!'
+                    ], 201);
                 } catch (\Exception $e) {
                     return response()->json(['message' => 'Usuario no existe!', 'error' => $e->getMessage()], 403);
                 }
             }
         } elseif (auth()->check() && auth()->user()->rol_id == 3) {
+
             try {
                 $user = User::findOrFail($id);
                 $user->name = $request->name;
@@ -124,9 +164,16 @@ class UserQuery implements IUserQuery
                 $user->phone = $request->phone;
                 $user->email = $request->email;
                 $user->password = bcrypt($request->password);
+                $user->theme = $request->theme;
+                $user->photo = $request->photo;
                 $user->rol_id = $request->rol_id = 2;
                 $user->save();
-                return response()->json(['message' => 'Usuario actualizado con éxito!'], 201);
+                return response()->json([
+                    'data' => [
+                        'user' => $user,
+                    ],
+                    'message' => 'Usuario actualizado con éxito!'
+                ], 201);
             } catch (\Exception $e) {
                 return response()->json(['message' => 'Usuario no existe!', 'error' => $e->getMessage()], 403);
             }
@@ -143,7 +190,12 @@ class UserQuery implements IUserQuery
                 try {
                     $user = User::findOrFail($id);
                     $user->delete();
-                    return response()->json(['message' => 'Usuario eliminado con éxito!'], 201);
+                    return response()->json([
+                        'data' => [
+                            'user' => $user,
+                        ],
+                        'message' => 'Usuario eliminado con éxito!'
+                    ], 201);
                 } catch (\Exception $e) {
                     return response()->json(['message' => 'Usuario no existe!', 'error' => $e->getMessage()], 403);
                 }

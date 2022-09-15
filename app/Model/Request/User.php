@@ -13,7 +13,7 @@ class User
      * @OA\Property(
      *      title="name",
      *      description="Name of the user",
-     *      example="super"
+     *      example="super-admin"
      * )
      *
      * @var string
@@ -24,7 +24,7 @@ class User
      * @OA\Property(
      *      title="email",
      *      description="Email of the user",
-     *      example="super@yopmail.com"
+     *      example="superadmin@yopmail.com"
      * )
      *
      * @var string

@@ -19,7 +19,8 @@ class Commerce extends Model
         'adress',
         'description',
         'logo',
-        'active'
+        'active',
+        'user_id'
     ];
 
     public function scopeActive($query, $active)
