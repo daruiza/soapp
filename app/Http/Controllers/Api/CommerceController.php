@@ -123,14 +123,14 @@ class CommerceController extends Controller
     /**
      * @OA\Get(
      *      path="/commerce/showbycommerceid/{id}",
-     *      operationId="getCommerceByUserId",
+     *      operationId="getCommerceById",
      *      tags={"Commerce"},
-     *      summary="Get One Commerce By one UserId",
+     *      summary="Get One Commerce By one Id",
      *      description="Return One Commerce",
      *      security={ {"bearer": {} }},
      *      @OA\Parameter(
      *          name="id",
-     *          description="User Id",
+     *          description="Commerce Id",
      *          required=true,
      *          in="path",
      *          @OA\Schema(
@@ -169,28 +169,56 @@ class CommerceController extends Controller
     }
 
     /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @OA\Put(
+     *      path="/commerce/update/{id}",
+     *      operationId="getUpdateCommerceById",
+     *      tags={"Commerce"},
+     *      summary="Update One Commerce By one Id",
+     *      description="Update One Commerce",
+     *      security={ {"bearer": {} }},
+     *      @OA\Parameter(
+     *          name="id",
+     *          description="Commerce Id",
+     *          required=true,
+     *          in="path",
+     *          @OA\Schema(
+     *              type="integer"
+     *          )
+     *      ),
+     *       @OA\RequestBody(
+     *          required=true,
+     *          @OA\JsonContent(ref="#/components/schemas/Commerce")
+     *      ),
+     *      @OA\Response(
+     *          response=200,
+     *          description="Successful operation",
+     *       ),
+     *      @OA\Response(
+     *          response=401,
+     *          description="Unauthenticated"
+     *      ),
+     *      @OA\Response(
+     *          response=403,
+     *          description="Forbidden"
+     *      )
+     *     )
      */
     public function update(Request $request, $id)
     {
-        return '';
+        return $this->CommerceQuery->update($request, $id);
     }
 
     /**
      * @OA\Delete(
      *      path="/commerce/destroy/{id}",
-     *      operationId="getCommerceByUserId",
+     *      operationId="getDestroyCommerceById",
      *      tags={"Commerce"},
      *      summary="Delete One Commerce By one Id",
      *      description="Delete One Commerce",
      *      security={ {"bearer": {} }},
      *      @OA\Parameter(
      *          name="id",
-     *          description="User Id",
+     *          description="Commerce Id",
      *          required=true,
      *          in="path",
      *          @OA\Schema(

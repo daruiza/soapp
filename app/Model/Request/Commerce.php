@@ -1,4 +1,5 @@
 <?php
+
 /**
  * @OA\Schema(
  *      title="Commerce",
@@ -6,18 +7,9 @@
  *      type="object"
  * )
  */
-class Commerce {
-    /**
-     * @OA\Property(
-     *      title="id",
-     *      description="Id of the commerce",
-     *      example="1"
-     * )
-     *
-     * @var string
-     */
-    public $id;
-    
+class Commerce
+{
+
     /**
      * @OA\Property(
      *      title="name",
@@ -85,6 +77,7 @@ class Commerce {
      * @var string
      */
     public $description;
+
     /**
      * @OA\Property(
      *      title="logo",
@@ -95,6 +88,4 @@ class Commerce {
      * @var string
      */
     public $logo;
-   
 }
-
