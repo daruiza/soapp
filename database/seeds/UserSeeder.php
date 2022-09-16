@@ -19,7 +19,7 @@ class UserSeeder extends Seeder
             'phone' => '0000',
             'email' => 'superadmin@yopmail.com',
             'password' => Hash::make('0000'),
-            'theme' => 'blue',
+            'theme' => 'super',
             'photo' => 'avatar',
             'rol_id' => '1',
         ));
@@ -30,7 +30,7 @@ class UserSeeder extends Seeder
             'phone' => '0000',
             'email' => 'cliente@gmail.com',
             'password' => Hash::make('0000'),
-            'theme' => 'dark',
+            'theme' => 'skyblue',
             'photo' => 'avatar',
             'rol_id' => '2',
         ));
@@ -41,7 +41,7 @@ class UserSeeder extends Seeder
             'phone' => '0000',
             'email' => 'responsable@gmail.com',
             'password' => Hash::make('0000'),
-            'theme' => 'grey',
+            'theme' => 'skyblue',
             'photo' => 'avatar',
             'rol_id' => '3',
         ));
