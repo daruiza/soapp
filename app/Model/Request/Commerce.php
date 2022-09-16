@@ -88,15 +88,4 @@ class Commerce
      * @var string
      */
     public $logo;
-
-    /**
-     * @OA\Property(
-     *      title="user_id",
-     *      description="id of the user",
-     *      example="1"
-     * )
-     *
-     * @var string
-     */
-    public $user_id;
 }

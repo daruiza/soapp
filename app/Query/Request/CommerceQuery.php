@@ -29,7 +29,7 @@ class CommerceQuery implements ICommerceQuery
 
     public function store(Request $request)
     {
-        if (auth()->check() && auth()->user()->rol_id == 1) {
+        if ((auth()->check() && auth()->user()->rol_id == 1) || (auth()->check() && auth()->user()->rol_id == 3)) {
             if (Commerce::where('name', $request->input('name'))->first()) {
                 return response()->json(['message' => 'La tienda ya  existe!'], 400);
             }
@@ -84,23 +84,24 @@ class CommerceQuery implements ICommerceQuery
 
     public function update(Request $request, Int $id)
     {
-        if (Commerce::where('name', $request->input('name'))->first()) {
-            return response()->json(['message' => 'La tienda ya  existe!'], 400);
-        }
-        if ($id) {
-            try {
-                $commerce = Commerce::findOrFail($id);
-                $commerce->fill($request->all());
-                $commerce->user_id = $request->user_id = 2;
-                $commerce->save();
-                return response()->json([
-                    'data' => [
-                        'commerce' => $commerce,
-                    ],
-                    'message' => 'Tienda actualizada con éxito!'
-                ], 201);
-            } catch (\Exception $e) {
-                return response()->json(['message' => 'Tienda no existe!', 'error' => $e->getMessage()], 403);
+        if ((auth()->check() && auth()->user()->rol_id == 1) || (auth()->check() && auth()->user()->rol_id == 3)) {
+            if ($id) {
+                try {
+                    $commerce = Commerce::findOrFail($id);
+                    $commerce->fill($request->all());
+                    $commerce->user_id = $request->user_id = 2;
+                    $commerce->save();
+                    return response()->json([
+                        'data' => [
+                            'commerce' => $commerce,
+                        ],
+                        'message' => 'Tienda actualizada con éxito!'
+                    ], 201);
+                } catch (\Exception $e) {
+                    return response()->json(['message' => 'Tienda no existe!', 'error' => $e->getMessage()], 403);
+                }
+            } else {
+                return response()->json(['message' => 'No tiene permiso para crear tienda!'], 403);
             }
         }
     }
