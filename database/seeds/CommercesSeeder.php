@@ -33,7 +33,8 @@ class CommercesSeeder extends Seeder
                 'city' => 'Tarso',
                 'adress' => 'Cr 2 - 2 # 1',
                 'description' => 'tempo store',
-                'logo' => 'tempo.png',                
+                'logo' => 'tempo.png',
+                'user_id' => '2',
             )
         );
 
@@ -45,7 +46,8 @@ class CommercesSeeder extends Seeder
                 'city' => 'Amaga',
                 'adress' => 'Cr 3 - 3 # 1',
                 'description' => 'mrs store',
-                'logo' => 'mrs.png',                
+                'logo' => 'mrs.png',
+                'user_id' => '2',
             )
         );
 
@@ -57,7 +59,7 @@ class CommercesSeeder extends Seeder
                 'city' => 'Amaga',
                 'adress' => 'Cr 3 - 5 # 1',
                 'description' => 'glitch store',
-                'logo' => 'glitch34.png',                
+                'logo' => 'glitch34.png',
             )
         );
 
@@ -69,7 +71,7 @@ class CommercesSeeder extends Seeder
                 'city' => 'Bolombolo',
                 'adress' => 'Cr 3 - 9 # 1',
                 'description' => 'five store',
-                'logo' => 'glitch300.png',                
+                'logo' => 'glitch300.png',
             )
         );
 
@@ -81,7 +83,7 @@ class CommercesSeeder extends Seeder
                 'city' => 'Bolombolo',
                 'adress' => 'Cr 3 - 40 # 1',
                 'description' => 'six store',
-                'logo' => 'six.png',                
+                'logo' => 'six.png',
             )
         );
 
@@ -93,7 +95,7 @@ class CommercesSeeder extends Seeder
                 'city' => 'Bolombolo',
                 'adress' => 'Cr 3 - 47 # 1',
                 'description' => 'combox store',
-                'logo' => 'conbox.png',                
+                'logo' => 'conbox.png',
             )
         );
 
@@ -105,7 +107,7 @@ class CommercesSeeder extends Seeder
                 'city' => 'Pueblorrico',
                 'adress' => 'Cr 3 - 11 # 1',
                 'description' => 'macalu store',
-                'logo' => 'macalu.png',                
+                'logo' => 'macalu.png',
             )
         );
 
@@ -117,7 +119,7 @@ class CommercesSeeder extends Seeder
                 'city' => 'Pueblorrico',
                 'adress' => 'Cr 3 - 88 # 1',
                 'description' => 'cocolu store',
-                'logo' => 'cocolu.png',                
+                'logo' => 'cocolu.png',
             )
         );
 
@@ -129,7 +131,7 @@ class CommercesSeeder extends Seeder
                 'city' => 'Medellín',
                 'adress' => 'Cr 1 - 1 # 1',
                 'description' => 'coPidefault store',
-                'logo' => 'default.png',                
+                'logo' => 'default.png',
             )
         );
 
@@ -141,7 +143,7 @@ class CommercesSeeder extends Seeder
                 'city' => 'Tarso',
                 'adress' => 'Cr 2 - 2 # 1',
                 'description' => 'coPitempo store',
-                'logo' => 'tempo.png',                
+                'logo' => 'tempo.png',
             )
         );
 
@@ -153,7 +155,7 @@ class CommercesSeeder extends Seeder
                 'city' => 'Amaga',
                 'adress' => 'Cr 3 - 3 # 1',
                 'description' => 'coPimrs store',
-                'logo' => 'mrs.png',                
+                'logo' => 'mrs.png',
             )
         );
 
@@ -165,7 +167,7 @@ class CommercesSeeder extends Seeder
                 'city' => 'Amaga',
                 'adress' => 'Cr 3 - 5 # 1',
                 'description' => 'coPiglitch store',
-                'logo' => 'glitch.png',                
+                'logo' => 'glitch.png',
             )
         );
 
@@ -177,7 +179,7 @@ class CommercesSeeder extends Seeder
                 'city' => 'Bolombolo',
                 'adress' => 'Cr 3 - 9 # 1',
                 'description' => 'coPifive store',
-                'logo' => 'glitch.png',                
+                'logo' => 'glitch.png',
             )
         );
 
@@ -189,7 +191,7 @@ class CommercesSeeder extends Seeder
                 'city' => 'Bolombolo',
                 'adress' => 'Cr 3 - 40 # 1',
                 'description' => 'coPisix store',
-                'logo' => 'six.png',                
+                'logo' => 'six.png',
             )
         );
 
@@ -201,7 +203,7 @@ class CommercesSeeder extends Seeder
                 'city' => 'Bolombolo',
                 'adress' => 'Cr 3 - 47 # 1',
                 'description' => 'coPicombox store',
-                'logo' => 'conbox.png',                
+                'logo' => 'conbox.png',
             )
         );
 
@@ -213,7 +215,7 @@ class CommercesSeeder extends Seeder
                 'city' => 'Pueblorrico',
                 'adress' => 'Cr 3 - 11 # 1',
                 'description' => 'coPimacalu store',
-                'logo' => 'macalu.png',                
+                'logo' => 'macalu.png',
             )
         );
 
@@ -225,7 +227,7 @@ class CommercesSeeder extends Seeder
                 'city' => 'Pueblorrico',
                 'adress' => 'Cr 3 - 88 # 1',
                 'description' => 'coPicocolu store',
-                'logo' => 'cocolu.png',                
+                'logo' => 'cocolu.png',
             )
         );
     }

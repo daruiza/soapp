@@ -20,6 +20,8 @@ class CreateUsersTable extends Migration
             $table->integer('phone');
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
+            $table->string('theme');
+            $table->string('photo')->nullable();
             $table->string('password');
             $table->rememberToken();
             $table->timestamps();
@@ -30,7 +32,7 @@ class CreateUsersTable extends Migration
                 ->on('rols')
                 ->onUpdate('cascade')
                 ->onDelete('set null');
-            
+
         });
     }
 

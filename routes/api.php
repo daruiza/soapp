@@ -26,7 +26,8 @@ Route::group(['prefix' => 'commerce'], function () {
     Route::group(['middleware' => 'auth:api'], function () {
         Route::get('index', 'Api\CommerceController@index');
         Route::post('store', 'Api\CommerceController@store');
-        Route::get('showbycommerceid/{user_id}', 'Api\CommerceController@showByCommerceId');
+        Route::put('update/{id}', 'Api\CommerceController@update');
+        Route::get('showbycommerceid/{id}', 'Api\CommerceController@showByCommerceId');
         Route::delete('destroy/{user_id}', 'Api\CommerceController@destroy');
     });
 });
@@ -43,6 +44,6 @@ Route::group(['prefix' => 'user'], function () {
 
 Route::group(['prefix' => 'upload'], function () {
     Route::group(['middleware' => 'auth:api'], function () {
-        Route::post('photo', 'Api\UploadController@photo');        
+        Route::post('photo', 'Api\UploadController@photo');
     });
 });
