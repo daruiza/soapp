@@ -38,8 +38,8 @@ class UploadQuery implements IUploadQuery
                 'extension' => $request->file('file')->getClientOriginalExtension(),
                 'size' => $request->file('file')->getSize(),
                 'mimes' => $request->file('file')->getMimeType(),
+                'message' => $request->file('file')->getClientOriginalName().' se ha cargado correctamente',
             ], 200);
-            
         } catch (\Exception $e) {
             return response()->json(['message' => $e->getMessage()], 402);
         }
