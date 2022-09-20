@@ -95,21 +95,6 @@ class UserQuery implements IUserQuery
         }
     }
 
-    /*  public function show(Request $request)
-    {
-       //
-    }
-
-    public function display(Request $request, String $id)
-    {
-       //
-    }
-
-    public function showByUser(Request $request)
-    {
-       //
-    } */
-
     public function showByUserId(Request $request, $id)
     {
         if ($id) {
@@ -130,43 +115,17 @@ class UserQuery implements IUserQuery
 
     public function update(Request $request, Int $id)
     {
-        if (auth()->check() && auth()->user()->rol_id == 1) {
-
-            if ($id) {
-                try {
-                    $user = User::findOrFail($id);
-                    $user->name = $request->name;
-                    $user->lastname = $request->lastname;
-                    $user->phone = $request->phone;
-                    $user->email = $request->email;
-                    $user->password = bcrypt($request->password);
-                    $user->theme = $request->theme;
-                    $user->photo = $request->photo;
-                    $user->rol_id = $request->rol_id;
-                    $user->save();
-
-                    return response()->json([
-                        'data' => [
-                            'user' => $user,
-                        ],
-                        'message' => 'Usuario actualizado con éxito!'
-                    ], 201);
-                } catch (\Exception $e) {
-                    return response()->json(['message' => 'Usuario no existe!', 'error' => $e->getMessage()], 403);
-                }
-            }
-        } elseif (auth()->check() && auth()->user()->rol_id == 3) {
-
+        if ($id) {
             try {
                 $user = User::findOrFail($id);
                 $user->name = $request->name;
                 $user->lastname = $request->lastname;
-                $user->phone = $request->phone;
+                $user->phone = ''.$request->phone;
                 $user->email = $request->email;
                 $user->password = bcrypt($request->password);
                 $user->theme = $request->theme;
                 $user->photo = $request->photo;
-                $user->rol_id = $request->rol_id = 2;
+                $user->rol_id = $request->rol_id;
                 $user->save();
                 return response()->json([
                     'data' => [
@@ -177,9 +136,8 @@ class UserQuery implements IUserQuery
             } catch (\Exception $e) {
                 return response()->json(['message' => 'Usuario no existe!', 'error' => $e->getMessage()], 403);
             }
-        } else {
-            return response()->json(['message' => 'Necesita permisos de super-administrador!'], 403);
         }
+        return response()->json(['message' => 'Usuario no existe!', 'error' => 'No se proporciono el Id de Usuario'], 403);
     }
 
     public function destroy(Int $id)
