@@ -33,7 +33,7 @@ class UploadQuery implements IUploadQuery
 
             return response()->json([
                 'image_path' => $image_path,
-                'store_image_path' => Storage::url($image_path),
+                'storage_image_path' => Storage::url($image_path),
                 'name' => $request->file('file')->getClientOriginalName(),
                 'extension' => $request->file('file')->getClientOriginalExtension(),
                 'size' => $request->file('file')->getSize(),
