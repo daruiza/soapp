@@ -122,7 +122,6 @@ class UserQuery implements IUserQuery
                 $user->lastname = $request->lastname;
                 $user->phone = ''.$request->phone;
                 $user->email = $request->email;
-                $user->password = bcrypt($request->password);
                 $user->theme = $request->theme;
                 $user->photo = $request->photo;
                 $user->rol_id = $request->rol_id;

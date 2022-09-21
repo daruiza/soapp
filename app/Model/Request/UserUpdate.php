@@ -2,12 +2,12 @@
 
 /**
  * @OA\Schema(
- *      title="UserStore",
- *      description="User body data",
+ *      title="UserUpdate",
+ *      description="UserUpdate body data",
  *      type="object"
  * )
  */
-class UserStore
+class UserUpdate
 {
     /**
      * @OA\Property(
@@ -30,17 +30,7 @@ class UserStore
      * @var string
      */
     public $email;
-
-    /**
-     * @OA\Property(
-     *      title="password",
-     *      description="Password of the user",
-     *      example="0000"
-     * )
-     *
-     * @var string
-     */
-    public $password;
+    
 
     /**
      * @OA\Property(
