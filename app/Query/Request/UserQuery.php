@@ -33,12 +33,8 @@ class UserQuery implements IUserQuery
         try {
             $request->validate([
                 $this->name     => 'required|string',
-                $this->lastname     => 'required|string',
-                $this->phone     => 'required|numeric',
                 $this->email    => 'required|string|email|unique:users',
                 $this->password => 'required|string',
-                $this->theme => 'required|string',
-                $this->photo => 'required|string',
                 $this->rol_id => 'required|numeric',
             ]);
         } catch (\Exception $e) {
@@ -49,12 +45,12 @@ class UserQuery implements IUserQuery
             try {
                 $user = new User([
                     $this->name     => $request->name,
-                    $this->lastname     => $request->lastname,
-                    $this->phone     => $request->phone,
+                    $this->lastname     => $request->lastname ?? '',
+                    $this->phone     => $request->phone ?? '',
                     $this->email    => $request->email,
                     $this->password => bcrypt($request->password),
-                    $this->theme => $request->theme,
-                    $this->photo => $request->photo,
+                    $this->theme => $request->theme ?? 'skyblue',
+                    $this->photo => $request->photo ?? '',
                     $this->rol_id => $request->rol_id,
                 ]);
                 $user->save();
@@ -98,6 +94,7 @@ class UserQuery implements IUserQuery
     public function showByUserId(Request $request, $id)
     {
         if ($id) {
+
             try {
                 $user = User::findOrFail($id);
                 $user->rol;
@@ -113,18 +110,23 @@ class UserQuery implements IUserQuery
         }
     }
 
+    // Actualizacion Myself de usuario
     public function update(Request $request, Int $id)
     {
         if ($id) {
             try {
+                $request->validate([
+                    $this->name     => 'required|string',
+                    $this->email    => 'required|string|email',
+                ]);
+
                 $user = User::findOrFail($id);
                 $user->name = $request->name;
-                $user->lastname = $request->lastname;
-                $user->phone = ''.$request->phone;
+                $user->lastname = $request->lastname ?? '';
+                $user->phone = $request->phone ?? '';
                 $user->email = $request->email;
-                $user->theme = $request->theme;
-                $user->photo = $request->photo;
-                $user->rol_id = $request->rol_id;
+                $user->theme = $request->theme ?? '';
+                $user->photo = $request->photo ?? '';
                 $user->save();
                 return response()->json([
                     'data' => [
