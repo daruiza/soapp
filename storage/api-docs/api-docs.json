@@ -475,7 +475,7 @@
                     "content": {
                         "application/json": {
                             "schema": {
-                                "$ref": "#/components/schemas/UserStore"
+                                "$ref": "#/components/schemas/UserUpdate"
                             }
                         }
                     }
@@ -700,7 +700,55 @@
                         "title": "phone",
                         "description": "phone of the user",
                         "type": "string",
-                        "example": 100394
+                        "example": "3194062550"
+                    },
+                    "theme": {
+                        "title": "theme",
+                        "description": "theme of the user",
+                        "type": "string",
+                        "example": "blue"
+                    },
+                    "photo": {
+                        "title": "photo",
+                        "description": "photo of the user",
+                        "type": "string",
+                        "example": "avatar"
+                    },
+                    "rol_id": {
+                        "title": "rol_id",
+                        "description": "rol_id of the user",
+                        "example": 1
+                    }
+                },
+                "type": "object"
+            },
+            "UserUpdate": {
+                "title": "UserUpdate",
+                "description": "UserUpdate body data",
+                "properties": {
+                    "name": {
+                        "title": "name",
+                        "description": "Name of the user",
+                        "type": "string",
+                        "example": "super"
+                    },
+                    "email": {
+                        "title": "email",
+                        "description": "Email of the user",
+                        "type": "string",
+                        "example": "super@yopmail.com"
+                    },
+                    "lastname": {
+                        "title": "lastname",
+                        "description": "Lastname of the user",
+                        "type": "string",
+                        "example": "LastName"
+                    },
+                    "phone": {
+                        "title": "phone",
+                        "description": "phone of the user",
+                        "type": "string",
+                        "example": "3194062550"
                     },
                     "theme": {
                         "title": "theme",

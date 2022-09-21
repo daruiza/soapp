@@ -160,7 +160,7 @@ class UserController extends Controller
      *      ),
      *      @OA\RequestBody(
      *          required=true,
-     *          @OA\JsonContent(ref="#/components/schemas/UserStore")
+     *          @OA\JsonContent(ref="#/components/schemas/UserUpdate")
      *      ),
      *      @OA\Response(
      *          response=200,
