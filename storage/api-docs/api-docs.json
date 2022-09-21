@@ -761,11 +761,6 @@
                         "description": "photo of the user",
                         "type": "string",
                         "example": "avatar"
-                    },
-                    "rol_id": {
-                        "title": "rol_id",
-                        "description": "rol_id of the user",
-                        "example": 1
                     }
                 },
                 "type": "object"
