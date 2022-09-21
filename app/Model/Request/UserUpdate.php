@@ -76,17 +76,4 @@ class UserUpdate
      */
     public $photo;
 
-    /**
-     * @OA\Property(
-     *      title="rol_id",
-     *      description="rol_id of the user",
-     *      example=1
-     * )
-     *
-     * @var numeric
-     */
-    public $rol_id;
-
-
-
 }
