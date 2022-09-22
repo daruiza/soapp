@@ -57,14 +57,14 @@ class UserStore
      * @OA\Property(
      *      title="phone",
      *      description="phone of the user",
-     *      example="3194062550"
+     *      example=3194062550
      * )
      *
-     * @var string
+     * @var numeric
      */
     public $phone;
 
-     /**
+    /**
      * @OA\Property(
      *      title="theme",
      *      description="theme of the user",
@@ -96,7 +96,4 @@ class UserStore
      * @var numeric
      */
     public $rol_id;
-
-
-
 }
