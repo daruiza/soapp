@@ -161,14 +161,14 @@
                 ]
             }
         },
-        "/commerce/display/{id}": {
+        "/commerce/showbyuserid/{id}": {
             "get": {
                 "tags": [
                     "Commerce"
                 ],
-                "summary": "Get One NameCommerce",
-                "description": "Return Commerces",
-                "operationId": "getNameCommerce",
+                "summary": "Get One Commerce",
+                "description": "Return Commerce",
+                "operationId": "get Commerce",
                 "parameters": [
                     {
                         "name": "id",

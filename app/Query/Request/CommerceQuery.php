@@ -55,12 +55,21 @@ class CommerceQuery implements ICommerceQuery
         }
     }
 
-    public function display(Request $request, String $id)
+    public function showByUserId(Request $request, String $id)
     {
-        $commerce = Commerce::where('name', 'LIKE', $id)->first();
-        return $commerce ?
-            response()->json($commerce, 200) :
-            response()->json(['message' => 'Commerce no exist!'], 404);
+        if ($id) {
+            try {
+                $commerce = Commerce::where('user_id','=',$id)->first();                
+                return response()->json([
+                    'data' => [
+                        'Commerce' => $commerce,
+                    ],
+                    'message' => 'Datos de Tienda Consultados Correctamente!'
+                ]);
+            } catch (\Exception $e) {
+                return response()->json(['message' => 'Tienda no existe!', 'error' => $e->getMessage()], 403);
+            }
+        }
     }
 
     public function showByCommerceId(Request $request, $id)

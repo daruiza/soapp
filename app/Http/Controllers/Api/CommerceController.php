@@ -86,11 +86,11 @@ class CommerceController extends Controller
 
     /**
      * @OA\Get(
-     *      path="/commerce/display/{id}",
-     *      operationId="getNameCommerce",
+     *      path="/commerce/showbyuserid/{id}",
+     *      operationId="get Commerce",
      *      tags={"Commerce"},
-     *      summary="Get One NameCommerce",
-     *      description="Return Commerces",
+     *      summary="Get One Commerce",
+     *      description="Return Commerce",
      *      security={ {"bearer": {} }},
      *      @OA\Parameter(
      *          name="id",
@@ -115,9 +115,9 @@ class CommerceController extends Controller
      *      )
      *     )
      */
-    public function display(Request $request, $id)
+    public function showByUserId(Request $request, $id)
     {
-        return $this->CommerceQuery->display($request, $id);
+        return $this->CommerceQuery->showByUserId($request, $id);
     }
 
     /**
