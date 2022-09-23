@@ -12,7 +12,5 @@ interface IUserQuery
     public function update(Request $request, int $id);
     public function showByUserId(Request $request, int $id);
     public function destroy(Int $id);
-    /* public function show(Request $request);
-    public function display(Request $request, String $id);
-    public function showByUser(Request $request); */
+    public function showByRolId(Request $request, int $id);
 }

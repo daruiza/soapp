@@ -38,6 +38,7 @@ Route::group(['prefix' => 'user'], function () {
         Route::post('store', 'Api\UserController@store');
         Route::put('update/{user_id}', 'Api\UserController@update');
         Route::get('showbyuserid/{user_id}', 'Api\UserController@showByUserId');
+        Route::get('showbyrolid/{rol_id}', 'Api\UserController@showByRolId');
         Route::delete('destroy/{user_id}', 'Api\UserController@destroy');
     });
 });

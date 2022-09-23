@@ -10,21 +10,18 @@ use Illuminate\Support\Facades\Auth;
 
 class AuthQuery implements IAuthQuery
 {
-
     private $name = 'name';
     private $email = 'email';
     private $password = 'password';
 
     public function login(Request $request)
     {
-
         $request->validate([
             $this->email       => 'required|string|email',
             $this->password    => 'required|string',
         ]);
 
         $credentials = request([$this->email, $this->password]);
-
         if (!Auth::attempt($credentials)) {
             return response()->json(['message' => 'Credenciales no autorizadas'], 401);
         }
@@ -55,7 +52,6 @@ class AuthQuery implements IAuthQuery
                 ->where('id', '=', $request->user()->id)
                 ->with(['rol:id,name,description,active'])
                 ->first();
-            //return response()->json($user);
             return response()->json([
                 'data' => [
                     'User' => $user,
@@ -71,7 +67,7 @@ class AuthQuery implements IAuthQuery
     {
         try {
             $request->validate([
-                $this->name     => 'required|string',
+                $this->name     => 'required|string|min:5|max:128',
                 $this->email    => 'required|string|email|unique:users',
                 $this->password => 'required|string|confirmed',
             ]);
