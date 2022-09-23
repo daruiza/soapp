@@ -46,23 +46,27 @@ class UserQuery implements IUserQuery
 
         if (auth()->check() && auth()->user()->rol_id == 1) {
             try {
-                $user = new User([
-                    $this->name     => $request->name,
-                    $this->lastname => $request->lastname ?? '',
-                    $this->phone    => $request->phone ?? 0,
-                    $this->email    => $request->email,
-                    $this->password => bcrypt($request->password),
-                    $this->theme    => $request->theme ?? 'skyblue',
-                    $this->photo    => $request->photo ?? '',
-                    $this->rol_id   => $request->rol_id,
-                ]);
-                $user->save();
-                return response()->json([
-                    'data' => [
-                        'user' => $user,
-                    ],
-                    'message' => 'Usuario creado correctamente!'
-                ], 201);
+                if ($request->rol_id <= 1) {
+                    return response()->json(['message' => 'no tiene permiso para crear rol super-admin!'], 403);
+                } else {
+                    $user = new User([
+                        $this->name     => $request->name,
+                        $this->lastname => $request->lastname ?? '',
+                        $this->phone    => $request->phone ?? 0,
+                        $this->email    => $request->email,
+                        $this->password => bcrypt($request->password),
+                        $this->theme    => $request->theme ?? 'skyblue',
+                        $this->photo    => $request->photo ?? '',
+                        $this->rol_id   => $request->rol_id,
+                    ]);
+                    $user->save();
+                    return response()->json([
+                        'data' => [
+                            'user' => $user,
+                        ],
+                        'message' => 'Usuario creado correctamente!'
+                    ], 201);
+                }
             } catch (\Exception $e) {
                 return response()->json(['message' => 'Los datos ingresados no son validos!', 'error' => $e->getMessage()], 403);
             }
@@ -164,8 +168,6 @@ class UserQuery implements IUserQuery
             return response()->json(['message' => 'Usuario no existe!', 'error' => $e->getMessage()], 402);
         }
     }
-
-
 
     public function destroy(Int $id)
     {
