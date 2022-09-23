@@ -28,6 +28,7 @@ Route::group(['prefix' => 'commerce'], function () {
         Route::post('store', 'Api\CommerceController@store');
         Route::put('update/{id}', 'Api\CommerceController@update');
         Route::get('showbycommerceid/{id}', 'Api\CommerceController@showByCommerceId');
+        Route::get('showbyuserid/{id}', 'Api\CommerceController@showByUserId');        
         Route::delete('destroy/{user_id}', 'Api\CommerceController@destroy');
     });
 });
