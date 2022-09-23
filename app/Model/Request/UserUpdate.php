@@ -30,7 +30,7 @@ class UserUpdate
      * @var string
      */
     public $email;
-    
+
 
     /**
      * @OA\Property(
@@ -47,10 +47,10 @@ class UserUpdate
      * @OA\Property(
      *      title="phone",
      *      description="phone of the user",
-     *      example="3194062550"
+     *      example=3194062550
      * )
      *
-     * @var string
+     * @var numeric
      */
     public $phone;
 

@@ -79,6 +79,42 @@ class UserController extends Controller
     }
 
     /**
+     * @OA\Get(
+     *      path="/user/showbyrolid/{id}",
+     *      operationId="getUserByRolId",
+     *      tags={"user"},
+     *      summary="Get One User By one Rol Id",
+     *      description="Return One User with Rol",
+     *      security={ {"bearer": {} }},
+     *      @OA\Parameter(
+     *          name="id",
+     *          description="Rol Id",
+     *          required=true,
+     *          in="path",
+     *          @OA\Schema(
+     *              type="integer"
+     *          )
+     *      ),
+     *      @OA\Response(
+     *          response=200,
+     *          description="Successful operation",
+     *       ),
+     *      @OA\Response(
+     *          response=401,
+     *          description="Unauthenticated"
+     *      ),
+     *      @OA\Response(
+     *          response=403,
+     *          description="Forbidden"
+     *      )
+     *     )
+     */
+    public function showByRolId(Request $request, $id)
+    {
+        return $this->UserQuery->showByRolId($request, $id);
+    }
+
+    /**
      * Show the form for creating a new resource.
      *
      * @return \Illuminate\Http\Response

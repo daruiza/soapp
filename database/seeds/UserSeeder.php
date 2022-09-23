@@ -16,7 +16,7 @@ class UserSeeder extends Seeder
         DB::table('users')->insert(array(
             'name' => 'super-admin',
             'lastname' => 'super',
-            'phone' => '0000',
+            'phone' => 0000,
             'email' => 'superadmin@yopmail.com',
             'password' => Hash::make('0000'),
             'theme' => 'super',
@@ -27,7 +27,7 @@ class UserSeeder extends Seeder
         DB::table('users')->insert(array(
             'name' => 'cliente',
             'lastname' => 'super',
-            'phone' => '0000',
+            'phone' => 0000,
             'email' => 'cliente@gmail.com',
             'password' => Hash::make('0000'),
             'theme' => 'skyblue',
@@ -38,7 +38,7 @@ class UserSeeder extends Seeder
         DB::table('users')->insert(array(
             'name' => 'Responsable',
             'lastname' => 'super',
-            'phone' => '0000',
+            'phone' => 0000,
             'email' => 'responsable@gmail.com',
             'password' => Hash::make('0000'),
             'theme' => 'skyblue',

@@ -161,14 +161,14 @@
                 ]
             }
         },
-        "/commerce/display/{id}": {
+        "/commerce/showbyuserid/{id}": {
             "get": {
                 "tags": [
                     "Commerce"
                 ],
-                "summary": "Get One NameCommerce",
-                "description": "Return Commerces",
-                "operationId": "getNameCommerce",
+                "summary": "Get One Commerce",
+                "description": "Return Commerce",
+                "operationId": "get Commerce",
                 "parameters": [
                     {
                         "name": "id",
@@ -391,6 +391,43 @@
                         "name": "id",
                         "in": "path",
                         "description": "User Id",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful operation"
+                    },
+                    "401": {
+                        "description": "Unauthenticated"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    }
+                },
+                "security": [
+                    {
+                        "bearer": []
+                    }
+                ]
+            }
+        },
+        "/user/showbyrolid/{id}": {
+            "get": {
+                "tags": [
+                    "user"
+                ],
+                "summary": "Get One User By one Rol Id",
+                "description": "Return One User with Rol",
+                "operationId": "getUserByRolId",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Rol Id",
                         "required": true,
                         "schema": {
                             "type": "integer"
@@ -699,8 +736,7 @@
                     "phone": {
                         "title": "phone",
                         "description": "phone of the user",
-                        "type": "string",
-                        "example": "3194062550"
+                        "example": 2147483647
                     },
                     "theme": {
                         "title": "theme",
@@ -747,8 +783,7 @@
                     "phone": {
                         "title": "phone",
                         "description": "phone of the user",
-                        "type": "string",
-                        "example": "3194062550"
+                        "example": 2147483647
                     },
                     "theme": {
                         "title": "theme",

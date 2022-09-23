@@ -28,6 +28,7 @@ Route::group(['prefix' => 'commerce'], function () {
         Route::post('store', 'Api\CommerceController@store');
         Route::put('update/{id}', 'Api\CommerceController@update');
         Route::get('showbycommerceid/{id}', 'Api\CommerceController@showByCommerceId');
+        Route::get('showbyuserid/{id}', 'Api\CommerceController@showByUserId');        
         Route::delete('destroy/{user_id}', 'Api\CommerceController@destroy');
     });
 });
@@ -38,6 +39,7 @@ Route::group(['prefix' => 'user'], function () {
         Route::post('store', 'Api\UserController@store');
         Route::put('update/{user_id}', 'Api\UserController@update');
         Route::get('showbyuserid/{user_id}', 'Api\UserController@showByUserId');
+        Route::get('showbyrolid/{rol_id}', 'Api\UserController@showByRolId');
         Route::delete('destroy/{user_id}', 'Api\UserController@destroy');
     });
 });
