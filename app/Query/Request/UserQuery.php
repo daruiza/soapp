@@ -103,30 +103,30 @@ class UserQuery implements IUserQuery
     public function update(Request $request, Int $id)
     {
         try {
-                $user = User::findOrFail($id);
-                if($user){
-                    $request->validate([
-                        $this->name     => 'required|string|min:5|max:128|',
-                        $this->email    => 'required|string|max:128|email|', Rule::unique('users')->ignore($user->id),
-                        $this->phone    => 'min:7|max:10|'
-                    ]);
-                    $user->name     = $request->name;
-                    $user->lastname = $request->lastname ?? '';
-                    $user->phone    = $request->phone ?? 0;
-                    $user->email    = $request->email;
-                    $user->theme    = $request->theme ?? '';
-                    $user->photo    = $request->photo ?? '';
-                    $user->save();
-                    return response()->json([
-                        'data' => [
-                            'user' => $user,
-                        ],
-                        'message' => 'Usuario actualizado con éxito!'
-                    ], 201);
-                }else{
-                    return response()->json(['message' => 'Usuario no existe!'], 403);
-                }
+            $user = User::findOrFail($id);
 
+            if ($user) {
+                $request->validate([
+                    $this->name     => 'required|string|min:5|max:128|',
+                    $this->email    => 'required|string|max:128|email|', Rule::unique('users')->ignore($user->id),
+                    $this->phone    => 'min:7|max:10|'
+                ]);
+                $user->name     = $request->name;
+                $user->lastname = $request->lastname ?? '';
+                $user->phone    = $request->phone ?? 0;
+                $user->email    = $request->email;
+                $user->theme    = $request->theme ?? '';
+                $user->photo    = $request->photo ?? '';
+                $user->save();
+                return response()->json([
+                    'data' => [
+                        'user' => $user,
+                    ],
+                    'message' => 'Usuario actualizado con éxito!'
+                ], 201);
+            } else {
+                return response()->json(['message' => 'Usuario no existe!'], 403);
+            }
         } catch (\Exception $e) {
             return response()->json(['message' => 'Los datos ingresados no son validos!', 'error' => $e->getMessage()], 403);
         }
