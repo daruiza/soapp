@@ -105,16 +105,16 @@ class UserQuery implements IUserQuery
             try {
                 $user = User::findOrFail($id);
                 $request->validate([
-                    $this->name     => 'required|string|min:5|max:128',
+                    $this->name     => 'required|string|min:0|max:128',
                     $this->email    => 'required|string|max:128|email|', Rule::unique('users')->ignore($user->id),
                     $this->phone    => 'min:7|max:10'
                 ]);
-                $user->name     = $request->name;
-                $user->lastname = $request->lastname ?? '';
-                $user->phone    = $request->phone ?? 0;
-                $user->email    = $request->email;
-                $user->theme    = $request->theme ?? '';
-                $user->photo    = $request->photo ?? '';
+                $user->name     = $request->name ?? $user->name;
+                $user->lastname = $request->lastname ?? $user->lastname;
+                $user->phone    = $request->phone ?? $user->phone;
+                $user->email    = $request->email ?? $user->email;
+                $user->theme    = $request->theme ?? $user->theme;
+                $user->photo    = $request->photo ?? $user->photo;
                 $user->save();
                 return response()->json([
                     'data' => [
@@ -126,7 +126,7 @@ class UserQuery implements IUserQuery
                 return response()->json(['message' => 'Los datos ingresados no son validos!', 'error' => $e->getMessage()], 403);
             }
         }
-        return response()->json(['message' => 'Usuario no existe!', 'error' => 'No se proporciono el Id de Usuario'], 403);
+        return response()->json(['message' => 'El usuario no existe!', 'error' => 'No se proporciono el Id de Usuario'], 403);
     }
 
     public function showByUserId(Request $request, $id)
