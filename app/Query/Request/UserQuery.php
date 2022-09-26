@@ -45,10 +45,11 @@ class UserQuery implements IUserQuery
         }
 
         if (auth()->check() && auth()->user()->rol_id == 1) {
-            try {
-                if ($request->rol_id <= 1) {
-                    return response()->json(['message' => 'no tiene permiso para crear rol super-admin!'], 403);
-                } else {
+
+            if ($request->rol_id <= 1) {
+                return response()->json(['message' => 'no tiene permiso para crear rol super-admin!'], 403);
+            } else {
+                try {
                     $user = new User([
                         $this->name     => $request->name,
                         $this->lastname => $request->lastname ?? '',
@@ -66,9 +67,9 @@ class UserQuery implements IUserQuery
                         ],
                         'message' => 'Usuario creado correctamente!'
                     ], 201);
+                } catch (\Exception $e) {
+                    return response()->json(['message' => 'Los datos ingresados no son validos!', 'error' => $e->getMessage()], 403);
                 }
-            } catch (\Exception $e) {
-                return response()->json(['message' => 'Los datos ingresados no son validos!', 'error' => $e->getMessage()], 403);
             }
         } elseif (auth()->check() && auth()->user()->rol_id == 3) {
 
@@ -101,32 +102,34 @@ class UserQuery implements IUserQuery
     // Actualizacion Myself de usuario
     public function update(Request $request, Int $id)
     {
-        if ($id) {
-            try {
+        try {
                 $user = User::findOrFail($id);
-                $request->validate([
-                    $this->name     => 'required|string|min:5|max:128',
-                    $this->email    => 'required|string|max:128|email|', Rule::unique('users')->ignore($user->id),
-                    $this->phone    => 'min:7|max:10'
-                ]);
-                $user->name     = $request->name;
-                $user->lastname = $request->lastname ?? '';
-                $user->phone    = $request->phone ?? 0;
-                $user->email    = $request->email;
-                $user->theme    = $request->theme ?? '';
-                $user->photo    = $request->photo ?? '';
-                $user->save();
-                return response()->json([
-                    'data' => [
-                        'user' => $user,
-                    ],
-                    'message' => 'Usuario actualizado con éxito!'
-                ], 201);
-            } catch (\Exception $e) {
-                return response()->json(['message' => 'Los datos ingresados no son validos!', 'error' => $e->getMessage()], 403);
-            }
+                if($user){
+                    $request->validate([
+                        $this->name     => 'required|string|min:5|max:128|',
+                        $this->email    => 'required|string|max:128|email|', Rule::unique('users')->ignore($user->id),
+                        $this->phone    => 'min:7|max:10|'
+                    ]);
+                    $user->name     = $request->name;
+                    $user->lastname = $request->lastname ?? '';
+                    $user->phone    = $request->phone ?? 0;
+                    $user->email    = $request->email;
+                    $user->theme    = $request->theme ?? '';
+                    $user->photo    = $request->photo ?? '';
+                    $user->save();
+                    return response()->json([
+                        'data' => [
+                            'user' => $user,
+                        ],
+                        'message' => 'Usuario actualizado con éxito!'
+                    ], 201);
+                }else{
+                    return response()->json(['message' => 'Usuario no existe!'], 403);
+                }
+
+        } catch (\Exception $e) {
+            return response()->json(['message' => 'Los datos ingresados no son validos!', 'error' => $e->getMessage()], 403);
         }
-        return response()->json(['message' => 'Usuario no existe!', 'error' => 'No se proporciono el Id de Usuario'], 403);
     }
 
     public function showByUserId(Request $request, $id)

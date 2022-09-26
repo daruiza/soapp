@@ -173,7 +173,7 @@
                     {
                         "name": "id",
                         "in": "path",
-                        "description": "Commerce name",
+                        "description": "User Id",
                         "required": true,
                         "schema": {
                             "type": "integer"
