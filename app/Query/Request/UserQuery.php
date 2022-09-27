@@ -107,7 +107,7 @@ class UserQuery implements IUserQuery
                 $request->validate([
                     $this->name     => 'required|string|min:0|max:128',
                     $this->email    => 'required|string|max:128|email|', Rule::unique('users')->ignore($user->id),
-                    $this->phone    => 'min:7|max:10'
+                    $this->phone    => 'min:0|max:10'
                 ]);
                 $user->name     = $request->name ?? $user->name;
                 $user->lastname = $request->lastname ?? $user->lastname;
