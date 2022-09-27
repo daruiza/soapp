@@ -2,8 +2,6 @@
 
 namespace App\Query\Request;
 
-use App\User;
-use Carbon\Carbon;
 use Illuminate\Http\Request;
 use App\Query\Abstraction\IUploadQuery;
 use Illuminate\Support\Facades\Validator;

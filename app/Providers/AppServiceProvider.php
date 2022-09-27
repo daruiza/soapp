@@ -21,6 +21,10 @@ use App\Http\Controllers\Api\UploadController;
 use App\Query\Abstraction\IUploadQuery;
 use App\Query\Request\UploadQuery;
 
+use App\Http\Controllers\Api\RolController;
+use App\Query\Abstraction\IRolQuery;
+use App\Query\Request\RolQuery;
+
 class AppServiceProvider extends ServiceProvider
 {
     /**
@@ -41,6 +45,9 @@ class AppServiceProvider extends ServiceProvider
 
         $this->app->bind(IUploadQuery::class, UploadQuery::class);
         $this->app->make(UploadController::class);
+
+        $this->app->bind(IRolQuery::class, RolQuery::class);
+        $this->app->make(RolController::class);
     }
 
     /**
