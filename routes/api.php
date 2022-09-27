@@ -49,3 +49,9 @@ Route::group(['prefix' => 'upload'], function () {
         Route::post('photo', 'Api\UploadController@photo');
     });
 });
+
+Route::group(['prefix' => 'rol'], function () {
+    Route::group(['middleware' => 'auth:api'], function () {
+        Route::get('index', 'Api\RolController@index');
+    });
+});
