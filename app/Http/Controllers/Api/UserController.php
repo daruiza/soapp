@@ -37,9 +37,9 @@ class UserController extends Controller
      *      )
      *     )
      */
-    public function index()
+    public function index(Request $request)
     {
-        return $this->UserQuery->index();
+        return $this->UserQuery->index($request);
     }
 
     /**
