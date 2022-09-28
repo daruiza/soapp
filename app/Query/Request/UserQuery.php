@@ -34,7 +34,7 @@ class UserQuery implements IUserQuery
             ->orderBy('id',  $request->sort ?? 'ASC')
             ->paginate($request->limit ?? 10, ['*'], '', $request->page ?? 1);
 
-        return response()->json(['User' => $user], 200);
+        return response()->json(['users' => $user, 'message'=>'Usuarios consultados correctamente!'], 200);
     }
 
     public function store(Request $request)
@@ -54,7 +54,7 @@ class UserQuery implements IUserQuery
         if (auth()->check() && auth()->user()->rol_id == 1) {
             try {
                 if ($request->rol_id <= 1) {
-                    return response()->json(['message' => 'no tiene permiso para crear rol super-admin!'], 403);
+                    return response()->json(['message' => 'No tiene permiso para crear rol super-admin!'], 403);
                 } else {
                     $user = new User([
                         $this->name     => $request->name,
