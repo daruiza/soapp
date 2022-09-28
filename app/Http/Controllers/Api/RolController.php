@@ -18,7 +18,7 @@ class RolController extends Controller
     /**
      * @OA\Get(
      *      path="/rol/index",
-     *      operationId="getAllRols",
+     *      operationId="getRols",
      *      tags={"rol"},
      *      summary="Get All Rols",
      *      description="Return Rols",
