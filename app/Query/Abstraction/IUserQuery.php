@@ -7,7 +7,7 @@ use App\Http\Requests\StoreUser;
 
 interface IUserQuery
 {
-    public function index();
+    public function index(Request $request);
     public function store(Request $request);
     public function update(Request $request, int $id);
     public function showByUserId(Request $request, int $id);

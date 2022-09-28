@@ -21,12 +21,19 @@ class UserQuery implements IUserQuery
     private $photo = 'photo';
     private $rol_id = 'rol_id';
 
-    public function index()
+    public function index(Request $request)
     {
         $user = User::query()
             ->select(['id', 'name', 'lastname', 'phone', 'email', 'photo', 'theme', 'rol_id'])
             ->with(['rol:id,name,description,active'])
-            ->get();
+            ->name($request->name)
+            ->lastname($request->lastname)
+            ->phone($request->phone)
+            ->email($request->email)
+            ->rol_id($request->rol_id)
+            ->orderBy('id',  $request->sort ?? 'ASC')
+            ->paginate($request->limit ?? 10, ['*'], '', $request->page ?? 1);
+
         return response()->json(['User' => $user], 200);
     }
 
