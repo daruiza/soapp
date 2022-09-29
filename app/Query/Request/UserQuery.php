@@ -118,90 +118,35 @@ class UserQuery implements IUserQuery
     }
 
     // Actualizacion Myself de usuario
+    
     public function update(Request $request, Int $id)
     {
-        if (auth()->check() && auth()->user()->rol_id == 1) {
-
-            $registro = User::where('id', $id)
-                ->count();
-            if ($registro) {
-                if ($request->rol_id <= 1) {
-                    return response()->json(['message' => 'no tiene permiso para asignar rol super-admin!'], 403);
-                } else {
-                    $user = User::findOrFail($id);
-                    $rules = [
-                        $this->name     => 'required|string|min:1|max:128|',
-                        $this->email    => 'required|string|max:128|email|', Rule::unique('users')->ignore($user->id),
-                        $this->phone    => 'numeric|digits_between:7,10|'
-                    ];
-                    try {
-                        $validator = Validator::make($request->all(), $rules);
-                        if ($validator->fails()) {
-                            throw (new ValidationException($validator->errors()->getMessages()));
-                        }
-                        $user->name     = $request->name;
-                        $user->lastname = $request->lastname ?? '';
-                        $user->phone    = $request->phone ?? 0;
-                        $user->email    = $request->email;
-                        $user->theme    = $request->theme ?? '';
-                        $user->photo    = $request->photo ?? '';
-                        $user->rol_id   = $request->rol_id;
-                        $user->save();
-                        return response()->json([
-                            'data' => [
-                                'user' => $user,
-                            ],
-                            'message' => 'Usuario actualizado con éxito!'
-                        ], 201);
-                    } catch (\Exception $e) {
-                        return response()->json(['message' => 'Algo salio mal!', 'error' => $e], 403);
-                    }
-                }
-            } else {
-                return response()->json(['message' => 'El usuario no existe!'], 403);
+        if ($id) {
+            try {
+                $user = User::findOrFail($id);
+                $request->validate([
+                    $this->name     => 'required|string|min:0|max:128',
+                    $this->email    => 'required|string|max:128|email|', Rule::unique('users')->ignore($user->id),
+                    $this->phone    => 'numeric|digits_between:7,10|'
+                ]);
+                $user->name     = $request->name ?? $user->name;
+                $user->lastname = $request->lastname ?? $user->lastname;
+                $user->phone    = $request->phone ?? $user->phone;
+                $user->email    = $request->email ?? $user->email;
+                $user->theme    = $request->theme ?? $user->theme;
+                $user->photo    = $request->photo ?? $user->photo;
+                $user->save();
+                return response()->json([
+                    'data' => [
+                        'user' => $user,
+                    ],
+                    'message' => 'Usuario actualizado con éxito!'
+                ], 201);
+            } catch (\Exception $e) {
+                return response()->json(['message' => 'Los datos ingresados no son validos!', 'error' => $e->getMessage()], 403);
             }
-        } elseif (auth()->check() && auth()->user()->rol_id == 3) {
-            if ($request->rol_id <= 1) {
-                return response()->json(['message' => 'no tiene permiso para asignar rol super-admin!'], 403);
-            } else {
-                $registro = User::where('id', $id)
-                    ->count();
-                if ($registro) {
-                    $user = User::findOrFail($id);
-                    $rules = [
-                        $this->name     => 'required|string|min:1|max:128|',
-                        $this->email    => 'required|string|max:128|email|', Rule::unique('users')->ignore($user->id),
-                        $this->phone    => 'numeric|digits_between:7,10|'
-                    ];
-                    try {
-                        $validator = Validator::make($request->all(), $rules);
-                        if ($validator->fails()) {
-                            throw (new ValidationException($validator->errors()->getMessages()));
-                        }
-                        $user->name     = $request->name;
-                        $user->lastname = $request->lastname ?? '';
-                        $user->phone    = $request->phone ?? 0;
-                        $user->email    = $request->email;
-                        $user->theme    = $request->theme ?? '';
-                        $user->photo    = $request->photo ?? '';
-                        $user->rol_id   = $request->rol_id = 2;
-                        $user->save();
-                        return response()->json([
-                            'data' => [
-                                'user' => $user,
-                            ],
-                            'message' => 'Usuario actualizado con éxito!'
-                        ], 201);
-                    } catch (\Exception $e) {
-                        return response()->json(['message' => 'Algo salio mal!', 'error' => $e], 403);
-                    }
-                } else {
-                    return response()->json(['message' => 'El usuario no existe!'], 403);
-                }
-            }
-        } else {
-            return response()->json(['message' => 'No tiene permiso para crear usuarios!'], 403);
         }
+        return response()->json(['message' => 'El usuario no existe!', 'error' => 'No se proporciono el Id de Usuario'], 403);
     }
 
     public function showByUserId(Request $request, $id)
