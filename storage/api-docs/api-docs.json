@@ -173,7 +173,7 @@
                     {
                         "name": "id",
                         "in": "path",
-                        "description": "Commerce Id",
+                        "description": "User Id",
                         "required": true,
                         "schema": {
                             "type": "integer"
@@ -662,7 +662,7 @@
                         "title": "nit",
                         "description": "Nit of the Commerce",
                         "type": "string",
-                        "example": "1039420535-4"
+                        "example": "1039420535-3"
                     },
                     "department": {
                         "title": "department",
@@ -693,6 +693,12 @@
                         "description": "Logo of the commerce",
                         "type": "string",
                         "example": "default.png"
+                    },
+                    "user_id": {
+                        "title": "user_id",
+                        "description": "user_id of the commerce",
+                        "type": "string",
+                        "example": "1"
                     }
                 },
                 "type": "object"
@@ -815,7 +821,7 @@
                         "title": "theme",
                         "description": "theme of the user",
                         "type": "string",
-                        "example": "blue"
+                        "example": "red"
                     },
                     "photo": {
                         "title": "photo",
@@ -869,6 +875,11 @@
                         "description": "photo of the user",
                         "type": "string",
                         "example": "avatar"
+                    },
+                    "rol_id": {
+                        "title": "rol_id",
+                        "description": "rol_id of the user",
+                        "example": 1
                     }
                 },
                 "type": "object"
