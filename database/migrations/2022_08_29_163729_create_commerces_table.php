@@ -15,8 +15,8 @@ class CreateCommercesTable extends Migration
     {
         Schema::create('commerces', function (Blueprint $table) {
             $table->id('id');
-            $table->string('name', 128);
-            $table->string('nit', 128);
+            $table->string('name', 128)->unique();
+            $table->string('nit', 128)->unique();
             $table->string('department', 128)->nullable()->default(null);
             $table->string('city', 128)->nullable()->default(null);
             $table->string('adress', 256)->nullable()->default(null);

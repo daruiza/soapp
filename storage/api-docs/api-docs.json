@@ -589,7 +589,7 @@
                         "title": "nit",
                         "description": "Nit of the Commerce",
                         "type": "string",
-                        "example": "1039420535-4"
+                        "example": "1039420535-3"
                     },
                     "department": {
                         "title": "department",
@@ -620,6 +620,12 @@
                         "description": "Logo of the commerce",
                         "type": "string",
                         "example": "default.png"
+                    },
+                    "user_id": {
+                        "title": "user_id",
+                        "description": "user_id of the commerce",
+                        "type": "string",
+                        "example": "1"
                     }
                 },
                 "type": "object"
