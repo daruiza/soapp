@@ -76,46 +76,34 @@ class CommerceQuery implements ICommerceQuery
 
     public function update(Request $request, Int $id)
     {
-        if ((auth()->check() && auth()->user()->rol_id == 1) || (auth()->check() && auth()->user()->rol_id == 3)) {
-
-            $registro = Commerce::where('id', $id)
-                ->count();
-            if ($registro) {
+        if ($id) {
+            try {
                 $commerce = Commerce::findOrFail($id);
-
                 $rules = [
-                    $this->name  => 'required|string|min:1|max:128|', Rule::unique('commerces')->ignore($commerce->$id),
-                    $this->nit   => 'required|', Rule::unique('commerces')->ignore($commerce->$id),
+                    $this->name  => 'required|string|min:1|max:128|', Rule::unique('commerces')->ignore($commerce->id),
+                    $this->nit   => 'required|', Rule::unique('commerces')->ignore($commerce->id),
                 ];
-                try {
-                    $validator = Validator::make($request->all(), $rules);
-                    if ($validator->fails()) {
-                        throw (new ValidationException($validator->errors()->getMessages()));
-                    }
-                    $commerce->name = $request->name ?? $commerce->name;
-                    $commerce->nit = $request->nit;
-                    $commerce->department = $request->department ?? '';
-                    $commerce->city = $request->city ?? '';
-                    $commerce->adress = $request->adress ?? '';
-                    $commerce->description = $request->description ?? '';
-                    $commerce->logo = $request->logo ?? '';
-                    $commerce->active = $request->active ?? $commerce->active;
-                    $commerce->user_id = $request->user_id ?? $commerce->user_id;
-                    $commerce->save();
-                    return response()->json([
-                        'data' => [
-                            'commerce' => $commerce,
-                        ],
-                        'message' => 'Negocio actualizado con éxito!'
-                    ], 201);
-                } catch (\Exception $e) {
-                    return response()->json(['message' => 'Algo salio mal!', 'error' => $e], 403);
+                $validator = Validator::make($request->all(), $rules);
+                if ($validator->fails()) {
+                    throw (new ValidationException($validator->errors()->getMessages()));
                 }
-            } else {
-                return response()->json(['message' => 'La tienda no existe!'], 403);
+                $commerce->name = $request->name;
+                $commerce->nit = $request->nit;
+                $commerce->department = $request->department ?? $commerce->department;
+                $commerce->city = $request->city ?? $commerce->city;
+                $commerce->adress = $request->adress ?? $commerce->adress;
+                $commerce->description = $request->description ?? $commerce->description;
+                $commerce->logo = $request->logo ?? $commerce->logo;
+                $commerce->save();
+                return response()->json([
+                    'data' => [
+                        'commerce' => $commerce,
+                    ],
+                    'message' => 'Negocio actualizado con éxito!'
+                ], 201);
+            } catch (\Exception $e) {
+                return response()->json(['message' => 'Algo salio mal!', 'error' => $e], 403);
             }
-        } else {
-            return response()->json(['message' => 'No tiene permiso para crear tienda!'], 403);
         }
     }
 
