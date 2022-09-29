@@ -6,7 +6,8 @@ use App\User;
 use App\Model\Admin\Rol;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Validation\Rule;
-
+use Illuminate\Validation\ValidationException;
+use Illuminate\Support\Facades\Validator;
 use Illuminate\Http\Request;
 use App\Query\Abstraction\IUserQuery;
 
@@ -34,28 +35,35 @@ class UserQuery implements IUserQuery
             ->orderBy('id',  $request->sort ?? 'ASC')
             ->paginate($request->limit ?? 10, ['*'], '', $request->page ?? 1);
 
-        return response()->json(['users' => $user, 'message'=>'Usuarios consultados correctamente!'], 200);
+        return response()->json(['users' => $user, 'message' => 'Usuarios consultados correctamente!'], 200);
     }
 
     public function store(Request $request)
     {
+        $rules = [
+            $this->name     => 'required|string|min:1|max:128',
+            $this->email    => 'required|string|max:128|email|unique:users',
+            $this->password => 'required|string',
+            $this->phone    => 'numeric|digits_between:7,10',
+            $this->rol_id   => 'required|numeric',
+        ];
         try {
-            $request->validate([
-                $this->name     => 'required|string|min:5|max:128',
-                $this->email    => 'required|string|max:128|email|unique:users',
-                $this->password => 'required|string',
-                $this->phone    => 'min:7|max:10',
-                $this->rol_id   => 'required|numeric',
-            ]);
+            // Ejecutamos el validador y en caso de que falle devolvemos la respuesta
+            $validator = Validator::make($request->all(), $rules);
+            if ($validator->fails()) {
+                throw (new ValidationException($validator->errors()->getMessages()));
+            }
         } catch (\Exception $e) {
-            return response()->json(['message' => $e->getMessage()], 402);
+            return response()->json(['message' => 'Algo salio mal!', 'error' => $e], 403);
         }
 
         if (auth()->check() && auth()->user()->rol_id == 1) {
-            try {
-                if ($request->rol_id <= 1) {
-                    return response()->json(['message' => 'No tiene permiso para crear rol super-admin!'], 403);
-                } else {
+
+            if ($request->rol_id <= 1) {
+                return response()->json(['message' => 'no tiene permiso para crear rol super-admin!'], 403);
+            } else {
+                try {
+
                     $user = new User([
                         $this->name     => $request->name,
                         $this->lastname => $request->lastname ?? '',
@@ -73,32 +81,36 @@ class UserQuery implements IUserQuery
                         ],
                         'message' => 'Usuario creado correctamente!'
                     ], 201);
+                } catch (\Exception $e) {
+                    return response()->json(['message' => 'Los datos ingresados no son validos!', 'error' => $e], 403);
                 }
-            } catch (\Exception $e) {
-                return response()->json(['message' => 'Los datos ingresados no son validos!', 'error' => $e->getMessage()], 403);
             }
         } elseif (auth()->check() && auth()->user()->rol_id == 3) {
 
-            try {
-                $user = new User([
-                    $this->name     => $request->name,
-                    $this->lastname => $request->lastname ?? '',
-                    $this->phone    => $request->phone ?? 0,
-                    $this->email    => $request->email,
-                    $this->password => bcrypt($request->password),
-                    $this->theme    => $request->theme ?? 'dark',
-                    $this->photo    => $request->photo ?? '',
-                    $this->rol_id   => $request->rol_id = 2,
-                ]);
-                $user->save();
-                return response()->json([
-                    'data' => [
-                        'user' => $user,
-                    ],
-                    'message' => 'Usurio creado con Rol cliente!'
-                ], 201);
-            } catch (\Exception $e) {
-                return response()->json(['message' => 'Los datos ingresados no son validos!', 'error' => $e->getMessage()], 403);
+            if ($request->rol_id <= 1) {
+                return response()->json(['message' => 'no tiene permiso para crear rol super-admin!'], 403);
+            } else {
+                try {
+                    $user = new User([
+                        $this->name     => $request->name,
+                        $this->lastname => $request->lastname ?? '',
+                        $this->phone    => $request->phone ?? 0,
+                        $this->email    => $request->email,
+                        $this->password => bcrypt($request->password),
+                        $this->theme    => $request->theme ?? 'dark',
+                        $this->photo    => $request->photo ?? '',
+                        $this->rol_id   => $request->rol_id = 2,
+                    ]);
+                    $user->save();
+                    return response()->json([
+                        'data' => [
+                            'user' => $user,
+                        ],
+                        'message' => 'Usurio creado con Rol cliente!'
+                    ], 201);
+                } catch (\Exception $e) {
+                    return response()->json(['message' => 'Los datos ingresados no son validos!', 'error' => $e], 403);
+                }
             }
         } else {
             return response()->json(['message' => 'No tiene permiso para crear usuarios!'], 403);
@@ -108,32 +120,88 @@ class UserQuery implements IUserQuery
     // Actualizacion Myself de usuario
     public function update(Request $request, Int $id)
     {
-        if ($id) {
-            try {
-                $user = User::findOrFail($id);
-                $request->validate([
-                    $this->name     => 'required|string|min:0|max:128',
-                    $this->email    => 'required|string|max:128|email|', Rule::unique('users')->ignore($user->id),
-                    $this->phone    => 'min:0|max:10'
-                ]);
-                $user->name     = $request->name ?? $user->name;
-                $user->lastname = $request->lastname ?? $user->lastname;
-                $user->phone    = $request->phone ?? $user->phone;
-                $user->email    = $request->email ?? $user->email;
-                $user->theme    = $request->theme ?? $user->theme;
-                $user->photo    = $request->photo ?? $user->photo;
-                $user->save();
-                return response()->json([
-                    'data' => [
-                        'user' => $user,
-                    ],
-                    'message' => 'Usuario actualizado con éxito!'
-                ], 201);
-            } catch (\Exception $e) {
-                return response()->json(['message' => 'Los datos ingresados no son validos!', 'error' => $e->getMessage()], 403);
+        if (auth()->check() && auth()->user()->rol_id == 1) {
+
+            $registro = User::where('id', $id)
+                ->count();
+            if ($registro) {
+                if ($request->rol_id <= 1) {
+                    return response()->json(['message' => 'no tiene permiso para asignar rol super-admin!'], 403);
+                } else {
+                    $user = User::findOrFail($id);
+                    $rules = [
+                        $this->name     => 'required|string|min:1|max:128|',
+                        $this->email    => 'required|string|max:128|email|', Rule::unique('users')->ignore($user->id),
+                        $this->phone    => 'numeric|digits_between:7,10|'
+                    ];
+                    try {
+                        $validator = Validator::make($request->all(), $rules);
+                        if ($validator->fails()) {
+                            throw (new ValidationException($validator->errors()->getMessages()));
+                        }
+                        $user->name     = $request->name;
+                        $user->lastname = $request->lastname ?? '';
+                        $user->phone    = $request->phone ?? 0;
+                        $user->email    = $request->email;
+                        $user->theme    = $request->theme ?? '';
+                        $user->photo    = $request->photo ?? '';
+                        $user->rol_id   = $request->rol_id;
+                        $user->save();
+                        return response()->json([
+                            'data' => [
+                                'user' => $user,
+                            ],
+                            'message' => 'Usuario actualizado con éxito!'
+                        ], 201);
+                    } catch (\Exception $e) {
+                        return response()->json(['message' => 'Algo salio mal!', 'error' => $e], 403);
+                    }
+                }
+            } else {
+                return response()->json(['message' => 'El usuario no existe!'], 403);
             }
+        } elseif (auth()->check() && auth()->user()->rol_id == 3) {
+            if ($request->rol_id <= 1) {
+                return response()->json(['message' => 'no tiene permiso para asignar rol super-admin!'], 403);
+            } else {
+                $registro = User::where('id', $id)
+                    ->count();
+                if ($registro) {
+                    $user = User::findOrFail($id);
+                    $rules = [
+                        $this->name     => 'required|string|min:1|max:128|',
+                        $this->email    => 'required|string|max:128|email|', Rule::unique('users')->ignore($user->id),
+                        $this->phone    => 'numeric|digits_between:7,10|'
+                    ];
+                    try {
+                        $validator = Validator::make($request->all(), $rules);
+                        if ($validator->fails()) {
+                            throw (new ValidationException($validator->errors()->getMessages()));
+                        }
+                        $user->name     = $request->name;
+                        $user->lastname = $request->lastname ?? '';
+                        $user->phone    = $request->phone ?? 0;
+                        $user->email    = $request->email;
+                        $user->theme    = $request->theme ?? '';
+                        $user->photo    = $request->photo ?? '';
+                        $user->rol_id   = $request->rol_id = 2;
+                        $user->save();
+                        return response()->json([
+                            'data' => [
+                                'user' => $user,
+                            ],
+                            'message' => 'Usuario actualizado con éxito!'
+                        ], 201);
+                    } catch (\Exception $e) {
+                        return response()->json(['message' => 'Algo salio mal!', 'error' => $e], 403);
+                    }
+                } else {
+                    return response()->json(['message' => 'El usuario no existe!'], 403);
+                }
+            }
+        } else {
+            return response()->json(['message' => 'No tiene permiso para crear usuarios!'], 403);
         }
-        return response()->json(['message' => 'El usuario no existe!', 'error' => 'No se proporciono el Id de Usuario'], 403);
     }
 
     public function showByUserId(Request $request, $id)

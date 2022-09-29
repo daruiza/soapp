@@ -26,7 +26,7 @@ class Commerce
      * @OA\Property(
      *      title="nit",
      *      description="Nit of the Commerce",
-     *      example="1039420535-4"
+     *      example="1039420535-3"
      * )
      *
      * @var string
@@ -88,4 +88,15 @@ class Commerce
      * @var string
      */
     public $logo;
+
+    /**
+     * @OA\Property(
+     *      title="user_id",
+     *      description="user_id of the commerce",
+     *      example="1"
+     * )
+     *
+     * @var string
+     */
+    public $user_id;
 }

@@ -68,7 +68,7 @@ class UserStore
      * @OA\Property(
      *      title="theme",
      *      description="theme of the user",
-     *      example="blue"
+     *      example="red"
      * )
      *
      * @var string
