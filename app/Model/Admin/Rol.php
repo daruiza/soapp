@@ -14,4 +14,11 @@ class Rol extends Model
         //no usa el namespace
         return $this->hasMany('App\User');
     }
+
+    public function scopeIdRol($query, $idRol)
+    {
+        return $idRol ?
+            $query->where('id', '!=', intval($idRol)) :
+            $query->where('id', '!=', 1);
+    }
 }

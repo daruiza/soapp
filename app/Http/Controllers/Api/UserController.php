@@ -23,6 +23,51 @@ class UserController extends Controller
      *      summary="Get All Users",
      *      description="Return Users",
      *      security={ {"bearer": {} }},
+     *      @OA\Parameter(
+     *          name="name",
+     *          description="User Name",
+     *          required=false,
+     *          in="query",
+     *          @OA\Schema(
+     *              type="string"
+     *          )
+     *      ),
+     *      @OA\Parameter(
+     *          name="lastname",
+     *          description="User Lastname",
+     *          required=false,
+     *          in="query",
+     *          @OA\Schema(
+     *              type="string"
+     *          )
+     *      ),
+     *      @OA\Parameter(
+     *          name="phone",
+     *          description="User Phone",
+     *          required=false,
+     *          in="query",
+     *          @OA\Schema(
+     *              type="string"
+     *          )
+     *      ),
+     *      @OA\Parameter(
+     *          name="email",
+     *          description="User Email",
+     *          required=false,
+     *          in="query",
+     *          @OA\Schema(
+     *              type="string"
+     *          )
+     *      ),
+     *      @OA\Parameter(
+     *          name="rol_id",
+     *          description="User Rol",
+     *          required=false,
+     *          in="query",
+     *          @OA\Schema(
+     *              type="integer"
+     *          )
+     *      ),
      *      @OA\Response(
      *          response=200,
      *          description="Successful operation",
@@ -37,9 +82,9 @@ class UserController extends Controller
      *      )
      *     )
      */
-    public function index()
+    public function index(Request $request)
     {
-        return $this->UserQuery->index();
+        return $this->UserQuery->index($request);
     }
 
     /**

@@ -173,7 +173,11 @@
                     {
                         "name": "id",
                         "in": "path",
+<<<<<<< HEAD
                         "description": "User Id",
+=======
+                        "description": "Commerce Id",
+>>>>>>> 2c960c6f9e7368b5b49e9e16021b3611a1762adb
                         "required": true,
                         "schema": {
                             "type": "integer"
@@ -319,6 +323,32 @@
                 ]
             }
         },
+        "/rol/index": {
+            "get": {
+                "tags": [
+                    "rol"
+                ],
+                "summary": "Get All Rols",
+                "description": "Return Rols",
+                "operationId": "getRols",
+                "responses": {
+                    "200": {
+                        "description": "Successful operation"
+                    },
+                    "401": {
+                        "description": "Unauthenticated"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    }
+                },
+                "security": [
+                    {
+                        "bearer": []
+                    }
+                ]
+            }
+        },
         "/upload/photo": {
             "post": {
                 "tags": [
@@ -360,6 +390,53 @@
                 "summary": "Get All Users",
                 "description": "Return Users",
                 "operationId": "getAllUser",
+                "parameters": [
+                    {
+                        "name": "name",
+                        "in": "query",
+                        "description": "User Name",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "lastname",
+                        "in": "query",
+                        "description": "User Lastname",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "phone",
+                        "in": "query",
+                        "description": "User Phone",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "email",
+                        "in": "query",
+                        "description": "User Email",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "rol_id",
+                        "in": "query",
+                        "description": "User Rol",
+                        "required": false,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
                 "responses": {
                     "200": {
                         "description": "Successful operation"

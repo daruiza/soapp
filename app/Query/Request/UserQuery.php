@@ -21,13 +21,20 @@ class UserQuery implements IUserQuery
     private $photo = 'photo';
     private $rol_id = 'rol_id';
 
-    public function index()
+    public function index(Request $request)
     {
         $user = User::query()
             ->select(['id', 'name', 'lastname', 'phone', 'email', 'photo', 'theme', 'rol_id'])
             ->with(['rol:id,name,description,active'])
-            ->get();
-        return response()->json(['User' => $user], 200);
+            ->name($request->name)
+            ->lastname($request->lastname)
+            ->phone($request->phone)
+            ->email($request->email)
+            ->rol_id($request->rol_id)
+            ->orderBy('id',  $request->sort ?? 'ASC')
+            ->paginate($request->limit ?? 10, ['*'], '', $request->page ?? 1);
+
+        return response()->json(['users' => $user, 'message' => 'Usuarios consultados correctamente!'], 200);
     }
 
     public function store(Request $request)
@@ -50,6 +57,7 @@ class UserQuery implements IUserQuery
                 return response()->json(['message' => 'no tiene permiso para crear rol super-admin!'], 403);
             } else {
                 try {
+
                     $user = new User([
                         $this->name     => $request->name,
                         $this->lastname => $request->lastname ?? '',
@@ -104,7 +112,6 @@ class UserQuery implements IUserQuery
     {
         try {
             $user = User::findOrFail($id);
-
             if ($user) {
                 $request->validate([
                     $this->name     => 'required|string|min:5|max:128|',

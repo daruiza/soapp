@@ -31,10 +31,10 @@ class CommerceQuery implements ICommerceQuery
                 ->get();
             return response()->json([
                 'data' => [
-                    'Commerce' => $commerces,
+                    'commerce' => $commerces,
                 ],
                 'message' => 'Datos de Tiendas Consultados Correctamente!'
-            ]);
+            ], 201);
         } catch (\Exception $e) {
             return response()->json(['message' => $e->getMessage()], 402);
         }
@@ -62,7 +62,7 @@ class CommerceQuery implements ICommerceQuery
 
                 return response()->json([
                     'data' => [
-                        'Commerce' => $newCommerce,
+                        'commerce' => $newCommerce,
                     ],
                     'message' => 'Tienda creada correctamente!'
                 ], 201);
@@ -124,10 +124,10 @@ class CommerceQuery implements ICommerceQuery
                 $commerce = Commerce::where('user_id', '=', $id)->first();
                 return response()->json([
                     'data' => [
-                        'Commerce' => $commerce,
+                        'commerce' => $commerce,
                     ],
                     'message' => 'Datos de Tienda Consultados Correctamente!'
-                ]);
+                ], 201);
             } catch (\Exception $e) {
                 return response()->json(['message' => 'Tienda no existe!', 'error' => $e->getMessage()], 403);
             }
@@ -142,10 +142,10 @@ class CommerceQuery implements ICommerceQuery
                 $commerce->user;
                 return response()->json([
                     'data' => [
-                        'Commerce' => $commerce,
+                        'commerce' => $commerce,
                     ],
                     'message' => 'Datos de Tienda Consultados Correctamente!'
-                ]);
+                ], 201);
             } catch (\Exception $e) {
                 return response()->json(['message' => 'Tienda no existe!', 'error' => $e->getMessage()], 403);
             }

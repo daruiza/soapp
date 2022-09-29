@@ -45,15 +45,40 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
+    public function scopeName($query, $name)
+    {
+        return is_null($name) ?  $query : $query->where('name', 'LIKE', '%' . $name . '%');
+    }
+
+    public function scopeLastname($query, $lastname)
+    {
+        return is_null($lastname) ?  $query : $query->where('lastname', 'LIKE', '%' . $lastname . '%');
+    }
+
+    public function scopePhone($query, $phone)
+    {
+        return is_null($phone) ?  $query : $query->where('phone', 'LIKE', '%' . $phone . '%');
+    }
+
+    public function scopeEmail($query, $email)
+    {
+        return is_null($email) ?  $query : $query->where('email', 'LIKE', '%' . $email . '%');
+    }
+
+    public function scopeRol_id($query, $rol_id)
+    {
+        return is_null($rol_id) ?  $query : $query->where('rol_id', $rol_id);
+    }
+
     //un usuario posee/pertenece un rol
     public function rol()
     {
         return $this->belongsTo(Model\Admin\Rol::class);
     }
 
-     //a user may belongs a commerce or is owner to commerce
-     public function commerce()
-     {
-         return $this->hasOne(Model\Core\Commerce::class);
-     }
+    //a user may belongs a commerce or is owner to commerce
+    public function commerce()
+    {
+        return $this->hasOne(Model\Core\Commerce::class);
+    }
 }
