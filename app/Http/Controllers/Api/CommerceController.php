@@ -94,11 +94,7 @@ class CommerceController extends Controller
      *      security={ {"bearer": {} }},
      *      @OA\Parameter(
      *          name="id",
-<<<<<<< HEAD
      *          description="User Id",
-=======
-     *          description="Commerce Id",
->>>>>>> 2c960c6f9e7368b5b49e9e16021b3611a1762adb
      *          required=true,
      *          in="path",
      *          @OA\Schema(

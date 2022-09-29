@@ -173,11 +173,7 @@
                     {
                         "name": "id",
                         "in": "path",
-<<<<<<< HEAD
                         "description": "User Id",
-=======
-                        "description": "Commerce Id",
->>>>>>> 2c960c6f9e7368b5b49e9e16021b3611a1762adb
                         "required": true,
                         "schema": {
                             "type": "integer"
@@ -825,7 +821,7 @@
                         "title": "theme",
                         "description": "theme of the user",
                         "type": "string",
-                        "example": "blue"
+                        "example": "red"
                     },
                     "photo": {
                         "title": "photo",
@@ -879,6 +875,11 @@
                         "description": "photo of the user",
                         "type": "string",
                         "example": "avatar"
+                    },
+                    "rol_id": {
+                        "title": "rol_id",
+                        "description": "rol_id of the user",
+                        "example": 1
                     }
                 },
                 "type": "object"

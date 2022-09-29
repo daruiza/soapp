@@ -78,19 +78,21 @@ class CommerceQuery implements ICommerceQuery
     {
         if ((auth()->check() && auth()->user()->rol_id == 1) || (auth()->check() && auth()->user()->rol_id == 3)) {
 
-            $commerce = Commerce::findOrFail($request->input($id));
-            if ($commerce) {
+            $registro = Commerce::where('id', $id)
+                ->count();
+            if ($registro) {
+                $commerce = Commerce::findOrFail($id);
+
                 $rules = [
-                    $this->name  => 'required|string|min:0|max:128|', Rule::unique('commerces')->ignore($commerce->id),
-                    $this->nit   => 'required|', Rule::unique('commerces')->ignore($commerce->id),
+                    $this->name  => 'required|string|min:1|max:128|', Rule::unique('commerces')->ignore($commerce->$id),
+                    $this->nit   => 'required|', Rule::unique('commerces')->ignore($commerce->$id),
                 ];
                 try {
                     $validator = Validator::make($request->all(), $rules);
                     if ($validator->fails()) {
                         throw (new ValidationException($validator->errors()->getMessages()));
                     }
-                    //$commerce->name = $request->name ?? $commerce->name;
-                    $commerce->name = $request->name;
+                    $commerce->name = $request->name ?? $commerce->name;
                     $commerce->nit = $request->nit;
                     $commerce->department = $request->department ?? '';
                     $commerce->city = $request->city ?? '';
@@ -107,10 +109,10 @@ class CommerceQuery implements ICommerceQuery
                         'message' => 'Negocio actualizado con éxito!'
                     ], 201);
                 } catch (\Exception $e) {
-                    return response()->json(['message' => 'Los datos ingresados no son validos!', 'error' => $e->getMessage()], 403);
+                    return response()->json(['message' => 'Algo salio mal!', 'error' => $e], 403);
                 }
             } else {
-                return response()->json(['message' => 'Los datos !'], 403);
+                return response()->json(['message' => 'La tienda no existe!'], 403);
             }
         } else {
             return response()->json(['message' => 'No tiene permiso para crear tienda!'], 403);
