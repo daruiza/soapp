@@ -28,7 +28,7 @@ Route::group(['prefix' => 'commerce'], function () {
         Route::post('store', 'Api\CommerceController@store');
         Route::put('update/{id}', 'Api\CommerceController@update');
         Route::get('showbycommerceid/{id}', 'Api\CommerceController@showByCommerceId');
-        Route::get('showbyuserid/{id}', 'Api\CommerceController@showByUserId');        
+        Route::get('showbyuserid/{id}', 'Api\CommerceController@showByUserId');
         Route::delete('destroy/{user_id}', 'Api\CommerceController@destroy');
     });
 });
@@ -53,5 +53,15 @@ Route::group(['prefix' => 'upload'], function () {
 Route::group(['prefix' => 'rol'], function () {
     Route::group(['middleware' => 'auth:api'], function () {
         Route::get('index', 'Api\RolController@index');
+    });
+});
+
+Route::group(['prefix' => 'employee'], function () {
+    Route::group(['middleware' => 'auth:api'], function () {
+        Route::get('index', 'Api\EmployeeController@index');
+        Route::post('store', 'Api\EmployeeController@store');
+        Route::put('update/{employee_id}', 'Api\EmployeeController@update');
+        Route::get('showbyemployeeid/{user_id}', 'Api\EmployeeController@showByEmployeeId');
+        Route::delete('destroy/{employee_id}', 'Api\EmployeeController@destroy');
     });
 });
