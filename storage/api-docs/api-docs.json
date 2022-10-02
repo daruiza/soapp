@@ -107,6 +107,53 @@
                 "summary": "Get All Commerces",
                 "description": "Return Commerces",
                 "operationId": "getAllCommerces",
+                "parameters": [
+                    {
+                        "name": "name",
+                        "in": "query",
+                        "description": "Commerce Name",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "nit",
+                        "in": "query",
+                        "description": "Commerce nit",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "department",
+                        "in": "query",
+                        "description": "Commerce department",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "city",
+                        "in": "query",
+                        "description": "Commerce city",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "user_id",
+                        "in": "query",
+                        "description": "Commerce User",
+                        "required": false,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
                 "responses": {
                     "200": {
                         "description": "Successful operation"
