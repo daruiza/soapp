@@ -26,14 +26,15 @@ class UserQuery implements IUserQuery
     {
         $user = User::query()
             ->select(['id', 'name', 'lastname', 'phone', 'email', 'photo', 'theme', 'rol_id'])
+            ->where('rol_id', '!=', 1)
             ->with(['rol:id,name,description,active'])
             ->name($request->name)
             ->lastname($request->lastname)
             ->phone($request->phone)
             ->email($request->email)
             ->rol_id($request->rol_id)
-            ->orderBy('id',  $request->sort ?? 'ASC')
-            ->paginate($request->limit ?? 10, ['*'], '', $request->page ?? 1);
+            ->orderBy('id',  $request->sort ?? 'DESC')
+            ->paginate($request->limit ?? 5, ['*'], '', $request->page ?? 1);
 
         return response()->json(['users' => $user, 'message' => 'Usuarios consultados correctamente!'], 200);
     }
@@ -66,9 +67,9 @@ class UserQuery implements IUserQuery
 
                     $user = new User([
                         $this->name     => $request->name,
+                        $this->email    => $request->email,
                         $this->lastname => $request->lastname ?? '',
                         $this->phone    => $request->phone ?? 0,
-                        $this->email    => $request->email,
                         $this->password => bcrypt($request->password),
                         $this->theme    => $request->theme ?? 'skyblue',
                         $this->photo    => $request->photo ?? '',
@@ -93,11 +94,11 @@ class UserQuery implements IUserQuery
                 try {
                     $user = new User([
                         $this->name     => $request->name,
+                        $this->email    => $request->email,
                         $this->lastname => $request->lastname ?? '',
                         $this->phone    => $request->phone ?? 0,
-                        $this->email    => $request->email,
                         $this->password => bcrypt($request->password),
-                        $this->theme    => $request->theme ?? 'dark',
+                        $this->theme    => $request->theme ?? 'skyblue',
                         $this->photo    => $request->photo ?? '',
                         $this->rol_id   => $request->rol_id = 2,
                     ]);
@@ -119,11 +120,11 @@ class UserQuery implements IUserQuery
 
     // Actualizacion Myself de usuario
     
-    public function update(Request $request, Int $id)
+    public function update(Request $request)
     {
-        if ($id) {
+        if ($request->id) {
             try {
-                $user = User::findOrFail($id);
+                $user = User::findOrFail($request->id);
                 $request->validate([
                     $this->name     => 'required|string|min:0|max:128',
                     $this->email    => 'required|string|max:128|email|', Rule::unique('users')->ignore($user->id),
@@ -147,6 +148,10 @@ class UserQuery implements IUserQuery
             }
         }
         return response()->json(['message' => 'El usuario no existe!', 'error' => 'No se proporciono el Id de Usuario'], 403);
+    }
+
+    public function updateById(Request $request, Int $id){
+        return response()->json(['message' => 'updateById'], 201);
     }
 
     public function showByUserId(Request $request, $id)

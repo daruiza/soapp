@@ -224,6 +224,37 @@ class UserController extends Controller
 
     /**
      * @OA\Put(
+     *      path="/user/update",
+     *      operationId="UpdateUser",
+     *      tags={"user"},
+     *      summary="Update User",
+     *      description="update User",
+     *      security={ {"bearer": {} }},
+     *      @OA\RequestBody(
+     *          required=true,
+     *          @OA\JsonContent(ref="#/components/schemas/UserUpdate")
+     *      ),
+     *      @OA\Response(
+     *          response=200,
+     *          description="Successful operation",
+     *       ),
+     *      @OA\Response(
+     *          response=401,
+     *          description="Unauthenticated",
+     *      ),
+     *      @OA\Response(
+     *          response=403,
+     *          description="Forbidden"
+     *      )
+     *     )
+     */
+    public function update(Request $request)
+    {
+        return $this->UserQuery->update($request);
+    }
+
+    /**
+     * @OA\Put(
      *      path="/user/update/{id}",
      *      operationId="UpdateUser",
      *      tags={"user"},
@@ -257,9 +288,9 @@ class UserController extends Controller
      *      )
      *     )
      */
-    public function update(Request $request, $id)
+    public function updateById(Request $request, $id)
     {
-        return $this->UserQuery->update($request, $id);
+        return $this->UserQuery->updateById($request, $id);
     }
 
     /**
