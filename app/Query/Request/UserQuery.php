@@ -44,7 +44,7 @@ class UserQuery implements IUserQuery
         $rules = [
             $this->name     => 'required|string|min:1|max:128',
             $this->email    => 'required|string|max:128|email|unique:users',
-            $this->password => 'required|string',
+            // $this->password => 'required|string',
             $this->phone    => 'numeric|digits_between:7,10',
             $this->rol_id   => 'required|numeric',
         ];
@@ -97,7 +97,7 @@ class UserQuery implements IUserQuery
                         $this->email    => $request->email,
                         $this->lastname => $request->lastname ?? '',
                         $this->phone    => $request->phone ?? 0,
-                        $this->password => bcrypt($request->password),
+                        $this->password => bcrypt($request->password ?? '0000'),
                         $this->theme    => $request->theme ?? 'skyblue',
                         $this->photo    => $request->photo ?? '',
                         $this->rol_id   => $request->rol_id = 2,
