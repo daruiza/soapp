@@ -70,7 +70,7 @@ class UserQuery implements IUserQuery
                         $this->email    => $request->email,
                         $this->lastname => $request->lastname ?? '',
                         $this->phone    => $request->phone ?? 0,
-                        $this->password => bcrypt($request->password),
+                        $this->password => bcrypt($request->password ?? '0000'),
                         $this->theme    => $request->theme ?? 'skyblue',
                         $this->photo    => $request->photo ?? '',
                         $this->rol_id   => $request->rol_id,
