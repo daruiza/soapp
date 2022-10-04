@@ -164,7 +164,7 @@ class UserQuery implements IUserQuery
                 $user->lastname     = $request->lastname ?? $user->lastname;
                 $user->phone        = $request->phone ?? $user->phone;
                 $user->email        = $request->email ?? $user->email;
-                $user->password     = bcrypt($request->password) ?? $user->password;
+                $user->password     = $request->password ? bcrypt($request->password) : $user->password;
                 $user->theme        = $request->theme ?? $user->theme;
                 $user->rol_id       = $request->rol_id ?? $user->rol_id;
                 $user->save();
