@@ -34,7 +34,7 @@ class UserQuery implements IUserQuery
             ->email($request->email)
             ->rol_id($request->rol_id)
             ->orderBy('id',  $request->sort ?? 'DESC')
-            ->paginate($request->limit ?? 5, ['*'], '', $request->page ?? 1);
+            ->paginate($request->limit ?? 8, ['*'], '', $request->page ?? 1);
 
         return response()->json(['users' => $user, 'message' => 'Usuarios consultados correctamente!'], 200);
     }
