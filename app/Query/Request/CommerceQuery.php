@@ -22,13 +22,20 @@ class CommerceQuery implements ICommerceQuery
     private $active = 'active';
     private $user_id = 'user_id';
 
-    public function index()
+    public function index(Request $request)
     {
         try {
             $commerces = Commerce::where('active', 1)
                 ->select(['id', 'name', 'nit', 'department', 'city', 'user_id'])
                 ->with(['user:id,name,lastname,phone,email'])
-                ->get();
+                ->name($request->name)
+                ->nit($request->nit)
+                ->department($request->department)
+                ->city($request->city)
+                ->user_id($request->user_id)
+                ->orderBy('id',  $request->sort ?? 'ASC')
+                ->paginate($request->limit ?? 10, ['*'], '', $request->page ?? 1);
+
             return response()->json([
                 'data' => [
                     'commerce' => $commerces,

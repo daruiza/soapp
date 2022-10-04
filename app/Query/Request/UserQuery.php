@@ -26,14 +26,15 @@ class UserQuery implements IUserQuery
     {
         $user = User::query()
             ->select(['id', 'name', 'lastname', 'phone', 'email', 'photo', 'theme', 'rol_id'])
+            ->where('rol_id', '!=', 1)
             ->with(['rol:id,name,description,active'])
             ->name($request->name)
             ->lastname($request->lastname)
             ->phone($request->phone)
             ->email($request->email)
             ->rol_id($request->rol_id)
-            ->orderBy('id',  $request->sort ?? 'ASC')
-            ->paginate($request->limit ?? 10, ['*'], '', $request->page ?? 1);
+            ->orderBy('id',  $request->sort ?? 'DESC')
+            ->paginate($request->limit ?? 8, ['*'], '', $request->page ?? 1);
 
         return response()->json(['users' => $user, 'message' => 'Usuarios consultados correctamente!'], 200);
     }
@@ -43,7 +44,7 @@ class UserQuery implements IUserQuery
         $rules = [
             $this->name     => 'required|string|min:1|max:128',
             $this->email    => 'required|string|max:128|email|unique:users',
-            $this->password => 'required|string',
+            // $this->password => 'required|string',
             $this->phone    => 'numeric|digits_between:7,10',
             $this->rol_id   => 'required|numeric',
         ];
@@ -66,9 +67,9 @@ class UserQuery implements IUserQuery
 
                     $user = new User([
                         $this->name     => $request->name,
+                        $this->email    => $request->email,
                         $this->lastname => $request->lastname ?? '',
                         $this->phone    => $request->phone ?? 0,
-                        $this->email    => $request->email,
                         $this->password => bcrypt($request->password),
                         $this->theme    => $request->theme ?? 'skyblue',
                         $this->photo    => $request->photo ?? '',
@@ -93,11 +94,11 @@ class UserQuery implements IUserQuery
                 try {
                     $user = new User([
                         $this->name     => $request->name,
+                        $this->email    => $request->email,
                         $this->lastname => $request->lastname ?? '',
                         $this->phone    => $request->phone ?? 0,
-                        $this->email    => $request->email,
-                        $this->password => bcrypt($request->password),
-                        $this->theme    => $request->theme ?? 'dark',
+                        $this->password => bcrypt($request->password ?? '0000'),
+                        $this->theme    => $request->theme ?? 'skyblue',
                         $this->photo    => $request->photo ?? '',
                         $this->rol_id   => $request->rol_id = 2,
                     ]);
@@ -118,12 +119,12 @@ class UserQuery implements IUserQuery
     }
 
     // Actualizacion Myself de usuario
-    
-    public function update(Request $request, Int $id)
+
+    public function update(Request $request)
     {
-        if ($id) {
+        if ($request->id) {
             try {
-                $user = User::findOrFail($id);
+                $user = User::findOrFail($request->id);
                 $request->validate([
                     $this->name     => 'required|string|min:0|max:128',
                     $this->email    => 'required|string|max:128|email|', Rule::unique('users')->ignore($user->id),
@@ -135,6 +136,37 @@ class UserQuery implements IUserQuery
                 $user->email    = $request->email ?? $user->email;
                 $user->theme    = $request->theme ?? $user->theme;
                 $user->photo    = $request->photo ?? $user->photo;
+                $user->save();
+                return response()->json([
+                    'data' => [
+                        'user' => $user,
+                    ],
+                    'message' => 'Usuario actualizado con éxito!'
+                ], 201);
+            } catch (\Exception $e) {
+                return response()->json(['message' => 'Los datos ingresados no son validos!', 'error' => $e->getMessage()], 403);
+            }
+        }
+        return response()->json(['message' => 'El usuario no existe!', 'error' => 'No se proporciono el Id de Usuario'], 403);
+    }
+
+    public function updateById(Request $request, Int $id)
+    {
+        if ($id) {
+            try {
+                $user = User::findOrFail($id);
+                $request->validate([
+                    $this->name     => 'required|string|min:0|max:128',
+                    $this->email    => 'required|string|max:128|email|', Rule::unique('users')->ignore($user->id),
+                    $this->phone    => 'numeric|digits_between:7,10|'
+                ]);
+                $user->name         = $request->name ?? $user->name;
+                $user->lastname     = $request->lastname ?? $user->lastname;
+                $user->phone        = $request->phone ?? $user->phone;
+                $user->email        = $request->email ?? $user->email;
+                $user->password     = bcrypt($request->password) ?? $user->password;
+                $user->theme        = $request->theme ?? $user->theme;
+                $user->rol_id       = $request->rol_id ?? $user->rol_id;
                 $user->save();
                 return response()->json([
                     'data' => [

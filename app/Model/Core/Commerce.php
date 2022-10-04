@@ -30,6 +30,31 @@ class Commerce extends Model
             $query->where('active', 1);
     }
 
+    public function scopeName($query, $name)
+    {
+        return is_null($name) ?  $query : $query->where('name', 'LIKE', '%' . $name . '%');
+    }
+
+    public function scopeNit($query, $nit)
+    {
+        return is_null($nit) ?  $query : $query->where('nit', 'LIKE', '%' . $nit . '%');
+    }
+
+    public function scopeDepartment($query, $department)
+    {
+        return is_null($department) ?  $query : $query->where('department', 'LIKE', '%' . $department . '%');
+    }
+
+    public function scopeCity($query, $city)
+    {
+        return is_null($city) ?  $query : $query->where('city', 'LIKE', '%' . $city . '%');
+    }
+
+    public function scopeUser_id($query, $user_id)
+    {
+        return is_null($user_id) ?  $query : $query->where('user_id', $user_id);
+    }
+
     public function user()
     {
         return $this->belongsTo(User::class);

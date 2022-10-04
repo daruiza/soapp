@@ -24,6 +24,51 @@ class CommerceController extends Controller
      *      summary="Get All Commerces",
      *      description="Return Commerces",
      *      security={ {"bearer": {} }},
+     *      @OA\Parameter(
+     *          name="name",
+     *          description="Commerce Name",
+     *          required=false,
+     *          in="query",
+     *          @OA\Schema(
+     *              type="string"
+     *          )
+     *      ),
+     *       @OA\Parameter(
+     *          name="nit",
+     *          description="Commerce nit",
+     *          required=false,
+     *          in="query",
+     *          @OA\Schema(
+     *              type="string"
+     *          )
+     *      ),
+     *       @OA\Parameter(
+     *          name="department",
+     *          description="Commerce department",
+     *          required=false,
+     *          in="query",
+     *          @OA\Schema(
+     *              type="string"
+     *          )
+     *      ),
+     *       @OA\Parameter(
+     *          name="city",
+     *          description="Commerce city",
+     *          required=false,
+     *          in="query",
+     *          @OA\Schema(
+     *              type="string"
+     *          )
+     *      ),
+     *      @OA\Parameter(
+     *          name="user_id",
+     *          description="Commerce User",
+     *          required=false,
+     *          in="query",
+     *          @OA\Schema(
+     *              type="integer"
+     *          )
+     *      ),
      *      @OA\Response(
      *          response=200,
      *          description="Successful operation",
@@ -38,9 +83,9 @@ class CommerceController extends Controller
      *      )
      *     )
      */
-    public function index()
+    public function index(Request $request)
     {
-        return $this->CommerceQuery->index();
+        return $this->CommerceQuery->index($request);
     }
 
     /**
