@@ -49,7 +49,7 @@ class CommerceQuery implements ICommerceQuery
 
     public function store(Request $request)
     {
-        if ((auth()->check() && auth()->user()->rol_id == 1) || (auth()->check() && auth()->user()->rol_id == 3)) {
+        // if ((auth()->check() && auth()->user()->rol_id == 1) || (auth()->check() && auth()->user()->rol_id == 3)) {
 
             // Creamos las reglas de validación
             $rules = [
@@ -76,9 +76,9 @@ class CommerceQuery implements ICommerceQuery
             } catch (\Exception $e) {
                 return response()->json(['message' => 'Algo salio mal!', 'error' => $e], 403);
             }
-        } else {
-            return response()->json(['message' => 'No tiene permiso para crear tienda!'], 403);
-        }
+        // } else {
+        //     return response()->json(['message' => 'No tiene permiso para crear tienda!'], 403);
+        // }
     }
 
     public function update(Request $request, Int $id)
