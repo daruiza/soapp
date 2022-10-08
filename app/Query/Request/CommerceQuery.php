@@ -8,6 +8,8 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Validation\Rule;
 use App\Query\Abstraction\ICommerceQuery;
+use Illuminate\Database\Eloquent\ModelNotFoundException;
+
 
 
 class CommerceQuery implements ICommerceQuery
@@ -51,31 +53,31 @@ class CommerceQuery implements ICommerceQuery
     {
         // if ((auth()->check() && auth()->user()->rol_id == 1) || (auth()->check() && auth()->user()->rol_id == 3)) {
 
-            // Creamos las reglas de validación
-            $rules = [
-                $this->name => 'required|string|min:1|max:128|unique:commerces|',
-                $this->nit   => 'required|unique:commerces|'
-            ];
-            try {
-                // Ejecutamos el validador y en caso de que falle devolvemos la respuesta
-                $validator = Validator::make($request->all(), $rules);
-                if ($validator->fails()) {
-                    throw (new ValidationException($validator->errors()->getMessages()));
-                }
-                // Creamos el nuevo comercio
-                $commerce = new Commerce();
-                $request->request->add(['active' => 1]);
-                $newCommerce = $commerce->create($request->input());
-
-                return response()->json([
-                    'data' => [
-                        'commerce' => $newCommerce,
-                    ],
-                    'message' => 'Tienda creada correctamente!'
-                ], 201);
-            } catch (\Exception $e) {
-                return response()->json(['message' => 'Algo salio mal!', 'error' => $e], 403);
+        // Creamos las reglas de validación
+        $rules = [
+            $this->name => 'required|string|min:1|max:128|unique:commerces|',
+            $this->nit   => 'required|unique:commerces|'
+        ];
+        try {
+            // Ejecutamos el validador y en caso de que falle devolvemos la respuesta
+            $validator = Validator::make($request->all(), $rules);
+            if ($validator->fails()) {
+                throw (new ValidationException($validator->errors()->getMessages()));
             }
+            // Creamos el nuevo comercio
+            $commerce = new Commerce();
+            $request->request->add(['active' => 1]);
+            $newCommerce = $commerce->create($request->input());
+
+            return response()->json([
+                'data' => [
+                    'commerce' => $newCommerce,
+                ],
+                'message' => 'Tienda creada correctamente!'
+            ], 201);
+        } catch (\Exception $e) {
+            return response()->json(['message' => 'Algo salio mal!', 'error' => $e], 403);
+        }
         // } else {
         //     return response()->json(['message' => 'No tiene permiso para crear tienda!'], 403);
         // }
@@ -108,6 +110,8 @@ class CommerceQuery implements ICommerceQuery
                     ],
                     'message' => 'Negocio actualizado con éxito!'
                 ], 201);
+            } catch (ModelNotFoundException $ex) {
+                return response()->json(['message' => "Tienda con id {$id} no existe!", 'error' => $ex->getMessage()], 404);
             } catch (\Exception $e) {
                 return response()->json(['message' => 'Algo salio mal!', 'error' => $e], 403);
             }
@@ -163,8 +167,8 @@ class CommerceQuery implements ICommerceQuery
                         ],
                         'message' => 'Tienda eliminada con éxito!'
                     ], 201);
-                } catch (\Exception $e) {
-                    return response()->json(['message' => 'Tienda no existe!', 'error' => $e->getMessage()], 403);
+                } catch (ModelNotFoundException $e) {
+                    return response()->json(['message' => "Tienda con id {$id} no existe!", 'error' => $e->getMessage()], 403);
                 }
             }
         } else {
