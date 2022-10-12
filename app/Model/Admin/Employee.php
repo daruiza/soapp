@@ -10,6 +10,7 @@ class Employee extends Model
         'id',
         'name',
         'lastname',
+        'birth_date',
         'email',
         'phone',
         'adress',
