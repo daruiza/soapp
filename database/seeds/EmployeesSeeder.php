@@ -13,8 +13,6 @@ class EmployeesSeeder extends Seeder
     public function run()
     {
         DB::table('employees')->insert(array(
-
-            'id' => '15327400',
             'identification_type' => 'Cédula Ciudadania',
             'name' => 'Pedro',
             'lastname' => 'Paramo',
@@ -26,12 +24,21 @@ class EmployeesSeeder extends Seeder
         ));
 
         DB::table('employees')->insert(array(
-
-            'id' => '123456789',
             'identification_type' => 'Cédula Ciudadania',
             'name' => 'Jose',
             'lastname' => 'Saramago',
             'email' => 'saramago.jose@gmail',
+            'birth_date' => '1990-01-01',
+            'phone' => '2154716',
+            'adress' => 'San Jose',
+            'photo' => 'avatar',
+        ));
+
+        DB::table('employees')->insert(array(
+            'identification_type' => 'Cédula Ciudadania',
+            'name' => 'Teo',
+            'lastname' => 'Rua',
+            'email' => 'rua.jose@gmail',
             'birth_date' => '1990-01-01',
             'phone' => '2154716',
             'adress' => 'San Jose',
