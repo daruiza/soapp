@@ -21,10 +21,19 @@ class EmployeeQuery implements IEmployeeQuery
 
     public function index(Request $request)
     {
+        // $employee = Employee::query()
+        // ->select(['id', 'name', 'identification_type', 'lastname', 'phone', 'email', 'photo', 'adress', 'birth_date'])
+        // ->with(['reportsMax'])
+        // ->id($request->id)
+        // ->name($request->name)
+        // ->orderBy('id',  $request->sort ?? 'ASC')            
+        // ->paginate($request->limit ?? 8, ['*'], '', $request->page ?? 1);        
+
+
         $employee = Employee::query()
-            ->select(['id', 'name', 'identification_type', 'lastname', 'phone', 'email', 'photo', 'adress', 'birth_date'])
-            ->id($request->id)
-            ->name($request->name)
+            ->select('employees.*', 'employee_report.id AS report')
+            ->leftJoin('employee_report', 'employees.id', '=', 'employee_report.employee_id')
+            ->orderBy('report', 'desc')
             ->orderBy('id',  $request->sort ?? 'ASC')
             ->paginate($request->limit ?? 8, ['*'], '', $request->page ?? 1);
 
@@ -40,9 +49,9 @@ class EmployeeQuery implements IEmployeeQuery
     {
         $rules = [
             $this->id            => 'required|numeric|unique:employees|',
+            $this->email         => 'required|string|max:128|email|unique:employees',
             $this->name          => 'required|string|min:1|max:128|',
             $this->lastname      => 'required|string|min:1|max:128|',
-            $this->email         => 'required|string|max:128|email|unique:employees',
             $this->phone         => 'numeric|digits_between:7,10',
         ];
         try {
@@ -73,9 +82,9 @@ class EmployeeQuery implements IEmployeeQuery
             try {
                 $employee = Employee::findOrFail($id);
                 $rules = [
+                    $this->email         => 'required|string|max:128|email|', Rule::unique('employees')->ignore($employee->id),
                     $this->name          => 'required|string|min:1|max:128|',
                     $this->lastname      => 'required|string|min:1|max:128|',
-                    $this->email         => 'required|string|max:128|email|', Rule::unique('employees')->ignore($employee->id),
                     $this->phone         => 'numeric|digits_between:7,10',
                 ];
                 $validator = Validator::make($request->all(), $rules);

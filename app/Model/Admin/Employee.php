@@ -10,6 +10,7 @@ class Employee extends Model
     protected $fillable = [
         'id',
         'name',
+        'identification_type',
         'lastname',
         'birth_date',
         'email',
@@ -18,6 +19,18 @@ class Employee extends Model
         'active',
         'photo'
     ];
+
+    //varios empleados le Pertenece a varios reportes
+    public function reports()
+    {
+        return $this->belongsToMany(Report::class);
+    }
+
+    public function reportsMax()
+    {
+        return $this->belongsToMany(Report::class)
+            ->orderBy('reports.id', 'desc');
+    }    
 
     public function scopeActive($query, $active)
     {
@@ -34,11 +47,5 @@ class Employee extends Model
     public function scopeName($query, $name)
     {
         return is_null($name) ?  $query : $query->where('name', 'LIKE', '%' . $name . '%');
-    }
-
-    //varios empleados le Pertenece a varios reportes
-    public function reports()
-    {
-        return $this->belongsToMany(Report::class);
     }
 }

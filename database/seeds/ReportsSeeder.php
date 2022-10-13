@@ -13,12 +13,12 @@ class ReportsSeeder extends Seeder
     public function run()
     {
         DB::table('reports')->insert(array(
-            'name' => 'Pedro',
+            'name' => 'Enero',
             'commerce_id' => null
         ));
 
         DB::table('reports')->insert(array(
-            'name' => 'Jose',
+            'name' => 'Febrero',
             'commerce_id' => null
         ));
     }

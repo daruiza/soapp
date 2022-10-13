@@ -18,8 +18,18 @@ class EmployeesReportsSeeder extends Seeder
         ));
 
         DB::table('employee_report')->insert(array(
+            'employee_id' => '1',
+            'report_id' => '2'
+        ));
+
+        DB::table('employee_report')->insert(array(
             'employee_id' => '2',
             'report_id' => '2'
+        ));
+
+        DB::table('employee_report')->insert(array(
+            'employee_id' => '3',
+            'report_id' => '1'
         ));
     }
 }
