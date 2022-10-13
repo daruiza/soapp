@@ -13,6 +13,7 @@ class EmployeesSeeder extends Seeder
     public function run()
     {
         DB::table('employees')->insert(array(
+
             'id' => '15327400',
             'name' => 'Pedro',
             'lastname' => 'Paramo',
@@ -24,6 +25,7 @@ class EmployeesSeeder extends Seeder
         ));
 
         DB::table('employees')->insert(array(
+
             'id' => '123456789',
             'name' => 'Jose',
             'lastname' => 'Saramago',
