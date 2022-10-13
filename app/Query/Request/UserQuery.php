@@ -37,7 +37,12 @@ class UserQuery implements IUserQuery
             ->orderBy('id',  $request->sort ?? 'DESC')
             ->paginate($request->limit ?? 8, ['*'], '', $request->page ?? 1);
 
-        return response()->json(['users' => $user, 'message' => 'Usuarios consultados correctamente!'], 200);
+        return response()->json([
+            'data' => [
+                'users' => $user,
+            ],
+            'message' => 'Usuarios consultados correctamente!'
+        ], 200);
     }
 
     public function store(Request $request)

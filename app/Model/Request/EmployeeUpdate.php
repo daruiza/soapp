@@ -2,25 +2,13 @@
 
 /**
  * @OA\Schema(
- *      title="Employee",
- *      description="Employee body data",
+ *      title="EmployeeUpdate",
+ *      description="EmployeeUpdate body data",
  *      type="object"
  * )
  */
-class Employee
+class EmployeeUpdate
 {
-
-    /**
-     * @OA\Property(
-     *      title="id",
-     *      description="Id of the Employee",
-     *      example="1039420535"
-     * )
-     *
-     * @var string
-     */
-    public $id;
-
     /**
      * @OA\Property(
      *      title="name",
