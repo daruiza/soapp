@@ -374,6 +374,26 @@
                 "summary": "Get All Employees",
                 "description": "Return Employees",
                 "operationId": "getAllEmployees",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "query",
+                        "description": "Employee Id",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "name",
+                        "in": "query",
+                        "description": "Employee Name",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
                 "responses": {
                     "200": {
                         "description": "Successful operation"
@@ -489,7 +509,7 @@
                     "content": {
                         "application/json": {
                             "schema": {
-                                "$ref": "#/components/schemas/Employee"
+                                "$ref": "#/components/schemas/EmployeeUpdate"
                             }
                         }
                     }
@@ -519,7 +539,7 @@
                 ],
                 "summary": "Delete One Employee By one Id",
                 "description": "Delete One Employee",
-                "operationId": "getDestroyEmplyeeById",
+                "operationId": "getDestroyEmployeeById",
                 "parameters": [
                     {
                         "name": "id",
@@ -973,17 +993,114 @@
                 "title": "Employee",
                 "description": "Employee body data",
                 "properties": {
-                    "user_id": {
-                        "title": "user_id",
-                        "description": "user_id of the Employee",
-                        "type": "integer",
-                        "example": "1"
+                    "id": {
+                        "title": "id",
+                        "description": "Id of the Employee",
+                        "type": "string",
+                        "example": "1039420535"
                     },
-                    "commerce_id": {
-                        "title": "nit",
-                        "description": "commerce_id of the Employee",
-                        "type": "integer",
-                        "example": "1"
+                    "identification_type": {
+                        "title": "identification_type",
+                        "description": "identification_type of the Employee",
+                        "type": "string",
+                        "example": "Cedula de Ciudadania"
+                    },
+                    "name": {
+                        "title": "name",
+                        "description": "Name of the Employee",
+                        "type": "string",
+                        "example": "David"
+                    },
+                    "lastname": {
+                        "title": "lastname",
+                        "description": "Lastname of the Employee",
+                        "type": "string",
+                        "example": "Ruiz"
+                    },
+                    "email": {
+                        "title": "email",
+                        "description": "Email of the Employee",
+                        "type": "string",
+                        "example": "super@yopmail.com"
+                    },
+                    "birth_date": {
+                        "title": "birth_date",
+                        "description": "Birth_Date of the Employee",
+                        "type": "string",
+                        "format": "date",
+                        "example": "2022-01-01"
+                    },
+                    "adress": {
+                        "title": "adress",
+                        "description": "adress of the Employee",
+                        "type": "string",
+                        "example": "Cll 60 # 75 - 150"
+                    },
+                    "phone": {
+                        "title": "phone",
+                        "description": "phone of the Employee",
+                        "example": 2147483647
+                    },
+                    "photo": {
+                        "title": "photo",
+                        "description": "photo of the user",
+                        "type": "string",
+                        "example": "avatar"
+                    }
+                },
+                "type": "object"
+            },
+            "EmployeeUpdate": {
+                "title": "EmployeeUpdate",
+                "description": "EmployeeUpdate body data",
+                "properties": {
+                    "identification_type": {
+                        "title": "identification_type",
+                        "description": "identification_type of the Employee",
+                        "type": "string",
+                        "example": "Cedula de Ciudadania"
+                    },
+                    "name": {
+                        "title": "name",
+                        "description": "Name of the Employee",
+                        "type": "string",
+                        "example": "David"
+                    },
+                    "lastname": {
+                        "title": "lastname",
+                        "description": "Lastname of the Employee",
+                        "type": "string",
+                        "example": "Ruiz"
+                    },
+                    "email": {
+                        "title": "email",
+                        "description": "Email of the Employee",
+                        "type": "string",
+                        "example": "super@yopmail.com"
+                    },
+                    "birth_date": {
+                        "title": "birth_date",
+                        "description": "Birth_Date of the Employee",
+                        "type": "string",
+                        "format": "date",
+                        "example": "2022-01-01"
+                    },
+                    "adress": {
+                        "title": "adress",
+                        "description": "adress of the Employee",
+                        "type": "string",
+                        "example": "Cll 60 # 75 - 150"
+                    },
+                    "phone": {
+                        "title": "phone",
+                        "description": "phone of the Employee",
+                        "example": 2147483647
+                    },
+                    "photo": {
+                        "title": "photo",
+                        "description": "photo of the user",
+                        "type": "string",
+                        "example": "avatar"
                     }
                 },
                 "type": "object"
