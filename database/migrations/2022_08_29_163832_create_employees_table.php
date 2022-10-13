@@ -16,6 +16,7 @@ class CreateEmployeesTable extends Migration
         Schema::create('employees', function (Blueprint $table) {
 
             $table->string('id', 15)->primary();
+            $table->string('identification_type', 128)->default('Cedula de Ciudadania');
             $table->string('name', 128);
             $table->string('lastname', 128)->nullable()->default(null);
             $table->string('email')->unique();

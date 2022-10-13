@@ -11,6 +11,17 @@ class EmployeeUpdate
 {
     /**
      * @OA\Property(
+     *      title="identification_type",
+     *      description="identification_type of the Employee",
+     *      example="Cedula de Ciudadania"
+     * )
+     *
+     * @var string
+     */
+    public $identification_type;
+
+    /**
+     * @OA\Property(
      *      title="name",
      *      description="Name of the Employee",
      *      example="David"

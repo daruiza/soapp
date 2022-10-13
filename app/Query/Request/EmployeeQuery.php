@@ -22,7 +22,7 @@ class EmployeeQuery implements IEmployeeQuery
     public function index(Request $request)
     {
         $employee = Employee::query()
-            ->select(['id', 'name', 'lastname', 'phone', 'email', 'photo', 'adress', 'birth_date'])
+            ->select(['id', 'name', 'identification_type', 'lastname', 'phone', 'email', 'photo', 'adress', 'birth_date'])
             ->id($request->id)
             ->name($request->name)
             ->orderBy('id',  $request->sort ?? 'ASC')
@@ -84,6 +84,7 @@ class EmployeeQuery implements IEmployeeQuery
                 }
                 $employee->name = $request->name;
                 $employee->lastname = $request->lastname ?? $employee->lastname;
+                $employee->identification_type = $request->identification_type ?? $employee->identification_type;
                 $employee->email = $request->email ?? $employee->email;
                 $employee->birth_date = $request->birth_date ?? $employee->birth_date;
                 $employee->adress = $request->adress ?? $employee->adress;

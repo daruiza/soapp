@@ -999,6 +999,12 @@
                         "type": "string",
                         "example": "1039420535"
                     },
+                    "identification_type": {
+                        "title": "identification_type",
+                        "description": "identification_type of the Employee",
+                        "type": "string",
+                        "example": "Cedula de Ciudadania"
+                    },
                     "name": {
                         "title": "name",
                         "description": "Name of the Employee",
@@ -1048,6 +1054,12 @@
                 "title": "EmployeeUpdate",
                 "description": "EmployeeUpdate body data",
                 "properties": {
+                    "identification_type": {
+                        "title": "identification_type",
+                        "description": "identification_type of the Employee",
+                        "type": "string",
+                        "example": "Cedula de Ciudadania"
+                    },
                     "name": {
                         "title": "name",
                         "description": "Name of the Employee",

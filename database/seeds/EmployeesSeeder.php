@@ -15,6 +15,7 @@ class EmployeesSeeder extends Seeder
         DB::table('employees')->insert(array(
 
             'id' => '15327400',
+            'identification_type' => 'Cédula Ciudadania',
             'name' => 'Pedro',
             'lastname' => 'Paramo',
             'email' => 'paramo.pedro@gmail',
@@ -27,6 +28,7 @@ class EmployeesSeeder extends Seeder
         DB::table('employees')->insert(array(
 
             'id' => '123456789',
+            'identification_type' => 'Cédula Ciudadania',
             'name' => 'Jose',
             'lastname' => 'Saramago',
             'email' => 'saramago.jose@gmail',
