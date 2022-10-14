@@ -3,6 +3,7 @@
 namespace App\Model\Admin;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\DB;
 
 class Employee extends Model
 {
@@ -24,12 +25,6 @@ class Employee extends Model
     public function reports()
     {
         return $this->belongsToMany(Report::class);
-    }
-
-    public function reportsMax()
-    {
-        return $this->belongsToMany(Report::class)
-            ->orderBy('reports.id', 'desc');
     }    
 
     public function scopeActive($query, $active)

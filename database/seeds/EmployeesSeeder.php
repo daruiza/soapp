@@ -44,5 +44,16 @@ class EmployeesSeeder extends Seeder
             'adress' => 'San Jose',
             'photo' => 'avatar',
         ));
+
+        DB::table('employees')->insert(array(
+            'identification_type' => 'Cédula Ciudadania',
+            'name' => 'Valentino',
+            'lastname' => 'Cervantes',
+            'email' => 'valentino.jose@gmail',
+            'birth_date' => '1990-01-01',
+            'phone' => '2154716',
+            'adress' => 'San Jose',
+            'photo' => 'avatar',
+        ));
     }
 }

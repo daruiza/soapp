@@ -2,6 +2,7 @@
 
 namespace App\Query\Request;
 
+use Illuminate\Support\Facades\DB;
 use App\Model\Admin\Employee;
 use Illuminate\Http\Request;
 use Illuminate\Validation\ValidationException;
@@ -21,20 +22,20 @@ class EmployeeQuery implements IEmployeeQuery
 
     public function index(Request $request)
     {
-        // $employee = Employee::query()
-        // ->select(['id', 'name', 'identification_type', 'lastname', 'phone', 'email', 'photo', 'adress', 'birth_date'])
-        // ->with(['reportsMax'])
-        // ->id($request->id)
-        // ->name($request->name)
-        // ->orderBy('id',  $request->sort ?? 'ASC')            
-        // ->paginate($request->limit ?? 8, ['*'], '', $request->page ?? 1);        
-
-
         $employee = Employee::query()
-            ->select('employees.*', 'employee_report.id AS report')
-            ->leftJoin('employee_report', 'employees.id', '=', 'employee_report.employee_id')
-            ->orderBy('report', 'desc')
-            ->orderBy('id',  $request->sort ?? 'ASC')
+            ->select('employee_last_report.*', 'reports.name as reports_name ')
+            ->from(function ($query) {
+                $query
+                    ->select(
+                        DB::raw('MAX(employee_report.report_id) as max_report_id'),
+                        'employees.*'
+                    )
+                    ->from('employees')
+                    ->leftJoin('employee_report', 'employees.id', '=', 'employee_report.employee_id')
+                    ->groupBy('employees.id');
+            }, 'employee_last_report')
+            ->leftJoin('reports', 'employee_last_report.max_report_id', '=', 'reports.id')
+            ->orderBy('employee_last_report.id', $request->sort ?? 'ASC')
             ->paginate($request->limit ?? 8, ['*'], '', $request->page ?? 1);
 
         return response()->json([
