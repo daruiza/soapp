@@ -25,8 +25,17 @@ class EmployeeController extends Controller
      *      description="Return Employees",
      *      security={ {"bearer": {} }},
      *      @OA\Parameter(
-     *          name="id",
-     *          description="Employee Id",
+     *          name="commerce_id",
+     *          description="Employee Commerce Id",
+     *          required=false,
+     *          in="query",
+     *          @OA\Schema(
+     *              type="integer"
+     *          )
+     *      ),
+     *      @OA\Parameter(
+     *          name="identification",
+     *          description="Employee Identification",
      *          required=false,
      *          in="query",
      *          @OA\Schema(

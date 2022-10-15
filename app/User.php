@@ -65,9 +65,9 @@ class User extends Authenticatable
         return is_null($email) ?  $query : $query->where('email', 'LIKE', '%' . $email . '%');
     }
 
-    public function scopeRol_id($query, $rol_id)
+    public function scopeRol_id($query, $rolid)
     {
-        return is_null($rol_id) ?  $query : $query->where('rol_id', $rol_id);
+        return is_null($rolid) ?  $query : $query->where('rol_id', $rolid);
     }
 
     //un usuario posee/pertenece un rol

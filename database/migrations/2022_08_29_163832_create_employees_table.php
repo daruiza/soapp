@@ -15,16 +15,18 @@ class CreateEmployeesTable extends Migration
     {
         Schema::create('employees', function (Blueprint $table) {
             $table->id();
-            $table->string('identification_type', 128)->default('Cedula de Ciudadania');
             $table->string('name', 128);
             $table->string('lastname', 128)->nullable()->default(null);
+            $table->string('identification', 128);
+            $table->string('identification_type', 128)->default('Cedula de Ciudadania');
             $table->string('email')->unique();
-            $table->date('birth_date', 128)->nullable()->default(null);
+            $table->date('birth_date')->nullable()->default(null);
             $table->string('phone', 128)->nullable()->default(null);
             $table->string('photo', 128)->nullable()->default(null);
             $table->string('adress', 256)->nullable()->default(null);
+            $table->boolean('is_employee')->default(true);
             $table->boolean('active')->default(true);
-            $table->timestamp('email_verified_at')->nullable();
+            $table->integer('commerce_id')->default(1);
             $table->timestamps();
         });
     }

@@ -12,14 +12,14 @@ class Employee
 
     /**
      * @OA\Property(
-     *      title="id",
-     *      description="Id of the Employee",
+     *      title="identification",
+     *      description="Identification of the Employee",
      *      example="1039420535"
      * )
      *
      * @var string
      */
-    public $id;
+    public $identification;
 
      /**
      * @OA\Property(
