@@ -3,7 +3,7 @@
 namespace App\Query\Request;
 
 use Illuminate\Support\Facades\DB;
-use App\Model\Admin\Employee;
+use App\Model\Core\Employee;
 use Illuminate\Http\Request;
 use Illuminate\Validation\ValidationException;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
@@ -22,19 +22,24 @@ class EmployeeQuery implements IEmployeeQuery
 
     public function index(Request $request)
     {
+
+        $commerceid = $request->commerce_id ?? 1;
         $employee = Employee::query()
-            ->select('employee_last_report.*', 'reports.name as reports_name ')
-            ->from(function ($query) {
+            ->select('employee_last_report.*', 'reports.date as reports_date')
+            ->from(function ($query) use ($commerceid) {
                 $query
                     ->select(
                         DB::raw('MAX(employee_report.report_id) as max_report_id'),
-                        'employees.*'
+                        'employees.*',
+                        'employee_report.employee_state'
                     )
                     ->from('employees')
                     ->leftJoin('employee_report', 'employees.id', '=', 'employee_report.employee_id')
+                    ->where('employees.commerce_id', $commerceid)
                     ->groupBy('employees.id');
             }, 'employee_last_report')
             ->leftJoin('reports', 'employee_last_report.max_report_id', '=', 'reports.id')
+            // ->commerce_id($request->commerce_id ?? 1)
             ->orderBy('employee_last_report.id', $request->sort ?? 'ASC')
             ->paginate($request->limit ?? 8, ['*'], '', $request->page ?? 1);
 
@@ -42,7 +47,7 @@ class EmployeeQuery implements IEmployeeQuery
             'data' => [
                 'employee' => $employee,
             ],
-            'message' => 'Datos de empleados Consultados Correctamente!!'
+            'message' => 'Datos de colaboradores Consultados Correctamente!!'
         ], 200);
     }
 
@@ -61,7 +66,7 @@ class EmployeeQuery implements IEmployeeQuery
             if ($validator->fails()) {
                 throw (new ValidationException($validator->errors()->getMessages()));
             }
-            // Creamos el nuevo empleado
+            // Creamos el nuevo colaborador
             $employee = new Employee();
             $request->request->add(['active' => 1]);
             $newEmployee = $employee->create($request->input());
@@ -70,7 +75,7 @@ class EmployeeQuery implements IEmployeeQuery
                 'data' => [
                     'employee' => $newEmployee,
                 ],
-                'message' => 'Empleado creado correctamente!'
+                'message' => 'Colaborador creado correctamente!'
             ], 201);
         } catch (\Exception $e) {
             return response()->json(['message' => 'Algo salio mal!', 'error' => $e], 403);
@@ -106,10 +111,10 @@ class EmployeeQuery implements IEmployeeQuery
                     'data' => [
                         'employee' => $employee,
                     ],
-                    'message' => 'Empleado actualizado con éxito!'
+                    'message' => 'Colaborador actualizado con éxito!'
                 ], 201);
             } catch (ModelNotFoundException $ex) {
-                return response()->json(['message' => "Empleado con id {$id} no existe!", 'error' => $ex->getMessage()], 404);
+                return response()->json(['message' => "Colaborador con id {$id} no existe!", 'error' => $ex->getMessage()], 404);
             } catch (\Exception $e) {
                 return response()->json(['message' => 'Algo salio mal!', 'error' => $e], 403);
             }
@@ -129,10 +134,10 @@ class EmployeeQuery implements IEmployeeQuery
                         'data' => [
                             'employee' => $employee,
                         ],
-                        'message' => 'Empleado eliminado con éxito!'
+                        'message' => 'Colaborador eliminado con éxito!'
                     ], 201);
                 } catch (ModelNotFoundException $e) {
-                    return response()->json(['message' => "Empleado con id {$id} no existe!", 'error' => $e->getMessage()], 403);
+                    return response()->json(['message' => "Colaborador con id {$id} no existe!", 'error' => $e->getMessage()], 403);
                 }
             }
         } else {
@@ -147,9 +152,9 @@ class EmployeeQuery implements IEmployeeQuery
                 $employee->id;
                 return response()->json([
                     'data' => [
-                        'empleado' => $employee,
+                        'employee' => $employee,
                     ],
-                    'message' => 'Datos de Empleado Consultados Correctamente!'
+                    'message' => 'Datos de Colaborador Consultados Correctamente!'
                 ], 201);
             } catch (ModelNotFoundException $e) {
                 return response()->json(['message' => "Empledo con id {$id} no existe!", 'error' => $e->getMessage()], 403);

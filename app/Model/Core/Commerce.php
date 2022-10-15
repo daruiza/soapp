@@ -25,7 +25,7 @@ class Commerce extends Model
 
     public function scopeActive($query, $active)
     {
-        return $active ?
+        return isset($active) ?
             $query->where('active', intval($active)) :
             $query->where('active', 1);
     }
@@ -50,9 +50,9 @@ class Commerce extends Model
         return is_null($city) ?  $query : $query->where('city', 'LIKE', '%' . $city . '%');
     }
 
-    public function scopeUser_id($query, $user_id)
+    public function scopeUser_id($query, $userid)
     {
-        return is_null($user_id) ?  $query : $query->where('user_id', $user_id);
+        return is_null($userid) ?  $query : $query->where('user_id', $userid);
     }
 
     public function user()

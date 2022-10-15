@@ -376,9 +376,18 @@
                 "operationId": "getAllEmployees",
                 "parameters": [
                     {
-                        "name": "id",
+                        "name": "commerce_id",
                         "in": "query",
-                        "description": "Employee Id",
+                        "description": "Employee Commerce Id",
+                        "required": false,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    },
+                    {
+                        "name": "identification",
+                        "in": "query",
+                        "description": "Employee Identification",
                         "required": false,
                         "schema": {
                             "type": "string"
@@ -993,9 +1002,9 @@
                 "title": "Employee",
                 "description": "Employee body data",
                 "properties": {
-                    "id": {
-                        "title": "id",
-                        "description": "Id of the Employee",
+                    "identification": {
+                        "title": "identification",
+                        "description": "Identification of the Employee",
                         "type": "string",
                         "example": "1039420535"
                     },
