@@ -19,7 +19,9 @@ class Employee extends Model
         'phone',
         'adress',
         'active',
-        'photo'
+        'photo',
+        'commerce_id',
+        'is_employee'
     ];
 
     //varios colaboradores le Pertenece a varios reportes

@@ -21,6 +21,6 @@ class GeneralList extends Model
 
     public function scopeName($query, $name)
     {
-        return is_null($name) ?  $query : $query->where('name', 'LIKE', '%' . $name . '%');
+        return is_null($name) ?  $query : $query->where('name', 'LIKE',  $name);
     }
 }

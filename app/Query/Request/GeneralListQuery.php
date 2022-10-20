@@ -57,8 +57,8 @@ class GeneralListQuery implements IGeneralListQuery
                 $generallist = GeneralList::query()
                     ->select(['id', 'name', 'value'])
                     ->name($request->name)
-                    ->orderBy('id', $request->sort ?? 'ASC')
-                    ->paginate($request->limit ?? 10, ['*'], '', $request->page ?? 1);
+                    ->orderBy('name', $request->sort ?? 'ASC')
+                    ->get();
                 return response()->json([
                     'data' => [
                         'generalLista' => $generallist,

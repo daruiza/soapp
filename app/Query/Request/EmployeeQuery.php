@@ -54,7 +54,7 @@ class EmployeeQuery implements IEmployeeQuery
     public function store(Request $request)
     {
         $rules = [
-            $this->id            => 'required|numeric|unique:employees|',
+           // $this->id            => 'required|numeric|unique:employees|',
             $this->email         => 'required|string|max:128|email|unique:employees',
             $this->name          => 'required|string|min:1|max:128|',
             $this->lastname      => 'required|string|min:1|max:128|',
