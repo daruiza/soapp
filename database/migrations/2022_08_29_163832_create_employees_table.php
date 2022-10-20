@@ -17,7 +17,7 @@ class CreateEmployeesTable extends Migration
             $table->id();
             $table->string('name', 128);
             $table->string('lastname', 128)->nullable()->default(null);
-            $table->string('identification', 128);
+            $table->string('identification', 128)->unique();
             $table->string('identification_type', 128)->default('Cedula de Ciudadania');
             $table->string('email')->unique();
             $table->date('birth_date')->nullable()->default(null);

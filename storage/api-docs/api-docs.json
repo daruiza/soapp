@@ -1275,6 +1275,17 @@
                         "description": "photo of the user",
                         "type": "string",
                         "example": "avatar"
+                    },
+                    "commerce_id": {
+                        "title": "commerce_id",
+                        "description": "commerce_id of the Employee",
+                        "example": 1
+                    },
+                    "is_employee": {
+                        "title": "is_employee",
+                        "description": "is_employee of the user",
+                        "type": "boolean",
+                        "example": "1"
                     }
                 },
                 "type": "object"
@@ -1283,6 +1294,12 @@
                 "title": "EmployeeUpdate",
                 "description": "EmployeeUpdate body data",
                 "properties": {
+                    "identification": {
+                        "title": "identification",
+                        "description": "Identification of the Employee",
+                        "type": "string",
+                        "example": "1039420535"
+                    },
                     "identification_type": {
                         "title": "identification_type",
                         "description": "identification_type of the Employee",
@@ -1330,6 +1347,17 @@
                         "description": "photo of the user",
                         "type": "string",
                         "example": "avatar"
+                    },
+                    "commerce_id": {
+                        "title": "commerce_id",
+                        "description": "commerce_id of the Employee",
+                        "example": 1
+                    },
+                    "is_employee": {
+                        "title": "is_employee",
+                        "description": "is_employee of the user",
+                        "type": "boolean",
+                        "example": "1"
                     }
                 },
                 "type": "object"

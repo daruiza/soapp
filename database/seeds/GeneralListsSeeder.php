@@ -29,7 +29,7 @@ class GeneralListsSeeder extends Seeder
 
         DB::table('general_lists')->insert(array(
             'name' => 'estadocivil',
-            'value' => 'Divorsiado'
+            'value' => 'Divorciado'
         ));
     }
 }
