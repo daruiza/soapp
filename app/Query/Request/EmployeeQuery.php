@@ -25,13 +25,12 @@ class EmployeeQuery implements IEmployeeQuery
 
         $commerceid = $request->commerce_id ?? 1;
         $employee = Employee::query()
-            ->select('employee_last_report.*', 'reports.date as reports_date')
+            ->select('employee_last_report.*', 'reports.date as reports_date', 'employee_report.employee_state')
             ->from(function ($query) use ($commerceid) {
                 $query
                     ->select(
                         DB::raw('MAX(employee_report.report_id) as max_report_id'),
-                        'employees.*',
-                        'employee_report.employee_state'
+                        'employees.*'
                     )
                     ->from('employees')
                     ->leftJoin('employee_report', 'employees.id', '=', 'employee_report.employee_id')
@@ -39,7 +38,7 @@ class EmployeeQuery implements IEmployeeQuery
                     ->groupBy('employees.id');
             }, 'employee_last_report')
             ->leftJoin('reports', 'employee_last_report.max_report_id', '=', 'reports.id')
-            // ->commerce_id($request->commerce_id ?? 1)
+            ->leftJoin('employee_report', 'employee_last_report.id', '=', 'employee_report.id')
             ->orderBy('employee_last_report.id', $request->sort ?? 'ASC')
             ->paginate($request->limit ?? 8, ['*'], '', $request->page ?? 1);
 
