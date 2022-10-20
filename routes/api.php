@@ -60,9 +60,12 @@ Route::group(['prefix' => 'rol'], function () {
 Route::group(['prefix' => 'generallist'], function () {
     Route::group(['middleware' => 'auth:api'], function () {
         Route::get('index', 'Api\GeneralListController@index');
-        Route::get('getbyid/{id}', 'Api\GeneralListController@showById');
-        Route::get('getbyname/{name}', 'Api\GeneralListController@showByName');
-        
+        Route::get('showbyid/{id}', 'Api\GeneralListController@showById');
+        Route::get('showbyname/{name}', 'Api\GeneralListController@showByName');
+        Route::post('store', 'Api\GeneralListController@store');
+        Route::delete('destroy/{id}', 'Api\GeneralListController@destroy');
+        Route::put('update/{id}', 'Api\GeneralListController@update');
+
     });
 });
 
