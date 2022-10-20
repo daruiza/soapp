@@ -14,7 +14,7 @@ use App\Query\Abstraction\IEmployeeQuery;
 
 class EmployeeQuery implements IEmployeeQuery
 {
-    private $id = 'id';
+    private $identification = 'identification';
     private $name = 'name';
     private $lastname = 'lastname';
     private $email = 'email';
@@ -53,11 +53,11 @@ class EmployeeQuery implements IEmployeeQuery
     public function store(Request $request)
     {
         $rules = [
-            $this->id            => 'required|numeric|unique:employees|',
-            $this->email         => 'required|string|max:128|email|unique:employees',
-            $this->name          => 'required|string|min:1|max:128|',
-            $this->lastname      => 'required|string|min:1|max:128|',
-            $this->phone         => 'numeric|digits_between:7,10',
+            $this->identification => 'required|string|max:128|unique:employees',
+            $this->email          => 'required|string|max:128|email|unique:employees',
+            $this->name           => 'required|string|min:1|max:128|',
+            $this->lastname       => 'required|string|min:1|max:128|',
+            $this->phone          => 'numeric|digits_between:7,10',
         ];
         try {
             // Ejecutamos el validador y en caso de que falle devolvemos la respuesta
@@ -87,23 +87,27 @@ class EmployeeQuery implements IEmployeeQuery
             try {
                 $employee = Employee::findOrFail($id);
                 $rules = [
-                    $this->email         => 'required|string|max:128|email|', Rule::unique('employees')->ignore($employee->id),
-                    $this->name          => 'required|string|min:1|max:128|',
-                    $this->lastname      => 'required|string|min:1|max:128|',
-                    $this->phone         => 'numeric|digits_between:7,10',
+                    $this->identification => 'required|string|max:128|', Rule::unique('employees')->ignore($employee->id),
+                    $this->email          => 'required|string|max:128|email|', Rule::unique('employees')->ignore($employee->id),
+                    $this->name           => 'required|string|min:1|max:128|',
+                    $this->lastname       => 'required|string|min:1|max:128|',
+                    $this->phone          => 'numeric|digits_between:7,10|',
                 ];
                 $validator = Validator::make($request->all(), $rules);
                 if ($validator->fails()) {
                     throw (new ValidationException($validator->errors()->getMessages()));
                 }
-                $employee->name = $request->name;
+                $employee->identification = $request->identification ?? $employee->identification;
+                $employee->name = $request->name ?? $employee->name;
                 $employee->lastname = $request->lastname ?? $employee->lastname;
                 $employee->identification_type = $request->identification_type ?? $employee->identification_type;
                 $employee->email = $request->email ?? $employee->email;
                 $employee->birth_date = $request->birth_date ?? $employee->birth_date;
                 $employee->adress = $request->adress ?? $employee->adress;
                 $employee->phone = $request->phone ?? $employee->phone;
-                $employee->photo = $request->photo ?? $employee->photos;
+                $employee->photo = $request->photo ?? $employee->photo;
+                $employee->commerce_id = $request->commerce_id ?? $employee->commerce_id;
+                $employee->is_employee = $request->is_employee ?? $employee->is_employee;
                 $employee->save();
 
                 return response()->json([

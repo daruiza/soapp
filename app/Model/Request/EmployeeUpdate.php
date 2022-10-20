@@ -11,6 +11,17 @@ class EmployeeUpdate
 {
     /**
      * @OA\Property(
+     *      title="identification",
+     *      description="Identification of the Employee",
+     *      example="1039420535"
+     * )
+     *
+     * @var string
+     */
+    public $identification;
+
+     /**
+     * @OA\Property(
      *      title="identification_type",
      *      description="identification_type of the Employee",
      *      example="Cedula de Ciudadania"
@@ -96,4 +107,26 @@ class EmployeeUpdate
      * @var string
      */
     public $photo;
+
+    /**
+     * @OA\Property(
+     *      title="commerce_id",
+     *      description="commerce_id of the Employee",
+     *      example=1
+     * )
+     *
+     * @var numeric
+     */
+    public $commerce_id;
+
+    /**
+     * @OA\Property(
+     *      title="is_employee",
+     *      description="is_employee of the user",
+     *      example="1"
+     * )
+     *
+     * @var boolean
+     */
+    public $is_employee;
 }

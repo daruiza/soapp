@@ -10,16 +10,18 @@ class Employee extends Model
     protected $table = 'employees';
     protected $fillable = [
         'id',
+        'identification_type',
+        'identification',
         'name',
         'lastname',
-        'identification',
-        'identification_type',
         'birth_date',
         'email',
         'phone',
         'adress',
         'active',
-        'photo'
+        'photo',
+        'commerce_id',
+        'is_employee'
     ];
 
     //varios colaboradores le Pertenece a varios reportes

@@ -3,6 +3,7 @@
 namespace App\Query\Request;
 
 use App\Model\Core\GeneralList;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 use App\Query\Abstraction\IGeneralListQuery;
 use Illuminate\Support\Facades\Validator;
@@ -19,11 +20,12 @@ class GeneralListQuery implements IGeneralListQuery
         try {
             $generallist = GeneralList::query()
                 ->select(['id', 'name', 'value'])
-                ->orderBy('id', $request->sort ?? 'ASC')
-                ->paginate($request->limit ?? 10, ['*'], '', $request->page ?? 1);
+                ->orderBy('name', $request->sort ?? 'ASC')
+                ->get();
+
             return response()->json([
                 'data' => [
-                    'generalLista' => $generallist,
+                    'generallist' => $generallist,
                 ],
                 'message' => 'Datos de lista general Consultados Correctamente!'
             ], 201);
@@ -34,19 +36,22 @@ class GeneralListQuery implements IGeneralListQuery
 
     public function showById(Request $request,  int $id)
     {
-        if ($id) {
-            try {
-                $generallist = GeneralList::findOrFail($id);
-                $generallist->id;
+        try {
+            $gl = GeneralList::findOrFail($id);
+            if ($gl) {
+                $generallist = DB::table('general_lists')
+                    ->select(['id', 'name', 'value'])
+                    ->where('general_lists.id', '=', $id)
+                    ->get();
                 return response()->json([
                     'data' => [
-                        'generalLista' => $generallist,
+                        'generallist' => $generallist,
                     ],
                     'message' => 'Datos de lista general Consultados Correctamente!'
-                ], 201);
-            } catch (ModelNotFoundException $e) {
-                return response()->json(['message' => "Lista general con id {$id} no existe!", 'error' => $e->getMessage()], 403);
+                ]);
             }
+        } catch (ModelNotFoundException $e) {
+            return response()->json(['message' => "Lista general con id {$id} no existe!", 'error' => $e->getMessage()], 403);
         }
     }
 
@@ -57,11 +62,10 @@ class GeneralListQuery implements IGeneralListQuery
                 $generallist = GeneralList::query()
                     ->select(['id', 'name', 'value'])
                     ->name($request->name)
-                    ->orderBy('id', $request->sort ?? 'ASC')
-                    ->paginate($request->limit ?? 10, ['*'], '', $request->page ?? 1);
+                    ->get();
                 return response()->json([
                     'data' => [
-                        'generalLista' => $generallist,
+                        'generallist' => $generallist,
                     ],
                     'message' => 'Datos de lista general Consultados Correctamente!'
                 ], 201);

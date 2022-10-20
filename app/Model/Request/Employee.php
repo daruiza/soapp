@@ -108,4 +108,26 @@ class Employee
      * @var string
      */
     public $photo;
+
+    /**
+     * @OA\Property(
+     *      title="commerce_id",
+     *      description="commerce_id of the Employee",
+     *      example=1
+     * )
+     *
+     * @var numeric
+     */
+    public $commerce_id;
+
+    /**
+     * @OA\Property(
+     *      title="is_employee",
+     *      description="is_employee of the user",
+     *      example="1"
+     * )
+     *
+     * @var boolean
+     */
+    public $is_employee;
 }

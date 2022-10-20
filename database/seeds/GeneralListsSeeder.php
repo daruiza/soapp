@@ -13,23 +13,23 @@ class GeneralListsSeeder extends Seeder
     public function run()
     {
         DB::table('general_lists')->insert(array(
-            'name' => 'Sexo',
+            'name' => 'sexo',
             'value' => 'Masculino'
         ));
 
         DB::table('general_lists')->insert(array(
-            'name' => 'Sexo',
+            'name' => 'sexo',
             'value' => 'Femenino'
         ));
 
         DB::table('general_lists')->insert(array(
-            'name' => 'Estado',
+            'name' => 'estadocivil',
             'value' => 'Casado'
         ));
 
         DB::table('general_lists')->insert(array(
-            'name' => 'Estado',
-            'value' => 'Divorsiado'
+            'name' => 'estadocivil',
+            'value' => 'Divorciado'
         ));
     }
 }
