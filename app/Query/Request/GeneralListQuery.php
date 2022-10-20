@@ -3,22 +3,29 @@
 namespace App\Query\Request;
 
 use App\Model\Core\GeneralList;
-use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Http\Request;
 use App\Query\Abstraction\IGeneralListQuery;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Validation\ValidationException;
+use Illuminate\Database\Eloquent\ModelNotFoundException;
 
 class GeneralListQuery implements IGeneralListQuery
 {
+    private $name = 'name';
+    private $value = 'value';
+
     public function index(Request $request)
     {
         try {
-            $genrallist = GeneralList::query()
+            $generallist = GeneralList::query()
                 ->select(['id', 'name', 'value'])
-                ->get();
+                ->orderBy('id', $request->sort ?? 'ASC')
+                ->paginate($request->limit ?? 10, ['*'], '', $request->page ?? 1);
             return response()->json([
-                'data' => $genrallist,
-                'message' => 'Lista Genaral Consulatada Correctamente'
+                'data' => [
+                    'generalLista' => $generallist,
+                ],
+                'message' => 'Datos de lista general Consultados Correctamente!'
             ], 201);
         } catch (\Exception $e) {
             return response()->json(['message' => 'Algo salio mal!', 'error' => $e->getMessage()], 403);
@@ -29,31 +36,119 @@ class GeneralListQuery implements IGeneralListQuery
     {
         if ($id) {
             try {
+                $generallist = GeneralList::findOrFail($id);
+                $generallist->id;
                 return response()->json([
                     'data' => [
-                        'commerce' => 'genralLista',
+                        'generalLista' => $generallist,
                     ],
-                    'message' => 'Datos de Tienda Consultados Correctamente!'
+                    'message' => 'Datos de lista general Consultados Correctamente!'
                 ], 201);
             } catch (ModelNotFoundException $e) {
-                return response()->json(['message' => "Tienda con id {$id} no existe!", 'error' => $e->getMessage()], 403);
+                return response()->json(['message' => "Lista general con id {$id} no existe!", 'error' => $e->getMessage()], 403);
             }
         }
     }
 
-    public function showByName(Request $request,  int $name)
+    public function showByName(Request $request,  string $name)
     {
         if ($name) {
             try {
-                $genrallist = GeneralList::name($name)
-                ->select(['id', 'name', 'value'])
-                ->get();
+                $generallist = GeneralList::query()
+                    ->select(['id', 'name', 'value'])
+                    ->name($request->name)
+                    ->orderBy('id', $request->sort ?? 'ASC')
+                    ->paginate($request->limit ?? 10, ['*'], '', $request->page ?? 1);
                 return response()->json([
-                    'data' => $genrallist,
-                    'message' => 'Datos de Tienda Consultados Correctamente!'
+                    'data' => [
+                        'generalLista' => $generallist,
+                    ],
+                    'message' => 'Datos de lista general Consultados Correctamente!'
                 ], 201);
-            } catch (ModelNotFoundException $e) {
-                return response()->json(['message' => "Tienda con id {$name} no existe!", 'error' => $e->getMessage()], 403);
+            } catch (\Exception $e) {
+                return response()->json(['message' => 'Algo salio mal!', 'error' => $e->getMessage()], 403);
+            }
+        }
+    }
+
+    public function store(Request $request)
+    {
+        $rules = [
+            $this->name    => 'required|string|min:1|max:128|',
+            $this->value   => 'required|string|min:1|max:128|',
+        ];
+        try {
+            // Ejecutamos el validador y en caso de que falle devolvemos la respuesta
+            $validator = Validator::make($request->all(), $rules);
+            if ($validator->fails()) {
+                throw (new ValidationException($validator->errors()->getMessages()));
+            }
+            // Creamos el nuevo colaborador
+            $generallist = new GeneralList();
+            $newGeneralList = $generallist->create($request->input());
+
+            return response()->json([
+                'data' => [
+                    'generallist' => $newGeneralList,
+                ],
+                'message' => 'Lista general creada correctamente!'
+            ], 201);
+        } catch (\Exception $e) {
+            return response()->json(['message' => 'Algo salio mal!', 'error' => $e], 403);
+        }
+    }
+
+    public function destroy(Int $id)
+    {
+        if (auth()->check() && auth()->user()->rol_id == 1) {
+
+            if ($id) {
+                try {
+                    $generallist = GeneralList::findOrFail($id);
+                    $generallist->delete();
+
+                    return response()->json([
+                        'data' => [
+                            'generallist' => $generallist,
+                        ],
+                        'message' => 'Lista general eliminada con éxito!'
+                    ], 201);
+                } catch (ModelNotFoundException $e) {
+                    return response()->json(['message' => "Lista general con id {$id} no existe!", 'error' => $e->getMessage()], 403);
+                }
+            }
+        } else {
+            return response()->json(['message' => 'Necesita permisos de super-administrador!'], 403);
+        }
+    }
+
+    public function update(Request $request, int $id)
+    {
+        if ($id) {
+            try {
+                $generallist = GeneralList::findOrFail($id);
+                $rules = [
+                    $this->name    => 'required|string|min:1|max:128|',
+                    $this->value   => 'required|string|min:1|max:128|',
+                ];
+                $validator = Validator::make($request->all(), $rules);
+                if ($validator->fails()) {
+                    throw (new ValidationException($validator->errors()->getMessages()));
+                }
+                $generallist->name = $request->name;
+                $generallist->value = $request->value ?? $generallist->value;
+                $generallist->save();
+
+                return response()->json([
+                    'data' => [
+                        'generallist' => $generallist,
+                    ],
+                    'message' => 'Lista general actualizada con éxito!'
+                ], 201);
+            } catch (ModelNotFoundException $ex) {
+                return response()->json(['message' => "Lista General con id {$id} no existe!", 'error' => $ex->getMessage()], 404);
+            } catch (\Exception $e) {
+                return response()->json(['message' => 'Algo salio mal!', 'error' => $e], 403);
             }
         }
     }

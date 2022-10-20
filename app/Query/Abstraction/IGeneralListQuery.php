@@ -8,5 +8,8 @@ interface IGeneralListQuery
 {
     public function index(Request $request);
     public function showById(Request $request, int $id);
-    public function showByName(Request $request, int $name);
+    public function showByName(Request $request, string $name);
+    public function store(Request $request);
+    public function destroy(Int $id);
+    public function update(Request $request, int $id);
 }

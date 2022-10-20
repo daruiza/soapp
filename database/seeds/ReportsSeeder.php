@@ -23,7 +23,7 @@ class ReportsSeeder extends Seeder
         ));
 
         DB::table('reports')->insert(array(
-            'project' => 'MEDIO HAMBIENTE',
+            'project' => 'MEDIO AMBIENTE',
             'commerce_id' => null
         ));
     }
