@@ -80,7 +80,7 @@ class GeneralListController extends Controller
 
     /**
      * @OA\Get(
-     *      path="/generallist/showbyname/{name}",
+     *      path="/generallist/showbyname",
      *      operationId="get General List By Name",
      *      tags={"generallist"},
      *      summary="Get General List By Name",
@@ -90,7 +90,7 @@ class GeneralListController extends Controller
      *          name="name",
      *          description="General List Name",
      *          required=true,
-     *          in="path",
+     *          in="query",
      *          @OA\Schema(
      *              type="string"
      *          )
@@ -109,9 +109,9 @@ class GeneralListController extends Controller
      *      )
      *     )
      */
-    public function showByName(Request $request, $name)
+    public function showByName(Request $request)
     {
-        return $this->GeneralListQuery->showByName($request, $name);
+        return $this->GeneralListQuery->showByName($request);
     }
 
     /**

@@ -63,5 +63,31 @@ class EmployeesSeeder extends Seeder
             'photo' => 'avatar',
             'commerce_id'=> 2
         ));
+
+        DB::table('employees')->insert(array(
+            'identification_type' => 'Cédula Ciudadania',
+            'identification' => '1039783678',
+            'name' => 'Simba',
+            'lastname' => 'León',
+            'email' => 'leon.simba@gmail',
+            'birth_date' => '1989-08-04',
+            'phone' => '2154716',
+            'adress' => 'Cr 86c # 53c-41',
+            'photo' => 'avatar',
+            'commerce_id'=> 2
+        ));
+
+        DB::table('employees')->insert(array(
+            'identification_type' => 'Pasaporte',
+            'identification' => '1039783784',
+            'name' => 'Mufasha',
+            'lastname' => 'León',
+            'email' => 'mufasha.simba@gmail',
+            'birth_date' => '1973-02-27',
+            'phone' => '2154716',
+            'adress' => 'Cl60 # 75 -150',
+            'photo' => 'avatar',
+            'commerce_id'=> 2
+        ));
     }
 }

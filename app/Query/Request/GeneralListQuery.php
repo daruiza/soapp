@@ -55,9 +55,9 @@ class GeneralListQuery implements IGeneralListQuery
         }
     }
 
-    public function showByName(Request $request,  string $name)
+    public function showByName(Request $request)
     {
-        if ($name) {
+        if ($request->name) {
             try {
                 $generallist = GeneralList::query()
                     ->select(['id', 'name', 'value'])

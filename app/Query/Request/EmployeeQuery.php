@@ -11,6 +11,7 @@ use Illuminate\Support\Facades\Validator;
 use Illuminate\Validation\Rule;
 use App\Query\Abstraction\IEmployeeQuery;
 
+use Carbon\Carbon;
 
 class EmployeeQuery implements IEmployeeQuery
 {
@@ -39,6 +40,29 @@ class EmployeeQuery implements IEmployeeQuery
             }, 'employee_last_report')
             ->leftJoin('reports', 'employee_last_report.max_report_id', '=', 'reports.id')
             ->leftJoin('employee_report', 'employee_last_report.id', '=', 'employee_report.id')
+            ->where(function ($orquery) use ($request) {
+                $this->setAtributeIndexQuery(
+                    $request->identification_type,
+                    $orquery,
+                    'employee_last_report',
+                    'identification_type'
+                );
+                $this->setAtributeIndexQuery($request->name, $orquery, 'employee_last_report', 'name');
+                $this->setAtributeIndexQuery($request->lastname, $orquery, 'employee_last_report', 'lastname');
+                $this->setAtributeIndexQuery($request->email, $orquery, 'employee_last_report', 'email');
+                $this->setAtributeIndexQuery($request->phone, $orquery, 'employee_last_report', 'phone');
+                $this->setAtributeIndexQuery($request->adress, $orquery, 'employee_last_report', 'adress');
+                if (isset($request->active)) {
+                    $orquery->where('employee_last_report.active', $request->active ?? 1);
+                }
+                if (isset($request->birth_date)) {
+                    $orquery->whereBetween(
+                        'employee_last_report.birth_date',
+                        [$request->birth_date, Carbon::now()->format('Y-m-d')]
+                    );
+                }
+                $orquery;
+            })
             ->orderBy('employee_last_report.id', $request->sort ?? 'ASC')
             ->paginate($request->limit ?? 8, ['*'], '', $request->page ?? 1);
 
@@ -162,6 +186,13 @@ class EmployeeQuery implements IEmployeeQuery
             } catch (ModelNotFoundException $e) {
                 return response()->json(['message' => "Empledo con id {$id} no existe!", 'error' => $e->getMessage()], 403);
             }
+        }
+    }
+
+    public function setAtributeIndexQuery($value, $query, $table, $attribute)
+    {
+        if (isset($value)) {
+            $query->where($table . '.' . $attribute, 'LIKE',  '%' . $value . '%');
         }
     }
 }

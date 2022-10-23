@@ -14,12 +14,12 @@ class Employee extends Model
         'identification',
         'name',
         'lastname',
-        'birth_date',
         'email',
         'phone',
         'adress',
         'active',
         'photo',
+        'birth_date',
         'commerce_id',
         'is_employee'
     ];
