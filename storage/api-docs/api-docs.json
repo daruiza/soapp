@@ -641,7 +641,7 @@
                 ]
             }
         },
-        "/generallist/showbyname/{name}": {
+        "/generallist/showbyname": {
             "get": {
                 "tags": [
                     "generallist"
@@ -652,7 +652,7 @@
                 "parameters": [
                     {
                         "name": "name",
-                        "in": "path",
+                        "in": "query",
                         "description": "General List Name",
                         "required": true,
                         "schema": {
