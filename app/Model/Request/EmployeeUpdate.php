@@ -2,14 +2,13 @@
 
 /**
  * @OA\Schema(
- *      title="Employee",
- *      description="Employee body data",
+ *      title="EmployeeUpdate",
+ *      description="EmployeeUpdate body data",
  *      type="object"
  * )
  */
-class Employee
+class EmployeeUpdate
 {
-
     /**
      * @OA\Property(
      *      title="identification",

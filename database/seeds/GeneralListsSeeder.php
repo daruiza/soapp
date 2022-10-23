@@ -14,12 +14,47 @@ class GeneralListsSeeder extends Seeder
     {
         DB::table('general_lists')->insert(array(
             'name' => 'sexo',
-            'value' => 'm'
+            'value' => 'Masculino'
         ));
 
         DB::table('general_lists')->insert(array(
-            'name' => 'estado',
+            'name' => 'sexo',
+            'value' => 'Femenino'
+        ));
+
+        DB::table('general_lists')->insert(array(
+            'name' => 'estadocivil',
             'value' => 'Casado'
+        ));
+
+        DB::table('general_lists')->insert(array(
+            'name' => 'estadocivil',
+            'value' => 'Divorciado'
+        ));
+
+        DB::table('general_lists')->insert(array(
+            'name' => 'documenttype',
+            'value' => 'Cédula Ciudadanía'
+        ));
+
+        DB::table('general_lists')->insert(array(
+            'name' => 'documenttype',
+            'value' => 'Cedula Extranjera'
+        ));
+
+        DB::table('general_lists')->insert(array(
+            'name' => 'documenttype',
+            'value' => 'Pasaporte'
+        ));
+
+        DB::table('general_lists')->insert(array(
+            'name' => 'documenttype',
+            'value' => 'Tarjeta Identidad'
+        ));
+
+        DB::table('general_lists')->insert(array(
+            'name' => 'documenttype',
+            'value' => 'NIT'
         ));
     }
 }

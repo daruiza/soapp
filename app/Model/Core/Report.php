@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Model\Admin;
+namespace App\Model\Core;
 
 use Commerce;
 use Illuminate\Database\Eloquent\Model;
@@ -15,7 +15,7 @@ class Report extends Model
         return $this->belongsTo(Commerce::class);
     }
 
-    //a varios reportes le Pertenece varios empleados
+    //a varios reportes le Pertenece varios colaboradores
     public function employee()
     {
         return $this->belongsTo(Employee::class);

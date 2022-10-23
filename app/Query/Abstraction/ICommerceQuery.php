@@ -11,6 +11,4 @@ interface ICommerceQuery {
     public function destroy(Int $id);
     public function showByUserId(Request $request, int $id);
     public function showByCommerceId(Request $request, int $id);
-
-
 }

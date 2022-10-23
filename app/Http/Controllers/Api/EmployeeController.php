@@ -24,6 +24,33 @@ class EmployeeController extends Controller
      *      summary="Get All Employees",
      *      description="Return Employees",
      *      security={ {"bearer": {} }},
+     *      @OA\Parameter(
+     *          name="commerce_id",
+     *          description="Employee Commerce Id",
+     *          required=false,
+     *          in="query",
+     *          @OA\Schema(
+     *              type="integer"
+     *          )
+     *      ),
+     *      @OA\Parameter(
+     *          name="identification",
+     *          description="Employee Identification",
+     *          required=false,
+     *          in="query",
+     *          @OA\Schema(
+     *              type="string"
+     *          )
+     *      ),
+     *      @OA\Parameter(
+     *          name="name",
+     *          description="Employee Name",
+     *          required=false,
+     *          in="query",
+     *          @OA\Schema(
+     *              type="string"
+     *          )
+     *      ),
      *      @OA\Response(
      *          response=200,
      *          description="Successful operation",
@@ -38,9 +65,9 @@ class EmployeeController extends Controller
      *      )
      *     )
      */
-    public function index()
+    public function index(Request $request)
     {
-        return $this->EmployeeQuery->index();
+        return $this->EmployeeQuery->index($request);
     }
 
     /**
@@ -152,7 +179,7 @@ class EmployeeController extends Controller
      *      ),
      *       @OA\RequestBody(
      *          required=true,
-     *          @OA\JsonContent(ref="#/components/schemas/Employee")
+     *          @OA\JsonContent(ref="#/components/schemas/EmployeeUpdate")
      *      ),
      *      @OA\Response(
      *          response=200,
@@ -176,7 +203,7 @@ class EmployeeController extends Controller
     /**
      * @OA\Delete(
      *      path="/employee/destroy/{id}",
-     *      operationId="getDestroyEmplyeeById",
+     *      operationId="getDestroyEmployeeById",
      *      tags={"Employee"},
      *      summary="Delete One Employee By one Id",
      *      description="Delete One Employee",

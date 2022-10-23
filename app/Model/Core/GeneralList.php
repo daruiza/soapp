@@ -13,4 +13,14 @@ class GeneralList extends Model
         'name',
         'value',
     ];
+
+    public function scopeId($query, $id)
+    {
+        return is_null($id) ?  $query : $query->where('id', $id);
+    }
+
+    public function scopeName($query, $name)
+    {
+        return is_null($name) ?  $query : $query->where('name', 'LIKE',  $name);
+    }
 }

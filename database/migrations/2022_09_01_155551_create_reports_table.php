@@ -15,7 +15,11 @@ class CreateReportsTable extends Migration
     {
         Schema::create('reports', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
+            $table->string('project', 128);
+            $table->string('responsible', 128)->nullable();
+            $table->string('email_responsible', 128)->nullable();
+            $table->string('phone_responsible', 128)->nullable();
+            $table->date('date')->nullable();
 
             $table->unsignedBigInteger('commerce_id')->nullable()->default(1);
             $table->foreign('commerce_id')

@@ -35,7 +35,7 @@ class CommerceQuery implements ICommerceQuery
                 ->department($request->department)
                 ->city($request->city)
                 ->user_id($request->user_id)
-                ->orderBy('id',  $request->sort ?? 'ASC')
+                ->orderBy('id',$request->sort ?? 'ASC')
                 ->paginate($request->limit ?? 10, ['*'], '', $request->page ?? 1);
 
             return response()->json([
@@ -129,8 +129,8 @@ class CommerceQuery implements ICommerceQuery
                     ],
                     'message' => 'Datos de Tienda Consultados Correctamente!'
                 ], 201);
-            } catch (\Exception $e) {
-                return response()->json(['message' => 'Tienda no existe!', 'error' => $e->getMessage()], 403);
+            } catch (ModelNotFoundException $e) {
+                return response()->json(['message' => "Tienda con id {$id} no existe!", 'error' => $e->getMessage()], 403);
             }
         }
     }
@@ -147,8 +147,8 @@ class CommerceQuery implements ICommerceQuery
                     ],
                     'message' => 'Datos de Tienda Consultados Correctamente!'
                 ], 201);
-            } catch (\Exception $e) {
-                return response()->json(['message' => 'Tienda no existe!', 'error' => $e->getMessage()], 403);
+            } catch (ModelNotFoundException $e) {
+                return response()->json(['message' => "Tienda con id {$id} no existe!", 'error' => $e->getMessage()], 403);
             }
         }
     }
