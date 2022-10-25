@@ -55,6 +55,9 @@ class EmployeeQuery implements IEmployeeQuery
                 if (isset($request->active)) {
                     $orquery->where('employee_last_report.active', $request->active ?? 1);
                 }
+                if (isset($request->is_employee)) {
+                    $orquery->where('employee_last_report.is_employee', $request->is_employee ?? 1);
+                }
                 if (isset($request->birth_date)) {
                     $orquery->whereBetween(
                         'employee_last_report.birth_date',
@@ -63,8 +66,9 @@ class EmployeeQuery implements IEmployeeQuery
                 }
                 $orquery;
             })
-            ->orderBy('employee_last_report.id', $request->sort ?? 'ASC')
+            ->orderBy('employee_last_report.id', $request->sort ?? 'DESC')
             ->paginate($request->limit ?? 8, ['*'], '', $request->page ?? 1);
+            // ->toSql();
 
         return response()->json([
             'data' => [
