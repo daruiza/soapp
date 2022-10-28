@@ -68,7 +68,7 @@ class EmployeeQuery implements IEmployeeQuery
             })
             ->orderBy('employee_last_report.id', $request->sort ?? 'DESC')
             ->paginate($request->limit ?? 8, ['*'], '', $request->page ?? 1);
-            // ->toSql();
+        // ->toSql();
 
         return response()->json([
             'data' => [
@@ -154,7 +154,7 @@ class EmployeeQuery implements IEmployeeQuery
 
     public function destroy(Int $id)
     {
-        if (auth()->check() && auth()->user()->rol_id == 1) {
+        if (auth()->check() && auth()->user()->rol_id != 2) {
 
             if ($id) {
                 try {
