@@ -67,7 +67,7 @@ class EmployeeQuery implements IEmployeeQuery
                 $orquery;
             })
             ->orderBy('employee_last_report.id', $request->sort ?? 'DESC')
-            ->paginate($request->limit ?? 8, ['*'], '', $request->page ?? 1);
+            ->paginate($request->limit ?? 7, ['*'], '', $request->page ?? 1);
             // ->toSql();
 
         return response()->json([
