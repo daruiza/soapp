@@ -15,9 +15,10 @@ class CreateReportsTable extends Migration
     {
         Schema::create('reports', function (Blueprint $table) {
             $table->id();
+            $table->string('name', 128);
             $table->string('project', 128);
-            $table->string('responsible', 128)->nullable();
-            $table->string('email_responsible', 128)->nullable();
+            $table->string('responsible', 128);
+            $table->string('email_responsible', 128)->unique();
             $table->string('phone_responsible', 128)->nullable();
             $table->date('date')->nullable();
 

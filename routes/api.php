@@ -78,3 +78,14 @@ Route::group(['prefix' => 'employee'], function () {
         Route::delete('destroy/{employee_id}', 'Api\EmployeeController@destroy');
     });
 });
+
+Route::group(['prefix' => 'report'], function () {
+    Route::group(['middleware' => 'auth:api'], function () {
+        Route::get('index', 'Api\ReportController@index');
+        Route::post('store', 'Api\ReportController@store');
+        Route::put('update/{id}', 'Api\ReportController@update');
+        Route::get('showbyreportid/{id}', 'Api\ReportController@showByReportId');
+        Route::delete('destroy/{report_id}', 'Api\ReportController@destroy');
+    });
+});
+
