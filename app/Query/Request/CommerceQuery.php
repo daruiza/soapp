@@ -35,7 +35,7 @@ class CommerceQuery implements ICommerceQuery
                 ->department($request->department)
                 ->city($request->city)
                 ->user_id($request->user_id)
-                ->orderBy('id',$request->sort ?? 'ASC')
+                ->orderBy('id', $request->sort ?? 'ASC')
                 ->paginate($request->limit ?? 10, ['*'], '', $request->page ?? 1);
 
             return response()->json([
@@ -163,7 +163,7 @@ class CommerceQuery implements ICommerceQuery
                     $commerce->delete();
                     return response()->json([
                         'data' => [
-                            'user' => $commerce,
+                            'commerce' => $commerce,
                         ],
                         'message' => 'Tienda eliminada con éxito!'
                     ], 201);
