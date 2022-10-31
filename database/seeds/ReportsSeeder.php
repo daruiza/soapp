@@ -13,18 +13,33 @@ class ReportsSeeder extends Seeder
     public function run()
     {
         DB::table('reports')->insert(array(
-            'project' => 'SST',
-            'commerce_id' => null
+            'name'  => 'primer reporte',
+            'project'  => 'SST',
+            'responsible'  => 'david',
+            'email_responsible'  => 'david@gmail.com',
+            'phone_responsible'  => '12345678',
+            'date'  => '2020-01-01',
+            'commerce_id'  => '1',
         ));
 
         DB::table('reports')->insert(array(
-            'project' => 'CAIDA',
-            'commerce_id' => null
+            'name'  => 'segundo reporte',
+            'project'  => 'caida',
+            'responsible'  => 'davis',
+            'email_responsible'  => 'davis@gmail.com',
+            'phone_responsible'  => '123456789',
+            'date'  => '2020-01-01',
+            'commerce_id'  => '2',
         ));
 
         DB::table('reports')->insert(array(
-            'project' => 'MEDIO AMBIENTE',
-            'commerce_id' => null
+            'name'  => 'tercer reporte',
+            'project'  => 'falta',
+            'responsible'  => 'giovanni',
+            'email_responsible'  => 'giovanni@gmail.com',
+            'phone_responsible'  => '12345678',
+            'date'  => '2020-01-01',
+            'commerce_id'  => '3',
         ));
     }
 }
