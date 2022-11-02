@@ -32,6 +32,10 @@ use App\Query\Request\EmployeeQuery;
 use App\Http\Controllers\Api\GeneralListController;
 use App\Query\Abstraction\IGeneralListQuery;
 use App\Query\Request\GeneralListQuery;
+
+use App\Http\Controllers\Api\ReportController;
+use App\Query\Abstraction\IReportQuery;
+use App\Query\Request\ReportQuery;
 class AppServiceProvider extends ServiceProvider
 {
     /**
@@ -61,6 +65,9 @@ class AppServiceProvider extends ServiceProvider
 
         $this->app->bind(IEmployeeQuery::class, EmployeeQuery::class);
         $this->app->make(EmployeeController::class);
+
+        $this->app->bind(IReportQuery::class, ReportQuery::class);
+        $this->app->make(ReportController::class);
     }
 
     /**

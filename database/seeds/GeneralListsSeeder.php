@@ -13,6 +13,16 @@ class GeneralListsSeeder extends Seeder
     public function run()
     {
         DB::table('general_lists')->insert(array(
+            'name' => 'boolean',
+            'value' => 'Si'
+        ));
+
+        DB::table('general_lists')->insert(array(
+            'name' => 'boolean',
+            'value' => 'No'
+        ));
+
+        DB::table('general_lists')->insert(array(
             'name' => 'sexo',
             'value' => 'Masculino'
         ));
@@ -20,6 +30,11 @@ class GeneralListsSeeder extends Seeder
         DB::table('general_lists')->insert(array(
             'name' => 'sexo',
             'value' => 'Femenino'
+        ));
+
+        DB::table('general_lists')->insert(array(
+            'name' => 'estadocivil',
+            'value' => 'Soltero'
         ));
 
         DB::table('general_lists')->insert(array(
@@ -55,6 +70,16 @@ class GeneralListsSeeder extends Seeder
         DB::table('general_lists')->insert(array(
             'name' => 'documenttype',
             'value' => 'NIT'
+        ));
+
+        DB::table('general_lists')->insert(array(
+            'name' => 'employee_state',
+            'value' => 'Nuevo'
+        ));
+
+        DB::table('general_lists')->insert(array(
+            'name' => 'employee_state',
+            'value' => 'Producción'
         ));
     }
 }

@@ -798,6 +798,200 @@
                 ]
             }
         },
+        "/report/index": {
+            "get": {
+                "tags": [
+                    "Report"
+                ],
+                "summary": "Get All Reports",
+                "description": "Return Reports",
+                "operationId": "getAllReports",
+                "parameters": [
+                    {
+                        "name": "name",
+                        "in": "query",
+                        "description": "Report Name",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful operation"
+                    },
+                    "401": {
+                        "description": "Unauthenticated"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    }
+                },
+                "security": [
+                    {
+                        "bearer": []
+                    }
+                ]
+            }
+        },
+        "/report/store": {
+            "post": {
+                "tags": [
+                    "Report"
+                ],
+                "summary": "Store Report",
+                "description": "Store Report",
+                "operationId": "storeReport",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/Report"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Successful operation"
+                    },
+                    "401": {
+                        "description": "Unauthenticated"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    }
+                },
+                "security": [
+                    {
+                        "bearer": []
+                    }
+                ]
+            }
+        },
+        "/report/showbyreportid/{id}": {
+            "get": {
+                "tags": [
+                    "Report"
+                ],
+                "summary": "Get One Report By one Id",
+                "description": "Return One Report",
+                "operationId": "getReportById",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Report Id",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful operation"
+                    },
+                    "401": {
+                        "description": "Unauthenticated"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    }
+                },
+                "security": [
+                    {
+                        "bearer": []
+                    }
+                ]
+            }
+        },
+        "/report/update/{id}": {
+            "put": {
+                "tags": [
+                    "Report"
+                ],
+                "summary": "Update One Report By one Id",
+                "description": "Update One Report",
+                "operationId": "getUpdateReportById",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Report Id",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/Report"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Successful operation"
+                    },
+                    "401": {
+                        "description": "Unauthenticated"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    }
+                },
+                "security": [
+                    {
+                        "bearer": []
+                    }
+                ]
+            }
+        },
+        "/report/destroy/{id}": {
+            "delete": {
+                "tags": [
+                    "Report"
+                ],
+                "summary": "Delete One Report By one Id",
+                "description": "Delete One Report",
+                "operationId": "getDestroyReportById",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Report Id",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful operation"
+                    },
+                    "401": {
+                        "description": "Unauthenticated"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    }
+                },
+                "security": [
+                    {
+                        "bearer": []
+                    }
+                ]
+            }
+        },
         "/rol/index": {
             "get": {
                 "tags": [
@@ -1385,17 +1579,47 @@
                 "title": "Report",
                 "description": "Report body data",
                 "properties": {
-                    "id": {
-                        "title": "id",
-                        "description": "Id of the Report",
-                        "type": "string",
-                        "example": "1"
-                    },
                     "name": {
                         "title": "name",
                         "description": "Name of the Report",
                         "type": "string",
-                        "example": "jajfja jajajaj"
+                        "example": "primer reporte"
+                    },
+                    "project": {
+                        "title": "project",
+                        "description": "project of the Report",
+                        "type": "string",
+                        "example": "Caida"
+                    },
+                    "responsible": {
+                        "title": "responsible",
+                        "description": "Responsible of the Report",
+                        "type": "string",
+                        "example": "David"
+                    },
+                    "email_responsible": {
+                        "title": "email_responsible",
+                        "description": "email_responsible of the Report",
+                        "type": "string",
+                        "example": "david@gmail.com"
+                    },
+                    "phone_responsible": {
+                        "title": "phone_responsible",
+                        "description": "phone_responsible of the Report",
+                        "type": "string",
+                        "example": "123456789"
+                    },
+                    "date": {
+                        "title": "date",
+                        "description": "date of the Report",
+                        "type": "string",
+                        "format": "date",
+                        "example": "2020-01-01"
+                    },
+                    "commerce_id": {
+                        "title": "commerce_id",
+                        "description": "commerce_id of the Report",
+                        "example": 1
                     }
                 },
                 "type": "object"
