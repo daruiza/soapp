@@ -32,7 +32,34 @@ class ReportController extends Controller
      *          @OA\Schema(
      *              type="string"
      *          )
-     *      ),     *
+     *      ),
+     *      @OA\Parameter(
+     *          name="commerce_id",
+     *          description="Report commerce_id",
+     *          required=false,
+     *          in="query",
+     *          @OA\Schema(
+     *              type="integer"
+     *          )
+     *      ),
+     *      @OA\Parameter(
+     *          name="year",
+     *          description="Report year",
+     *          required=false,
+     *          in="query",
+     *          @OA\Schema(
+     *              type="integer"
+     *          )
+     *      ),
+     *      @OA\Parameter(
+     *          name="month",
+     *          description="Report month",
+     *          required=false,
+     *          in="query",
+     *          @OA\Schema(
+     *              type="integer"
+     *          )
+     *      ),
      *      @OA\Response(
      *          response=200,
      *          description="Successful operation",

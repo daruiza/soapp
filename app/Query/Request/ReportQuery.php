@@ -2,6 +2,7 @@
 
 namespace App\Query\Request;
 
+use Carbon\Carbon;
 use App\Model\Core\Report;
 use App\Model\Admin\Commerce;
 use Illuminate\Validation\ValidationException;
@@ -11,12 +12,11 @@ use Illuminate\Validation\Rule;
 use App\Query\Abstraction\IReportQuery;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 
-
-
 class ReportQuery implements IReportQuery
 {
     private $name = 'name';
     private $project = 'project';
+    private $progress = 'progress';
     private $responsible = 'responsible';
     private $email_responsible = 'email_responsible';
     private $phone_responsible = 'phone_responsible';
@@ -28,13 +28,17 @@ class ReportQuery implements IReportQuery
         try {
             $report = Report::query()
                 ->select([
-                    'id', 'name', 'project', 'responsible', 'email_responsible', 'phone_responsible', 'date',
+                    'id', 'name', 'project', 'progress', 'responsible', 'email_responsible', 'phone_responsible', 'date',
                     'commerce_id',
                 ])
                 ->with(['commerce:id,name,nit,city,description'])
+                // ->with(['employee:id,name,lastname,identification,identification_type,email,birth_date,phone,photo,adress,is_employee,active'])
                 ->name($request->name)
+                ->commerceid($request->commerce_id)
+                ->date($request->year, $request->month)
                 ->orderBy('id', $request->sort ?? 'ASC')
                 ->paginate($request->limit ?? 10, ['*'], '', $request->page ?? 1);
+            // ->toSql();
 
             return response()->json([
                 'data' => [
