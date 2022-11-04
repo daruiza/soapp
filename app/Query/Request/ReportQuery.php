@@ -53,7 +53,7 @@ class ReportQuery implements IReportQuery
         $rules = [
             $this->name                 => 'required|string|min:1|max:128|unique:reports|',
             $this->responsible          => 'required|string|min:1|max:128|',
-            $this->email                => 'required|string|max:128|email|unique:reports',
+            $this->email_responsible    => 'required|string|max:128|email|unique:reports',
             $this->phone_responsible    => 'numeric|digits_between:7,10|'
         ];
         try {
@@ -83,17 +83,17 @@ class ReportQuery implements IReportQuery
             try {
                 $report = Report::findOrFail($id);
                 $rules = [
-                    $this->name                 => 'required|string|min:1|max:128|unique:reports|', Rule::unique('reports')->ignore($report->id),
+                    $this->name                 => 'required|string|min:1|max:128|', Rule::unique('reports')->ignore($report->id),
                     $this->responsible          => 'required|string|min:1|max:128|',
-                    $this->email                => 'required|string|max:128|email|', Rule::unique('reports')->ignore($report->id),
+                    $this->email_responsible    => 'required|string|max:128|email|', Rule::unique('reports')->ignore($report->id),
                     $this->phone_responsible    => 'numeric|digits_between:7,10|'
                 ];
                 $validator = Validator::make($request->all(), $rules);
                 if ($validator->fails()) {
                     throw (new ValidationException($validator->errors()->getMessages()));
                 }
-                $report->name = $request->name ?? $report->name;;
-                $report->project = $request->project ?? $report->project;;
+                $report->name = $request->name ?? $report->name;
+                $report->project = $request->project ?? $report->project;
                 $report->responsible = $request->responsible ?? $report->responsible;
                 $report->email_responsible = $request->email_responsible ?? $report->email_responsible;
                 $report->phone_responsible = $request->phone_responsible ?? $report->phone_responsible;
