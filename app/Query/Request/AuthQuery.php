@@ -19,7 +19,7 @@ class AuthQuery implements IAuthQuery
     public function login(Request $request)
     {
         $rules = [
-            $this->name     => 'required|string|min:1|max:128',
+            // $this->name     => 'required|string|min:1|max:128',
             $this->email    => 'required|string|max:128|email',
             $this->password => 'required|string',
         ];

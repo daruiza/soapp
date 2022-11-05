@@ -12,8 +12,7 @@ class ReportsSeeder extends Seeder
      */
     public function run()
     {
-        DB::table('reports')->insert(array(
-            'name'  => 'primer reporte',
+        DB::table('reports')->insert(array(            
             'project'  => 'SST',
             'responsible'  => 'david',
             'email_responsible'  => 'david@gmail.com',
@@ -23,7 +22,6 @@ class ReportsSeeder extends Seeder
         ));
 
         DB::table('reports')->insert(array(
-            'name'  => 'segundo reporte',
             'project'  => 'caida',
             'responsible'  => 'davis',
             'email_responsible'  => 'davis@gmail.com',
@@ -33,7 +31,6 @@ class ReportsSeeder extends Seeder
         ));
 
         DB::table('reports')->insert(array(
-            'name'  => 'tercer reporte',
             'project'  => 'falta',
             'responsible'  => 'giovanni',
             'email_responsible'  => 'giovanni@gmail.com',

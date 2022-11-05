@@ -23,16 +23,7 @@ class ReportController extends Controller
      *      tags={"Report"},
      *      summary="Get All Reports",
      *      description="Return Reports",
-     *      security={ {"bearer": {} }},
-     *      @OA\Parameter(
-     *          name="name",
-     *          description="Report Name",
-     *          required=false,
-     *          in="query",
-     *          @OA\Schema(
-     *              type="string"
-     *          )
-     *      ),
+     *      security={ {"bearer": {} }},     
      *      @OA\Parameter(
      *          name="commerce_id",
      *          description="Report commerce_id",

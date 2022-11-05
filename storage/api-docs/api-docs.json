@@ -808,15 +808,6 @@
                 "operationId": "getAllReports",
                 "parameters": [
                     {
-                        "name": "name",
-                        "in": "query",
-                        "description": "Report Name",
-                        "required": false,
-                        "schema": {
-                            "type": "string"
-                        }
-                    },
-                    {
                         "name": "commerce_id",
                         "in": "query",
                         "description": "Report commerce_id",

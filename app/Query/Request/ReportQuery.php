@@ -13,8 +13,7 @@ use App\Query\Abstraction\IReportQuery;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 
 class ReportQuery implements IReportQuery
-{
-    private $name = 'name';
+{    
     private $project = 'project';
     private $progress = 'progress';
     private $responsible = 'responsible';
@@ -28,13 +27,13 @@ class ReportQuery implements IReportQuery
         try {
             $report = Report::query()
                 ->select([
-                    'id', 'name', 'project', 'progress', 'responsible', 'email_responsible', 'phone_responsible', 'date',
+                    'id', 'project', 'progress', 'responsible', 'email_responsible', 'phone_responsible', 'date',
                     'commerce_id',
                 ])
                 ->with(['commerce:id,name,nit,city,description'])
                 // ->with(['employee:id,name,lastname,identification,identification_type,email,birth_date,phone,photo,adress,is_employee,active'])
-                ->name($request->name)
                 ->commerceid($request->commerce_id)
+                ->project($request->project)
                 ->date($request->year, $request->month)
                 ->orderBy('id', $request->sort ?? 'ASC')
                 ->paginate($request->limit ?? 10, ['*'], '', $request->page ?? 1);
@@ -54,8 +53,7 @@ class ReportQuery implements IReportQuery
     public function store(Request $request)
     {
         // Creamos las reglas de validación
-        $rules = [
-            $this->name                 => 'required|string|min:1|max:128|unique:reports|',
+        $rules = [            
             $this->responsible          => 'required|string|min:1|max:128|',
             $this->email_responsible    => 'required|string|max:128|email|unique:reports',
             $this->phone_responsible    => 'numeric|digits_between:7,10|'
@@ -87,7 +85,6 @@ class ReportQuery implements IReportQuery
             try {
                 $report = Report::findOrFail($id);
                 $rules = [
-                    $this->name                 => 'required|string|min:1|max:128|', Rule::unique('reports')->ignore($report->id),
                     $this->responsible          => 'required|string|min:1|max:128|',
                     $this->email_responsible    => 'required|string|max:128|email|', Rule::unique('reports')->ignore($report->id),
                     $this->phone_responsible    => 'numeric|digits_between:7,10|'
@@ -96,7 +93,7 @@ class ReportQuery implements IReportQuery
                 if ($validator->fails()) {
                     throw (new ValidationException($validator->errors()->getMessages()));
                 }
-                $report->name = $request->name ?? $report->name;
+                // $report->name = $request->name ?? $report->name;
                 $report->project = $request->project ?? $report->project;
                 $report->responsible = $request->responsible ?? $report->responsible;
                 $report->email_responsible = $request->email_responsible ?? $report->email_responsible;
