@@ -16,6 +16,7 @@ class CreateGeneralListsTable extends Migration
         Schema::create('general_lists', function (Blueprint $table) {
             $table->id();
             $table->string('name', 128);
+            $table->unsignedInteger('index');
             $table->string('value', 128);
             $table->timestamps();
         });

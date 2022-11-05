@@ -13,7 +13,6 @@ class Report extends Model
     protected $fillable =
     [
         'id',
-        'name',
         'project',
         'progress',
         'responsible',
@@ -35,9 +34,9 @@ class Report extends Model
         return $this->belongsToMany(Employee::class);
     }
 
-    public function scopeName($query, $name)
+    public function scopeProject($query, $project)
     {
-        return is_null($name) ?  $query : $query->where('name', 'LIKE', '%' . $name . '%');
+        return is_null($project) ?  $query : $query->where('name', 'LIKE', '%' . $project . '%');
     }
 
     public function scopeCommerceid($query, $commerceid)
