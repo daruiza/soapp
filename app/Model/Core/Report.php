@@ -16,6 +16,7 @@ class Report extends Model
         'project',
         'progress',
         'responsible',
+        'description',
         'email_responsible',
         'phone_responsible',
         'date',

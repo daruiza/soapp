@@ -13,10 +13,11 @@ use App\Query\Abstraction\IReportQuery;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 
 class ReportQuery implements IReportQuery
-{    
+{
     private $project = 'project';
     private $progress = 'progress';
     private $responsible = 'responsible';
+    private $description = 'description';
     private $email_responsible = 'email_responsible';
     private $phone_responsible = 'phone_responsible';
     private $date = 'date';
@@ -27,7 +28,14 @@ class ReportQuery implements IReportQuery
         try {
             $report = Report::query()
                 ->select([
-                    'id', 'project', 'progress', 'responsible', 'email_responsible', 'phone_responsible', 'date',
+                    'id',
+                    'project',
+                    'progress',
+                    'responsible',
+                    'description',
+                    'email_responsible',
+                    'phone_responsible',
+                    'date',
                     'commerce_id',
                 ])
                 ->with(['commerce:id,name,nit,city,description'])
@@ -36,7 +44,7 @@ class ReportQuery implements IReportQuery
                 ->project($request->project)
                 ->date($request->year, $request->month)
                 ->orderBy('id', $request->sort ?? 'ASC')
-                ->paginate($request->limit ?? 10, ['*'], '', $request->page ?? 1);
+                ->paginate($request->limit ?? 12, ['*'], '', $request->page ?? 1);
             // ->toSql();
 
             return response()->json([
@@ -53,7 +61,7 @@ class ReportQuery implements IReportQuery
     public function store(Request $request)
     {
         // Creamos las reglas de validación
-        $rules = [            
+        $rules = [
             $this->responsible          => 'required|string|min:1|max:128|',
             $this->email_responsible    => 'required|string|max:128|email|unique:reports',
             $this->phone_responsible    => 'numeric|digits_between:7,10|'
@@ -96,6 +104,7 @@ class ReportQuery implements IReportQuery
                 // $report->name = $request->name ?? $report->name;
                 $report->project = $request->project ?? $report->project;
                 $report->responsible = $request->responsible ?? $report->responsible;
+                $report->description = $request->description ?? $report->description;                
                 $report->email_responsible = $request->email_responsible ?? $report->email_responsible;
                 $report->phone_responsible = $request->phone_responsible ?? $report->phone_responsible;
                 $report->date = $request->date ?? $report->date;
