@@ -17,7 +17,7 @@ class ReportsSeeder extends Seeder
             'responsible'  => 'david',
             'email_responsible'  => 'david@gmail.com',
             'phone_responsible'  => '12345678',
-            'date'  => '2020-01-01',
+            'date'  => '2022-01-01',
             'commerce_id'  => '1',
         ));
 
@@ -26,7 +26,7 @@ class ReportsSeeder extends Seeder
             'responsible'  => 'davis',
             'email_responsible'  => 'davis@gmail.com',
             'phone_responsible'  => '123456789',
-            'date'  => '2020-01-01',
+            'date'  => '2022-01-01',
             'commerce_id'  => '2',
         ));
 
@@ -35,7 +35,7 @@ class ReportsSeeder extends Seeder
             'responsible'  => 'giovanni',
             'email_responsible'  => 'giovanni@gmail.com',
             'phone_responsible'  => '12345678',
-            'date'  => '2020-01-01',
+            'date'  => '2022-01-01',
             'commerce_id'  => '3',
         ));
     }
