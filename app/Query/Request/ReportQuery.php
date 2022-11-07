@@ -16,8 +16,9 @@ class ReportQuery implements IReportQuery
 {
     private $project = 'project';
     private $progress = 'progress';
-    private $responsible = 'responsible';
     private $description = 'description';
+    private $focus = 'focus';
+    private $responsible = 'responsible';
     private $email_responsible = 'email_responsible';
     private $phone_responsible = 'phone_responsible';
     private $date = 'date';
@@ -31,8 +32,9 @@ class ReportQuery implements IReportQuery
                     'id',
                     'project',
                     'progress',
-                    'responsible',
                     'description',
+                    'focus',
+                    'responsible',
                     'email_responsible',
                     'phone_responsible',
                     'date',
@@ -103,8 +105,9 @@ class ReportQuery implements IReportQuery
                 }
                 // $report->name = $request->name ?? $report->name;
                 $report->project = $request->project ?? $report->project;
+                $report->description = $request->description ?? $report->description;
+                $report->focus = isset($request->focus) ?? $report->focus;
                 $report->responsible = $request->responsible ?? $report->responsible;
-                $report->description = $request->description ?? $report->description;                
                 $report->email_responsible = $request->email_responsible ?? $report->email_responsible;
                 $report->phone_responsible = $request->phone_responsible ?? $report->phone_responsible;
                 $report->date = $request->date ?? $report->date;
