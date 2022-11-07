@@ -17,8 +17,9 @@ class CreateReportsTable extends Migration
             $table->id();            
             $table->string('project', 128);
             $table->unsignedInteger('progress')->default(1);
-            $table->string('responsible', 128);
+            $table->boolean('focus', false)->default(false);
             $table->string('description', 512)->nullable();
+            $table->string('responsible', 128);
             $table->string('email_responsible', 128)->unique();
             $table->string('phone_responsible', 128)->nullable();
             $table->date('date')->nullable();
