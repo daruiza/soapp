@@ -64,9 +64,12 @@ class ReportQuery implements IReportQuery
     {
         // Creamos las reglas de validación
         $rules = [
+            $this->project              => 'required|string',
+            $this->date                 => 'required|date',
             $this->responsible          => 'required|string|min:1|max:128|',
             $this->email_responsible    => 'required|string|max:128|email|unique:reports',
-            $this->phone_responsible    => 'numeric|digits_between:7,10|'
+            $this->phone_responsible    => 'numeric|digits_between:7,10|',
+            $this->commerce_id          => 'required'
         ];
         try {
             // Ejecutamos el validador y en caso de que falle devolvemos la respuesta

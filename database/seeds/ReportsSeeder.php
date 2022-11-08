@@ -14,6 +14,7 @@ class ReportsSeeder extends Seeder
     {
         DB::table('reports')->insert(array(            
             'project'  => 'SST',
+            'progress'  => 21,
             'responsible'  => 'david',
             'email_responsible'  => 'david@gmail.com',
             'phone_responsible'  => '12345678',
@@ -23,6 +24,7 @@ class ReportsSeeder extends Seeder
 
         DB::table('reports')->insert(array(
             'project'  => 'CAIDAD',
+            'progress'  => 74,
             'responsible'  => 'Fernando',
             'email_responsible'  => 'davis@gmail.com',
             'phone_responsible'  => '3194052663',
@@ -32,6 +34,7 @@ class ReportsSeeder extends Seeder
 
         DB::table('reports')->insert(array(
             'project'  => 'SST',
+            'progress'  => 49,
             'responsible'  => 'Hernando',
             'email_responsible'  => 'hernando@gmail.com',
             'phone_responsible'  => '3194056987',
@@ -40,11 +43,12 @@ class ReportsSeeder extends Seeder
         ));
 
         DB::table('reports')->insert(array(
-            'project'  => 'falta',
+            'project'  => 'MEDIOAMBIENTE',
+            'progress'  => 16,
             'responsible'  => 'giovanni',
             'email_responsible'  => 'giovanni@gmail.com',
             'phone_responsible'  => '12345678',
-            'date'  => '2022-01-01',
+            'date'  => '2022-04-01',
             'commerce_id'  => '3',
         ));
     }
