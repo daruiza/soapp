@@ -1288,14 +1288,14 @@
                 ]
             }
         },
-        "/user/update/{id}": {
+        "/user/updateid/{id}": {
             "put": {
                 "tags": [
                     "user"
                 ],
                 "summary": "Update User",
                 "description": "update User",
-                "operationId": "UpdateUser",
+                "operationId": "UpdateUserId",
                 "parameters": [
                     {
                         "name": "id",

@@ -4,13 +4,14 @@ namespace App\Query\Request;
 
 use Illuminate\Support\Facades\DB;
 use App\Model\Core\Employee;
+use App\Model\Core\Commerce;
+use App\Model\Core\User;
 use Illuminate\Http\Request;
 use Illuminate\Validation\ValidationException;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Validation\Rule;
 use App\Query\Abstraction\IEmployeeQuery;
-
 use Carbon\Carbon;
 
 class EmployeeQuery implements IEmployeeQuery
@@ -152,27 +153,47 @@ class EmployeeQuery implements IEmployeeQuery
         }
     }
 
-    public function destroy(Int $id)
+    public function destroy(int $id)
     {
-        if (auth()->check() && auth()->user()->rol_id != 2) {
-
-            if ($id) {
-                try {
-                    $employee = Employee::findOrFail($id);
-                    $employee->delete();
-
+        try {
+            $employee = Employee::findOrFail($id);
+            if (auth()->check() && auth()->user()->rol_id == 1) {
+                if ($id) {
+                    try {
+                        $employee = Employee::findOrFail($id);
+                        $employee->delete();
+                        return response()->json([
+                            'data' => [
+                                'employee' => $employee,
+                            ],
+                            'message' => 'Empleado eliminado exitosamente!'
+                        ], 201);
+                    } catch (ModelNotFoundException $e) {
+                        return response()->json(['message' => "Tienda con id {$id} no existe!", 'error' => $e->getMessage()], 403);
+                    }
+                }
+            } elseif ($employee) {
+                $eliminado = DB::table('employees as E')
+                    ->join('commerces as C', 'E.commerce_id', '=', 'C.id')
+                    ->select('E.*')
+                    ->where('E.commerce_id', '=', auth()->user()->id)
+                    ->where('E.id', '=', $id)
+                    ->delete();
+                if ($eliminado > 0) {
                     return response()->json([
                         'data' => [
                             'employee' => $employee,
                         ],
-                        'message' => 'Colaborador eliminado con éxito!'
-                    ], 201);
-                } catch (ModelNotFoundException $e) {
-                    return response()->json(['message' => "Colaborador con id {$id} no existe!", 'error' => $e->getMessage()], 403);
+                        'message' => 'Empleado eliminado exitosamente!'
+                    ]);
+                } else {
+                    return response()->json(['message' => 'No tienes permiso para eliminar el empleado!'], 403);
                 }
+            } else {
+                return response()->json(['message' => 'Necesita permisos de super-administrador!'], 403);
             }
-        } else {
-            return response()->json(['message' => 'Necesita permisos de super-administrador!'], 403);
+        } catch (ModelNotFoundException $e) {
+            return response()->json(['message' => "Usuario con id {$id} no existe!", 'error' => $e->getMessage()], 403);
         }
     }
     public function showByEmployeeId(Request $request, int $id)
