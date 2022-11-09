@@ -158,20 +158,13 @@ class EmployeeQuery implements IEmployeeQuery
         try {
             $employee = Employee::findOrFail($id);
             if (auth()->check() && auth()->user()->rol_id == 1) {
-                if ($id) {
-                    try {
-                        $employee = Employee::findOrFail($id);
-                        $employee->delete();
-                        return response()->json([
-                            'data' => [
-                                'employee' => $employee,
-                            ],
-                            'message' => 'Empleado eliminado exitosamente!'
-                        ], 201);
-                    } catch (ModelNotFoundException $e) {
-                        return response()->json(['message' => "Tienda con id {$id} no existe!", 'error' => $e->getMessage()], 403);
-                    }
-                }
+                $employee->delete();
+                return response()->json([
+                    'data' => [
+                        'employee' => $employee,
+                    ],
+                    'message' => 'Empleado eliminado exitosamente!'
+                ], 201);
             } elseif ($employee) {
                 $eliminado = DB::table('employees as E')
                     ->join('commerces as C', 'E.commerce_id', '=', 'C.id')
@@ -185,7 +178,7 @@ class EmployeeQuery implements IEmployeeQuery
                             'employee' => $employee,
                         ],
                         'message' => 'Empleado eliminado exitosamente!'
-                    ]);
+                    ], 201);
                 } else {
                     return response()->json(['message' => 'No tienes permiso para eliminar el empleado!'], 403);
                 }
@@ -193,7 +186,7 @@ class EmployeeQuery implements IEmployeeQuery
                 return response()->json(['message' => 'Necesita permisos de super-administrador!'], 403);
             }
         } catch (ModelNotFoundException $e) {
-            return response()->json(['message' => "Usuario con id {$id} no existe!", 'error' => $e->getMessage()], 403);
+            return response()->json(['message' => "Empleado con id {$id} no existe!", 'error' => $e->getMessage()], 403);
         }
     }
     public function showByEmployeeId(Request $request, int $id)
