@@ -178,7 +178,7 @@ class EmployeeQuery implements IEmployeeQuery
                             'employee' => $employee,
                         ],
                         'message' => 'Empleado eliminado exitosamente!'
-                    ]);
+                    ], 201);
                 } else {
                     return response()->json(['message' => 'No tienes permiso para eliminar el empleado!'], 403);
                 }

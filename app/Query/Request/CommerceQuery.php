@@ -3,6 +3,8 @@
 namespace App\Query\Request;
 
 use App\Model\Core\Commerce;
+use App\Model\Core\User;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Validation\ValidationException;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
@@ -155,24 +157,38 @@ class CommerceQuery implements ICommerceQuery
 
     public function destroy(Int $id)
     {
-        if (auth()->check() && auth()->user()->rol_id == 1) {
-
-            if ($id) {
-                try {
-                    $commerce = Commerce::findOrFail($id);
-                    $commerce->delete();
+        try {
+            $commerce = Commerce::findOrFail($id);
+            if (auth()->check() && auth()->user()->rol_id == 1) {
+                $commerce->delete();
+                return response()->json([
+                    'data' => [
+                        'commerce' => $commerce,
+                    ],
+                    'message' => 'Tienda eliminada exitosamente!'
+                ], 201);
+            } elseif ($commerce) {
+                $eliminado = DB::table('commerces as C')
+                    ->join('users as U', 'C.user_id', '=', 'U.id')
+                    ->select('C.*')
+                    ->where('C.user_id', '=', auth()->user()->id)
+                    ->where('C.id', '=', $id)
+                    ->delete();
+                if ($eliminado > 0) {
                     return response()->json([
                         'data' => [
-                            'commerce' => $commerce,
+                            'employee' => $commerce,
                         ],
-                        'message' => 'Tienda eliminada con éxito!'
+                        'message' => 'Tienda eliminada exitosamente!'
                     ], 201);
-                } catch (ModelNotFoundException $e) {
-                    return response()->json(['message' => "Tienda con id {$id} no existe!", 'error' => $e->getMessage()], 403);
+                } else {
+                    return response()->json(['message' => 'No tienes permiso para eliminar la tienda!'], 403);
                 }
+            } else {
+                return response()->json(['message' => 'Necesita permisos de super-administrador!'], 403);
             }
-        } else {
-            return response()->json(['message' => 'Necesita permisos de super-administrador!'], 403);
+        } catch (ModelNotFoundException $e) {
+            return response()->json(['message' => "Tienda con id {$id} no existe!", 'error' => $e->getMessage()], 403);
         }
     }
 }
