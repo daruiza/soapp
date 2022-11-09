@@ -808,12 +808,30 @@
                 "operationId": "getAllReports",
                 "parameters": [
                     {
-                        "name": "name",
+                        "name": "commerce_id",
                         "in": "query",
-                        "description": "Report Name",
+                        "description": "Report commerce_id",
                         "required": false,
                         "schema": {
-                            "type": "string"
+                            "type": "integer"
+                        }
+                    },
+                    {
+                        "name": "year",
+                        "in": "query",
+                        "description": "Report year",
+                        "required": false,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    },
+                    {
+                        "name": "month",
+                        "in": "query",
+                        "description": "Report month",
+                        "required": false,
+                        "schema": {
+                            "type": "integer"
                         }
                     }
                 ],

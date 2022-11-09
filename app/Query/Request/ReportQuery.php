@@ -2,6 +2,7 @@
 
 namespace App\Query\Request;
 
+use Carbon\Carbon;
 use App\Model\Core\Report;
 use App\Model\Admin\Commerce;
 use Illuminate\Validation\ValidationException;
@@ -11,12 +12,12 @@ use Illuminate\Validation\Rule;
 use App\Query\Abstraction\IReportQuery;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 
-
-
 class ReportQuery implements IReportQuery
 {
-    private $name = 'name';
     private $project = 'project';
+    private $progress = 'progress';
+    private $description = 'description';
+    private $focus = 'focus';
     private $responsible = 'responsible';
     private $email_responsible = 'email_responsible';
     private $phone_responsible = 'phone_responsible';
@@ -28,13 +29,25 @@ class ReportQuery implements IReportQuery
         try {
             $report = Report::query()
                 ->select([
-                    'id', 'name', 'project', 'responsible', 'email_responsible', 'phone_responsible', 'date',
+                    'id',
+                    'project',
+                    'progress',
+                    'description',
+                    'focus',
+                    'responsible',
+                    'email_responsible',
+                    'phone_responsible',
+                    'date',
                     'commerce_id',
                 ])
                 ->with(['commerce:id,name,nit,city,description'])
-                ->name($request->name)
+                // ->with(['employee:id,name,lastname,identification,identification_type,email,birth_date,phone,photo,adress,is_employee,active'])
+                ->commerceid($request->commerce_id)
+                ->project($request->project)
+                ->date($request->year, $request->month)
                 ->orderBy('id', $request->sort ?? 'ASC')
-                ->paginate($request->limit ?? 10, ['*'], '', $request->page ?? 1);
+                ->paginate($request->limit ?? 12, ['*'], '', $request->page ?? 1);
+            // ->toSql();
 
             return response()->json([
                 'data' => [
@@ -51,10 +64,12 @@ class ReportQuery implements IReportQuery
     {
         // Creamos las reglas de validación
         $rules = [
-            $this->name                 => 'required|string|min:1|max:128|unique:reports|',
+            $this->project              => 'required|string',
+            $this->date                 => 'required|date',
             $this->responsible          => 'required|string|min:1|max:128|',
             $this->email_responsible    => 'required|string|max:128|email|unique:reports',
-            $this->phone_responsible    => 'numeric|digits_between:7,10|'
+            $this->phone_responsible    => 'numeric|digits_between:7,10|',
+            $this->commerce_id          => 'required'
         ];
         try {
             // Ejecutamos el validador y en caso de que falle devolvemos la respuesta
@@ -83,7 +98,6 @@ class ReportQuery implements IReportQuery
             try {
                 $report = Report::findOrFail($id);
                 $rules = [
-                    $this->name                 => 'required|string|min:1|max:128|', Rule::unique('reports')->ignore($report->id),
                     $this->responsible          => 'required|string|min:1|max:128|',
                     $this->email_responsible    => 'required|string|max:128|email|', Rule::unique('reports')->ignore($report->id),
                     $this->phone_responsible    => 'numeric|digits_between:7,10|'
@@ -92,8 +106,10 @@ class ReportQuery implements IReportQuery
                 if ($validator->fails()) {
                     throw (new ValidationException($validator->errors()->getMessages()));
                 }
-                $report->name = $request->name ?? $report->name;
+                // $report->name = $request->name ?? $report->name;
                 $report->project = $request->project ?? $report->project;
+                $report->description = $request->description ?? $report->description;
+                $report->focus = isset($request->focus) ?? $report->focus;
                 $report->responsible = $request->responsible ?? $report->responsible;
                 $report->email_responsible = $request->email_responsible ?? $report->email_responsible;
                 $report->phone_responsible = $request->phone_responsible ?? $report->phone_responsible;

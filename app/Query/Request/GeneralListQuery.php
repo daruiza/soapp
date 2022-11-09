@@ -19,7 +19,7 @@ class GeneralListQuery implements IGeneralListQuery
     {
         try {
             $generallist = GeneralList::query()
-                ->select(['id', 'name', 'value'])
+                ->select(['id', 'name', 'value', 'index'])
                 ->orderBy('name', $request->sort ?? 'ASC')
                 ->get();
 
@@ -40,7 +40,7 @@ class GeneralListQuery implements IGeneralListQuery
             $gl = GeneralList::findOrFail($id);
             if ($gl) {
                 $generallist = DB::table('general_lists')
-                    ->select(['id', 'name', 'value'])
+                    ->select(['id', 'name', 'value', 'index'])
                     ->where('general_lists.id', '=', $id)
                     ->get();
                 return response()->json([
@@ -60,7 +60,7 @@ class GeneralListQuery implements IGeneralListQuery
         if ($request->name) {
             try {
                 $generallist = GeneralList::query()
-                    ->select(['id', 'name', 'value'])
+                    ->select(['id', 'name', 'value', 'index'])
                     ->name($request->name)
                     ->get();
                 return response()->json([

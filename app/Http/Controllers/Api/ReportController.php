@@ -23,16 +23,34 @@ class ReportController extends Controller
      *      tags={"Report"},
      *      summary="Get All Reports",
      *      description="Return Reports",
-     *      security={ {"bearer": {} }},
+     *      security={ {"bearer": {} }},     
      *      @OA\Parameter(
-     *          name="name",
-     *          description="Report Name",
+     *          name="commerce_id",
+     *          description="Report commerce_id",
      *          required=false,
      *          in="query",
      *          @OA\Schema(
-     *              type="string"
+     *              type="integer"
      *          )
-     *      ),     *
+     *      ),
+     *      @OA\Parameter(
+     *          name="year",
+     *          description="Report year",
+     *          required=false,
+     *          in="query",
+     *          @OA\Schema(
+     *              type="integer"
+     *          )
+     *      ),
+     *      @OA\Parameter(
+     *          name="month",
+     *          description="Report month",
+     *          required=false,
+     *          in="query",
+     *          @OA\Schema(
+     *              type="integer"
+     *          )
+     *      ),
      *      @OA\Response(
      *          response=200,
      *          description="Successful operation",

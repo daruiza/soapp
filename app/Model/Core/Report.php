@@ -2,6 +2,7 @@
 
 namespace App\Model\Core;
 
+use Carbon\Carbon;
 use App\Model\Core\Commerce;
 use App\Model\Core\Employee;
 use Illuminate\Database\Eloquent\Model;
@@ -12,19 +13,16 @@ class Report extends Model
     protected $fillable =
     [
         'id',
-        'name',
         'project',
+        'progress',
+        'description',
+        'focus',
         'responsible',
         'email_responsible',
         'phone_responsible',
         'date',
         'commerce_id',
     ];
-
-    public function scopeName($query, $name)
-    {
-        return is_null($name) ?  $query : $query->where('name', 'LIKE', '%' . $name . '%');
-    }
 
     //a varios reportes le Pertenece un comercios
     public function commerce()
@@ -35,6 +33,38 @@ class Report extends Model
     //a varios reportes le Pertenece varios colaboradores
     public function employee()
     {
-        return $this->belongsTo(Employee::class);
+        return $this->belongsToMany(Employee::class);
+    }
+
+    public function scopeProject($query, $project)
+    {
+        return is_null($project) ?  $query : $query->where('name', 'LIKE', '%' . $project . '%');
+    }
+
+    public function scopeCommerceid($query, $commerceid)
+    {
+        return is_null($commerceid) ?  $query : $query->where('commerce_id', $commerceid);
+    }
+
+    public function scopeDate($query, $year, $month)
+    {
+        return is_null($year) ?  $query : $query->whereBetween('date', [
+            Carbon::create(
+                $year,
+                $month ?? 1,
+                1,
+                0,
+                0,
+                0
+            )->toDateTimeString(),
+            Carbon::create(
+                $month ? $year : $year + 1,
+                $month ? $month + 1 : 1,
+                1,
+                0,
+                0,
+                0
+            )->toDateTimeString()
+        ]);
     }
 }
