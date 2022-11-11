@@ -1597,12 +1597,6 @@
                 "title": "Report",
                 "description": "Report body data",
                 "properties": {
-                    "name": {
-                        "title": "name",
-                        "description": "Name of the Report",
-                        "type": "string",
-                        "example": "primer reporte"
-                    },
                     "project": {
                         "title": "project",
                         "description": "project of the Report",
@@ -1613,7 +1607,7 @@
                         "title": "responsible",
                         "description": "Responsible of the Report",
                         "type": "string",
-                        "example": "David"
+                        "example": "CAIDAD"
                     },
                     "email_responsible": {
                         "title": "email_responsible",

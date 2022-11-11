@@ -5,7 +5,7 @@ namespace App\Query\Request;
 use Illuminate\Support\Facades\DB;
 use App\Model\Core\Employee;
 use App\Model\Core\Commerce;
-use App\Model\Core\User;
+use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Validation\ValidationException;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
@@ -167,10 +167,11 @@ class EmployeeQuery implements IEmployeeQuery
                 ], 201);
             } elseif ($employee) {
                 $eliminado = DB::table('employees as E')
-                    ->join('commerces as C', 'E.commerce_id', '=', 'C.id')
+                    ->join('commerces as C', 'C.id', '=', 'E.commerce_id')
+                    ->join('users as U', 'U.id', '=', 'C.user_id')
                     ->select('E.*')
-                    ->where('E.commerce_id', '=', auth()->user()->id)
                     ->where('E.id', '=', $id)
+                    ->where('C.user_id', '=', auth()->user()->id)
                     ->delete();
                 if ($eliminado > 0) {
                     return response()->json([
@@ -189,6 +190,7 @@ class EmployeeQuery implements IEmployeeQuery
             return response()->json(['message' => "Empleado con id {$id} no existe!", 'error' => $e->getMessage()], 403);
         }
     }
+
     public function showByEmployeeId(Request $request, int $id)
     {
         if ($id) {
