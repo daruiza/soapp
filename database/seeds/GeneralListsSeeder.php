@@ -145,5 +145,17 @@ class GeneralListsSeeder extends Seeder
             'index' => 12,
             'value' => 'Diciembre'
         ));
+        DB::table('general_lists')->insert(array(
+            'name' => 'project',
+            'value' => 'SST'
+        ));
+        DB::table('general_lists')->insert(array(
+            'name' => 'project',
+            'value' => 'CAIDAD'
+        ));
+        DB::table('general_lists')->insert(array(
+            'name' => 'project',
+            'value' => 'MEDIOAMBIENTE'
+        ));
     }
 }

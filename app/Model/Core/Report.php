@@ -58,12 +58,12 @@ class Report extends Model
                 0
             )->toDateTimeString(),
             Carbon::create(
-                $month ? $year : $year + 1,
-                $month ? $month + 1 : 1,
-                1,
-                0,
-                0,
-                0
+                $year,
+                $month ? $month : 12,
+                $month ? Carbon::create($year, $month)->endOfMonth()->day : 31, //corregir, ultimo día
+                23,
+                59,
+                59
             )->toDateTimeString()
         ]);
     }

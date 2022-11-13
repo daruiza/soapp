@@ -77,6 +77,21 @@ class ReportQuery implements IReportQuery
             if ($validator->fails()) {
                 throw (new ValidationException($validator->errors()->getMessages()));
             }
+
+            // Validar que no exista la fecha para el año por ingresar
+            $date = Carbon::create($request->date);
+            $endday = Carbon::create($date->year, $date->month)->endOfMonth()->day;
+            $datefrom = Carbon::create($date->year, $date->month, 1, 0, 0, 0);
+            $dateto = Carbon::create($date->year, $date->month, $endday, 23, 59, 59);
+            $reportfind = Report::query()
+                ->whereBetween('date',  [
+                    $datefrom->toDateTimeString(),
+                    $dateto->toDateTimeString()
+                ])->get();
+            if (isset($reportfind) && count($reportfind)) {
+                throw (new ValidationException(['date' => 'La fecha del reporte ya existe']));
+            }
+
             // Creamos el nuevo reporte
             $report = new Report();
             $newReport = $report->create($request->input());

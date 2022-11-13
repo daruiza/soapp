@@ -29,6 +29,7 @@ class UserQuery implements IUserQuery
             ->select(['id', 'name', 'lastname', 'phone', 'email', 'photo', 'theme', 'rol_id'])
             ->where('rol_id', '!=', 1)
             ->with(['rol:id,name,description,active'])
+            ->with(['commerce:id,name,nit,user_id'])
             ->name($request->name)
             ->lastname($request->lastname)
             ->phone($request->phone)
