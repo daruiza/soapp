@@ -45,5 +45,16 @@ class UserSeeder extends Seeder
             'photo' => 'avatar',
             'rol_id' => '3',
         ));
+
+        DB::table('users')->insert(array(
+            'name' => 'cliente2',
+            'lastname' => 'super2',
+            'phone' => '0000',
+            'email' => 'cliente2@gmail.com',
+            'password' => Hash::make('0000'),
+            'theme' => 'skyblue',
+            'photo' => 'avatar',
+            'rol_id' => '2',
+        ));
     }
 }
