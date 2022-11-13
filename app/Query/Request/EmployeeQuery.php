@@ -115,36 +115,47 @@ class EmployeeQuery implements IEmployeeQuery
         if ($id) {
             try {
                 $employee = Employee::findOrFail($id);
-                $rules = [
-                    $this->identification => 'required|string|max:128|', Rule::unique('employees')->ignore($employee->id),
-                    $this->email          => 'required|string|max:128|email|', Rule::unique('employees')->ignore($employee->id),
-                    $this->name           => 'required|string|min:1|max:128|',
-                    $this->lastname       => 'required|string|min:1|max:128|',
-                    $this->phone          => 'numeric|digits_between:7,10|',
-                ];
-                $validator = Validator::make($request->all(), $rules);
-                if ($validator->fails()) {
-                    throw (new ValidationException($validator->errors()->getMessages()));
+                $update = DB::table('employees as E')
+                    ->join('commerces as C', 'C.id', '=', 'E.commerce_id')
+                    ->join('users as U', 'U.id', '=', 'C.user_id')
+                    ->select('C.user_id')
+                    ->where('E.id', '=', $id)
+                    ->where('C.user_id', '=', auth()->user()->id)
+                    ->first();
+                if (auth()->check() && auth()->user()->rol_id == 1 || !is_null($update)) {
+                    $rules = [
+                        $this->identification => 'required|string|max:128|', Rule::unique('employees')->ignore($employee->id),
+                        $this->email          => 'required|string|max:128|email|', Rule::unique('employees')->ignore($employee->id),
+                        $this->name           => 'required|string|min:1|max:128|',
+                        $this->lastname       => 'required|string|min:1|max:128|',
+                        $this->phone          => 'numeric|digits_between:7,10|',
+                    ];
+                    $validator = Validator::make($request->all(), $rules);
+                    if ($validator->fails()) {
+                        throw (new ValidationException($validator->errors()->getMessages()));
+                    }
+                    $employee->identification = $request->identification ?? $employee->identification;
+                    $employee->name = $request->name ?? $employee->name;
+                    $employee->lastname = $request->lastname ?? $employee->lastname;
+                    $employee->identification_type = $request->identification_type ?? $employee->identification_type;
+                    $employee->email = $request->email ?? $employee->email;
+                    $employee->birth_date = $request->birth_date ?? $employee->birth_date;
+                    $employee->adress = $request->adress ?? $employee->adress;
+                    $employee->phone = $request->phone ?? $employee->phone;
+                    $employee->photo = $request->photo ?? $employee->photo;
+                    $employee->commerce_id = $request->commerce_id ?? $employee->commerce_id;
+                    $employee->is_employee = $request->is_employee ?? $employee->is_employee;
+                    $employee->save();
+                    return response()->json([
+                        'data' => [
+                            'employee' => $employee,
+                            'update' => $update,
+                        ],
+                        'message' => 'Colaborador actualizado con éxito!'
+                    ], 201);
+                } else {
+                    return response()->json(['message' => 'No tienes permiso para actualizar el Colaborador!'], 403);
                 }
-                $employee->identification = $request->identification ?? $employee->identification;
-                $employee->name = $request->name ?? $employee->name;
-                $employee->lastname = $request->lastname ?? $employee->lastname;
-                $employee->identification_type = $request->identification_type ?? $employee->identification_type;
-                $employee->email = $request->email ?? $employee->email;
-                $employee->birth_date = $request->birth_date ?? $employee->birth_date;
-                $employee->adress = $request->adress ?? $employee->adress;
-                $employee->phone = $request->phone ?? $employee->phone;
-                $employee->photo = $request->photo ?? $employee->photo;
-                $employee->commerce_id = $request->commerce_id ?? $employee->commerce_id;
-                $employee->is_employee = $request->is_employee ?? $employee->is_employee;
-                $employee->save();
-
-                return response()->json([
-                    'data' => [
-                        'employee' => $employee,
-                    ],
-                    'message' => 'Colaborador actualizado con éxito!'
-                ], 201);
             } catch (ModelNotFoundException $ex) {
                 return response()->json(['message' => "Colaborador con id {$id} no existe!", 'error' => $ex->getMessage()], 404);
             } catch (\Exception $e) {
