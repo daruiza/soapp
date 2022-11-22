@@ -44,8 +44,9 @@ class ReportQuery implements IReportQuery
                 // ->with(['employee:id,name,lastname,identification,identification_type,email,birth_date,phone,photo,adress,is_employee,active'])
                 ->commerceid($request->commerce_id)
                 ->project($request->project)
+                ->responsible($request->responsible)
                 ->date($request->year, $request->month)
-                ->orderBy('id', $request->sort ?? 'ASC')
+                ->orderBy('date', $request->sort ?? 'ASC')
                 ->paginate($request->limit ?? 12, ['*'], '', $request->page ?? 1);
             // ->toSql();
 
@@ -67,7 +68,7 @@ class ReportQuery implements IReportQuery
             $this->project              => 'required|string',
             $this->date                 => 'required|date',
             $this->responsible          => 'required|string|min:1|max:128|',
-            $this->email_responsible    => 'required|string|max:128|email|unique:reports',
+            $this->email_responsible    => 'required|string|max:128|email',
             $this->phone_responsible    => 'numeric|digits_between:7,10|',
             $this->commerce_id          => 'required'
         ];
@@ -83,8 +84,10 @@ class ReportQuery implements IReportQuery
             $endday = Carbon::create($date->year, $date->month)->endOfMonth()->day;
             $datefrom = Carbon::create($date->year, $date->month, 1, 0, 0, 0);
             $dateto = Carbon::create($date->year, $date->month, $endday, 23, 59, 59);
+
             $reportfind = Report::query()
-                ->whereBetween('date',  [
+                ->where('commerce_id', $request->commerce_id)
+                ->whereBetween('date', [
                     $datefrom->toDateTimeString(),
                     $dateto->toDateTimeString()
                 ])->get();
@@ -124,7 +127,7 @@ class ReportQuery implements IReportQuery
                 // $report->name = $request->name ?? $report->name;
                 $report->project = $request->project ?? $report->project;
                 $report->description = $request->description ?? $report->description;
-                $report->focus = isset($request->focus) ?? $report->focus;
+                $report->focus = $request->focus === 0 || $request->focus === 1 ? $request->focus : $report->focus;
                 $report->responsible = $request->responsible ?? $report->responsible;
                 $report->email_responsible = $request->email_responsible ?? $report->email_responsible;
                 $report->phone_responsible = $request->phone_responsible ?? $report->phone_responsible;
