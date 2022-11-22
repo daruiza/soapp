@@ -55,7 +55,7 @@ class ReportQuery implements IReportQuery
                     'report' => $report,
                 ],
                 'message' => 'Datos de Reportes Consultados Correctamente!'
-            ], 201);
+            ], 200);
         } catch (\Exception $e) {
             return response()->json(['message' => $e->getMessage()], 402);
         }
