@@ -38,7 +38,12 @@ class Report extends Model
 
     public function scopeProject($query, $project)
     {
-        return is_null($project) ?  $query : $query->where('name', 'LIKE', '%' . $project . '%');
+        return is_null($project) ?  $query : $query->where('project', $project);
+    }
+
+    public function scopeResponsible($query, $responsible)
+    {
+        return is_null($responsible) ?  $query : $query->where('responsible', $responsible );
     }
 
     public function scopeCommerceid($query, $commerceid)
