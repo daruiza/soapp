@@ -28,18 +28,21 @@ class UserQuery implements IUserQuery
         $user = User::query()
             ->select(['id', 'name', 'lastname', 'phone', 'email', 'photo', 'theme', 'rol_id'])
             ->where('rol_id', '!=', 1)
+            ->where('id', '!=', $request->user()->id)
             ->with(['rol:id,name,description,active'])
+            ->with(['commerce:id,name,nit,user_id'])
             ->name($request->name)
             ->lastname($request->lastname)
             ->phone($request->phone)
             ->email($request->email)
             ->rol_id($request->rol_id)
-            ->orderBy('id',  $request->sort ?? 'DESC')
+            ->responsible_id($request->user()->rol_id)
+            ->orderBy('id', $request->sort ?? 'DESC')
             ->paginate($request->limit ?? 8, ['*'], '', $request->page ?? 1);
 
         return response()->json([
             'data' => [
-                'users' => $user,
+                'users' => $user,                
             ],
             'message' => 'Usuarios consultados correctamente!'
         ], 200);
@@ -218,14 +221,15 @@ class UserQuery implements IUserQuery
         try {
             $role = Rol::findOrFail($id);
             if ($role) {
-                $rol = DB::table('rols')
-                    ->join('users', 'rols.id', '=', 'users.rol_id')
-                    ->select(['users.name as user_name', 'users.lastname as user_lastname', 'users.phone as user_phone', 'users.email as user_email', 'rols.id as rol_id', 'rols.name as rol_name', 'rols.description as rol_description'])
-                    ->where('rols.id', '=', $id)
-                    ->get();
+                $users = User::query()
+                ->select(['id', 'name', 'lastname', 'phone', 'email', 'photo', 'theme', 'rol_id'])
+                ->where('rol_id', '!=', 1)
+                ->where('rol_id', '=', $id)
+                ->with(['rol:id,name,description,active'])
+                ->get();
                 return response()->json([
                     'data' => [
-                        'users' => $rol,
+                        'users' => $users,
                     ],
                     'message' => 'Datos de Usuario Consultados Correctamente!'
                 ]);

@@ -255,8 +255,8 @@ class UserController extends Controller
 
     /**
      * @OA\Put(
-     *      path="/user/update/{id}",
-     *      operationId="UpdateUser",
+     *      path="/user/updateid/{id}",
+     *      operationId="UpdateUserId",
      *      tags={"user"},
      *      summary="Update User",
      *      description="update User",

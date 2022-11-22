@@ -21,7 +21,7 @@ class CommercesSeeder extends Seeder
                 'adress' => 'Cr 1 - 1 # 1',
                 'description' => 'default store',
                 'logo' => 'default.png',
-                'user_id' => '1'
+                'user_id' => '2'
             )
         );
 
@@ -34,7 +34,7 @@ class CommercesSeeder extends Seeder
                 'adress' => 'Cr 2 - 2 # 1',
                 'description' => 'tempo store',
                 'logo' => 'tempo.png',
-                'user_id' => '2',
+                'user_id' => '5',
             )
         );
 

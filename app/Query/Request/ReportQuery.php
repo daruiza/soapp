@@ -2,6 +2,7 @@
 
 namespace App\Query\Request;
 
+use Carbon\Carbon;
 use App\Model\Core\Report;
 use App\Model\Admin\Commerce;
 use Illuminate\Validation\ValidationException;
@@ -11,12 +12,12 @@ use Illuminate\Validation\Rule;
 use App\Query\Abstraction\IReportQuery;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 
-
-
 class ReportQuery implements IReportQuery
 {
-    private $name = 'name';
     private $project = 'project';
+    private $progress = 'progress';
+    private $description = 'description';
+    private $focus = 'focus';
     private $responsible = 'responsible';
     private $email_responsible = 'email_responsible';
     private $phone_responsible = 'phone_responsible';
@@ -28,13 +29,26 @@ class ReportQuery implements IReportQuery
         try {
             $report = Report::query()
                 ->select([
-                    'id', 'name', 'project', 'responsible', 'email_responsible', 'phone_responsible', 'date',
+                    'id',
+                    'project',
+                    'progress',
+                    'description',
+                    'focus',
+                    'responsible',
+                    'email_responsible',
+                    'phone_responsible',
+                    'date',
                     'commerce_id',
                 ])
                 ->with(['commerce:id,name,nit,city,description'])
-                ->name($request->name)
-                ->orderBy('id', $request->sort ?? 'ASC')
-                ->paginate($request->limit ?? 10, ['*'], '', $request->page ?? 1);
+                // ->with(['employee:id,name,lastname,identification,identification_type,email,birth_date,phone,photo,adress,is_employee,active'])
+                ->commerceid($request->commerce_id)
+                ->project($request->project)
+                ->responsible($request->responsible)
+                ->date($request->year, $request->month)
+                ->orderBy('date', $request->sort ?? 'ASC')
+                ->paginate($request->limit ?? 12, ['*'], '', $request->page ?? 1);
+            // ->toSql();
 
             return response()->json([
                 'data' => [
@@ -51,10 +65,12 @@ class ReportQuery implements IReportQuery
     {
         // Creamos las reglas de validación
         $rules = [
-            $this->name                 => 'required|string|min:1|max:128|unique:reports|',
+            $this->project              => 'required|string',
+            $this->date                 => 'required|date',
             $this->responsible          => 'required|string|min:1|max:128|',
-            $this->email                => 'required|string|max:128|email|unique:reports',
-            $this->phone_responsible    => 'numeric|digits_between:7,10|'
+            $this->email_responsible    => 'required|string|max:128|email',
+            $this->phone_responsible    => 'numeric|digits_between:7,10|',
+            $this->commerce_id          => 'required'
         ];
         try {
             // Ejecutamos el validador y en caso de que falle devolvemos la respuesta
@@ -62,6 +78,23 @@ class ReportQuery implements IReportQuery
             if ($validator->fails()) {
                 throw (new ValidationException($validator->errors()->getMessages()));
             }
+
+            // Validar que no exista la fecha para el año por ingresar
+            $date = Carbon::create($request->date);
+            $endday = Carbon::create($date->year, $date->month)->endOfMonth()->day;
+            $datefrom = Carbon::create($date->year, $date->month, 1, 0, 0, 0);
+            $dateto = Carbon::create($date->year, $date->month, $endday, 23, 59, 59);
+
+            $reportfind = Report::query()
+                ->where('commerce_id', $request->commerce_id)
+                ->whereBetween('date', [
+                    $datefrom->toDateTimeString(),
+                    $dateto->toDateTimeString()
+                ])->get();
+            if (isset($reportfind) && count($reportfind)) {
+                throw (new ValidationException(['date' => 'La fecha del reporte ya existe']));
+            }
+
             // Creamos el nuevo reporte
             $report = new Report();
             $newReport = $report->create($request->input());
@@ -83,17 +116,18 @@ class ReportQuery implements IReportQuery
             try {
                 $report = Report::findOrFail($id);
                 $rules = [
-                    $this->name                 => 'required|string|min:1|max:128|unique:reports|', Rule::unique('reports')->ignore($report->id),
                     $this->responsible          => 'required|string|min:1|max:128|',
-                    $this->email                => 'required|string|max:128|email|', Rule::unique('reports')->ignore($report->id),
+                    $this->email_responsible    => 'required|string|max:128|email|', Rule::unique('reports')->ignore($report->id),
                     $this->phone_responsible    => 'numeric|digits_between:7,10|'
                 ];
                 $validator = Validator::make($request->all(), $rules);
                 if ($validator->fails()) {
                     throw (new ValidationException($validator->errors()->getMessages()));
                 }
-                $report->name = $request->name ?? $report->name;;
-                $report->project = $request->project ?? $report->project;;
+                // $report->name = $request->name ?? $report->name;
+                $report->project = $request->project ?? $report->project;
+                $report->description = $request->description ?? $report->description;
+                $report->focus = $request->focus === 0 || $request->focus === 1 ? $request->focus : $report->focus;
                 $report->responsible = $request->responsible ?? $report->responsible;
                 $report->email_responsible = $request->email_responsible ?? $report->email_responsible;
                 $report->phone_responsible = $request->phone_responsible ?? $report->phone_responsible;

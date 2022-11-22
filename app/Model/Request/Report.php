@@ -9,17 +9,6 @@
  */
 class Report
 {
-     /**
-     * @OA\Property(
-     *      title="name",
-     *      description="Name of the Report",
-     *      example="primer reporte"
-     * )
-     *
-     * @var string
-     */
-    public $name;
-
 
     /**
      * @OA\Property(
@@ -37,7 +26,7 @@ class Report
      * @OA\Property(
      *      title="responsible",
      *      description="Responsible of the Report",
-     *      example="David"
+     *      example="CAIDAD"
      * )
      *
      * @var string

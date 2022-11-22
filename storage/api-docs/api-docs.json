@@ -808,12 +808,30 @@
                 "operationId": "getAllReports",
                 "parameters": [
                     {
-                        "name": "name",
+                        "name": "commerce_id",
                         "in": "query",
-                        "description": "Report Name",
+                        "description": "Report commerce_id",
                         "required": false,
                         "schema": {
-                            "type": "string"
+                            "type": "integer"
+                        }
+                    },
+                    {
+                        "name": "year",
+                        "in": "query",
+                        "description": "Report year",
+                        "required": false,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    },
+                    {
+                        "name": "month",
+                        "in": "query",
+                        "description": "Report month",
+                        "required": false,
+                        "schema": {
+                            "type": "integer"
                         }
                     }
                 ],
@@ -1270,14 +1288,14 @@
                 ]
             }
         },
-        "/user/update/{id}": {
+        "/user/updateid/{id}": {
             "put": {
                 "tags": [
                     "user"
                 ],
                 "summary": "Update User",
                 "description": "update User",
-                "operationId": "UpdateUser",
+                "operationId": "UpdateUserId",
                 "parameters": [
                     {
                         "name": "id",
@@ -1579,12 +1597,6 @@
                 "title": "Report",
                 "description": "Report body data",
                 "properties": {
-                    "name": {
-                        "title": "name",
-                        "description": "Name of the Report",
-                        "type": "string",
-                        "example": "primer reporte"
-                    },
                     "project": {
                         "title": "project",
                         "description": "project of the Report",
@@ -1595,7 +1607,7 @@
                         "title": "responsible",
                         "description": "Responsible of the Report",
                         "type": "string",
-                        "example": "David"
+                        "example": "CAIDAD"
                     },
                     "email_responsible": {
                         "title": "email_responsible",

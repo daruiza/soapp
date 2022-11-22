@@ -4,13 +4,14 @@ namespace App\Query\Request;
 
 use Illuminate\Support\Facades\DB;
 use App\Model\Core\Employee;
+use App\Model\Core\Commerce;
+use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Validation\ValidationException;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Validation\Rule;
 use App\Query\Abstraction\IEmployeeQuery;
-
 use Carbon\Carbon;
 
 class EmployeeQuery implements IEmployeeQuery
@@ -114,36 +115,47 @@ class EmployeeQuery implements IEmployeeQuery
         if ($id) {
             try {
                 $employee = Employee::findOrFail($id);
-                $rules = [
-                    $this->identification => 'required|string|max:128|', Rule::unique('employees')->ignore($employee->id),
-                    $this->email          => 'required|string|max:128|email|', Rule::unique('employees')->ignore($employee->id),
-                    $this->name           => 'required|string|min:1|max:128|',
-                    $this->lastname       => 'required|string|min:1|max:128|',
-                    $this->phone          => 'numeric|digits_between:7,10|',
-                ];
-                $validator = Validator::make($request->all(), $rules);
-                if ($validator->fails()) {
-                    throw (new ValidationException($validator->errors()->getMessages()));
+                $update = DB::table('employees as E')
+                    ->join('commerces as C', 'C.id', '=', 'E.commerce_id')
+                    ->join('users as U', 'U.id', '=', 'C.user_id')
+                    ->select('C.user_id')
+                    ->where('E.id', '=', $id)
+                    ->where('C.user_id', '=', auth()->user()->id)
+                    ->first();
+                if (auth()->check() && auth()->user()->rol_id == 1 || !is_null($update)) {
+                    $rules = [
+                        $this->identification => 'required|string|max:128|', Rule::unique('employees')->ignore($employee->id),
+                        $this->email          => 'required|string|max:128|email|', Rule::unique('employees')->ignore($employee->id),
+                        $this->name           => 'required|string|min:1|max:128|',
+                        $this->lastname       => 'required|string|min:1|max:128|',
+                        $this->phone          => 'numeric|digits_between:7,10|',
+                    ];
+                    $validator = Validator::make($request->all(), $rules);
+                    if ($validator->fails()) {
+                        throw (new ValidationException($validator->errors()->getMessages()));
+                    }
+                    $employee->identification = $request->identification ?? $employee->identification;
+                    $employee->name = $request->name ?? $employee->name;
+                    $employee->lastname = $request->lastname ?? $employee->lastname;
+                    $employee->identification_type = $request->identification_type ?? $employee->identification_type;
+                    $employee->email = $request->email ?? $employee->email;
+                    $employee->birth_date = $request->birth_date ?? $employee->birth_date;
+                    $employee->adress = $request->adress ?? $employee->adress;
+                    $employee->phone = $request->phone ?? $employee->phone;
+                    $employee->photo = $request->photo ?? $employee->photo;
+                    $employee->commerce_id = $request->commerce_id ?? $employee->commerce_id;
+                    $employee->is_employee = $request->is_employee ?? $employee->is_employee;
+                    $employee->save();
+                    return response()->json([
+                        'data' => [
+                            'employee' => $employee,
+                            'update' => $update,
+                        ],
+                        'message' => 'Colaborador actualizado con éxito!'
+                    ], 201);
+                } else {
+                    return response()->json(['message' => 'No tienes permiso para actualizar el Colaborador!'], 403);
                 }
-                $employee->identification = $request->identification ?? $employee->identification;
-                $employee->name = $request->name ?? $employee->name;
-                $employee->lastname = $request->lastname ?? $employee->lastname;
-                $employee->identification_type = $request->identification_type ?? $employee->identification_type;
-                $employee->email = $request->email ?? $employee->email;
-                $employee->birth_date = $request->birth_date ?? $employee->birth_date;
-                $employee->adress = $request->adress ?? $employee->adress;
-                $employee->phone = $request->phone ?? $employee->phone;
-                $employee->photo = $request->photo ?? $employee->photo;
-                $employee->commerce_id = $request->commerce_id ?? $employee->commerce_id;
-                $employee->is_employee = $request->is_employee ?? $employee->is_employee;
-                $employee->save();
-
-                return response()->json([
-                    'data' => [
-                        'employee' => $employee,
-                    ],
-                    'message' => 'Colaborador actualizado con éxito!'
-                ], 201);
             } catch (ModelNotFoundException $ex) {
                 return response()->json(['message' => "Colaborador con id {$id} no existe!", 'error' => $ex->getMessage()], 404);
             } catch (\Exception $e) {
@@ -152,29 +164,44 @@ class EmployeeQuery implements IEmployeeQuery
         }
     }
 
-    public function destroy(Int $id)
+    public function destroy(int $id)
     {
-        if (auth()->check() && auth()->user()->rol_id != 2) {
-
-            if ($id) {
-                try {
-                    $employee = Employee::findOrFail($id);
-                    $employee->delete();
-
+        try {
+            $employee = Employee::findOrFail($id);
+            if (auth()->check() && auth()->user()->rol_id == 1) {
+                $employee->delete();
+                return response()->json([
+                    'data' => [
+                        'employee' => $employee,
+                    ],
+                    'message' => 'Empleado eliminado exitosamente!'
+                ], 201);
+            } elseif ($employee) {
+                $eliminado = DB::table('employees as E')
+                    ->join('commerces as C', 'C.id', '=', 'E.commerce_id')
+                    ->join('users as U', 'U.id', '=', 'C.user_id')
+                    ->select('E.*')
+                    ->where('E.id', '=', $id)
+                    ->where('C.user_id', '=', auth()->user()->id)
+                    ->delete();
+                if ($eliminado > 0) {
                     return response()->json([
                         'data' => [
                             'employee' => $employee,
                         ],
-                        'message' => 'Colaborador eliminado con éxito!'
+                        'message' => 'Empleado eliminado exitosamente!'
                     ], 201);
-                } catch (ModelNotFoundException $e) {
-                    return response()->json(['message' => "Colaborador con id {$id} no existe!", 'error' => $e->getMessage()], 403);
+                } else {
+                    return response()->json(['message' => 'No tienes permiso para eliminar el empleado!'], 403);
                 }
+            } else {
+                return response()->json(['message' => 'Necesita permisos de super-administrador!'], 403);
             }
-        } else {
-            return response()->json(['message' => 'Necesita permisos de super-administrador!'], 403);
+        } catch (ModelNotFoundException $e) {
+            return response()->json(['message' => "Empleado con id {$id} no existe!", 'error' => $e->getMessage()], 403);
         }
     }
+
     public function showByEmployeeId(Request $request, int $id)
     {
         if ($id) {

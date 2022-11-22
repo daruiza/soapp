@@ -3,6 +3,8 @@
 namespace App\Query\Request;
 
 use App\Model\Core\Commerce;
+use App\Model\Core\User;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Validation\ValidationException;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
@@ -88,28 +90,32 @@ class CommerceQuery implements ICommerceQuery
         if ($id) {
             try {
                 $commerce = Commerce::findOrFail($id);
-                $rules = [
-                    $this->name  => 'required|string|min:1|max:128|', Rule::unique('commerces')->ignore($commerce->id),
-                    $this->nit   => 'required|', Rule::unique('commerces')->ignore($commerce->id),
-                ];
-                $validator = Validator::make($request->all(), $rules);
-                if ($validator->fails()) {
-                    throw (new ValidationException($validator->errors()->getMessages()));
+                if (auth()->check() && auth()->user()->rol_id == 1 || $commerce->user_id == auth()->user()->id) {
+                    $rules = [
+                        $this->name  => 'required|string|min:1|max:128|', Rule::unique('commerces')->ignore($commerce->id),
+                        $this->nit   => 'required|', Rule::unique('commerces')->ignore($commerce->id),
+                    ];
+                    $validator = Validator::make($request->all(), $rules);
+                    if ($validator->fails()) {
+                        throw (new ValidationException($validator->errors()->getMessages()));
+                    }
+                    $commerce->name = $request->name;
+                    $commerce->nit = $request->nit;
+                    $commerce->department = $request->department ?? $commerce->department;
+                    $commerce->city = $request->city ?? $commerce->city;
+                    $commerce->adress = $request->adress ?? $commerce->adress;
+                    $commerce->description = $request->description ?? $commerce->description;
+                    $commerce->logo = $request->logo ?? $commerce->logo;
+                    $commerce->save();
+                    return response()->json([
+                        'data' => [
+                            'commerce' => $commerce,
+                        ],
+                        'message' => 'Tienda actualizada con éxito!'
+                    ], 201);
+                } else {
+                    return response()->json(['message' => 'No tienes permiso para actualizar la tienda!'], 403);
                 }
-                $commerce->name = $request->name;
-                $commerce->nit = $request->nit;
-                $commerce->department = $request->department ?? $commerce->department;
-                $commerce->city = $request->city ?? $commerce->city;
-                $commerce->adress = $request->adress ?? $commerce->adress;
-                $commerce->description = $request->description ?? $commerce->description;
-                $commerce->logo = $request->logo ?? $commerce->logo;
-                $commerce->save();
-                return response()->json([
-                    'data' => [
-                        'commerce' => $commerce,
-                    ],
-                    'message' => 'Negocio actualizado con éxito!'
-                ], 201);
             } catch (ModelNotFoundException $ex) {
                 return response()->json(['message' => "Tienda con id {$id} no existe!", 'error' => $ex->getMessage()], 404);
             } catch (\Exception $e) {
@@ -123,6 +129,7 @@ class CommerceQuery implements ICommerceQuery
         if ($id) {
             try {
                 $commerce = Commerce::where('user_id', '=', $id)->first();
+                $commerce->user;
                 return response()->json([
                     'data' => [
                         'commerce' => $commerce,
@@ -155,24 +162,38 @@ class CommerceQuery implements ICommerceQuery
 
     public function destroy(Int $id)
     {
-        if (auth()->check() && auth()->user()->rol_id == 1) {
-
-            if ($id) {
-                try {
-                    $commerce = Commerce::findOrFail($id);
-                    $commerce->delete();
+        try {
+            $commerce = Commerce::findOrFail($id);
+            if (auth()->check() && auth()->user()->rol_id == 1) {
+                $commerce->delete();
+                return response()->json([
+                    'data' => [
+                        'commerce' => $commerce,
+                    ],
+                    'message' => 'Tienda eliminada exitosamente!'
+                ], 201);
+            } elseif ($commerce) {
+                $eliminado = DB::table('commerces as C')
+                    ->join('users as U', 'C.user_id', '=', 'U.id')
+                    ->select('C.*')
+                    ->where('C.user_id', '=', auth()->user()->id)
+                    ->where('C.id', '=', $id)
+                    ->delete();
+                if ($eliminado > 0) {
                     return response()->json([
                         'data' => [
-                            'commerce' => $commerce,
+                            'employee' => $commerce,
                         ],
-                        'message' => 'Tienda eliminada con éxito!'
+                        'message' => 'Tienda eliminada exitosamente!'
                     ], 201);
-                } catch (ModelNotFoundException $e) {
-                    return response()->json(['message' => "Tienda con id {$id} no existe!", 'error' => $e->getMessage()], 403);
+                } else {
+                    return response()->json(['message' => 'No tienes permiso para eliminar la tienda!'], 403);
                 }
+            } else {
+                return response()->json(['message' => 'Necesita permisos de super-administrador!'], 403);
             }
-        } else {
-            return response()->json(['message' => 'Necesita permisos de super-administrador!'], 403);
+        } catch (ModelNotFoundException $e) {
+            return response()->json(['message' => "Tienda con id {$id} no existe!", 'error' => $e->getMessage()], 403);
         }
     }
 }

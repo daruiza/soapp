@@ -14,11 +14,13 @@ class CreateReportsTable extends Migration
     public function up()
     {
         Schema::create('reports', function (Blueprint $table) {
-            $table->id();
-            $table->string('name', 128);
+            $table->id();            
             $table->string('project', 128);
+            $table->unsignedInteger('progress')->default(0);
+            $table->boolean('focus')->default(0);
+            $table->string('description', 512)->nullable();
             $table->string('responsible', 128);
-            $table->string('email_responsible', 128)->unique();
+            $table->string('email_responsible', 128)->nullable();
             $table->string('phone_responsible', 128)->nullable();
             $table->date('date')->nullable();
 

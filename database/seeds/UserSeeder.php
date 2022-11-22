@@ -16,7 +16,7 @@ class UserSeeder extends Seeder
         DB::table('users')->insert(array(
             'name' => 'super-admin',
             'lastname' => 'super',
-            'phone' => '0000',
+            'phone' => '3194065226',
             'email' => 'superadmin@yopmail.com',
             'password' => Hash::make('0000'),
             'theme' => 'super',
@@ -27,7 +27,7 @@ class UserSeeder extends Seeder
         DB::table('users')->insert(array(
             'name' => 'cliente',
             'lastname' => 'super',
-            'phone' => '0000',
+            'phone' => '3164056225',
             'email' => 'cliente@gmail.com',
             'password' => Hash::make('0000'),
             'theme' => 'skyblue',
@@ -38,12 +38,34 @@ class UserSeeder extends Seeder
         DB::table('users')->insert(array(
             'name' => 'Responsable',
             'lastname' => 'super',
-            'phone' => '0000',
+            'phone' => '3124567891',
             'email' => 'responsable@gmail.com',
             'password' => Hash::make('0000'),
             'theme' => 'skyblue',
             'photo' => 'avatar',
             'rol_id' => '3',
+        ));
+
+        DB::table('users')->insert(array(
+            'name' => 'Responsable01',
+            'lastname' => 'Res002',
+            'phone' => '3124567891',
+            'email' => 'responsable02@gmail.com',
+            'password' => Hash::make('0000'),
+            'theme' => 'skyblue',
+            'photo' => 'avatar',
+            'rol_id' => '3',
+        ));
+
+        DB::table('users')->insert(array(
+            'name' => 'cliente2',
+            'lastname' => 'super2',
+            'phone' => '3107894561',
+            'email' => 'cliente2@gmail.com',
+            'password' => Hash::make('0000'),
+            'theme' => 'skyblue',
+            'photo' => 'avatar',
+            'rol_id' => '2',
         ));
     }
 }

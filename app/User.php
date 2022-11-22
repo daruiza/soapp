@@ -17,6 +17,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
+        'id',
         'name',
         'email',
         'password',
@@ -68,6 +69,16 @@ class User extends Authenticatable
     public function scopeRol_id($query, $rolid)
     {
         return is_null($rolid) ?  $query : $query->where('rol_id', $rolid);
+    }
+
+    public function scopeResponsible_id($query, $rolid)
+    {
+        // si no eres superadmin no puedes ver otros responsables
+        return is_null($rolid) ?
+            $query :
+            $rolid === 3 ?
+            $query->where('rol_id', '<>', 3) :
+            $query;
     }
 
     //un usuario posee/pertenece un rol
