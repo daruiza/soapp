@@ -18,6 +18,7 @@ class ReportQuery implements IReportQuery
     private $progress = 'progress';
     private $description = 'description';
     private $focus = 'focus';
+    private $active = 'active';
     private $responsible = 'responsible';
     private $email_responsible = 'email_responsible';
     private $phone_responsible = 'phone_responsible';
@@ -34,6 +35,7 @@ class ReportQuery implements IReportQuery
                     'progress',
                     'description',
                     'focus',
+                    'active',
                     'responsible',
                     'email_responsible',
                     'phone_responsible',
@@ -128,6 +130,7 @@ class ReportQuery implements IReportQuery
                 $report->project = $request->project ?? $report->project;
                 $report->description = $request->description ?? $report->description;
                 $report->focus = $request->focus === 0 || $request->focus === 1 ? $request->focus : $report->focus;
+                $report->active = $request->active === 0 || $request->active === 1 ? $request->active : $report->active;
                 $report->responsible = $request->responsible ?? $report->responsible;
                 $report->email_responsible = $request->email_responsible ?? $report->email_responsible;
                 $report->phone_responsible = $request->phone_responsible ?? $report->phone_responsible;

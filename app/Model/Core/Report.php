@@ -17,6 +17,7 @@ class Report extends Model
         'progress',
         'description',
         'focus',
+        'active',
         'responsible',
         'email_responsible',
         'phone_responsible',

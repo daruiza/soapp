@@ -28,8 +28,8 @@ class RolSeeder extends Seeder
 
         DB::table('rols')->insert(
             array(
-                'name' => 'responsable',
-                'description' => 'Responsable',
+                'name' => 'agent',
+                'description' => 'Agente',
             )
         );
     }
