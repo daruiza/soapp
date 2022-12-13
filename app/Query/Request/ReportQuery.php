@@ -22,6 +22,13 @@ class ReportQuery implements IReportQuery
     private $responsible = 'responsible';
     private $email_responsible = 'email_responsible';
     private $phone_responsible = 'phone_responsible';
+    private $elaborated = 'elaborated';
+    private $email_elaborated = 'email_elaborated';
+    private $phone_elaborated = 'phone_elaborated';
+    private $passed = 'passed';
+    private $email_passed = 'email_passed';
+    private $phone_passed = 'phone_passed';
+
     private $date = 'date';
     private $commerce_id = 'commerce_id';
 
@@ -39,6 +46,12 @@ class ReportQuery implements IReportQuery
                     'responsible',
                     'email_responsible',
                     'phone_responsible',
+                    'elaborated',
+                    'email_elaborated',
+                    'phone_elaborated',
+                    'passed',
+                    'email_passed',
+                    'phone_passed',
                     'date',
                     'commerce_id',
                 ])
@@ -134,6 +147,12 @@ class ReportQuery implements IReportQuery
                 $report->responsible = $request->responsible ?? $report->responsible;
                 $report->email_responsible = $request->email_responsible ?? $report->email_responsible;
                 $report->phone_responsible = $request->phone_responsible ?? $report->phone_responsible;
+                $report->elaborated = $request->elaborated ?? $report->elaborated;
+                $report->email_elaborated = $request->email_elaborated ?? $report->email_elaborated;
+                $report->phone_elaborated = $request->phone_elaborated ?? $report->phone_elaborated;
+                $report->passed = $request->passed ?? $report->passed;
+                $report->email_passed = $request->email_passed ?? $report->email_passed;
+                $report->phone_passed = $request->phone_passed ?? $report->phone_passed;
                 $report->date = $request->date ?? $report->date;
                 $report->commerce_id = $request->commerce_id ?? $report->commerce_id;
                 $report->save();

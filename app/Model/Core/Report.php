@@ -21,6 +21,15 @@ class Report extends Model
         'responsible',
         'email_responsible',
         'phone_responsible',
+        
+        'elaborated',
+        'email_elaborated',
+        'phone_elaborated',
+
+        'passed',
+        'email_passed',
+        'phone_passed',
+        
         'date',
         'commerce_id',
     ];

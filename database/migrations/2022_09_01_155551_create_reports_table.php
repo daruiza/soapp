@@ -23,6 +23,12 @@ class CreateReportsTable extends Migration
             $table->string('responsible', 128);
             $table->string('email_responsible', 128)->nullable();
             $table->string('phone_responsible', 128)->nullable();
+            $table->string('elaborated', 128)->nullable();
+            $table->string('email_elaborated', 128)->nullable();
+            $table->string('phone_elaborated', 128)->nullable();
+            $table->string('passed', 128)->nullable();
+            $table->string('email_passed', 128)->nullable();
+            $table->string('phone_passed', 128)->nullable();
             $table->date('date')->nullable();
 
             $table->unsignedBigInteger('commerce_id')->nullable()->default(1);
