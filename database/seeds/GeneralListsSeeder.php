@@ -74,7 +74,38 @@ class GeneralListsSeeder extends Seeder
 
         DB::table('general_lists')->insert(array(
             'name' => 'employee_state',
-            'value' => 'Nuevo'
+            'value' => 'Nuevo Ingreso'
+        ));
+
+        DB::table('general_lists')->insert(array(
+            'name' => 'employee_state',
+            'value' => 'Ingreso'
+        ));
+
+        DB::table('general_lists')->insert(array(
+            'name' => 'employee_state',
+            'value' => 'Inducción'
+        ));
+
+        DB::table('general_lists')->insert(array(
+            'name' => 'employee_state',
+            'value' => 'Exámenes Medicos Ingreso'
+        ));
+
+
+        DB::table('general_lists')->insert(array(
+            'name' => 'employee_state',
+            'value' => 'Exámenes Medicos Periódico'
+        ));
+
+        DB::table('general_lists')->insert(array(
+            'name' => 'employee_state',
+            'value' => 'Exámenes Medicos Retiro'
+        ));
+
+        DB::table('general_lists')->insert(array(
+            'name' => 'employee_state',
+            'value' => 'Retirado'
         ));
 
         DB::table('general_lists')->insert(array(
