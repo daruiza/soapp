@@ -464,18 +464,17 @@
                         "schema": {
                             "type": "boolean"
                         }
-                    }
-                ],
-                "requestBody": {
-                    "required": false,
-                    "content": {
-                        "application/json": {
-                            "schema": {
-                                "$ref": "#/components/schemas/EmployeeIndex"
-                            }
+                    },
+                    {
+                        "name": "employee_state",
+                        "in": "query",
+                        "description": "Employee State",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
                         }
                     }
-                },
+                ],
                 "responses": {
                     "200": {
                         "description": "Successful operation"
@@ -1582,8 +1581,8 @@
                     "employee_state": {
                         "title": "employee_state",
                         "description": "employee_state of the Employee",
-                        "type": "string",
-                        "example": "state"
+                        "type": "object",
+                        "example": "[10,23,45]"
                     }
                 },
                 "type": "object"

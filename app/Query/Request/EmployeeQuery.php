@@ -24,7 +24,6 @@ class EmployeeQuery implements IEmployeeQuery
 
     public function index(Request $request)
     {
-
         $commerceid = $request->commerce_id ?? 1;
         $employee = Employee::query()
             ->select('employee_last_report.*', 'reports.date as reports_date', 'employee_report.employee_state')
@@ -64,6 +63,15 @@ class EmployeeQuery implements IEmployeeQuery
                         'employee_last_report.birth_date',
                         [$request->birth_date, Carbon::now()->format('Y-m-d')]
                     );
+                }
+                if (isset($request->employee_state)) {
+                    foreach (explode(",", $request->employee_state) as $value) {
+                        $orquery->orWhere(
+                            'employee_report.employee_state',
+                            'LIKE',
+                            $value
+                        );
+                    }
                 }
                 $orquery;
             })

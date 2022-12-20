@@ -14,10 +14,10 @@ class EmployeeIndex
      * @OA\Property(
      *      title="employee_state",
      *      description="employee_state of the Employee",
-     *      example="state"
+     *      example="[10,23,45]"
      * )
      *
-     * @var string
+     * @var object
      */
     public $employee_state;
 

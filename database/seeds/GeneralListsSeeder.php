@@ -74,13 +74,14 @@ class GeneralListsSeeder extends Seeder
 
         DB::table('general_lists')->insert(array(
             'name' => 'employee_state',
+            'value' => 'Pendiente'
+        ));
+        
+        DB::table('general_lists')->insert(array(
+            'name' => 'employee_state',
             'value' => 'Nuevo Ingreso'
         ));
 
-        DB::table('general_lists')->insert(array(
-            'name' => 'employee_state',
-            'value' => 'Ingreso'
-        ));
 
         DB::table('general_lists')->insert(array(
             'name' => 'employee_state',
@@ -91,7 +92,6 @@ class GeneralListsSeeder extends Seeder
             'name' => 'employee_state',
             'value' => 'Exámenes Medicos Ingreso'
         ));
-
 
         DB::table('general_lists')->insert(array(
             'name' => 'employee_state',

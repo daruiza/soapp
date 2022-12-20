@@ -114,12 +114,15 @@ class EmployeeController extends Controller
      *              type="boolean"
      *          )
      *      ),
-     * 
-     *      @OA\RequestBody(
+     *      @OA\Parameter(
+     *          name="employee_state",
+     *          description="Employee State",
      *          required=false,
-     *          @OA\JsonContent(ref="#/components/schemas/EmployeeIndex")
+     *          in="query",
+     *          @OA\Schema(
+     *              type="string"
+     *          )
      *      ),
-       
      *      @OA\Response(
      *          response=200,
      *          description="Successful operation",
