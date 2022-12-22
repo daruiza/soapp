@@ -4,6 +4,7 @@ namespace App\Query\Request;
 
 use Carbon\Carbon;
 use App\Model\Core\Report;
+use App\Model\Core\Employee;
 use App\Model\Admin\Commerce;
 use Illuminate\Validation\ValidationException;
 use Illuminate\Http\Request;
@@ -175,7 +176,23 @@ class ReportQuery implements IReportQuery
     {
         if ($id) {
             try {
-                $report = Report::findOrFail($id);
+                // $report = Report::findOrFail($id);
+                // $report->commerce;
+                // $report->employee;
+                $report = Report::query()
+                    // ->select('reports.*')
+                    // ->where('reports.id', $id)
+                    // ->leftJoin('employee_report', 'reports.id', '=', 'employee_report.report_id')
+                    ->with(['commerce'])
+                    ->with(['employee'])
+                    ->first();
+                // ->toSql();
+
+                foreach ($report->employee as $employee) {
+                    $emp = Employee::query($employee->id);
+                    $employee->state = $emp->state($employee->pivot->employee_id, $employee->pivot->report_id);
+                }
+
 
                 return response()->json([
                     'data' => [
@@ -188,6 +205,8 @@ class ReportQuery implements IReportQuery
             }
         }
     }
+
+
 
     public function destroy(Int $id)
     {

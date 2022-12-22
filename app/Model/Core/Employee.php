@@ -30,6 +30,16 @@ class Employee extends Model
         return $this->belongsToMany(Report::class);
     }
 
+    public function scopeState($query, $employeeid, $reportid)
+    {
+        return is_null($reportid) || is_null($employeeid) ?  null : $query
+            ->select('employee_report.id', 'employee_report.employee_state')
+            ->where('employees.id', $employeeid)
+            ->where('employee_report.report_id', $reportid)
+            ->leftJoin('employee_report', 'employee_report.employee_id', '=', 'employees.id')
+            ->first();
+    }
+
     public function scopeCommerce_id($query, $commerceid)
     {
         return is_null($commerceid) ?  $query : $query->where('commerce_id', $commerceid);
