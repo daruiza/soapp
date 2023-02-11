@@ -2,6 +2,8 @@
 
 namespace App\Query\Request;
 
+use Illuminate\Support\Facades\DB;
+
 use Carbon\Carbon;
 use App\Model\Core\Report;
 use App\Model\Core\Employee;
@@ -111,9 +113,26 @@ class ReportQuery implements IReportQuery
                 throw (new ValidationException(['date' => 'La fecha del reporte ya existe']));
             }
 
+            // Conltamos el último reporte
+            $lastreport = Report::query()
+                ->where('commerce_id', $request->input('commerce_id'))
+                ->with(['employee'])
+                ->latest('id', 'desc')->first();           
+
             // Creamos el nuevo reporte
             $report = new Report();
             $newReport = $report->create($request->input());
+
+            // llena el nuevo reporte con los colaboradores del último reporte en estado Pendiente
+            if (count($lastreport->employee)) {
+                foreach ($lastreport->employee as $employee) {
+                    DB::table('employee_report')->insert([
+                        'report_id' => $newReport->id,
+                        'employee_id' => $employee->id,
+                        'employee_state' => 'Pendiente',
+                    ]);
+                }
+            }
 
             return response()->json([
                 'data' => [
@@ -176,23 +195,18 @@ class ReportQuery implements IReportQuery
     {
         if ($id) {
             try {
-                // $report = Report::findOrFail($id);
-                // $report->commerce;
-                // $report->employee;
                 $report = Report::query()
-                    // ->select('reports.*')
-                    // ->where('reports.id', $id)
-                    // ->leftJoin('employee_report', 'reports.id', '=', 'employee_report.report_id')
+                    ->where('reports.id', $id)
                     ->with(['commerce'])
                     ->with(['employee'])
                     ->first();
                 // ->toSql();
 
+                // Se agrega el estado
                 foreach ($report->employee as $employee) {
                     $emp = Employee::query($employee->id);
                     $employee->state = $emp->state($employee->pivot->employee_id, $employee->pivot->report_id);
                 }
-
 
                 return response()->json([
                     'data' => [
@@ -205,8 +219,6 @@ class ReportQuery implements IReportQuery
             }
         }
     }
-
-
 
     public function destroy(Int $id)
     {

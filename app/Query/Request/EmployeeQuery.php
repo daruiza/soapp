@@ -5,7 +5,7 @@ namespace App\Query\Request;
 use Illuminate\Support\Facades\DB;
 use App\Model\Core\Employee;
 use App\Model\Core\Commerce;
-use App\Model\Core\Report;;
+use App\Model\Core\Report;
 
 use App\User;
 use Illuminate\Http\Request;
@@ -94,9 +94,6 @@ class EmployeeQuery implements IEmployeeQuery
 
     public function store(Request $request)
     {
-
-        // Falta asignar el estado al último reporte en curso 'Pendiente'
-
         $rules = [
             $this->identification => 'required|string|max:128|unique:employees',
             $this->email          => 'required|string|max:128|email|unique:employees',

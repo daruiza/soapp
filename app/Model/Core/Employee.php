@@ -37,7 +37,7 @@ class Employee extends Model
             ->where('employees.id', $employeeid)
             ->where('employee_report.report_id', $reportid)
             ->leftJoin('employee_report', 'employee_report.employee_id', '=', 'employees.id')
-            ->first();
+            ->get();
     }
 
     public function scopeCommerce_id($query, $commerceid)

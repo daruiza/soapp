@@ -14,6 +14,7 @@ class Commerce extends Model
         'id',
         'name',
         'nit',
+        'phone',
         'department',
         'city',
         'adress',

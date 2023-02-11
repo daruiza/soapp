@@ -18,7 +18,7 @@ class ReportsSeeder extends Seeder
             'responsible'  => 'Agente01',
             'email_responsible'  => 'Agente01@gmail.com',
             'phone_responsible'  => '12345678',
-            'date'  => '2022-01-01',
+            'date'  => '2023-01-01',
             'commerce_id'  => '1',
         ));
 
@@ -28,7 +28,7 @@ class ReportsSeeder extends Seeder
             'responsible'  => 'Agente01',
             'email_responsible'  => 'Agente01@gmail.com',
             'phone_responsible'  => '3194052663',
-            'date'  => '2022-01-01',
+            'date'  => '2023-01-01',
             'commerce_id'  => '2',
         ));
 
@@ -38,7 +38,7 @@ class ReportsSeeder extends Seeder
             'responsible'  => 'Agente01',
             'email_responsible'  => 'Agente01@gmail.com',
             'phone_responsible'  => '3194056987',
-            'date'  => '2022-02-01',
+            'date'  => '2023-02-01',
             'commerce_id'  => '2',
         ));
 
@@ -48,7 +48,7 @@ class ReportsSeeder extends Seeder
             'responsible'  => 'Agente',
             'email_responsible'  => 'Agente@gmail.com',
             'phone_responsible'  => '12345678',
-            'date'  => '2022-04-01',
+            'date'  => '2023-04-01',
             'commerce_id'  => '3',
         ));
     }

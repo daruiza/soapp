@@ -30,7 +30,7 @@ class CommerceQuery implements ICommerceQuery
     {
         try {
             $commerces = Commerce::where('active', 1)
-                ->select(['id', 'name', 'nit', 'department', 'city', 'user_id'])
+                ->select(['id', 'name', 'nit', 'phone', 'department', 'city', 'user_id'])
                 ->with(['user:id,name,lastname,phone,email'])
                 ->name($request->name)
                 ->nit($request->nit)
@@ -101,6 +101,7 @@ class CommerceQuery implements ICommerceQuery
                     }
                     $commerce->name = $request->name;
                     $commerce->nit = $request->nit;
+                    $commerce->phone = $request->phone;
                     $commerce->department = $request->department ?? $commerce->department;
                     $commerce->city = $request->city ?? $commerce->city;
                     $commerce->adress = $request->adress ?? $commerce->adress;
