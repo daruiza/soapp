@@ -394,9 +394,81 @@
                         }
                     },
                     {
+                        "name": "identification_type",
+                        "in": "query",
+                        "description": "Employee Tipo Identification",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
                         "name": "name",
                         "in": "query",
                         "description": "Employee Name",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "lastname",
+                        "in": "query",
+                        "description": "Employee LastName",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "phone",
+                        "in": "query",
+                        "description": "Employee Phone",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "email",
+                        "in": "query",
+                        "description": "Employee Email",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "adress",
+                        "in": "query",
+                        "description": "Employee Adress",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "birth_date",
+                        "in": "query",
+                        "description": "Employee BirthDate",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "is_employee",
+                        "in": "query",
+                        "description": "Employee isEmployee",
+                        "required": false,
+                        "schema": {
+                            "type": "boolean"
+                        }
+                    },
+                    {
+                        "name": "employee_state",
+                        "in": "query",
+                        "description": "Employee State",
                         "required": false,
                         "schema": {
                             "type": "string"
@@ -1498,6 +1570,19 @@
                         "description": "is_employee of the user",
                         "type": "boolean",
                         "example": "1"
+                    }
+                },
+                "type": "object"
+            },
+            "EmployeeIndex": {
+                "title": "EmployeeIndex",
+                "description": "Employee body data Index",
+                "properties": {
+                    "employee_state": {
+                        "title": "employee_state",
+                        "description": "employee_state of the Employee",
+                        "type": "object",
+                        "example": "[10,23,45]"
                     }
                 },
                 "type": "object"

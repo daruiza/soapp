@@ -16,6 +16,7 @@ class CommercesSeeder extends Seeder
             array(
                 'name' => 'Fabrica Romano',
                 'nit' => '1039420535-1',
+                'phone' => '3214578',
                 'department' => 'Antioquia',
                 'city' => 'Medellín',
                 'adress' => 'Cr 1 - 1 # 1',
@@ -29,6 +30,7 @@ class CommercesSeeder extends Seeder
             array(
                 'name' => 'TempoSolutions',
                 'nit' => '1039420535-2',
+                'phone' => '3652458',
                 'department' => 'Antioquia',
                 'city' => 'Tarso',
                 'adress' => 'Cr 2 - 2 # 1',
@@ -42,6 +44,7 @@ class CommercesSeeder extends Seeder
             array(
                 'name' => 'Mrs',
                 'nit' => '1039420535-3',
+                'phone' => '2569874',
                 'department' => 'Antioquia',
                 'city' => 'Amaga',
                 'adress' => 'Cr 3 - 3 # 1',

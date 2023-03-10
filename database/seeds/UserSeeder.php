@@ -36,10 +36,10 @@ class UserSeeder extends Seeder
         ));
 
         DB::table('users')->insert(array(
-            'name' => 'Responsable',
+            'name' => 'Agente',
             'lastname' => 'super',
             'phone' => '3124567891',
-            'email' => 'responsable@gmail.com',
+            'email' => 'agente@gmail.com',
             'password' => Hash::make('0000'),
             'theme' => 'skyblue',
             'photo' => 'avatar',
@@ -47,10 +47,10 @@ class UserSeeder extends Seeder
         ));
 
         DB::table('users')->insert(array(
-            'name' => 'Responsable01',
-            'lastname' => 'Res002',
+            'name' => 'Agente01',
+            'lastname' => 'AGT002',
             'phone' => '3124567891',
-            'email' => 'responsable02@gmail.com',
+            'email' => 'agente02@gmail.com',
             'password' => Hash::make('0000'),
             'theme' => 'skyblue',
             'photo' => 'avatar',

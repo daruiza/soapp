@@ -9,7 +9,7 @@ use App\Query\Abstraction\IReportQuery;
 class ReportController extends Controller
 {
 
-    private $CommerceQuery;
+    private $ReportQuery;
 
     public function __construct(IReportQuery $ReportQuery)
     {

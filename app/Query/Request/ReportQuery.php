@@ -2,8 +2,11 @@
 
 namespace App\Query\Request;
 
+use Illuminate\Support\Facades\DB;
+
 use Carbon\Carbon;
 use App\Model\Core\Report;
+use App\Model\Core\Employee;
 use App\Model\Admin\Commerce;
 use Illuminate\Validation\ValidationException;
 use Illuminate\Http\Request;
@@ -18,9 +21,17 @@ class ReportQuery implements IReportQuery
     private $progress = 'progress';
     private $description = 'description';
     private $focus = 'focus';
+    private $active = 'active';
     private $responsible = 'responsible';
     private $email_responsible = 'email_responsible';
     private $phone_responsible = 'phone_responsible';
+    private $elaborated = 'elaborated';
+    private $email_elaborated = 'email_elaborated';
+    private $phone_elaborated = 'phone_elaborated';
+    private $passed = 'passed';
+    private $email_passed = 'email_passed';
+    private $phone_passed = 'phone_passed';
+
     private $date = 'date';
     private $commerce_id = 'commerce_id';
 
@@ -34,9 +45,16 @@ class ReportQuery implements IReportQuery
                     'progress',
                     'description',
                     'focus',
+                    'active',
                     'responsible',
                     'email_responsible',
                     'phone_responsible',
+                    'elaborated',
+                    'email_elaborated',
+                    'phone_elaborated',
+                    'passed',
+                    'email_passed',
+                    'phone_passed',
                     'date',
                     'commerce_id',
                 ])
@@ -95,9 +113,26 @@ class ReportQuery implements IReportQuery
                 throw (new ValidationException(['date' => 'La fecha del reporte ya existe']));
             }
 
+            // Conltamos el último reporte
+            $lastreport = Report::query()
+                ->where('commerce_id', $request->input('commerce_id'))
+                ->with(['employee'])
+                ->latest('id', 'desc')->first();           
+
             // Creamos el nuevo reporte
             $report = new Report();
             $newReport = $report->create($request->input());
+
+            // llena el nuevo reporte con los colaboradores del último reporte en estado Pendiente
+            if (count($lastreport->employee)) {
+                foreach ($lastreport->employee as $employee) {
+                    DB::table('employee_report')->insert([
+                        'report_id' => $newReport->id,
+                        'employee_id' => $employee->id,
+                        'employee_state' => 'Pendiente',
+                    ]);
+                }
+            }
 
             return response()->json([
                 'data' => [
@@ -128,9 +163,16 @@ class ReportQuery implements IReportQuery
                 $report->project = $request->project ?? $report->project;
                 $report->description = $request->description ?? $report->description;
                 $report->focus = $request->focus === 0 || $request->focus === 1 ? $request->focus : $report->focus;
+                $report->active = $request->active === 0 || $request->active === 1 ? $request->active : $report->active;
                 $report->responsible = $request->responsible ?? $report->responsible;
                 $report->email_responsible = $request->email_responsible ?? $report->email_responsible;
                 $report->phone_responsible = $request->phone_responsible ?? $report->phone_responsible;
+                $report->elaborated = $request->elaborated ?? $report->elaborated;
+                $report->email_elaborated = $request->email_elaborated ?? $report->email_elaborated;
+                $report->phone_elaborated = $request->phone_elaborated ?? $report->phone_elaborated;
+                $report->passed = $request->passed ?? $report->passed;
+                $report->email_passed = $request->email_passed ?? $report->email_passed;
+                $report->phone_passed = $request->phone_passed ?? $report->phone_passed;
                 $report->date = $request->date ?? $report->date;
                 $report->commerce_id = $request->commerce_id ?? $report->commerce_id;
                 $report->save();
@@ -153,7 +195,18 @@ class ReportQuery implements IReportQuery
     {
         if ($id) {
             try {
-                $report = Report::findOrFail($id);
+                $report = Report::query()
+                    ->where('reports.id', $id)
+                    ->with(['commerce'])
+                    ->with(['employee'])
+                    ->first();
+                // ->toSql();
+
+                // Se agrega el estado
+                foreach ($report->employee as $employee) {
+                    $emp = Employee::query($employee->id);
+                    $employee->state = $emp->state($employee->pivot->employee_id, $employee->pivot->report_id);
+                }
 
                 return response()->json([
                     'data' => [
