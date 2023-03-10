@@ -5,6 +5,8 @@ namespace App\Query\Request;
 use Illuminate\Support\Facades\DB;
 use App\Model\Core\Employee;
 use App\Model\Core\Commerce;
+use App\Model\Core\Report;
+
 use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Validation\ValidationException;
@@ -24,7 +26,6 @@ class EmployeeQuery implements IEmployeeQuery
 
     public function index(Request $request)
     {
-
         $commerceid = $request->commerce_id ?? 1;
         $employee = Employee::query()
             ->select('employee_last_report.*', 'reports.date as reports_date', 'employee_report.employee_state')
@@ -53,6 +54,7 @@ class EmployeeQuery implements IEmployeeQuery
                 $this->setAtributeIndexQuery($request->email, $orquery, 'employee_last_report', 'email');
                 $this->setAtributeIndexQuery($request->phone, $orquery, 'employee_last_report', 'phone');
                 $this->setAtributeIndexQuery($request->adress, $orquery, 'employee_last_report', 'adress');
+
                 if (isset($request->active)) {
                     $orquery->where('employee_last_report.active', $request->active ?? 1);
                 }
@@ -64,6 +66,17 @@ class EmployeeQuery implements IEmployeeQuery
                         'employee_last_report.birth_date',
                         [$request->birth_date, Carbon::now()->format('Y-m-d')]
                     );
+                }
+            })
+            ->where(function ($orquery) use ($request) {
+                if (isset($request->employee_state)) {
+                    foreach (explode(",", $request->employee_state) as $value) {
+                        $orquery->orWhere(
+                            'employee_report.employee_state',
+                            'LIKE',
+                            $value
+                        );
+                    }
                 }
                 $orquery;
             })
@@ -98,6 +111,17 @@ class EmployeeQuery implements IEmployeeQuery
             $employee = new Employee();
             $request->request->add(['active' => 1]);
             $newEmployee = $employee->create($request->input());
+
+            // Se crea su primera entrada en el Último reporte
+            $report = Report::query()
+                ->where('commerce_id', $request->input('commerce_id'))
+                ->latest('id', 'desc')->first();
+
+            DB::table('employee_report')->insert([
+                'employee_state' => 'Pendiente',
+                'employee_id' => $newEmployee->id,
+                'report_id' => $report->id
+            ]);
 
             return response()->json([
                 'data' => [

@@ -17,9 +17,19 @@ class Report extends Model
         'progress',
         'description',
         'focus',
+        'active',
         'responsible',
         'email_responsible',
         'phone_responsible',
+        
+        'elaborated',
+        'email_elaborated',
+        'phone_elaborated',
+
+        'passed',
+        'email_passed',
+        'phone_passed',
+        
         'date',
         'commerce_id',
     ];
