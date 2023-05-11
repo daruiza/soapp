@@ -33,12 +33,29 @@ class EmployeeQuery implements IEmployeeQuery
                 $query
                     ->select(
                         DB::raw('MAX(employee_report.report_id) as max_report_id'),
-                        'employees.*'
+                        'employees.name',
+                        'employees.lastname',
+                        'employees.phone',
+                        'employees.adress',
+                        'employees.active',
+                        'employees.is_employee',
+                        'employee_report.employee_state',
+                        'employee_report.id'
                     )
                     ->from('employees')
                     ->leftJoin('employee_report', 'employees.id', '=', 'employee_report.employee_id')
                     ->where('employees.commerce_id', $commerceid)
-                    ->groupBy('employees.id');
+                    ->groupBy(
+                        'employees.id',
+                        'employees.name',
+                        'employees.lastname',
+                        'employees.phone',
+                        'employees.adress',
+                        'employees.active',
+                        'employees.is_employee',
+                        'employee_report.employee_state',
+                        'employee_report.id'
+                    );
             }, 'employee_last_report')
             ->leftJoin('reports', 'employee_last_report.max_report_id', '=', 'reports.id')
             ->leftJoin('employee_report', 'employee_last_report.id', '=', 'employee_report.id')
