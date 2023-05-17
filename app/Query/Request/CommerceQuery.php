@@ -3,10 +3,9 @@
 namespace App\Query\Request;
 
 use App\Model\Core\Commerce;
-use App\Model\Core\User;
 use Illuminate\Support\Facades\DB;
-use Illuminate\Validation\ValidationException;
 use Illuminate\Http\Request;
+use Illuminate\Validation\ValidationException;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Validation\Rule;
 use App\Query\Abstraction\ICommerceQuery;

@@ -89,3 +89,13 @@ Route::group(['prefix' => 'report'], function () {
     });
 });
 
+Route::group(['prefix' => 'employeereport'], function () {
+    Route::group(['middleware' => 'auth:api'], function () {
+        Route::get('index', 'Api\EmployeeReportController@index');
+        Route::post('store', 'Api\EmployeeReportController@store');
+        Route::put('update/{id}', 'Api\EmployeeReportController@update');
+        Route::get('showbyemployeereportid/{id}', 'Api\EmployeeReportController@showByEmployeeReportId');
+        Route::delete('destroy/{report_id}', 'Api\EmployeeReportController@destroy');
+    });
+});
+

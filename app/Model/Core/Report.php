@@ -43,7 +43,7 @@ class Report extends Model
     //a varios reportes le Pertenece varios colaboradores
     public function employee()
     {
-        return $this->belongsToMany(Employee::class);
+        return $this->belongsToMany(Employee::class)->distinct();
     }
 
     public function scopeProject($query, $project)

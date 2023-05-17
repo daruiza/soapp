@@ -650,6 +650,42 @@
                 ]
             }
         },
+        "/employeereport/store": {
+            "post": {
+                "tags": [
+                    "Employee Report"
+                ],
+                "summary": "Store Employee Report",
+                "description": "Store Employee Report",
+                "operationId": "storeEmployees",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/EmployeeReport"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Successful operation"
+                    },
+                    "401": {
+                        "description": "Unauthenticated"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    }
+                },
+                "security": [
+                    {
+                        "bearer": []
+                    }
+                ]
+            }
+        },
         "/generallist/index": {
             "get": {
                 "tags": [
@@ -1583,6 +1619,29 @@
                         "description": "employee_state of the Employee",
                         "type": "object",
                         "example": "[10,23,45]"
+                    }
+                },
+                "type": "object"
+            },
+            "EmployeeReport": {
+                "title": "EmployeeReport",
+                "description": "EmployeeReport body data",
+                "properties": {
+                    "employee_state": {
+                        "title": "employee_state",
+                        "description": "employee_state of the Employee",
+                        "type": "string",
+                        "example": "Pendiente"
+                    },
+                    "employee_id": {
+                        "title": "employee_id",
+                        "description": "employee_id of the Employee",
+                        "example": 1
+                    },
+                    "report_id": {
+                        "title": "report_id",
+                        "description": "report_id of the Report",
+                        "example": 1
                     }
                 },
                 "type": "object"
