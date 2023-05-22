@@ -686,6 +686,42 @@
                 ]
             }
         },
+        "/evidence/store": {
+            "post": {
+                "tags": [
+                    "Evidnece"
+                ],
+                "summary": "Store Report",
+                "description": "Store Report",
+                "operationId": "storeReport",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/Evidence"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Successful operation"
+                    },
+                    "401": {
+                        "description": "Unauthenticated"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    }
+                },
+                "security": [
+                    {
+                        "bearer": []
+                    }
+                ]
+            }
+        },
         "/generallist/index": {
             "get": {
                 "tags": [
@@ -1714,6 +1750,36 @@
                         "description": "is_employee of the user",
                         "type": "boolean",
                         "example": "1"
+                    }
+                },
+                "type": "object"
+            },
+            "Evidence": {
+                "title": "Evidence",
+                "description": "Evidence body data",
+                "properties": {
+                    "name": {
+                        "title": "name",
+                        "description": "Name of the evidence",
+                        "type": "string",
+                        "example": "FileName"
+                    },
+                    "file": {
+                        "title": "file",
+                        "description": "File of the evidence",
+                        "type": "string",
+                        "example": "FileHostingName"
+                    },
+                    "approved": {
+                        "title": "approved",
+                        "description": "approved of the evidence",
+                        "type": "boolean",
+                        "example": true
+                    },
+                    "employee_report_id": {
+                        "title": "employee_report_id",
+                        "description": "employee_report_id of the Evidence",
+                        "example": 1
                     }
                 },
                 "type": "object"
