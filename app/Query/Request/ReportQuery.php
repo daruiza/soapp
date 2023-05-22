@@ -4,10 +4,14 @@ namespace App\Query\Request;
 
 use Illuminate\Support\Facades\DB;
 
+use App\User;
 use Carbon\Carbon;
 use App\Model\Core\Report;
 use App\Model\Core\Employee;
 use App\Model\Admin\Commerce;
+
+use App\Enums\RolEnum;
+
 use Illuminate\Validation\ValidationException;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
@@ -195,12 +199,31 @@ class ReportQuery implements IReportQuery
     {
         if ($id) {
             try {
+                // verificamos que el reporte le pertenezca al usuario
+                // en caso de que el usuario sea un cliente,
+                // los agentes tienen acceso a todos los reportes
+
+                $user = User::query()
+                    ->where('users.id', $request->user()->id)
+                    ->with(['commerce'])
+                    ->first();                
+
                 $report = Report::query()
                     ->where('reports.id', $id)
                     ->with(['commerce'])
                     ->with(['employee'])
                     ->first();
                 // ->toSql();
+
+                // El usuario es Cliente,    
+                if($user->rol_id === RolEnum::rol('CLIENTE')){
+                    //debe ser dueño del reporte
+                    if($user->commerce->id !== $report->commerce->id){
+                        return response()->json([
+                            'message' => 'El usuario no tiene permisos sobre el reporte solicitado',                                                    
+                        ], 401);
+                    }
+                }
 
                 // Se agrega el estado
                 foreach ($report->employee as $employee) {

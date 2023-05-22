@@ -54,8 +54,8 @@ class AuthQuery implements IAuthQuery
 
     public function user(Request $request)
     {
-        try {
-            $user = User::findOrFail($request->user()->id)
+        try {            
+            $user = User::query()
                 ->select(['id', 'name', 'lastname', 'phone', 'email', 'photo', 'theme', 'rol_id'])
                 ->where('id', '=', $request->user()->id)
                 ->with(['rol:id,name,description,active'])

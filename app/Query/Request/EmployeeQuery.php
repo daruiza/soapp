@@ -24,63 +24,52 @@ class EmployeeQuery implements IEmployeeQuery
     private $email = 'email';
     private $phone = 'phone';
 
+    // retorna todos los colaboradores de un comercio
+    // además de los datos de el último reporte en el que
+    // cada colaborador aparece
     public function index(Request $request)
     {
         $commerceid = $request->commerce_id ?? 1;
         $employee = Employee::query()
-            ->select('employee_last_report.*', 'reports.date as reports_date', 'employee_report.employee_state')
+            ->select('employee_last_report.max_report_id','employees.*', 'reports.date as reports_date', 'employee_report.employee_state')
             ->from(function ($query) use ($commerceid) {
                 $query
                     ->select(
                         DB::raw('MAX(employee_report.report_id) as max_report_id'),
-                        'employees.name',
-                        'employees.lastname',
-                        'employees.phone',
-                        'employees.adress',
-                        'employees.active',
-                        'employees.is_employee',
-                        'employee_report.employee_state',
-                        'employee_report.id'
-                    )
+                        'employees.id')
                     ->from('employees')
                     ->leftJoin('employee_report', 'employees.id', '=', 'employee_report.employee_id')
                     ->where('employees.commerce_id', $commerceid)
                     ->groupBy(
-                        'employees.id',
-                        'employees.name',
-                        'employees.lastname',
-                        'employees.phone',
-                        'employees.adress',
-                        'employees.active',
-                        'employees.is_employee',
-                        'employee_report.employee_state',
-                        'employee_report.id'
+                        'employees.id'
                     );
             }, 'employee_last_report')
+            ->leftJoin('employees', 'employee_last_report.id', '=', 'employees.id')
             ->leftJoin('reports', 'employee_last_report.max_report_id', '=', 'reports.id')
             ->leftJoin('employee_report', 'employee_last_report.id', '=', 'employee_report.id')
+            
             ->where(function ($orquery) use ($request) {
                 $this->setAtributeIndexQuery(
                     $request->identification_type,
                     $orquery,
-                    'employee_last_report',
+                    'employees',
                     'identification_type'
                 );
-                $this->setAtributeIndexQuery($request->name, $orquery, 'employee_last_report', 'name');
-                $this->setAtributeIndexQuery($request->lastname, $orquery, 'employee_last_report', 'lastname');
-                $this->setAtributeIndexQuery($request->email, $orquery, 'employee_last_report', 'email');
-                $this->setAtributeIndexQuery($request->phone, $orquery, 'employee_last_report', 'phone');
-                $this->setAtributeIndexQuery($request->adress, $orquery, 'employee_last_report', 'adress');
+                $this->setAtributeIndexQuery($request->name, $orquery, 'employees', 'name');
+                $this->setAtributeIndexQuery($request->lastname, $orquery, 'employees', 'lastname');
+                $this->setAtributeIndexQuery($request->email, $orquery, 'employees', 'email');
+                $this->setAtributeIndexQuery($request->phone, $orquery, 'employees', 'phone');
+                $this->setAtributeIndexQuery($request->adress, $orquery, 'employees', 'adress');
 
                 if (isset($request->active)) {
-                    $orquery->where('employee_last_report.active', $request->active ?? 1);
+                    $orquery->where('employee_report.active', $request->active ?? 1);
                 }
                 if (isset($request->is_employee)) {
-                    $orquery->where('employee_last_report.is_employee', $request->is_employee ?? 1);
+                    $orquery->where('employee_report.is_employee', $request->is_employee ?? 1);
                 }
                 if (isset($request->birth_date)) {
                     $orquery->whereBetween(
-                        'employee_last_report.birth_date',
+                        'employees.birth_date',
                         [$request->birth_date, Carbon::now()->format('Y-m-d')]
                     );
                 }
@@ -97,9 +86,11 @@ class EmployeeQuery implements IEmployeeQuery
                 }
                 $orquery;
             })
-            ->orderBy('employee_last_report.id', $request->sort ?? 'DESC')
+            ->orderBy('employee_report.id', $request->sort ?? 'DESC')
             ->paginate($request->limit ?? 7, ['*'], '', $request->page ?? 1);
-        // ->toSql();
+            
+            //->get();
+            //->toSql();
 
         return response()->json([
             'data' => [
@@ -163,7 +154,11 @@ class EmployeeQuery implements IEmployeeQuery
                     ->where('E.id', '=', $id)
                     ->where('C.user_id', '=', auth()->user()->id)
                     ->first();
-                if (auth()->check() && auth()->user()->rol_id == 1 || !is_null($update)) {
+                if (
+                    auth()->check()
+                    // && auth()->user()->rol_id == 1 
+                    // || !is_null($update)
+                    ) {
                     $rules = [
                         $this->identification => 'required|string|max:128|', Rule::unique('employees')->ignore($employee->id),
                         $this->email          => 'required|string|max:128|email|', Rule::unique('employees')->ignore($employee->id),
