@@ -650,6 +650,78 @@
                 ]
             }
         },
+        "/employeereport/store": {
+            "post": {
+                "tags": [
+                    "Employee Report"
+                ],
+                "summary": "Store Employee Report",
+                "description": "Store Employee Report",
+                "operationId": "storeEmployees",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/EmployeeReport"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Successful operation"
+                    },
+                    "401": {
+                        "description": "Unauthenticated"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    }
+                },
+                "security": [
+                    {
+                        "bearer": []
+                    }
+                ]
+            }
+        },
+        "/evidence/store": {
+            "post": {
+                "tags": [
+                    "Evidnece"
+                ],
+                "summary": "Store Report",
+                "description": "Store Report",
+                "operationId": "storeReport",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/Evidence"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Successful operation"
+                    },
+                    "401": {
+                        "description": "Unauthenticated"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    }
+                },
+                "security": [
+                    {
+                        "bearer": []
+                    }
+                ]
+            }
+        },
         "/generallist/index": {
             "get": {
                 "tags": [
@@ -1552,7 +1624,7 @@
                     "phone": {
                         "title": "phone",
                         "description": "phone of the Employee",
-                        "example": 2147483647
+                        "example": 3194062550
                     },
                     "photo": {
                         "title": "photo",
@@ -1583,6 +1655,29 @@
                         "description": "employee_state of the Employee",
                         "type": "object",
                         "example": "[10,23,45]"
+                    }
+                },
+                "type": "object"
+            },
+            "EmployeeReport": {
+                "title": "EmployeeReport",
+                "description": "EmployeeReport body data",
+                "properties": {
+                    "employee_state": {
+                        "title": "employee_state",
+                        "description": "employee_state of the Employee",
+                        "type": "string",
+                        "example": "Pendiente"
+                    },
+                    "employee_id": {
+                        "title": "employee_id",
+                        "description": "employee_id of the Employee",
+                        "example": 1
+                    },
+                    "report_id": {
+                        "title": "report_id",
+                        "description": "report_id of the Report",
+                        "example": 1
                     }
                 },
                 "type": "object"
@@ -1637,7 +1732,7 @@
                     "phone": {
                         "title": "phone",
                         "description": "phone of the Employee",
-                        "example": 2147483647
+                        "example": 3194062550
                     },
                     "photo": {
                         "title": "photo",
@@ -1655,6 +1750,36 @@
                         "description": "is_employee of the user",
                         "type": "boolean",
                         "example": "1"
+                    }
+                },
+                "type": "object"
+            },
+            "Evidence": {
+                "title": "Evidence",
+                "description": "Evidence body data",
+                "properties": {
+                    "name": {
+                        "title": "name",
+                        "description": "Name of the evidence",
+                        "type": "string",
+                        "example": "FileName"
+                    },
+                    "file": {
+                        "title": "file",
+                        "description": "File of the evidence",
+                        "type": "string",
+                        "example": "FileHostingName"
+                    },
+                    "approved": {
+                        "title": "approved",
+                        "description": "approved of the evidence",
+                        "type": "boolean",
+                        "example": true
+                    },
+                    "employee_report_id": {
+                        "title": "employee_report_id",
+                        "description": "employee_report_id of the Evidence",
+                        "example": 1
                     }
                 },
                 "type": "object"
@@ -1795,7 +1920,7 @@
                     "phone": {
                         "title": "phone",
                         "description": "phone of the user",
-                        "example": 2147483647
+                        "example": 3194062550
                     },
                     "theme": {
                         "title": "theme",
@@ -1842,7 +1967,7 @@
                     "phone": {
                         "title": "phone",
                         "description": "phone of the user",
-                        "example": 2147483647
+                        "example": 3194062550
                     },
                     "theme": {
                         "title": "theme",

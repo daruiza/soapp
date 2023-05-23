@@ -92,4 +92,5 @@ class User extends Authenticatable
     {
         return $this->hasOne(Model\Core\Commerce::class);
     }
+    
 }

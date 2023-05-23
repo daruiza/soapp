@@ -41,6 +41,10 @@ use App\Http\Controllers\Api\EmployeeReportController;
 use App\Query\Abstraction\IEmployeeReportQuery;
 use App\Query\Request\EmployeeReportQuery;
 
+use App\Http\Controllers\Api\EvidenceController;
+use App\Query\Abstraction\IEvidenceQuery;
+use App\Query\Request\EvidenceQuery;
+
 class AppServiceProvider extends ServiceProvider
 {
     /**
@@ -76,6 +80,9 @@ class AppServiceProvider extends ServiceProvider
 
         $this->app->bind(IEmployeeReportQuery::class, EmployeeReportQuery::class);
         $this->app->make(EmployeeReportController::class);
+
+        $this->app->bind(IEvidenceQuery::class, EvidenceQuery::class);
+        $this->app->make(EvidenceController::class);
     }
 
     /**
