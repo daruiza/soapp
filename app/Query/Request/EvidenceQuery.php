@@ -70,4 +70,29 @@ class EvidenceQuery implements IEvidenceQuery
     public function update(Request $request, int $id){}
     public function destroy(int $id){}
     public function showByEvidenceId(Request $request, int $id){}
+
+    public function showByEmployeeReportId(Request $request, int $id){
+        if ($id) {
+            try {
+                $evidence = Evidence::select(
+                    'id',
+                    'name',
+                    'file',
+                    'approved',
+                    'employee_report_id'
+                )
+                ->where('employee_report_id',$id)
+                ->get();
+                
+                return response()->json([
+                    'data' => [
+                        'evidence' => $evidence,
+                    ],
+                    'message' => 'Datos de Evidencia consultados Correctamente!'
+                ], 201);
+            } catch (ModelNotFoundException $e) {
+                return response()->json(['message' => "Evidencia con id {$id} no existe!", 'error' => $e->getMessage()], 403);
+            }
+        }
+    }
 }
