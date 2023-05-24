@@ -103,8 +103,10 @@ Route::group(['prefix' => 'evidence'], function () {
     Route::group(['middleware' => 'auth:api'], function () {
         Route::get('index', 'Api\EvidenceController@index');
         Route::post('store', 'Api\EvidenceController@store');
+        Route::post('arraystore', 'Api\EvidenceController@arrayStore');
         Route::put('update/{id}', 'Api\EvidenceController@update');
-        Route::get('showbyevidenceid/{id}', 'Api\EvidenceController@showByEvidneceId');
+        Route::get('showbyevidenceid/{id}', 'Api\EvidenceController@showByEvidenceId');
+        Route::get('showbyempoyeereportid/{id}', 'Api\EvidenceController@showByEmployeeReportId');
         Route::delete('destroy/{report_id}', 'Api\EvidenceController@destroy');
     });
 });
