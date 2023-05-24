@@ -689,7 +689,7 @@
         "/evidence/store": {
             "post": {
                 "tags": [
-                    "Evidnece"
+                    "Evidence"
                 ],
                 "summary": "Store Report",
                 "description": "Store Report",
@@ -704,6 +704,43 @@
                         }
                     }
                 },
+                "responses": {
+                    "200": {
+                        "description": "Successful operation"
+                    },
+                    "401": {
+                        "description": "Unauthenticated"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    }
+                },
+                "security": [
+                    {
+                        "bearer": []
+                    }
+                ]
+            }
+        },
+        "/evidence/showbyempoyeereportid/{id}": {
+            "get": {
+                "tags": [
+                    "Evidence"
+                ],
+                "summary": "Get One Evidence",
+                "description": "Return Commerce",
+                "operationId": "get Evidence",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "User Id",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
                 "responses": {
                     "200": {
                         "description": "Successful operation"
