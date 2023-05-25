@@ -722,6 +722,43 @@
                 ]
             }
         },
+        "/evidence/showbyevidenceid/{id}": {
+            "get": {
+                "tags": [
+                    "Evidence"
+                ],
+                "summary": "Get One Evidence",
+                "description": "Return Commerce",
+                "operationId": "get Evidence",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Employee Report Id",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful operation"
+                    },
+                    "401": {
+                        "description": "Unauthenticated"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    }
+                },
+                "security": [
+                    {
+                        "bearer": []
+                    }
+                ]
+            }
+        },
         "/evidence/showbyempoyeereportid/{id}": {
             "get": {
                 "tags": [
@@ -734,7 +771,7 @@
                     {
                         "name": "id",
                         "in": "path",
-                        "description": "User Id",
+                        "description": "Employee Report Id",
                         "required": true,
                         "schema": {
                             "type": "integer"
@@ -1235,6 +1272,40 @@
                         }
                     }
                 },
+                "responses": {
+                    "200": {
+                        "description": "Successful operation"
+                    },
+                    "401": {
+                        "description": "Unauthenticated"
+                    }
+                },
+                "security": [
+                    {
+                        "bearer": []
+                    }
+                ]
+            }
+        },
+        "/upload/getfile": {
+            "post": {
+                "tags": [
+                    "Upload"
+                ],
+                "summary": "Get file by url",
+                "description": "Return a File",
+                "operationId": "get File",
+                "parameters": [
+                    {
+                        "name": "path",
+                        "in": "query",
+                        "description": "File path",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
                 "responses": {
                     "200": {
                         "description": "Successful operation"

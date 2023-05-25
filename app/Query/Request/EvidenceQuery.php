@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use Illuminate\Validation\ValidationException;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\File;
 use Illuminate\Validation\Rule;
 
 
@@ -38,7 +39,7 @@ class EvidenceQuery implements IEvidenceQuery
     }
     
     public function store(Request $request){
-
+        
         $rules = [
             $this->name => 'required|string|min:1|max:128|',
             $this->file   => 'required',
@@ -69,9 +70,9 @@ class EvidenceQuery implements IEvidenceQuery
     }
     public function update(Request $request, int $id){}
     public function destroy(int $id){}
-    public function showByEvidenceId(Request $request, int $id){}
 
-    public function showByEmployeeReportId(Request $request, int $id){
+    public function showByEvidenceId(Request $request, int $id){
+        
         if ($id) {
             try {
                 $evidence = Evidence::select(
@@ -86,7 +87,33 @@ class EvidenceQuery implements IEvidenceQuery
                 
                 return response()->json([
                     'data' => [
-                        'evidence' => $evidence,
+                        'evidence' => $evidence                     
+                    ],
+                    'message' => 'Datos de Evidencia consultados Correctamente!'
+                ], 201);
+            } catch (ModelNotFoundException $e) {
+                return response()->json(['message' => "Evidencia con id {$id} no existe!", 'error' => $e->getMessage()], 403);
+            }
+        }
+    }
+
+    public function showByEmployeeReportId(Request $request, int $id){
+        
+        if ($id) {
+            try {
+                $evidence = Evidence::select(
+                    'id',
+                    'name',
+                    'file',
+                    'approved',
+                    'employee_report_id'
+                )
+                ->where('employee_report_id',$id)
+                ->get();
+                
+                return response()->json([
+                    'data' => [
+                        'evidence' => $evidence                     
                     ],
                     'message' => 'Datos de Evidencia consultados Correctamente!'
                 ], 201);
