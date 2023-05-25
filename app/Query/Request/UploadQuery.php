@@ -48,7 +48,7 @@ class UploadQuery implements IUploadQuery
             if (!$request->input('path')) {
                 return response()->json(['message' => 'No se ha suministrado una ruta de Archivo!!!'], 402);
             }
-            return response()->file(storage_path($request->input('path')));
+            return response()->file(public_path($request->input('path')));
         } catch (\Exception $e) {
             return response()->json(['message' => $e->getMessage()], 402);
         }
