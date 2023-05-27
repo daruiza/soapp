@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Query\Abstraction\IUploadQuery;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\File;
 
 class UploadQuery implements IUploadQuery
 {
@@ -43,7 +44,7 @@ class UploadQuery implements IUploadQuery
         }
     }
 
-    public function getFile(Request $request){
+    public function downloadFile(Request $request){
         try{
             if (!$request->input('path')) {
                 return response()->json(['message' => 'No se ha suministrado una ruta de Archivo!!!'], 402);
@@ -55,6 +56,45 @@ class UploadQuery implements IUploadQuery
                 );
             return response()->download(public_path($request->input('path')), $request->input('name') ?? 'name', $headers);
             //return response()->file(public_path($request->input('path')));
+        } catch (\Exception $e) {
+            return response()->json(['message' => $e->getMessage()], 402);
+        }
+    }
+
+    public function getFile(Request $request){
+        try{
+            if (!$request->input('path')) {
+                return response()->json(['message' => 'No se ha suministrado una ruta de Archivo!!!'], 402);
+            }
+            $headers = array(
+                'Content-Description: File Transfer',
+                'Content-Type: application/octet-stream',
+                );            
+            return response()->file(public_path($request->input('path')), $headers);
+        } catch (\Exception $e) {
+            return response()->json(['message' => $e->getMessage()], 402);
+        }
+    }
+
+    public function getBlob(Request $request){
+        try{
+            if (!$request->input('path')) {
+                return response()->json(['message' => 'No se ha suministrado una ruta de Archivo!!!'], 402);
+            }
+            $file = File::findOrFail(public_path($request->input('path')));
+            $fileupload = $file->fileupload;
+            $file_contents = base64_decode($fileupload);
+            $headers = array(
+                'Content-Description: File Transfer',
+                'Content-Type: application/octet-stream',
+                );            
+            return response($file_contents)
+                ->header('Cache-Control', 'no-cache private')
+                ->header('Content-Description', 'File Transfer')
+                ->header('Content-Type', $fileupload->type)
+                ->header('Content-length', strlen($file_contents))
+                ->header('Content-Disposition', 'attachment; filename=' . $file->name)
+                ->header('Content-Transfer-Encoding', 'binary');
         } catch (\Exception $e) {
             return response()->json(['message' => $e->getMessage()], 402);
         }
