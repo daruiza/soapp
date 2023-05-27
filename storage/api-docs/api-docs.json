@@ -1287,6 +1287,49 @@
                 ]
             }
         },
+        "/upload/downloadfile": {
+            "post": {
+                "tags": [
+                    "Upload"
+                ],
+                "summary": "Download file by url",
+                "description": "Download a File",
+                "operationId": "download File",
+                "parameters": [
+                    {
+                        "name": "path",
+                        "in": "query",
+                        "description": "File path",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "name",
+                        "in": "query",
+                        "description": "File name",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful operation"
+                    },
+                    "401": {
+                        "description": "Unauthenticated"
+                    }
+                },
+                "security": [
+                    {
+                        "bearer": []
+                    }
+                ]
+            }
+        },
         "/upload/getfile": {
             "post": {
                 "tags": [

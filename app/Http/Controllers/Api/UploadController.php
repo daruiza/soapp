@@ -47,11 +47,11 @@ class UploadController extends Controller
 
     /**
      * @OA\Post(
-     *      path="/upload/getfile",
-     *      operationId="get File",
+     *      path="/upload/downloadfile",
+     *      operationId="download File",
      *      tags={"Upload"},
-     *      summary="Get file by url",
-     *      description="Return a File",
+     *      summary="Download file by url",
+     *      description="Download a File",
      *      security={ {"bearer": {} }},
      *      @OA\Parameter(
      *          name="path",
@@ -71,6 +71,38 @@ class UploadController extends Controller
      *              type="string"
      *          )
      *      ),
+     *      @OA\Response(
+     *          response=200,
+     *          description="Successful operation",
+     *       ),
+     *      @OA\Response(
+     *          response=401,
+     *          description="Unauthenticated",
+     *      )
+     *     )
+     */
+    public function downloadFile(Request $request)
+    {
+        return $this->UploadQuery->downloadFile($request);
+    }
+
+    /**
+     * @OA\Post(
+     *      path="/upload/getfile",
+     *      operationId="get File",
+     *      tags={"Upload"},
+     *      summary="Get file by url",
+     *      description="Return a File",
+     *      security={ {"bearer": {} }},
+     *      @OA\Parameter(
+     *          name="path",
+     *          description="File path",
+     *          required=true,
+     *          in="query",
+     *          @OA\Schema(
+     *              type="string"
+     *          )
+     *      ),      
      *      @OA\Response(
      *          response=200,
      *          description="Successful operation",
