@@ -84,6 +84,7 @@ class UploadQuery implements IUploadQuery
             $file = File::findOrFail(public_path($request->input('path')));
             $fileupload = $file->fileupload;
             $file_contents = base64_decode($fileupload);
+            
             $headers = array(
                 'Content-Description: File Transfer',
                 'Content-Type: application/octet-stream',

@@ -118,6 +118,38 @@ class UploadController extends Controller
         return $this->UploadQuery->getFile($request);
     }
 
+    /**
+     * @OA\Post(
+     *      path="/upload/getblob",
+     *      operationId="get Blob",
+     *      tags={"Upload"},
+     *      summary="Get Blob file by url",
+     *      description="Return a Blob File",
+     *      security={ {"bearer": {} }},
+     *      @OA\Parameter(
+     *          name="path",
+     *          description="File path",
+     *          required=true,
+     *          in="query",
+     *          @OA\Schema(
+     *              type="string"
+     *          )
+     *      ),      
+     *      @OA\Response(
+     *          response=200,
+     *          description="Successful operation",
+     *       ),
+     *      @OA\Response(
+     *          response=401,
+     *          description="Unauthenticated",
+     *      )
+     *     )
+     */
+    public function getBlob(Request $request)
+    {
+        return $this->UploadQuery->getBlob($request);
+    }
+
     
 
     

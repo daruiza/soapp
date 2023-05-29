@@ -8,4 +8,6 @@ interface IUploadQuery {
     public function photo(Request $request);       
     public function downloadFile(Request $request); 
     public function getFile(Request $request); 
+    public function getBlob(Request $request); 
+    
 }
