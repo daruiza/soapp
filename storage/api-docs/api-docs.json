@@ -1364,6 +1364,40 @@
                 ]
             }
         },
+        "/upload/getblob": {
+            "post": {
+                "tags": [
+                    "Upload"
+                ],
+                "summary": "Get Blob file by url",
+                "description": "Return a Blob File",
+                "operationId": "get Blob",
+                "parameters": [
+                    {
+                        "name": "path",
+                        "in": "query",
+                        "description": "File path",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful operation"
+                    },
+                    "401": {
+                        "description": "Unauthenticated"
+                    }
+                },
+                "security": [
+                    {
+                        "bearer": []
+                    }
+                ]
+            }
+        },
         "/user/index": {
             "get": {
                 "tags": [
