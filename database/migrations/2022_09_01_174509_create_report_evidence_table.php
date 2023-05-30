@@ -17,6 +17,7 @@ class CreateReportEvidenceTable extends Migration
             $table->id();
             $table->string('name');
             $table->string('file');
+            $table->string('type');
             $table->boolean('approved')->default(0);
             
             $table->unsignedBigInteger('employee_report_id');

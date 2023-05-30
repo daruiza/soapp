@@ -75,29 +75,4 @@ class UploadQuery implements IUploadQuery
             return response()->json(['message' => $e->getMessage()], 402);
         }
     }
-
-    public function getBlob(Request $request){
-        try{
-            if (!$request->input('path')) {
-                return response()->json(['message' => 'No se ha suministrado una ruta de Archivo!!!'], 402);
-            }
-            //$file = File::findOrFail(public_path($request->input('path')));
-            $file = File::get(public_path($request->input('path')));            
-            $file_contents = base64_decode($file);
-            
-            $headers = array(
-                'Content-Description: File Transfer',
-                'Content-Type: application/octet-stream',
-                );            
-            return response($file_contents)
-                ->header('Cache-Control', 'no-cache private')
-                ->header('Content-Description', 'File Transfer')
-                ->header('Content-Type', $fileupload->type)
-                ->header('Content-length', strlen($file_contents))
-                ->header('Content-Disposition', 'attachment; filename=' . $file->name)
-                ->header('Content-Transfer-Encoding', 'binary');
-        } catch (\Exception $e) {
-            return response()->json(['message' => $e->getMessage()], 402);
-        }
-    }
 }
