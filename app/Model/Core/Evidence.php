@@ -12,6 +12,7 @@ class Evidence extends Model
         'id',        
         'name',
         'file',
+        'type',
         'approved',
         'employee_report_id'        
     ];
