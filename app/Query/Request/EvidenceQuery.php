@@ -17,6 +17,7 @@ class EvidenceQuery implements IEvidenceQuery
 {
     private $name = 'name';
     private $file = 'file';
+    private $type = 'type';
     private $approved = 'approved';
     private $employee_report_id = 'employee_report_id';
 
@@ -43,6 +44,7 @@ class EvidenceQuery implements IEvidenceQuery
         $rules = [
             $this->name => 'required|string|min:1|max:128|',
             $this->file   => 'required',
+            $this->type   => 'required',
             $this->employee_report_id   => 'required'
         ];
         try {
@@ -79,6 +81,7 @@ class EvidenceQuery implements IEvidenceQuery
                     'id',
                     'name',
                     'file',
+                    'type',
                     'approved',
                     'employee_report_id'
                 )
@@ -105,6 +108,7 @@ class EvidenceQuery implements IEvidenceQuery
                     'id',
                     'name',
                     'file',
+                    'type',
                     'approved',
                     'employee_report_id'
                 )
