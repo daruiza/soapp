@@ -118,5 +118,46 @@ class EvidenceController extends Controller
         return $this->EvidenceQuery->showByEmployeeReportId($request, $id);
     }
 
+        /**
+     * @OA\Put(
+     *      path="/evidence/update/{id}",
+     *      operationId="getUpdateEvidenceById",
+     *      tags={"Evidence"},
+     *      summary="Update One Evidence By one Id",
+     *      description="Update One Evidence",
+     *      security={ {"bearer": {} }},
+     *      @OA\Parameter(
+     *          name="id",
+     *          description="Evidence Id",
+     *          required=true,
+     *          in="path",
+     *          @OA\Schema(
+     *              type="integer"
+     *          )
+     *      ),
+     *       @OA\RequestBody(
+     *          required=true,
+     *          @OA\JsonContent(ref="#/components/schemas/EvidenceUpdate")
+     *      ),
+     *      @OA\Response(
+     *          response=200,
+     *          description="Successful operation",
+     *       ),
+     *      @OA\Response(
+     *          response=401,
+     *          description="Unauthenticated"
+     *      ),
+     *      @OA\Response(
+     *          response=403,
+     *          description="Forbidden"
+     *      )
+     *     )
+     */
+    public function update(Request $request, $id)
+    {
+        return $this->EvidenceQuery->update($request, $id);
+    }
+
+
 
 }

@@ -2,12 +2,12 @@
 
 /**
  * @OA\Schema(
- *      title="Evidence",
- *      description="Evidence body data",
+ *      title="EvidenceUpdate",
+ *      description="EvidenceUpdate body data",
  *      type="object"
  * )
  */
-class Evidence
+class EvidenceUpdate
 {
 
     /**
@@ -20,17 +20,7 @@ class Evidence
      * @var string
      */
     public $name;
-
-    /**
-     * @OA\Property(
-     *      title="file",
-     *      description="File of the evidence",
-     *      example="FileHostingName"
-     * )
-     *
-     * @var string
-     */
-    public $file;
+    
 
     /**
      * @OA\Property(
@@ -48,7 +38,7 @@ class Evidence
      * @OA\Property(
      *      title="approved",
      *      description="approved of the evidence",
-     *      example=true
+     *      example=1
      * )
      *
      * @var boolean
