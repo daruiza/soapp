@@ -75,9 +75,9 @@ Route::group(['prefix' => 'employee'], function () {
     Route::group(['middleware' => 'auth:api'], function () {
         Route::get('index', 'Api\EmployeeController@index');
         Route::post('store', 'Api\EmployeeController@store');
-        Route::put('update/{employee_id}', 'Api\EmployeeController@update');
+        Route::put('update/{id}', 'Api\EmployeeController@update');
         Route::get('showbyemployeeid/{user_id}', 'Api\EmployeeController@showByEmployeeId');
-        Route::delete('destroy/{employee_id}', 'Api\EmployeeController@destroy');
+        Route::delete('destroy/{id}', 'Api\EmployeeController@destroy');
     });
 });
 

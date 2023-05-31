@@ -70,7 +70,50 @@ class EvidenceQuery implements IEvidenceQuery
             return response()->json(['message' => 'Algo salio mal!', 'error' => $e], 403);
         }       
     }
-    public function update(Request $request, int $id){}
+    
+    public function update(Request $request, int $id)
+    {
+        if ($id) {
+            try {
+                $evidence = Evidence::findOrFail($id);
+                
+                if (auth()->check()) {
+                    $rules = [                        
+                        $this->name                 => 'required|string|min:1|max:128|',
+                        $this->type                 => 'required|string|min:1|max:128|',
+                        $this->approved             => 'numeric',
+                        $this->employee_report_id   => 'numeric',
+                        
+                    ];
+                    $validator = Validator::make($request->all(), $rules);
+                    if ($validator->fails()) {
+                        throw (new ValidationException($validator->errors()->getMessages()));
+                    }
+                                        
+                    $evidence->name = $request->name ?? $evidence->name;
+                    $evidence->type = $request->type ?? $evidence->type;
+                    $evidence->approved = $request->approved ?? $evidence->approved;
+                    $evidence->employee_report_id = $request->employee_report_id ?? $evidence->employee_report_id;
+                    
+                    $evidence->save();
+                    return response()->json([
+                        'data' => [
+                            'evidence' => $evidence,                            
+                        ],
+                        'message' => 'Colaborador actualizado con éxito!'
+                    ], 201);
+                } else {
+                    return response()->json(['message' => 'No tienes permiso para actualizar el Colaborador!'], 403);
+                }
+                
+            } catch (ModelNotFoundException $ex) {
+                return response()->json(['message' => "Colaborador con id {$id} no existe!", 'error' => $ex->getMessage()], 404);
+            } catch (\Exception $e) {
+                return response()->json(['message' => 'Algo salio mal!', 'error' => $e], 403);
+            }
+        }
+    }
+
     public function destroy(int $id){}
 
     public function showByEvidenceId(Request $request, int $id){
