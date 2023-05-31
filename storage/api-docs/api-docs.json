@@ -796,6 +796,53 @@
                 ]
             }
         },
+        "/evidence/update/{id}": {
+            "put": {
+                "tags": [
+                    "Evidence"
+                ],
+                "summary": "Update One Evidence By one Id",
+                "description": "Update One Evidence",
+                "operationId": "getUpdateEvidenceById",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Evidence Id",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/EvidenceUpdate"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Successful operation"
+                    },
+                    "401": {
+                        "description": "Unauthenticated"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    }
+                },
+                "security": [
+                    {
+                        "bearer": []
+                    }
+                ]
+            }
+        },
         "/generallist/index": {
             "get": {
                 "tags": [
@@ -1288,7 +1335,7 @@
             }
         },
         "/upload/downloadfile": {
-            "post": {
+            "get": {
                 "tags": [
                     "Upload"
                 ],
@@ -1331,47 +1378,13 @@
             }
         },
         "/upload/getfile": {
-            "post": {
+            "get": {
                 "tags": [
                     "Upload"
                 ],
                 "summary": "Get file by url",
                 "description": "Return a File",
                 "operationId": "get File",
-                "parameters": [
-                    {
-                        "name": "path",
-                        "in": "query",
-                        "description": "File path",
-                        "required": true,
-                        "schema": {
-                            "type": "string"
-                        }
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "Successful operation"
-                    },
-                    "401": {
-                        "description": "Unauthenticated"
-                    }
-                },
-                "security": [
-                    {
-                        "bearer": []
-                    }
-                ]
-            }
-        },
-        "/upload/getblob": {
-            "post": {
-                "tags": [
-                    "Upload"
-                ],
-                "summary": "Get Blob file by url",
-                "description": "Return a Blob File",
-                "operationId": "get Blob",
                 "parameters": [
                     {
                         "name": "path",
@@ -1954,6 +1967,42 @@
                         "description": "File of the evidence",
                         "type": "string",
                         "example": "FileHostingName"
+                    },
+                    "type": {
+                        "title": "type",
+                        "description": "Type File",
+                        "type": "string",
+                        "example": "image/jpeg"
+                    },
+                    "approved": {
+                        "title": "approved",
+                        "description": "approved of the evidence",
+                        "type": "boolean",
+                        "example": true
+                    },
+                    "employee_report_id": {
+                        "title": "employee_report_id",
+                        "description": "employee_report_id of the Evidence",
+                        "example": 1
+                    }
+                },
+                "type": "object"
+            },
+            "EvidenceUpdate": {
+                "title": "EvidenceUpdate",
+                "description": "EvidenceUpdate body data",
+                "properties": {
+                    "name": {
+                        "title": "name",
+                        "description": "Name of the evidence",
+                        "type": "string",
+                        "example": "FileName"
+                    },
+                    "type": {
+                        "title": "type",
+                        "description": "Type File",
+                        "type": "string",
+                        "example": "image/jpeg"
                     },
                     "approved": {
                         "title": "approved",
