@@ -87,7 +87,7 @@ Route::group(['prefix' => 'report'], function () {
         Route::post('store', 'Api\ReportController@store');
         Route::put('update/{id}', 'Api\ReportController@update');
         Route::get('showbyreportid/{id}', 'Api\ReportController@showByReportId');
-        Route::delete('destroy/{report_id}', 'Api\ReportController@destroy');
+        Route::delete('destroy/{id}', 'Api\ReportController@destroy');
     });
 });
 
@@ -97,7 +97,7 @@ Route::group(['prefix' => 'employeereport'], function () {
         Route::post('store', 'Api\EmployeeReportController@store');
         Route::put('update/{id}', 'Api\EmployeeReportController@update');
         Route::get('showbyemployeereportid/{id}', 'Api\EmployeeReportController@showByEmployeeReportId');
-        Route::delete('destroy/{report_id}', 'Api\EmployeeReportController@destroy');
+        Route::delete('destroy/{id}', 'Api\EmployeeReportController@destroy');
     });
 });
 
@@ -109,7 +109,7 @@ Route::group(['prefix' => 'evidence'], function () {
         Route::put('update/{id}', 'Api\EvidenceController@update');
         Route::get('showbyevidenceid/{id}', 'Api\EvidenceController@showByEvidenceId');
         Route::get('showbyempoyeereportid/{id}', 'Api\EvidenceController@showByEmployeeReportId');
-        Route::delete('destroy/{report_id}', 'Api\EvidenceController@destroy');
+        Route::delete('destroy/{id}', 'Api\EvidenceController@destroy');
     });
 });
 

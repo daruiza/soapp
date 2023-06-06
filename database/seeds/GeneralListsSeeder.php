@@ -188,5 +188,21 @@ class GeneralListsSeeder extends Seeder
             'name' => 'project',
             'value' => 'MEDIOAMBIENTE'
         ));
+
+        DB::table('general_lists')->insert(array(
+            'name' => 'type_medical_test',
+            'value' => 'General'
+        ));
+
+        DB::table('general_lists')->insert(array(
+            'name' => 'type_medical_test',
+            'value' => 'Físico'
+        ));
+
+        DB::table('general_lists')->insert(array(
+            'name' => 'type_medical_test',
+            'value' => 'Psicológico'
+        ));
     }
+
 }
