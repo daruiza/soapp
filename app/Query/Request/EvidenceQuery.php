@@ -8,8 +8,7 @@ use Illuminate\Validation\ValidationException;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\File;
-use Illuminate\Validation\Rule;
-
+use Illuminate\Support\Facades\Log;
 
 use App\Query\Abstraction\IEvidenceQuery;
 
@@ -114,7 +113,31 @@ class EvidenceQuery implements IEvidenceQuery
         }
     }
 
-    public function destroy(int $id){}
+    public function destroy(int $id) {
+        try {
+            $evidence = Evidence::findOrFail($id);
+            
+            // Eliminamos el archivo relacionado            
+            if(File::exists(public_path($evidence->file))){
+                File::delete(public_path($evidence->file));
+                $file_delete = true;
+            } else {
+                Log::notice('Borrar Archivo fallo: '.public_path($evidence->file));
+            }            
+            
+            $evidence->delete();
+            return response()->json([
+                'data' => [
+                    'evidence' => $evidence,
+                ],
+                'message' => 'Evidencia eliminado exitosamente!'
+            ], 201);
+            
+            
+        } catch (ModelNotFoundException $e) {
+            return response()->json(['message' => "Evidencia con id {$id} no existe!", 'error' => $e->getMessage()], 403);
+        }
+    }
 
     public function showByEvidenceId(Request $request, int $id){
         

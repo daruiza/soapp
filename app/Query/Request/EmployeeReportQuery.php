@@ -4,6 +4,7 @@ namespace App\Query\Request;
 
 
 use App\Model\Core\EmployeeReport;
+use App\Model\Core\Report;
 
 use Illuminate\Support\Facades\DB;
 
@@ -12,6 +13,8 @@ use Carbon\Carbon;
 
 use App\Query\Abstraction\IEmployeeReportQuery;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
+use Illuminate\Support\Facades\File;
+use Illuminate\Support\Facades\Log;
 
 class EmployeeReportQuery implements IEmployeeReportQuery
 {
@@ -69,6 +72,31 @@ class EmployeeReportQuery implements IEmployeeReportQuery
     
     public function destroy(Int $id)
     {
-       
+        //Borramos las evidecnias
+        //borramos al carpeta de imagenes de las evidencias
+        try {
+            $employee_report = EmployeeReport::findOrFail($id);
+            $report = Report::findOrFail($employee_report->report_id);            
+            $path = "storage/images/commerce/{$report->commerce_id}/report/{$report->id}/employee_report/{$employee_report->id}";
+            
+
+            // Eliminamos los archivos o el directorio del EMPLOYEE_REPORT            
+            if(File::exists(public_path($path))){
+                File::deleteDirectory(public_path($path));                                
+            }else{
+                Log::notice('Borrar Carpeta/Directorio fallo: '.public_path($path));
+            }
+            
+            $employee_report->delete();
+            return response()->json([
+                'data' => [
+                    'employee_report' => $employee_report,
+                ],
+                'message' => 'Evidencia eliminado exitosamente!'
+            ], 201);
+
+        } catch (ModelNotFoundException $e) {
+            return response()->json(['message' => "Datos EmployeeReport con id {$id} no existe!", 'error' => $e->getMessage()], 403);
+        }
     }
 }
