@@ -18,6 +18,8 @@ use Illuminate\Support\Facades\Validator;
 use Illuminate\Validation\Rule;
 use App\Query\Abstraction\IReportQuery;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
+use Illuminate\Support\Facades\File;
+use Illuminate\Support\Facades\Log;
 
 class ReportQuery implements IReportQuery
 {
@@ -248,6 +250,16 @@ class ReportQuery implements IReportQuery
         if ($id) {
             try {
                 $report = Report::findOrFail($id);
+            
+                //Borramos el directorio
+                $path = "storage/images/commerce/{$report->commerce_id}/report/{$report->id}";
+                // Eliminamos los archivos o el directorio Report            
+                if(File::exists(public_path($path))){
+                    File::deleteDirectory(public_path($path));                                
+                }else{
+                    Log::notice('Borrar Carpeta/Directorio fallo: '.public_path($path));
+                }
+
                 $report->delete();
                 return response()->json([
                     'data' => [

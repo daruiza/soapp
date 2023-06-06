@@ -686,6 +686,43 @@
                 ]
             }
         },
+        "/employeereport/destroy/{id}": {
+            "delete": {
+                "tags": [
+                    "Employee Report"
+                ],
+                "summary": "Delete One Employee Report By one Id",
+                "description": "Delete One Employee Report",
+                "operationId": "getDestroyEmployeeReportById",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Employee Report Id",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful operation"
+                    },
+                    "401": {
+                        "description": "Unauthenticated"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    }
+                },
+                "security": [
+                    {
+                        "bearer": []
+                    }
+                ]
+            }
+        },
         "/evidence/store": {
             "post": {
                 "tags": [
@@ -825,6 +862,43 @@
                         }
                     }
                 },
+                "responses": {
+                    "200": {
+                        "description": "Successful operation"
+                    },
+                    "401": {
+                        "description": "Unauthenticated"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    }
+                },
+                "security": [
+                    {
+                        "bearer": []
+                    }
+                ]
+            }
+        },
+        "/evidence/destroy/{id}": {
+            "delete": {
+                "tags": [
+                    "Evidence"
+                ],
+                "summary": "Delete One Evidence By one Id",
+                "description": "Delete One Evidence",
+                "operationId": "getDestroyEvidenceById",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Evidence Id",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
                 "responses": {
                     "200": {
                         "description": "Successful operation"
@@ -2008,7 +2082,7 @@
                         "title": "approved",
                         "description": "approved of the evidence",
                         "type": "boolean",
-                        "example": true
+                        "example": 1
                     },
                     "employee_report_id": {
                         "title": "employee_report_id",
