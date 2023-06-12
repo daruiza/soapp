@@ -16,7 +16,7 @@ class Employee extends Model
         'lastname',
         'email',
         'phone',
-        'adress',
+        'adress',        
         'active',
         'photo',
         'birth_date',
@@ -33,7 +33,7 @@ class Employee extends Model
     public function scopeState($query, $employeeid, $reportid)
     {
         return is_null($reportid) || is_null($employeeid) ?  null : $query
-            ->select('employee_report.id', 'employee_report.employee_state')
+            ->select('employee_report.id', 'employee_report.employee_state', 'employee_report.object')
             ->where('employees.id', $employeeid)
             ->where('employee_report.report_id', $reportid)
             ->leftJoin('employee_report', 'employee_report.employee_id', '=', 'employees.id')
