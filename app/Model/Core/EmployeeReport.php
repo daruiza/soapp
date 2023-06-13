@@ -10,6 +10,7 @@ class EmployeeReport extends Model
     protected $table = 'employee_report';
     protected $fillable = [
         'id',
+        'object',
         'employee_state',
         'employee_id',
         'report_id'        

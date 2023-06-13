@@ -10,6 +10,18 @@
 class EmployeeReport
 {
 
+
+    /**
+     * @OA\Property(
+     *      title="object",
+     *      description="Object of the EmployeeReport",
+     *      example="{}"
+     * )
+     *
+     * @var string
+     */
+    public $object;
+
     /**
      * @OA\Property(
      *      title="employee_state",
