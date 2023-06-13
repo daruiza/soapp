@@ -66,7 +66,28 @@ class EmployeeReportQuery implements IEmployeeReportQuery
 
     public function update(Request $request, Int $id)
     {
-      
+        if ($id) {
+            try {
+                $employee_report = EmployeeReport::findOrFail($id);
+                
+                if (auth()->check()) {
+                    $employee_report->object = $request->object ?? $employee_report->object;
+                    
+                    $employee_report->save();
+                    return response()->json([
+                        'data' => [
+                            'employee_report' => $employee_report,                            
+                        ],
+                        'message' => 'Reporte Colaborador actualizado con éxito!'
+                    ], 201);
+                }
+            } catch (ModelNotFoundException $ex) {
+                return response()->json(['message' => "Colaborador con id {$id} no existe!", 'error' => $ex->getMessage()], 404);
+            } catch (\Exception $e) {
+                return response()->json(['message' => 'Algo salio mal!', 'error' => $e], 403);
+            }
+        } 
+        return response()->json(['request' => $request], 200);
     }
 
     

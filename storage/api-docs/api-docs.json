@@ -686,6 +686,53 @@
                 ]
             }
         },
+        "/employeereport/update/{id}": {
+            "put": {
+                "tags": [
+                    "Employee Report"
+                ],
+                "summary": "Update Employee Report",
+                "description": "Update Employee Report",
+                "operationId": "updateEmployees",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Employee Report Id",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/EmployeeReport"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Successful operation"
+                    },
+                    "401": {
+                        "description": "Unauthenticated"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    }
+                },
+                "security": [
+                    {
+                        "bearer": []
+                    }
+                ]
+            }
+        },
         "/employeereport/destroy/{id}": {
             "delete": {
                 "tags": [
@@ -1935,6 +1982,12 @@
                 "title": "EmployeeReport",
                 "description": "EmployeeReport body data",
                 "properties": {
+                    "object": {
+                        "title": "object",
+                        "description": "Object of the EmployeeReport",
+                        "type": "string",
+                        "example": "{}"
+                    },
                     "employee_state": {
                         "title": "employee_state",
                         "description": "employee_state of the Employee",
