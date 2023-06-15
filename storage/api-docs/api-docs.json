@@ -1982,10 +1982,10 @@
                 "title": "EmployeeReport",
                 "description": "EmployeeReport body data",
                 "properties": {
-                    "object": {
-                        "title": "object",
-                        "description": "Object of the EmployeeReport",
-                        "type": "string",
+                    "attributes": {
+                        "title": "attributes",
+                        "description": "attributes of the EmployeeReport",
+                        "type": "object",
                         "example": "{}"
                     },
                     "employee_state": {
