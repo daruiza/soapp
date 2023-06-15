@@ -13,14 +13,14 @@ class EmployeeReport
 
     /**
      * @OA\Property(
-     *      title="object",
-     *      description="Object of the EmployeeReport",
+     *      title="attributes",
+     *      description="attributes of the EmployeeReport",
      *      example="{}"
      * )
      *
-     * @var string
+     * @var object
      */
-    public $object;
+    public $attributes;
 
     /**
      * @OA\Property(

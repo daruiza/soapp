@@ -71,7 +71,7 @@ class EmployeeReportQuery implements IEmployeeReportQuery
                 $employee_report = EmployeeReport::findOrFail($id);
                 
                 if (auth()->check()) {
-                    $employee_report->object = $request->object ?? $employee_report->object;
+                    $employee_report->attributes = $request->attributes ?? $employee_report->attributes;
                     
                     $employee_report->save();
                     return response()->json([
