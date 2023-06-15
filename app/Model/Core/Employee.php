@@ -33,7 +33,7 @@ class Employee extends Model
     public function scopeState($query, $employeeid, $reportid)
     {
         return is_null($reportid) || is_null($employeeid) ?  null : $query
-            ->select('employee_report.id', 'employee_report.employee_state', 'employee_report.object')
+            ->select('employee_report.id', 'employee_report.employee_state', 'employee_report.attributes')
             ->where('employees.id', $employeeid)
             ->where('employee_report.report_id', $reportid)
             ->leftJoin('employee_report', 'employee_report.employee_id', '=', 'employees.id')
