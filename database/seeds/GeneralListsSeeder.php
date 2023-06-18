@@ -190,18 +190,38 @@ class GeneralListsSeeder extends Seeder
         ));
 
         DB::table('general_lists')->insert(array(
-            'name' => 'type_medical_test',
-            'value' => 'General'
+            'name' => 'type_exam',
+            'value' => 'Ingreso'
         ));
 
         DB::table('general_lists')->insert(array(
-            'name' => 'type_medical_test',
-            'value' => 'Físico'
+            'name' => 'type_exam',
+            'value' => 'Periódico'
         ));
 
         DB::table('general_lists')->insert(array(
-            'name' => 'type_medical_test',
-            'value' => 'Psicológico'
+            'name' => 'type_exam',
+            'value' => 'Retiro'
+        ));
+
+        DB::table('general_lists')->insert(array(
+            'name' => 'exam',
+            'value' => 'Visiometría'
+        ));
+
+        DB::table('general_lists')->insert(array(
+            'name' => 'exam',
+            'value' => 'Audiometría'
+        ));
+
+        DB::table('general_lists')->insert(array(
+            'name' => 'exam',
+            'value' => 'Espicometría'
+        ));
+
+        DB::table('general_lists')->insert(array(
+            'name' => 'exam',
+            'value' => 'Otro'
         ));
     }
 
