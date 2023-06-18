@@ -24,6 +24,7 @@ class CreateEmployeesTable extends Migration
             $table->string('phone', 128)->nullable()->default(null);
             $table->string('photo', 128)->nullable()->default(null);
             $table->string('adress', 256)->nullable()->default(null);
+            $table->string('eps', 128)->nullable()->default(null);
             $table->boolean('is_employee')->default(true);
             $table->boolean('active')->default(true);
             $table->integer('commerce_id')->default(1);

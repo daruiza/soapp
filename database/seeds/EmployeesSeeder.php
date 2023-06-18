@@ -22,6 +22,7 @@ class EmployeesSeeder extends Seeder
             'phone' => '215478596',
             'adress' => 'San Pedro',
             'photo' => 'avatar',
+            'eps' => 'SURA',
             'commerce_id'=> 1
         ));
 
@@ -35,6 +36,7 @@ class EmployeesSeeder extends Seeder
             'phone' => '2154716',
             'adress' => 'San Jose',
             'photo' => 'avatar',
+            'eps' => 'SURA',
             'commerce_id'=> 1
         ));
 
@@ -48,6 +50,7 @@ class EmployeesSeeder extends Seeder
             'phone' => '2154716',
             'adress' => 'San Jose',
             'photo' => 'avatar',
+            'eps' => 'SURA',
             'commerce_id'=> 1
         ));
 
@@ -61,6 +64,7 @@ class EmployeesSeeder extends Seeder
             'phone' => '2154716',
             'adress' => 'San Jose',
             'photo' => 'avatar',
+            'eps' => 'SURA',
             'commerce_id'=> 2
         ));
 
@@ -74,6 +78,7 @@ class EmployeesSeeder extends Seeder
             'phone' => '2154716',
             'adress' => 'Cr 86c # 53c-41',
             'photo' => 'avatar',
+            'eps' => 'SURA',
             'commerce_id'=> 2
         ));
 
@@ -87,6 +92,7 @@ class EmployeesSeeder extends Seeder
             'phone' => '2154716',
             'adress' => 'Cl60 # 75 -150',
             'photo' => 'avatar',
+            'eps' => 'SURA',
             'commerce_id'=> 2
         ));
     }
