@@ -1951,6 +1951,12 @@
                         "type": "string",
                         "example": "avatar"
                     },
+                    "eps": {
+                        "title": "eps",
+                        "description": "eps of the user",
+                        "type": "string",
+                        "example": "SURA"
+                    },
                     "commerce_id": {
                         "title": "commerce_id",
                         "description": "commerce_id of the Employee",
