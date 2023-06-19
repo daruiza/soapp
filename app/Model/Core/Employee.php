@@ -19,6 +19,7 @@ class Employee extends Model
         'adress',        
         'active',
         'photo',
+        'eps',
         'birth_date',
         'commerce_id',
         'is_employee'

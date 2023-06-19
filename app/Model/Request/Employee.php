@@ -111,6 +111,17 @@ class Employee
 
     /**
      * @OA\Property(
+     *      title="eps",
+     *      description="eps of the user",
+     *      example="SURA"
+     * )
+     *
+     * @var string
+     */
+    public $eps;
+
+    /**
+     * @OA\Property(
      *      title="commerce_id",
      *      description="commerce_id of the Employee",
      *      example=1
