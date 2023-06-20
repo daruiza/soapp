@@ -19,10 +19,11 @@ use Carbon\Carbon;
 class EmployeeQuery implements IEmployeeQuery
 {
     private $identification = 'identification';
-    private $name = 'name';
+    private $name   = 'name';
     private $lastname = 'lastname';
-    private $email = 'email';
-    private $phone = 'phone';
+    private $email  = 'email';
+    private $phone  = 'phone';
+    private $eps    = 'eps';
 
     // retorna todos los colaboradores de un comercio
     // además de los datos de el último reporte en el que
@@ -59,6 +60,7 @@ class EmployeeQuery implements IEmployeeQuery
                 $this->setAtributeIndexQuery($request->lastname, $orquery, 'employees', 'lastname');
                 $this->setAtributeIndexQuery($request->email, $orquery, 'employees', 'email');
                 $this->setAtributeIndexQuery($request->phone, $orquery, 'employees', 'phone');
+                $this->setAtributeIndexQuery($request->eps, $orquery, 'employees', 'eps');
                 $this->setAtributeIndexQuery($request->adress, $orquery, 'employees', 'adress');
 
                 if (isset($request->active)) {
@@ -108,6 +110,7 @@ class EmployeeQuery implements IEmployeeQuery
             $this->name           => 'required|string|min:1|max:128|',
             $this->lastname       => 'required|string|min:1|max:128|',
             $this->phone          => 'numeric|digits_between:7,10',
+            $this->eps            => 'required|string|min:1|max:128|',
         ];
         try {
             // Ejecutamos el validador y en caso de que falle devolvemos la respuesta
@@ -165,6 +168,7 @@ class EmployeeQuery implements IEmployeeQuery
                         $this->name           => 'required|string|min:1|max:128|',
                         $this->lastname       => 'required|string|min:1|max:128|',
                         $this->phone          => 'numeric|digits_between:7,10|',
+                        $this->eps            => 'required|string|min:1|max:128|',
                     ];
                     $validator = Validator::make($request->all(), $rules);
                     if ($validator->fails()) {
@@ -179,6 +183,7 @@ class EmployeeQuery implements IEmployeeQuery
                     $employee->adress = $request->adress ?? $employee->adress;
                     $employee->phone = $request->phone ?? $employee->phone;
                     $employee->photo = $request->photo ?? $employee->photo;
+                    $employee->eps = $request->eps ?? $employee->eps;
                     $employee->commerce_id = $request->commerce_id ?? $employee->commerce_id;
                     $employee->is_employee = $request->is_employee ?? $employee->is_employee;
                     $employee->save();
