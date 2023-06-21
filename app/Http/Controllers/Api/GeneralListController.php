@@ -115,6 +115,42 @@ class GeneralListController extends Controller
     }
 
     /**
+     * @OA\Get(
+     *      path="/generallist/showbynamelist",
+     *      operationId="get General List By Name List",
+     *      tags={"generallist"},
+     *      summary="Get General List By Name",
+     *      description="Return General List",
+     *      security={ {"bearer": {} }},
+     *      @OA\Parameter(
+     *          name="name",
+     *          description="General List Name",
+     *          required=true,
+     *          in="query",
+     *          @OA\Schema(
+     *              type="string"
+     *          )
+     *      ),
+     *      @OA\Response(
+     *          response=200,
+     *          description="Successful operation",
+     *       ),
+     *      @OA\Response(
+     *          response=401,
+     *          description="Unauthenticated"
+     *      ),
+     *      @OA\Response(
+     *          response=403,
+     *          description="Forbidden"
+     *      )
+     *     )
+     */
+    public function showByNameList(Request $request)
+    {
+        return $this->GeneralListQuery->showByNameList($request);
+    }    
+
+    /**
      * @OA\Post(
      *      path="/generallist/store",
      *      operationId="store General List",

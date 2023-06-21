@@ -75,6 +75,38 @@ class GeneralListQuery implements IGeneralListQuery
         }
     }
 
+    public function showByNameList(Request $request)
+    {
+        if ($request->name) {
+            try {
+                $generallist = GeneralList::query()
+                    ->select(['id', 'name', 'value', 'index'])
+                    ->where(function ($orquery) use ($request) {
+                        if (isset($request->name)) {
+                            foreach (explode(",", $request->name) as $value) {
+                                $orquery->orWhere(
+                                    'name',
+                                    'LIKE',
+                                    $value
+                                );
+                            }
+                        }
+                        $orquery;
+                    })                    
+                    //->toSql();
+                    ->get();
+                return response()->json([
+                    'data' => [
+                        'generallist' => $generallist,
+                    ],
+                    'message' => 'Datos de lista general Consultados Correctamente!'
+                ], 201);
+            } catch (\Exception $e) {
+                return response()->json(['message' => 'Algo salio mal!', 'error' => $e->getMessage()], 403);
+            }
+        }
+    }
+
     public function store(Request $request)
     {
         $rules = [
