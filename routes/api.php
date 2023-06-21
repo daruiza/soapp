@@ -64,6 +64,7 @@ Route::group(['prefix' => 'generallist'], function () {
         Route::get('index', 'Api\GeneralListController@index');
         Route::get('showbyid/{id}', 'Api\GeneralListController@showById');
         Route::get('showbyname', 'Api\GeneralListController@showByName');
+        Route::get('showbynamelist', 'Api\GeneralListController@showByNameList');        
         Route::post('store', 'Api\GeneralListController@store');
         Route::delete('destroy/{id}', 'Api\GeneralListController@destroy');
         Route::put('update/{id}', 'Api\GeneralListController@update');
