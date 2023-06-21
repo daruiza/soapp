@@ -223,6 +223,22 @@ class GeneralListsSeeder extends Seeder
             'name' => 'exam',
             'value' => 'Otro'
         ));
+
+        DB::table('general_lists')->insert(array(
+            'name' => 'event',
+            'value' => 'Accidente'
+        ));
+
+        DB::table('general_lists')->insert(array(
+            'name' => 'event',
+            'value' => 'Incidente'
+        ));
+
+        DB::table('general_lists')->insert(array(
+            'name' => 'event',
+            'value' => 'Enfermedad'
+        ));
+
     }
 
 }
