@@ -239,6 +239,25 @@ class GeneralListsSeeder extends Seeder
             'value' => 'Enfermedad'
         ));
 
+        DB::table('general_lists')->insert(array(
+            'name' => 'medical_attention',
+            'value' => 'Atención por enfemería o primeros auxilios'
+        ));
+
+        DB::table('general_lists')->insert(array(
+            'name' => 'medical_attention',
+            'value' => 'Traslado en Ambulacia u otro medio'
+        ));
+
+        DB::table('general_lists')->insert(array(
+            'name' => 'medical_attention',
+            'value' => 'Remisión EPS y/o compromido medico'
+        ));
+
+        DB::table('general_lists')->insert(array(
+            'name' => 'medical_attention',
+            'value' => 'Otro'
+        ));
     }
 
 }
