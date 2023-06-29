@@ -16,7 +16,7 @@ class CreateEmployeeReportTable extends Migration
         Schema::create('employee_report', function (Blueprint $table) {
             $table->id();
             $table->string('employee_state')->nullable()->default('Pendiente');
-            $table->string('attributes')->nullable()->default('{}');
+            $table->string('attributes', 1024)->nullable()->default('{}');
             $table->unsignedBigInteger('employee_id');
             $table->unsignedBigInteger('report_id');
 
