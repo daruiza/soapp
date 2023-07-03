@@ -1459,6 +1459,189 @@
                 ]
             }
         },
+        "/trainingsst/index": {
+            "get": {
+                "tags": [
+                    "TrainingSST"
+                ],
+                "summary": "Get All Training",
+                "description": "Return Training",
+                "operationId": "getTraining",
+                "responses": {
+                    "200": {
+                        "description": "Successful operation"
+                    },
+                    "401": {
+                        "description": "Unauthenticated"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    }
+                },
+                "security": [
+                    {
+                        "bearer": []
+                    }
+                ]
+            }
+        },
+        "/trainingsst/store": {
+            "post": {
+                "tags": [
+                    "TrainingSST"
+                ],
+                "summary": "Store A Training",
+                "description": "Store Training",
+                "operationId": "StoreTraining",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/Trainingsst"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Successful operation"
+                    },
+                    "401": {
+                        "description": "Unauthenticated"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    }
+                },
+                "security": [
+                    {
+                        "bearer": []
+                    }
+                ]
+            }
+        },
+        "/trainingsst/update/{id}": {
+            "put": {
+                "tags": [
+                    "TrainingSST"
+                ],
+                "summary": "Update One TrainingSST By one Id",
+                "description": "Update One TrainingSST",
+                "operationId": "getUpdateTrainingSSTById",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "TrainingSST Id",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/Trainingsst"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Successful operation"
+                    },
+                    "401": {
+                        "description": "Unauthenticated"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    }
+                },
+                "security": [
+                    {
+                        "bearer": []
+                    }
+                ]
+            }
+        },
+        "/trainingsst/destroy/{id}": {
+            "delete": {
+                "tags": [
+                    "TrainingSST"
+                ],
+                "summary": "Delete One TrainingSST By one Id",
+                "description": "Delete One TrainingSST",
+                "operationId": "getDestroyTrainingSSTById",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "TrainingSST Id",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful operation"
+                    },
+                    "401": {
+                        "description": "Unauthenticated"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    }
+                },
+                "security": [
+                    {
+                        "bearer": []
+                    }
+                ]
+            }
+        },
+        "/trainingsst/showbyreportid/{id}": {
+            "get": {
+                "tags": [
+                    "TrainingSST"
+                ],
+                "summary": "Get One TrainingSST By one Id",
+                "description": "Return One TrainingSST",
+                "operationId": "getTrainingSSTById",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "TrainingSST Id",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful operation"
+                    },
+                    "401": {
+                        "description": "Unauthenticated"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    }
+                },
+                "security": [
+                    {
+                        "bearer": []
+                    }
+                ]
+            }
+        },
         "/upload/photo": {
             "post": {
                 "tags": [
@@ -2245,6 +2428,42 @@
                     "commerce_id": {
                         "title": "commerce_id",
                         "description": "commerce_id of the Report",
+                        "example": 1
+                    }
+                },
+                "type": "object"
+            },
+            "Trainingsst": {
+                "title": "Trainingsst",
+                "description": "Training body data",
+                "properties": {
+                    "topic": {
+                        "title": "topic",
+                        "description": "Topic of the Training SST",
+                        "type": "string",
+                        "example": "Educación Organizacional"
+                    },
+                    "date": {
+                        "title": "date",
+                        "description": "date of the Training SST",
+                        "type": "string",
+                        "format": "date",
+                        "example": "2023-09-01"
+                    },
+                    "hours": {
+                        "title": "hours",
+                        "description": "how long was the Training SST",
+                        "type": "number",
+                        "example": "0"
+                    },
+                    "assistants": {
+                        "title": "assistants",
+                        "description": "how many was in the Training SST",
+                        "example": "0"
+                    },
+                    "report_id": {
+                        "title": "report_id",
+                        "description": "report_id of the Training SST",
                         "example": 1
                     }
                 },

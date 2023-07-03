@@ -8,7 +8,7 @@ use App\User;
 use Carbon\Carbon;
 use App\Model\Core\Report;
 use App\Model\Core\Employee;
-use App\Model\Admin\Commerce;
+use App\Model\Core\Commerce;
 
 use App\Enums\RolEnum;
 
