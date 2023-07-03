@@ -45,6 +45,10 @@ use App\Http\Controllers\Api\EvidenceController;
 use App\Query\Abstraction\IEvidenceQuery;
 use App\Query\Request\EvidenceQuery;
 
+use App\Http\Controllers\Api\TrainingsstController;
+use App\Query\Abstraction\ITrainingsstQuery;
+use App\Query\Request\TrainingsstQuery;
+
 class AppServiceProvider extends ServiceProvider
 {
     /**
@@ -83,6 +87,9 @@ class AppServiceProvider extends ServiceProvider
 
         $this->app->bind(IEvidenceQuery::class, EvidenceQuery::class);
         $this->app->make(EvidenceController::class);
+
+        $this->app->bind(ITrainingsstQuery::class, TrainingsstQuery::class);
+        $this->app->make(TrainingsstController::class);
     }
 
     /**

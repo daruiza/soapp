@@ -182,7 +182,7 @@ class CommerceQuery implements ICommerceQuery
                 if ($eliminado > 0) {
                     return response()->json([
                         'data' => [
-                            'employee' => $commerce,
+                            'commerce' => $commerce,
                         ],
                         'message' => 'Tienda eliminada exitosamente!'
                     ], 201);

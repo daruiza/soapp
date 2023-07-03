@@ -17,6 +17,7 @@ class CreateGeneralListsTable extends Migration
             $table->id();
             $table->string('name', 128);
             $table->unsignedInteger('index')->default(0);
+            $table->string('class')->default('');
             $table->string('value', 128);
             $table->timestamps();
         });

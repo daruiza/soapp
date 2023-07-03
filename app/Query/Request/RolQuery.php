@@ -12,7 +12,6 @@ class RolQuery implements IRolQuery
     public function index(Request $request)
     {
         try {
-            // $rol = new Rol();
             $rol = Rol::idRol(1)
                 ->select(['id', 'name', 'description'])
                 ->get();
