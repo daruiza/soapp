@@ -258,6 +258,188 @@ class GeneralListsSeeder extends Seeder
             'name' => 'medical_attention',
             'value' => 'Otro'
         ));
+
+        DB::table('general_lists')->insert(array(
+            'name' => 'topic_sst',
+            'value' => 'Prevención accidentes e incidentes laborales',
+            'class' => 'HIGIENE Y SEGURIDAD INDUSTRIAL'
+        ));
+
+        DB::table('general_lists')->insert(array(
+            'name' => 'topic_sst',
+            'value' => 'Uso y mantenimiento de EPP',
+            'class' => 'HIGIENE Y SEGURIDAD INDUSTRIAL'
+        ));
+
+        DB::table('general_lists')->insert(array(
+            'name' => 'topic_sst',
+            'value' => 'Almacenamiento seguro',
+            'class' => 'HIGIENE Y SEGURIDAD INDUSTRIAL'
+        ));
+
+        DB::table('general_lists')->insert(array(
+            'name' => 'topic_sst',
+            'value' => 'Socialización de peligros',
+            'class' => 'HIGIENE Y SEGURIDAD INDUSTRIAL'
+        ));
+
+        DB::table('general_lists')->insert(array(
+            'name' => 'topic_sst',
+            'value' => 'Actos inseguros',
+            'class' => 'HIGIENE Y SEGURIDAD INDUSTRIAL'
+        ));
+
+        DB::table('general_lists')->insert(array(
+            'name' => 'topic_sst',
+            'value' => 'Orden y aseo',
+            'class' => 'HIGIENE Y SEGURIDAD INDUSTRIAL'
+        ));
+
+        DB::table('general_lists')->insert(array(
+            'name' => 'topic_sst',
+            'value' => 'Primeros Auxilios',
+            'class' => 'CAPACITACIÓN A BRIGADAS'
+        ));
+
+        DB::table('general_lists')->insert(array(
+            'name' => 'topic_sst',
+            'value' => 'Manejo de extintores',
+            'class' => 'CAPACITACIÓN A BRIGADAS'
+        ));
+
+        DB::table('general_lists')->insert(array(
+            'name' => 'topic_sst',
+            'value' => 'Simulacro',
+            'class' => 'CAPACITACIÓN A BRIGADAS'
+        ));
+
+        DB::table('general_lists')->insert(array(
+            'name' => 'topic_sst',
+            'value' => 'Capacitación Comité de Emergencias',
+            'class' => 'CAPACITACIÓN A BRIGADAS'
+        ));
+
+        DB::table('general_lists')->insert(array(
+            'name' => 'topic_sst',
+            'value' => 'Socialización Plan de Emergencias',
+            'class' => 'CAPACITACIÓN A BRIGADAS'
+        ));
+
+        DB::table('general_lists')->insert(array(
+            'name' => 'topic_sst',
+            'value' => 'Uso de elementos de Protección personal',
+            'class' => 'MEDICINA PREVENTIVA Y DEL TRABAJO'
+        ));
+
+        DB::table('general_lists')->insert(array(
+            'name' => 'topic_sst',
+            'value' => 'Enfermedades de transmisión sexual',
+            'class' => 'MEDICINA PREVENTIVA Y DEL TRABAJO'
+        ));
+
+        DB::table('general_lists')->insert(array(
+            'name' => 'topic_sst',
+            'value' => 'Manejo de Residuos',
+            'class' => 'MEDICINA PREVENTIVA Y DEL TRABAJO'
+        ));
+
+        DB::table('general_lists')->insert(array(
+            'name' => 'topic_sst',
+            'value' => 'Higiene Postural y Manejo de cargas',
+            'class' => 'RIESGO BIOMECÁNICO'
+        ));
+
+        DB::table('general_lists')->insert(array(
+            'name' => 'topic_sst',
+            'value' => 'Cuidados en la columna',
+            'class' => 'RIESGO BIOMECÁNICO'
+        ));
+
+        DB::table('general_lists')->insert(array(
+            'name' => 'topic_sst',
+            'value' => 'Pausas activas- Formación de Lideres',
+            'class' => 'RIESGO BIOMECÁNICO'
+        ));
+
+        DB::table('general_lists')->insert(array(
+            'name' => 'topic_sst',
+            'value' => 'Comunicación Asertiva y Efectiva',
+            'class' => 'RIESGO PSICOSOCIAL'
+        ));
+
+        DB::table('general_lists')->insert(array(
+            'name' => 'topic_sst',
+            'value' => 'Manejo del Estrés',
+            'class' => 'RIESGO PSICOSOCIAL'
+        ));
+
+        DB::table('general_lists')->insert(array(
+            'name' => 'topic_sst',
+            'value' => 'Trabajo en Equipo',
+            'class' => 'RIESGO PSICOSOCIAL'
+        ));
+
+        DB::table('general_lists')->insert(array(
+            'name' => 'topic_sst',
+            'value' => 'Política de SST',
+            'class' => 'DOCUMENTOS SG-SST'
+        ));
+
+        DB::table('general_lists')->insert(array(
+            'name' => 'topic_sst',
+            'value' => 'Induccion y Reinduccion al SG-sst de la empresa',
+            'class' => 'DOCUMENTOS SG-SST'
+        ));
+
+        DB::table('general_lists')->insert(array(
+            'name' => 'topic_sst',
+            'value' => 'Capacitación al COPASST en la resolución decreto 2013 de 1986.',
+            'class' => 'DOCUMENTOS SG-SST'
+        ));
+
+        DB::table('general_lists')->insert(array(
+            'name' => 'topic_sst',
+            'value' => 'Capacitación al COPASST en investigación de accidentes de trabajo.',
+            'class' => 'DOCUMENTOS SG-SST'
+        ));
+
+        DB::table('general_lists')->insert(array(
+            'name' => 'topic_sst',
+            'value' => 'Capacitación al COPAST  en inspecciones de seguridad',
+            'class' => 'DOCUMENTOS SG-SST'
+        ));
+
+        DB::table('general_lists')->insert(array(
+            'name' => 'topic_sst',
+            'value' => 'Capacitación al COCOLA  en manejo de conflictos.',
+            'class' => 'DOCUMENTOS SG-SST'
+        ));
+
+        DB::table('general_lists')->insert(array(
+            'name' => 'topic_sst',
+            'value' => 'capacitación al COCOLA en la Ley 1010 de 2006 acoso laboral de convivencia.',
+            'class' => 'DOCUMENTOS SG-SST'
+        ));
+
+        DB::table('general_lists')->insert(array(
+            'name' => 'topic_sst',
+            'value' => 'Capacitacion al COCOLA Inducción CCL',
+            'class' => 'DOCUMENTOS SG-SST'
+        ));
+
+        DB::table('general_lists')->insert(array(
+            'name' => 'topic_sst',
+            'value' => 'Programa de Higiene y seguridad Industrial',
+            'class' => 'DOCUMENTOS SG-SST'
+        ));
+
+        DB::table('general_lists')->insert(array(
+            'name' => 'topic_sst',
+            'value' => 'Socialización del impacto del SG_SST',
+            'class' => 'DOCUMENTOS SG-SST'
+        ));
     }
+
+
 
 }

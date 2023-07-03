@@ -53,7 +53,7 @@ class EvidenceQuery implements IEvidenceQuery
                 throw (new ValidationException($validator->errors()->getMessages()));
             }
 
-            // Creamos el nuevo colaborador
+            // Creamos la nueva evidencia
             $evidence = new Evidence();             
             $newEvidence = $evidence->create($request->input());
 
@@ -99,18 +99,19 @@ class EvidenceQuery implements IEvidenceQuery
                         'data' => [
                             'evidence' => $evidence,                            
                         ],
-                        'message' => 'Colaborador actualizado con éxito!'
+                        'message' => 'Evidencia actualizado con éxito!'
                     ], 201);
                 } else {
-                    return response()->json(['message' => 'No tienes permiso para actualizar el Colaborador!'], 403);
+                    return response()->json(['message' => 'No tienes permiso para actualizar la Evidencia!'], 403);
                 }
                 
             } catch (ModelNotFoundException $ex) {
-                return response()->json(['message' => "Colaborador con id {$id} no existe!", 'error' => $ex->getMessage()], 404);
+                return response()->json(['message' => "Evidencia con id {$id} no existe!", 'error' => $ex->getMessage()], 404);
             } catch (\Exception $e) {
                 return response()->json(['message' => 'Algo salio mal!', 'error' => $e], 403);
             }
         }
+        return response()->json(['message' => "Evidence con id {$id} no existe!", 'error' => 'No se suministrado un id valido'], 404);
     }
 
     public function destroy(int $id) {
@@ -132,8 +133,6 @@ class EvidenceQuery implements IEvidenceQuery
                 ],
                 'message' => 'Evidencia eliminado exitosamente!'
             ], 201);
-            
-            
         } catch (ModelNotFoundException $e) {
             return response()->json(['message' => "Evidencia con id {$id} no existe!", 'error' => $e->getMessage()], 403);
         }
