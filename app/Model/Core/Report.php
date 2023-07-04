@@ -5,6 +5,7 @@ namespace App\Model\Core;
 use Carbon\Carbon;
 use App\Model\Core\Commerce;
 use App\Model\Core\Employee;
+use App\Model\Core\Trainingsst;
 use Illuminate\Database\Eloquent\Model;
 
 class Report extends Model
@@ -34,7 +35,7 @@ class Report extends Model
         'commerce_id',
     ];
 
-    //a varios reportes le Pertenece un comercios
+    //varios reportes pertenecen a un comercio
     public function commerce()
     {
         return $this->belongsTo(Commerce::class);
@@ -44,6 +45,12 @@ class Report extends Model
     public function employee()
     {
         return $this->belongsToMany(Employee::class)->distinct();
+    }
+
+    //un reporte tiene varias capacitaciones
+    public function trainingsst()
+    {
+        return $this->hasMany(Trainingsst::class)->distinct();
     }
 
     public function scopeProject($query, $project)

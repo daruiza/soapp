@@ -3,6 +3,7 @@
 namespace App\Model\Core;
 
 use Illuminate\Database\Eloquent\Model;
+use App\Model\Core\Report;
 use Illuminate\Support\Facades\DB;
 
 class Trainingsst extends Model
@@ -15,7 +16,13 @@ class Trainingsst extends Model
         'hours',
         'assistants',
         'report_id'        
-    ];    
+    ]; 
+    
+    //a varias capacitacions pertenecesn a un reporte
+    public function report()
+    {
+        return $this->belongsTo(Report::class);
+    }
 
     public function scopeTopic($query, $topic)
     {
