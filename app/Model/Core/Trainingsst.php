@@ -4,6 +4,7 @@ namespace App\Model\Core;
 
 use Illuminate\Database\Eloquent\Model;
 use App\Model\Core\Report;
+use App\Model\Core\TrainingsstEvidence;
 use Illuminate\Support\Facades\DB;
 
 class Trainingsst extends Model
@@ -22,6 +23,11 @@ class Trainingsst extends Model
     public function report()
     {
         return $this->belongsTo(Report::class);
+    }
+
+    public function trainingsst_evidence()
+    {
+        return $this->hasMany(TrainingsstEvidence::class);
     }
 
     public function scopeTopic($query, $topic)

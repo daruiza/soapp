@@ -49,6 +49,10 @@ use App\Http\Controllers\Api\TrainingsstController;
 use App\Query\Abstraction\ITrainingsstQuery;
 use App\Query\Request\TrainingsstQuery;
 
+use App\Http\Controllers\Api\TrainingsstEvidenceController;
+use App\Query\Abstraction\ITrainingsstEvidenceQuery;
+use App\Query\Request\TrainingsstEvidenceQuery;
+
 class AppServiceProvider extends ServiceProvider
 {
     /**
@@ -90,6 +94,9 @@ class AppServiceProvider extends ServiceProvider
 
         $this->app->bind(ITrainingsstQuery::class, TrainingsstQuery::class);
         $this->app->make(TrainingsstController::class);
+
+        $this->app->bind(ITrainingsstEvidenceQuery::class, TrainingsstEvidenceQuery::class);
+        $this->app->make(TrainingsstEvidenceController::class);
     }
 
     /**
