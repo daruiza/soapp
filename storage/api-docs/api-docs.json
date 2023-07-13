@@ -818,7 +818,7 @@
                     {
                         "name": "id",
                         "in": "path",
-                        "description": "Employee Report Id",
+                        "description": "Evidence Id",
                         "required": true,
                         "schema": {
                             "type": "integer"
@@ -1618,6 +1618,200 @@
                         "name": "id",
                         "in": "path",
                         "description": "TrainingSST Id",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful operation"
+                    },
+                    "401": {
+                        "description": "Unauthenticated"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    }
+                },
+                "security": [
+                    {
+                        "bearer": []
+                    }
+                ]
+            }
+        },
+        "/trainingsstevidence/store": {
+            "post": {
+                "tags": [
+                    "TrainingsstEvidence"
+                ],
+                "summary": "Store Report",
+                "description": "Store Report",
+                "operationId": "storeReport",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/TrainingsstEvidence"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Successful operation"
+                    },
+                    "401": {
+                        "description": "Unauthenticated"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    }
+                },
+                "security": [
+                    {
+                        "bearer": []
+                    }
+                ]
+            }
+        },
+        "/trainingsstevidence/showbytrainingsstevidenceid/{id}": {
+            "get": {
+                "tags": [
+                    "TrainingsstEvidence"
+                ],
+                "summary": "Get One TrainingsstEvidence",
+                "description": "Return Commerce",
+                "operationId": "get TrainingsstEvidence",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "training sst evedence Id",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful operation"
+                    },
+                    "401": {
+                        "description": "Unauthenticated"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    }
+                },
+                "security": [
+                    {
+                        "bearer": []
+                    }
+                ]
+            }
+        },
+        "/trainingsstevidence/showbytrainingsstid/{id}": {
+            "get": {
+                "tags": [
+                    "TrainingsstEvidence"
+                ],
+                "summary": "Get One TrainingsstEvidence",
+                "description": "Return Commerce",
+                "operationId": "get TrainingsstEvidence",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Training SST Id",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful operation"
+                    },
+                    "401": {
+                        "description": "Unauthenticated"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    }
+                },
+                "security": [
+                    {
+                        "bearer": []
+                    }
+                ]
+            }
+        },
+        "/trainingsstevidence/update/{id}": {
+            "put": {
+                "tags": [
+                    "TrainingsstEvidence"
+                ],
+                "summary": "Update One TrainingsstEvidence By one Id",
+                "description": "Update One TrainingsstEvidence",
+                "operationId": "getUpdateEvidenceById",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "TrainingsstEvidence Id",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/EvidenceUpdate"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Successful operation"
+                    },
+                    "401": {
+                        "description": "Unauthenticated"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    }
+                },
+                "security": [
+                    {
+                        "bearer": []
+                    }
+                ]
+            }
+        },
+        "/trainingsstevidence/destroy/{id}": {
+            "delete": {
+                "tags": [
+                    "TrainingsstEvidence"
+                ],
+                "summary": "Delete One TrainingsstEvidence By one Id",
+                "description": "Delete One TrainingsstEvidence",
+                "operationId": "getDestroyEvidenceById",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "TrainingsstEvidence Id",
                         "required": true,
                         "schema": {
                             "type": "integer"
@@ -2464,6 +2658,42 @@
                     "report_id": {
                         "title": "report_id",
                         "description": "report_id of the Training SST",
+                        "example": 1
+                    }
+                },
+                "type": "object"
+            },
+            "TrainingsstEvidence": {
+                "title": "Evidence",
+                "description": "Evidence body data",
+                "properties": {
+                    "name": {
+                        "title": "name",
+                        "description": "Name of the evidence",
+                        "type": "string",
+                        "example": "FileName"
+                    },
+                    "file": {
+                        "title": "file",
+                        "description": "File of the evidence",
+                        "type": "string",
+                        "example": "FileHostingName"
+                    },
+                    "type": {
+                        "title": "type",
+                        "description": "Type File",
+                        "type": "string",
+                        "example": "image/jpeg"
+                    },
+                    "approved": {
+                        "title": "approved",
+                        "description": "approved of the evidence",
+                        "type": "boolean",
+                        "example": true
+                    },
+                    "trainingsst_id": {
+                        "title": "trainingsst_id",
+                        "description": "trainingsst_id of the Evidence",
                         "example": 1
                     }
                 },

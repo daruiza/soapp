@@ -5,7 +5,7 @@ namespace App\Model\Core;
 use Illuminate\Database\Eloquent\Model;
 
 use App\User;
-use App\Model\Core\Employee;
+use App\Model\Core\Report;
 
 class Commerce extends Model
 {

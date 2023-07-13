@@ -124,3 +124,14 @@ Route::group(['prefix' => 'trainingsst'], function () {
     });
 });
 
+Route::group(['prefix' => 'trainingsstevidence'], function () {
+    Route::group(['middleware' => 'auth:api'], function () {
+        Route::get('index', 'Api\TrainingsstEvidenceController@index');
+        Route::post('store', 'Api\TrainingsstEvidenceController@store');
+        Route::put('update/{id}', 'Api\TrainingsstEvidenceController@update');
+        Route::delete('destroy/{id}', 'Api\TrainingsstEvidenceController@destroy');
+        Route::get('showbytrainingsstevidenceid/{id}', 'Api\TrainingsstEvidenceController@showByTrainingsstEvidenceId');
+        Route::get('showbytrainingsstid/{id}', 'Api\TrainingsstEvidenceController@showByTrainigsstId');
+    });
+});
+
