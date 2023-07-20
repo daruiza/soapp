@@ -18,6 +18,7 @@ private $date = 'date';
 private $hours = 'hours';
 private $assistants = 'assistants';
 private $report_id = 'report_id';
+private $approved = 'approved';
 
     public function index(Request $request)
     {
@@ -81,6 +82,7 @@ private $report_id = 'report_id';
                     $trainingsst->hours = $request->hours ?? $trainingsst->hours;
                     $trainingsst->assistants = $request->assistants ?? $trainingsst->assistants;
                     $trainingsst->report_id = $request->report_id ?? $trainingsst->report_id;
+                    $trainingsst->approved = $request->approved ?? $trainingsst->approved;
 
                     $trainingsst->save();
                     return response()->json([

@@ -19,6 +19,7 @@ class CreateReportTrainingsstTable extends Migration
             $table->date('date')->nullable()->default(null);;
             $table->integer('hours')->default(0);
             $table->integer('assistants')->default(0);
+            $table->boolean('approved')->default(false);            
 
             $table->unsignedBigInteger('report_id');
             
