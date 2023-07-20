@@ -55,6 +55,17 @@ class Trainingsst
 
     /**
      * @OA\Property(
+     *      title="approved",
+     *      description="approvedg Training SST",
+     *      example=0
+     * )
+     *
+     * @var boolean
+     */
+    public $approved;
+
+    /**
+     * @OA\Property(
      *      title="report_id",
      *      description="report_id of the Training SST",
      *      example=1
