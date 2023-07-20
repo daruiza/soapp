@@ -16,6 +16,7 @@ class Trainingsst extends Model
         'date',
         'hours',
         'assistants',
+        'approved',
         'report_id'        
     ]; 
     
