@@ -89,7 +89,7 @@ class CommerceQuery implements ICommerceQuery
         if ($id) {
             try {
                 $commerce = Commerce::findOrFail($id);
-                if (auth()->check() && auth()->user()->rol_id == 1 || $commerce->user_id == auth()->user()->id) {
+                if (auth()->check() && (auth()->user()->rol_id == 1 || auth()->user()->rol_id == 3 || $commerce->user_id == auth()->user()->id)) {
                     $rules = [
                         $this->name  => 'required|string|min:1|max:128|', Rule::unique('commerces')->ignore($commerce->id),
                         $this->nit   => 'required|', Rule::unique('commerces')->ignore($commerce->id),
