@@ -4,18 +4,16 @@ namespace App\Model\Core;
 
 use Illuminate\Database\Eloquent\Model;
 use App\Model\Core\Report;
-use App\Model\Core\TrainingsstEvidence;
+use App\Model\Core\ActivityEvidence;
 use Illuminate\Support\Facades\DB;
 
-class Trainingsst extends Model
+class Activity extends Model
 {
-    protected $table = 'trainingsst';
+    protected $table = 'activities';
     protected $fillable = [
         'id',
-        'topic',
+        'activity',
         'date',
-        'hours',
-        'assistants',
         'approved',
         'report_id'        
     ]; 
@@ -26,15 +24,10 @@ class Trainingsst extends Model
         return $this->belongsTo(Report::class);
     }
 
-    public function trainingsst_evidences()
+    public function activity_evidences()
     {
-        return $this->hasMany(TrainingsstEvidence::class);
-    }
-
-    public function scopeTopic($query, $topic)
-    {
-        return is_null($topic) ?  $query : $query->where('topic', 'LIKE',  $topic );
-    }
+        return $this->hasMany(ActivityEvidence::class);
+    }    
 
     public function scopeReportid($query, $report_id)
     {

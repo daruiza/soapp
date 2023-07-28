@@ -135,3 +135,26 @@ Route::group(['prefix' => 'trainingsstevidence'], function () {
     });
 });
 
+Route::group(['prefix' => 'activity'], function () {
+    Route::group(['middleware' => 'auth:api'], function () {
+        Route::get('index', 'Api\ActivityController@index');
+        Route::post('store', 'Api\ActivityController@store');
+        Route::put('update/{id}', 'Api\ActivityController@update');
+        Route::delete('destroy/{id}', 'Api\ActivityController@destroy');
+        Route::get('showbyreportid/{id}', 'Api\ActivityController@showByReportId');
+    });
+});
+
+Route::group(['prefix' => 'activityevidence'], function () {
+    Route::group(['middleware' => 'auth:api'], function () {
+        Route::get('index', 'Api\ActivityEvidenceController@index');
+        Route::post('store', 'Api\ActivityEvidenceController@store');
+        Route::put('update/{id}', 'Api\ActivityEvidenceController@update');
+        Route::delete('destroy/{id}', 'Api\ActivityEvidenceController@destroy');
+        Route::get('showbytrainingsstevidenceid/{id}', 'Api\ActivityEvidenceController@showByTrainingsstEvidenceId');
+        Route::get('showbytrainingsstid/{id}', 'Api\ActivityEvidenceController@showByTrainigsstId');
+    });
+});
+
+
+
