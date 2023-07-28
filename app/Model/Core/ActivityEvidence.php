@@ -2,25 +2,25 @@
 
 namespace App\Model\Core;
 
-use App\Model\Core\Trainingsst;
+use App\Model\Core\Activity;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\DB;
 
-class TrainingsstEvidence extends Model
+class ActivityEvidence extends Model
 {
-    protected $table = 'trainingsst_evidences';
+    protected $table = 'activity_evidences';
     protected $fillable = [
         'id',        
         'name',
         'file',
         'type',
         'approved',
-        'trainingsst_id'        
+        'activity_id'        
     ];
 
-    public function trainingsst()
+    public function activity()
     {
-        return $this->belongsTo(Trainingsst::class);
+        return $this->belongsTo(Activity::class);
     }
 }

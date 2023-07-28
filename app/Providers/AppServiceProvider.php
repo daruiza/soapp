@@ -53,6 +53,14 @@ use App\Http\Controllers\Api\TrainingsstEvidenceController;
 use App\Query\Abstraction\ITrainingsstEvidenceQuery;
 use App\Query\Request\TrainingsstEvidenceQuery;
 
+use App\Http\Controllers\Api\ActivityController;
+use App\Query\Abstraction\IActivityQuery;
+use App\Query\Request\ActivityQuery;
+
+use App\Http\Controllers\Api\ActivityEvidenceController;
+use App\Query\Abstraction\IActivityEvidenceQuery;
+use App\Query\Request\ActivityEvidenceQuery;
+
 class AppServiceProvider extends ServiceProvider
 {
     /**
@@ -97,6 +105,13 @@ class AppServiceProvider extends ServiceProvider
 
         $this->app->bind(ITrainingsstEvidenceQuery::class, TrainingsstEvidenceQuery::class);
         $this->app->make(TrainingsstEvidenceController::class);
+
+        $this->app->bind(IActivityQuery::class, ActivityQuery::class);
+        $this->app->make(ActivityController::class);
+
+        $this->app->bind(IActivityEvidenceQuery::class, ActivityEvidenceQuery::class);
+        $this->app->make(ActivityEvidenceController::class);
+
     }
 
     /**

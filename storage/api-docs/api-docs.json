@@ -19,6 +19,383 @@
         }
     ],
     "paths": {
+        "/activity/index": {
+            "get": {
+                "tags": [
+                    "Activity"
+                ],
+                "summary": "Get All Activity",
+                "description": "Return Activity",
+                "operationId": "getActivity",
+                "responses": {
+                    "200": {
+                        "description": "Successful operation"
+                    },
+                    "401": {
+                        "description": "Unauthenticated"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    }
+                },
+                "security": [
+                    {
+                        "bearer": []
+                    }
+                ]
+            }
+        },
+        "/activity/store": {
+            "post": {
+                "tags": [
+                    "Activity"
+                ],
+                "summary": "Store A Activity",
+                "description": "Store Activity",
+                "operationId": "StoreTraining",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/Activity"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Successful operation"
+                    },
+                    "401": {
+                        "description": "Unauthenticated"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    }
+                },
+                "security": [
+                    {
+                        "bearer": []
+                    }
+                ]
+            }
+        },
+        "/activity/update/{id}": {
+            "put": {
+                "tags": [
+                    "Activity"
+                ],
+                "summary": "Update One Activity By one Id",
+                "description": "Update One Activity",
+                "operationId": "getUpdateTrainingSSTById",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Activity Id",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/Activity"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Successful operation"
+                    },
+                    "401": {
+                        "description": "Unauthenticated"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    }
+                },
+                "security": [
+                    {
+                        "bearer": []
+                    }
+                ]
+            }
+        },
+        "/activity/destroy/{id}": {
+            "delete": {
+                "tags": [
+                    "Activity"
+                ],
+                "summary": "Delete One Activity By one Id",
+                "description": "Delete One Activity",
+                "operationId": "getDestroyTrainingSSTById",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Activity Id",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful operation"
+                    },
+                    "401": {
+                        "description": "Unauthenticated"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    }
+                },
+                "security": [
+                    {
+                        "bearer": []
+                    }
+                ]
+            }
+        },
+        "/activity/showbyreportid/{id}": {
+            "get": {
+                "tags": [
+                    "Activity"
+                ],
+                "summary": "Get One Activity By one Id",
+                "description": "Return One Activity",
+                "operationId": "getTrainingSSTById",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Activity Id",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful operation"
+                    },
+                    "401": {
+                        "description": "Unauthenticated"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    }
+                },
+                "security": [
+                    {
+                        "bearer": []
+                    }
+                ]
+            }
+        },
+        "/activityevidence/store": {
+            "post": {
+                "tags": [
+                    "ActivityEvidence"
+                ],
+                "summary": "Store Report",
+                "description": "Store Report",
+                "operationId": "storeReport",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/ActivityEvidence"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Successful operation"
+                    },
+                    "401": {
+                        "description": "Unauthenticated"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    }
+                },
+                "security": [
+                    {
+                        "bearer": []
+                    }
+                ]
+            }
+        },
+        "/activityevidence/showbytrainingsstevidenceid/{id}": {
+            "get": {
+                "tags": [
+                    "ActivityEvidence"
+                ],
+                "summary": "Get One ActivityEvidence",
+                "description": "Return Commerce",
+                "operationId": "get ActivityEvidence",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "training sst evedence Id",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful operation"
+                    },
+                    "401": {
+                        "description": "Unauthenticated"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    }
+                },
+                "security": [
+                    {
+                        "bearer": []
+                    }
+                ]
+            }
+        },
+        "/activityevidence/showbytrainingsstid/{id}": {
+            "get": {
+                "tags": [
+                    "ActivityEvidence"
+                ],
+                "summary": "Get One ActivityEvidence",
+                "description": "Return Commerce",
+                "operationId": "get ActivityEvidence",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Training SST Id",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful operation"
+                    },
+                    "401": {
+                        "description": "Unauthenticated"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    }
+                },
+                "security": [
+                    {
+                        "bearer": []
+                    }
+                ]
+            }
+        },
+        "/activityevidence/update/{id}": {
+            "put": {
+                "tags": [
+                    "ActivityEvidence"
+                ],
+                "summary": "Update One ActivityEvidence By one Id",
+                "description": "Update One ActivityEvidence",
+                "operationId": "getUpdateEvidenceById",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ActivityEvidence Id",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/EvidenceUpdate"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Successful operation"
+                    },
+                    "401": {
+                        "description": "Unauthenticated"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    }
+                },
+                "security": [
+                    {
+                        "bearer": []
+                    }
+                ]
+            }
+        },
+        "/activityevidence/destroy/{id}": {
+            "delete": {
+                "tags": [
+                    "ActivityEvidence"
+                ],
+                "summary": "Delete One ActivityEvidence By one Id",
+                "description": "Delete One ActivityEvidence",
+                "operationId": "getDestroyEvidenceById",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ActivityEvidence Id",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful operation"
+                    },
+                    "401": {
+                        "description": "Unauthenticated"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    }
+                },
+                "security": [
+                    {
+                        "bearer": []
+                    }
+                ]
+            }
+        },
         "/auth/login": {
             "post": {
                 "tags": [
@@ -2252,6 +2629,73 @@
     },
     "components": {
         "schemas": {
+            "Activity": {
+                "title": "Activity",
+                "description": "Training body data",
+                "properties": {
+                    "activity": {
+                        "title": "activity",
+                        "description": "Activity",
+                        "type": "string",
+                        "example": "Otra Actividad"
+                    },
+                    "date": {
+                        "title": "date",
+                        "description": "date of the Training SST",
+                        "type": "string",
+                        "format": "date",
+                        "example": "2023-09-01"
+                    },
+                    "approved": {
+                        "title": "approved",
+                        "description": "approvedg Training SST",
+                        "type": "boolean",
+                        "example": 0
+                    },
+                    "report_id": {
+                        "title": "report_id",
+                        "description": "report_id of the Training SST",
+                        "example": 1
+                    }
+                },
+                "type": "object"
+            },
+            "ActivityEvidence": {
+                "title": "Evidence",
+                "description": "Evidence body data",
+                "properties": {
+                    "name": {
+                        "title": "name",
+                        "description": "Name of the evidence",
+                        "type": "string",
+                        "example": "FileName"
+                    },
+                    "file": {
+                        "title": "file",
+                        "description": "File of the evidence",
+                        "type": "string",
+                        "example": "FileHostingName"
+                    },
+                    "type": {
+                        "title": "type",
+                        "description": "Type File",
+                        "type": "string",
+                        "example": "image/jpeg"
+                    },
+                    "approved": {
+                        "title": "approved",
+                        "description": "approved of the evidence",
+                        "type": "boolean",
+                        "example": true
+                    },
+                    "trainingsst_id": {
+                        "title": "trainingsst_id",
+                        "description": "trainingsst_id of the Evidence",
+                        "example": 1
+                    }
+                },
+                "type": "object"
+            },
             "Commerce": {
                 "title": "Commerce",
                 "description": "Commerce body data",
@@ -2654,6 +3098,12 @@
                         "title": "assistants",
                         "description": "how many was in the Training SST",
                         "example": "0"
+                    },
+                    "approved": {
+                        "title": "approved",
+                        "description": "approvedg Training SST",
+                        "type": "boolean",
+                        "example": 0
                     },
                     "report_id": {
                         "title": "report_id",
