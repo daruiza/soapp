@@ -214,7 +214,8 @@ class ReportQuery implements IReportQuery
                     ->where('reports.id', $id)
                     ->with(['commerce'])
                     ->with(['employee'])
-                    ->with(['trainingsst'])                    
+                    ->with(['trainingsst'])
+                    ->with(['activities'])                                        
                     ->first();
                 // ->toSql();
 
