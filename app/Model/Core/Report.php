@@ -6,6 +6,8 @@ use Carbon\Carbon;
 use App\Model\Core\Commerce;
 use App\Model\Core\Employee;
 use App\Model\Core\Trainingsst;
+use App\Model\Core\Activity;
+
 use Illuminate\Database\Eloquent\Model;
 
 class Report extends Model
@@ -51,6 +53,12 @@ class Report extends Model
     public function trainingsst()
     {
         return $this->hasMany(Trainingsst::class)->distinct();
+    }
+
+    //un reporte puede tener varias capacitaciones
+    public function activities()
+    {
+        return $this->hasMany(Activity::class)->distinct();
     }
 
     public function scopeProject($query, $project)
