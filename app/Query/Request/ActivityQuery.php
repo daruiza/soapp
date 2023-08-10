@@ -46,9 +46,9 @@ private $approved = 'approved';
             
             return response()->json([
                 'data' => [
-                    'testingsst' => $newActivity,
+                    'activity' => $newActivity,
                 ],
-                'message' => 'Capacitación creadá correctamente!'
+                'message' => 'Actividad creadá correctamente!'
             ], 201);
         } catch (\Exception $e) {
             return response()->json(['message' => 'Algo salio mal!', 'error' => $e], 403);
@@ -79,19 +79,19 @@ private $approved = 'approved';
                     $Activity->save();
                     return response()->json([
                         'data' => [
-                            'Activity' => $Activity,                            
+                            'activity' => $Activity,                            
                         ],
-                        'message' => 'Capacitación actualizada con éxito!'
+                        'message' => 'Actividad actualizada con éxito!'
                     ], 201);
                 }   
                 
             } catch (ModelNotFoundException $ex) {
-                return response()->json(['message' => "Capacitación con id {$id} no existe!", 'error' => $ex->getMessage()], 404);
+                return response()->json(['message' => "Actividad con id {$id} no existe!", 'error' => $ex->getMessage()], 404);
             } catch (\Exception $e) {
                 return response()->json(['message' => 'Algo salio mal!', 'error' => $e], 403);
             }
         }
-        return response()->json(['message' => "Capacitación con id {$id} no existe!", 'error' => 'No se suministrado un id valido'], 404);        
+        return response()->json(['message' => "Actividad con id {$id} no existe!", 'error' => 'No se suministrado un id valido'], 404);        
     }
 
     public function destroy(int $id)
@@ -102,16 +102,16 @@ private $approved = 'approved';
                 $Activity->delete();
                 return response()->json([
                     'data' => [
-                        'Activity' => $Activity,
+                        'activity' => $Activity,
                     ],
-                    'message' => 'Capacitación eliminada exitosamente!'
+                    'message' => 'Actividad eliminada exitosamente!'
                 ], 201);
     
             } catch (ModelNotFoundException $e) {
-                return response()->json(['message' => "Capacitación con id {$id} no existe!", 'error' => $e->getMessage()], 403);
+                return response()->json(['message' => "Actividad con id {$id} no existe!", 'error' => $e->getMessage()], 403);
             }
         }
-        return response()->json(['message' => "Capacitación con id {$id} no existe!", 'error' => 'No se suministrado un id valido'], 404);    
+        return response()->json(['message' => "Actividad con id {$id} no existe!", 'error' => 'No se suministrado un id valido'], 404);    
     }
     
     public function showByReportId(Request $request, int $id){
@@ -125,10 +125,10 @@ private $approved = 'approved';
                 ], 200);
                 
             } catch (ModelNotFoundException $e) {
-                return response()->json(['message' => "Capacitación con id {$id} no existe!", 'error' => $e->getMessage()], 403);
+                return response()->json(['message' => "Actividad con id {$id} no existe!", 'error' => $e->getMessage()], 403);
             }
         }
-        return response()->json(['message' => "Capacitación con id {$id} no existe!", 'error' => 'No se suministrado un id valido'], 404);        
+        return response()->json(['message' => "Actividad con id {$id} no existe!", 'error' => 'No se suministrado un id valido'], 404);        
     }
 
 }
