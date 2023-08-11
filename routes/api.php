@@ -151,8 +151,8 @@ Route::group(['prefix' => 'activityevidence'], function () {
         Route::post('store', 'Api\ActivityEvidenceController@store');
         Route::put('update/{id}', 'Api\ActivityEvidenceController@update');
         Route::delete('destroy/{id}', 'Api\ActivityEvidenceController@destroy');
-        Route::get('showbytrainingsstevidenceid/{id}', 'Api\ActivityEvidenceController@showByTrainingsstEvidenceId');
-        Route::get('showbytrainingsstid/{id}', 'Api\ActivityEvidenceController@showByTrainigsstId');
+        Route::get('showbyactivityevidenceid/{id}', 'Api\ActivityEvidenceController@showByActivityEvidenceId');
+        Route::get('showbyactivityid/{id}', 'Api\ActivityEvidenceController@showByActivityId');
     });
 });
 
