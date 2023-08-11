@@ -164,8 +164,7 @@ class ActivityEvidenceQuery implements IActivityEvidenceQuery
         }
     }
 
-    public function showByActivityId(Request $request, int $id){
-        
+    public function showByActivityId(Request $request, int $id){        
         if ($id) {
             try {
                 $evidence = ActivityEvidence::select(
