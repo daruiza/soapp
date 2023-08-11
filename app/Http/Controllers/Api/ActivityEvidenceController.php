@@ -48,7 +48,7 @@ class ActivityEvidenceController extends Controller
 
     /**
      * @OA\Get(
-     *      path="/activityevidence/showbytrainingsstevidenceid/{id}",
+     *      path="/activityevidence/showbyactivityevidenceid/{id}",
      *      operationId="get ActivityEvidence",
      *      tags={"ActivityEvidence"},
      *      summary="Get One ActivityEvidence",
@@ -84,7 +84,7 @@ class ActivityEvidenceController extends Controller
 
     /**
      * @OA\Get(
-     *      path="/activityevidence/showbytrainingsstid/{id}",
+     *      path="/activityevidence/showbyactivityid/{id}",
      *      operationId="get ActivityEvidence",
      *      tags={"ActivityEvidence"},
      *      summary="Get One ActivityEvidence",
