@@ -52,7 +52,7 @@
                 ],
                 "summary": "Store A Activity",
                 "description": "Store Activity",
-                "operationId": "StoreTraining",
+                "operationId": "StoreActivity",
                 "requestBody": {
                     "required": true,
                     "content": {
@@ -88,7 +88,7 @@
                 ],
                 "summary": "Update One Activity By one Id",
                 "description": "Update One Activity",
-                "operationId": "getUpdateTrainingSSTById",
+                "operationId": "getUpdateActivityById",
                 "parameters": [
                     {
                         "name": "id",
@@ -135,7 +135,7 @@
                 ],
                 "summary": "Delete One Activity By one Id",
                 "description": "Delete One Activity",
-                "operationId": "getDestroyTrainingSSTById",
+                "operationId": "getDestroyActivityById",
                 "parameters": [
                     {
                         "name": "id",
@@ -172,7 +172,7 @@
                 ],
                 "summary": "Get One Activity By one Id",
                 "description": "Return One Activity",
-                "operationId": "getTrainingSSTById",
+                "operationId": "getActivityById",
                 "parameters": [
                     {
                         "name": "id",
@@ -238,7 +238,7 @@
                 ]
             }
         },
-        "/activityevidence/showbytrainingsstevidenceid/{id}": {
+        "/activityevidence/showbyactivityevidenceid/{id}": {
             "get": {
                 "tags": [
                     "ActivityEvidence"
@@ -275,7 +275,7 @@
                 ]
             }
         },
-        "/activityevidence/showbytrainingsstid/{id}": {
+        "/activityevidence/showbyactivityid/{id}": {
             "get": {
                 "tags": [
                     "ActivityEvidence"
@@ -719,6 +719,383 @@
                         "name": "id",
                         "in": "path",
                         "description": "Commerce Id",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful operation"
+                    },
+                    "401": {
+                        "description": "Unauthenticated"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    }
+                },
+                "security": [
+                    {
+                        "bearer": []
+                    }
+                ]
+            }
+        },
+        "/compromise/index": {
+            "get": {
+                "tags": [
+                    "Compromise"
+                ],
+                "summary": "Get All Compromise",
+                "description": "Return Compromise",
+                "operationId": "getCompromise",
+                "responses": {
+                    "200": {
+                        "description": "Successful operation"
+                    },
+                    "401": {
+                        "description": "Unauthenticated"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    }
+                },
+                "security": [
+                    {
+                        "bearer": []
+                    }
+                ]
+            }
+        },
+        "/compromise/store": {
+            "post": {
+                "tags": [
+                    "Compromise"
+                ],
+                "summary": "Store A Compromise",
+                "description": "Store Compromise",
+                "operationId": "StoreCompromise",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/Compromise"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Successful operation"
+                    },
+                    "401": {
+                        "description": "Unauthenticated"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    }
+                },
+                "security": [
+                    {
+                        "bearer": []
+                    }
+                ]
+            }
+        },
+        "/compromise/update/{id}": {
+            "put": {
+                "tags": [
+                    "Compromise"
+                ],
+                "summary": "Update One Compromise By one Id",
+                "description": "Update One Compromise",
+                "operationId": "getUpdateCompromiseById",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Compromise Id",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/Compromise"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Successful operation"
+                    },
+                    "401": {
+                        "description": "Unauthenticated"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    }
+                },
+                "security": [
+                    {
+                        "bearer": []
+                    }
+                ]
+            }
+        },
+        "/compromise/destroy/{id}": {
+            "delete": {
+                "tags": [
+                    "Compromise"
+                ],
+                "summary": "Delete One Compromise By one Id",
+                "description": "Delete One Compromise",
+                "operationId": "getDestroyCompromiseById",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Compromise Id",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful operation"
+                    },
+                    "401": {
+                        "description": "Unauthenticated"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    }
+                },
+                "security": [
+                    {
+                        "bearer": []
+                    }
+                ]
+            }
+        },
+        "/compromise/showbyreportid/{id}": {
+            "get": {
+                "tags": [
+                    "Compromise"
+                ],
+                "summary": "Get One Compromise By one Id",
+                "description": "Return One Compromise",
+                "operationId": "getCompromiseById",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Compromise Id",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful operation"
+                    },
+                    "401": {
+                        "description": "Unauthenticated"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    }
+                },
+                "security": [
+                    {
+                        "bearer": []
+                    }
+                ]
+            }
+        },
+        "/compromiseevidence/store": {
+            "post": {
+                "tags": [
+                    "CompromiseEvidence"
+                ],
+                "summary": "Store Report",
+                "description": "Store Report",
+                "operationId": "storeReport",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/CompromiseEvidence"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Successful operation"
+                    },
+                    "401": {
+                        "description": "Unauthenticated"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    }
+                },
+                "security": [
+                    {
+                        "bearer": []
+                    }
+                ]
+            }
+        },
+        "/compromiseevidence/showbycompromiseevidenceid/{id}": {
+            "get": {
+                "tags": [
+                    "CompromiseEvidence"
+                ],
+                "summary": "Get One CompromiseEvidence",
+                "description": "Return Commerce",
+                "operationId": "get CompromiseEvidence",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "training sst evedence Id",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful operation"
+                    },
+                    "401": {
+                        "description": "Unauthenticated"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    }
+                },
+                "security": [
+                    {
+                        "bearer": []
+                    }
+                ]
+            }
+        },
+        "/compromiseevidence/showbycompromiseid/{id}": {
+            "get": {
+                "tags": [
+                    "CompromiseEvidence"
+                ],
+                "summary": "Get One CompromiseEvidence",
+                "description": "Return Commerce",
+                "operationId": "get ComromiseEvidence",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Training SST Id",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful operation"
+                    },
+                    "401": {
+                        "description": "Unauthenticated"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    }
+                },
+                "security": [
+                    {
+                        "bearer": []
+                    }
+                ]
+            }
+        },
+        "/compromiseevidence/update/{id}": {
+            "put": {
+                "tags": [
+                    "CompromiseEvidence"
+                ],
+                "summary": "Update One CompromiseEvidence By one Id",
+                "description": "Update One CompromiseEvidence",
+                "operationId": "getUpdateEvidenceById",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "CompromiseEvidence Id",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/EvidenceUpdate"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Successful operation"
+                    },
+                    "401": {
+                        "description": "Unauthenticated"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    }
+                },
+                "security": [
+                    {
+                        "bearer": []
+                    }
+                ]
+            }
+        },
+        "/compromiseevidence/destroy/{id}": {
+            "delete": {
+                "tags": [
+                    "CompromiseEvidence"
+                ],
+                "summary": "Delete One CompromiseEvidence By one Id",
+                "description": "Delete One CompromiseEvidence",
+                "operationId": "getDestroyEvidenceById",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "CompromiseEvidence Id",
                         "required": true,
                         "schema": {
                             "type": "integer"
@@ -2747,6 +3124,98 @@
                         "description": "user_id of the commerce",
                         "type": "string",
                         "example": "1"
+                    }
+                },
+                "type": "object"
+            },
+            "Compromise": {
+                "title": "Compromise",
+                "description": "Compromise body data",
+                "properties": {
+                    "item": {
+                        "title": "item",
+                        "description": "Item de Compromiso",
+                        "type": "string",
+                        "example": "4.15"
+                    },
+                    "rule": {
+                        "title": "rule",
+                        "description": "Norma de Compromiso",
+                        "type": "string",
+                        "example": "SGI"
+                    },
+                    "name": {
+                        "title": "name",
+                        "description": "Nombre de Compromiso",
+                        "type": "string",
+                        "example": "Responsable de SGT"
+                    },
+                    "detail": {
+                        "title": "detail",
+                        "description": "Detalle de Compromiso",
+                        "type": "string",
+                        "example": "ACTAS DE CONTROL INTERNO"
+                    },
+                    "canon": {
+                        "title": "canon",
+                        "description": "Criterio de Compromiso",
+                        "type": "boolean",
+                        "example": true
+                    },
+                    "dateinit": {
+                        "title": "dateinit",
+                        "description": "Fecha de apertura",
+                        "type": "string",
+                        "format": "date",
+                        "example": "2023-09-01"
+                    },
+                    "dateclose": {
+                        "title": "dateclose",
+                        "description": "Fecha de cierre",
+                        "type": "string",
+                        "format": "date",
+                        "example": "2023-09-30"
+                    },
+                    "report_id": {
+                        "title": "report_id",
+                        "description": "report_id of the Training SST",
+                        "example": 1
+                    }
+                },
+                "type": "object"
+            },
+            "CompromiseEvidence": {
+                "title": "Evidence",
+                "description": "Evidence body data",
+                "properties": {
+                    "name": {
+                        "title": "name",
+                        "description": "Name of the evidence",
+                        "type": "string",
+                        "example": "FileName"
+                    },
+                    "file": {
+                        "title": "file",
+                        "description": "File of the evidence",
+                        "type": "string",
+                        "example": "FileHostingName"
+                    },
+                    "type": {
+                        "title": "type",
+                        "description": "Type File",
+                        "type": "string",
+                        "example": "image/jpeg"
+                    },
+                    "approved": {
+                        "title": "approved",
+                        "description": "approved of the evidence",
+                        "type": "boolean",
+                        "example": true
+                    },
+                    "compromise_id": {
+                        "title": "compromise_id",
+                        "description": "compromise_id of the Evidence",
+                        "example": 1
                     }
                 },
                 "type": "object"

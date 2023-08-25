@@ -61,6 +61,14 @@ use App\Http\Controllers\Api\ActivityEvidenceController;
 use App\Query\Abstraction\IActivityEvidenceQuery;
 use App\Query\Request\ActivityEvidenceQuery;
 
+use App\Query\Abstraction\ICompromiseQuery;
+use App\Query\Request\CompromiseQuery;
+use App\Http\Controllers\Api\CompromiseController;
+
+use App\Query\Abstraction\ICompromiseEvidenceQuery;
+use App\Query\Request\CompromiseEvidenceQuery;
+use App\Http\Controllers\Api\CompromiseEvidenceController;
+
 class AppServiceProvider extends ServiceProvider
 {
     /**
@@ -111,6 +119,12 @@ class AppServiceProvider extends ServiceProvider
 
         $this->app->bind(IActivityEvidenceQuery::class, ActivityEvidenceQuery::class);
         $this->app->make(ActivityEvidenceController::class);
+
+        $this->app->bind(ICompromiseQuery::class, CompromiseQuery::class);
+        $this->app->make(CompromiseController::class);
+
+        $this->app->bind(ICompromiseEvidenceQuery::class, CompromiseEvidenceQuery::class);
+        $this->app->make(CompromiseEvidenceController::class);
 
     }
 
