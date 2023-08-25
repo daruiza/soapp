@@ -3,25 +3,25 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
-use App\Query\Abstraction\IActivityQuery;
+use App\Query\Abstraction\ICompromiseQuery;
 use Illuminate\Http\Request;
 
-class ActivityController extends Controller
+class CompromiseController extends Controller
 {
-    private $ActivityQuery;
+    private $CompromiseQuery;
 
-    public function __construct(IActivityQuery $ActivityQuery)
+    public function __construct(ICompromiseQuery $CompromiseQuery)
     {
-        $this->ActivityQuery = $ActivityQuery;
+        $this->CompromiseQuery = $CompromiseQuery;
     }
 
     /**
      * @OA\Get(
-     *      path="/activity/index",
-     *      operationId="getActivity",
-     *      tags={"Activity"},
-     *      summary="Get All Activity",
-     *      description="Return Activity",
+     *      path="/compromise/index",
+     *      operationId="getCompromise",
+     *      tags={"Compromise"},
+     *      summary="Get All Compromise",
+     *      description="Return Compromise",
      *      security={ {"bearer": {} }},
      *      @OA\Response(
      *          response=200,
@@ -39,20 +39,20 @@ class ActivityController extends Controller
      */
     public function index(Request $request)
     {
-        return $this->ActivityQuery->index($request);
+        return $this->CompromiseQuery->index($request);
     }
 
     /**
      * @OA\Post(
-     *      path="/activity/store",
-     *      operationId="StoreActivity",
-     *      tags={"Activity"},
-     *      summary="Store A Activity",
-     *      description="Store Activity",
+     *      path="/compromise/store",
+     *      operationId="StoreCompromise",
+     *      tags={"Compromise"},
+     *      summary="Store A Compromise",
+     *      description="Store Compromise",
      *      security={ {"bearer": {} }},
      *      @OA\RequestBody(
      *          required=true,
-     *          @OA\JsonContent(ref="#/components/schemas/Activity")
+     *          @OA\JsonContent(ref="#/components/schemas/Compromise")
      *      ),
      *      @OA\Response(
      *          response=200,
@@ -70,20 +70,20 @@ class ActivityController extends Controller
      */
     public function store(Request $request)
     {
-        return $this->ActivityQuery->store($request);
+        return $this->CompromiseQuery->store($request);
     }
 
     /**
      * @OA\Put(
-     *      path="/activity/update/{id}",
-     *      operationId="getUpdateActivityById",
-     *      tags={"Activity"},
-     *      summary="Update One Activity By one Id",
-     *      description="Update One Activity",
+     *      path="/compromise/update/{id}",
+     *      operationId="getUpdateCompromiseById",
+     *      tags={"Compromise"},
+     *      summary="Update One Compromise By one Id",
+     *      description="Update One Compromise",
      *      security={ {"bearer": {} }},
      *      @OA\Parameter(
      *          name="id",
-     *          description="Activity Id",
+     *          description="Compromise Id",
      *          required=true,
      *          in="path",
      *          @OA\Schema(
@@ -92,7 +92,7 @@ class ActivityController extends Controller
      *      ),
      *       @OA\RequestBody(
      *          required=true,
-     *          @OA\JsonContent(ref="#/components/schemas/Activity")
+     *          @OA\JsonContent(ref="#/components/schemas/Compromise")
      *      ),
      *      @OA\Response(
      *          response=200,
@@ -110,20 +110,20 @@ class ActivityController extends Controller
      */
     public function update(Request $request, $id)
     {
-        return $this->ActivityQuery->update($request, $id);
+        return $this->CompromiseQuery->update($request, $id);
     }
 
         /**
      * @OA\Delete(
-     *      path="/activity/destroy/{id}",
-     *      operationId="getDestroyActivityById",
-     *      tags={"Activity"},
-     *      summary="Delete One Activity By one Id",
-     *      description="Delete One Activity",
+     *      path="/compromise/destroy/{id}",
+     *      operationId="getDestroyCompromiseById",
+     *      tags={"Compromise"},
+     *      summary="Delete One Compromise By one Id",
+     *      description="Delete One Compromise",
      *      security={ {"bearer": {} }},
      *      @OA\Parameter(
      *          name="id",
-     *          description="Activity Id",
+     *          description="Compromise Id",
      *          required=true,
      *          in="path",
      *          @OA\Schema(
@@ -146,20 +146,20 @@ class ActivityController extends Controller
      */
     public function destroy($id)
     {
-        return $this->ActivityQuery->destroy($id);
+        return $this->CompromiseQuery->destroy($id);
     }
 
        /**
      * @OA\Get(
-     *      path="/activity/showbyreportid/{id}",
-     *      operationId="getActivityById",
-     *      tags={"Activity"},
-     *      summary="Get One Activity By one Id",
-     *      description="Return One Activity",
+     *      path="/compromise/showbyreportid/{id}",
+     *      operationId="getCompromiseById",
+     *      tags={"Compromise"},
+     *      summary="Get One Compromise By one Id",
+     *      description="Return One Compromise",
      *      security={ {"bearer": {} }},
      *      @OA\Parameter(
      *          name="id",
-     *          description="Activity Id",
+     *          description="Compromise Id",
      *          required=true,
      *          in="path",
      *          @OA\Schema(
@@ -182,7 +182,7 @@ class ActivityController extends Controller
      */
     public function showByReportId(Request $request, $id)
     {
-        return $this->ActivityQuery->showByReportId($request, $id);
+        return $this->CompromiseQuery->showByReportId($request, $id);
     }
 
 

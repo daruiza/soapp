@@ -156,5 +156,24 @@ Route::group(['prefix' => 'activityevidence'], function () {
     });
 });
 
+Route::group(['prefix' => 'compromise'], function () {
+    Route::group(['middleware' => 'auth:api'], function () {
+        Route::get('index', 'Api\CompromiseController@index');
+        Route::post('store', 'Api\CompromiseController@store');
+        Route::put('update/{id}', 'Api\CompromiseController@update');
+        Route::delete('destroy/{id}', 'Api\CompromiseController@destroy');
+        Route::get('showbyreportid/{id}', 'Api\CompromiseController@showByReportId');
+    });
+});
 
+Route::group(['prefix' => 'compromiseevidence'], function () {
+    Route::group(['middleware' => 'auth:api'], function () {
+        Route::get('index', 'Api\CompromiseEvidenceController@index');
+        Route::post('store', 'Api\CompromiseEvidenceController@store');
+        Route::put('update/{id}', 'Api\CompromiseEvidenceController@update');
+        Route::delete('destroy/{id}', 'Api\CompromiseEvidenceController@destroy');
+        Route::get('showbycompromiseevidenceid/{id}', 'Api\CompromiseEvidenceController@showByActivityEvidenceId');
+        Route::get('showbycompromiseid/{id}', 'Api\CompromiseEvidenceController@showByActivityId');
+    });
+});
 
