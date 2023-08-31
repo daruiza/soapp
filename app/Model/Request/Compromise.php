@@ -66,6 +66,17 @@ class Compromise
 
     /**
      * @OA\Property(
+     *      title="approved",
+     *      description="approvedg Training SST",
+     *      example=0
+     * )
+     *
+     * @var boolean
+     */
+    public $approved;
+
+    /**
+     * @OA\Property(
      *      title="dateinit",
      *      description="Fecha de apertura",
      *      example="2023-09-01"

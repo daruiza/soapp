@@ -18,6 +18,7 @@ class CompromiseQuery implements ICompromiseQuery
     private $rule = 'rule';
     private $detail = 'detail';
     private $canon = 'canon';
+    private $approved = 'approved';
     private $dateinit = 'dateinit';
     private $dateclosee = 'dateclose';
     private $report_id = 'report_id';
@@ -82,6 +83,7 @@ class CompromiseQuery implements ICompromiseQuery
                     $Compromise->rule = $request->rule ?? $Compromise->rule;
                     $Compromise->detail = $request->detail ?? $Compromise->detail;
                     $Compromise->canon = $request->canon ?? $Compromise->canon;
+                    $Compromise->approved = $request->approved ?? $Compromise->approved;
                     $Compromise->dateinit = $request->dateinit ?? $Compromise->dateinit;
                     $Compromise->dateclose = $request->dateclose ?? $Compromise->dateclose;
                     $Compromise->report_id = $request->report_id ?? $Compromise->report_id;
