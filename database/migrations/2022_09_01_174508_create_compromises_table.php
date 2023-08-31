@@ -19,8 +19,8 @@ class CreateCompromisesTable extends Migration
             $table->string('rule',32);
             $table->string('name');
             $table->string('detail');
-            $table->boolean('canon',true);
-            $table->boolean('approved',false);            
+            $table->boolean('canon')->default(false);
+            $table->boolean('approved')->default(false);            
             $table->date('dateinit')->nullable()->default(null);            
             $table->date('dateclose')->nullable()->default(null);            
             
