@@ -16,6 +16,7 @@ class Compromise extends Model
         'name',
         'detail',
         'canon',
+        'approved',
         'dateinit',
         'dateclose',
         'report_id'        
