@@ -172,8 +172,8 @@ Route::group(['prefix' => 'compromiseevidence'], function () {
         Route::post('store', 'Api\CompromiseEvidenceController@store');
         Route::put('update/{id}', 'Api\CompromiseEvidenceController@update');
         Route::delete('destroy/{id}', 'Api\CompromiseEvidenceController@destroy');
-        Route::get('showbycompromiseevidenceid/{id}', 'Api\CompromiseEvidenceController@showByActivityEvidenceId');
-        Route::get('showbycompromiseid/{id}', 'Api\CompromiseEvidenceController@showByActivityId');
+        Route::get('showbycompromiseevidenceid/{id}', 'Api\CompromiseEvidenceController@showByCompromiseEvidenceId');
+        Route::get('showbycompromiseid/{id}', 'Api\CompromiseEvidenceController@showByCompromiseId');
     });
 });
 
