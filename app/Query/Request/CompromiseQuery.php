@@ -10,6 +10,10 @@ use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Validation\ValidationException;
 use App\Model\Core\Compromise;
 
+use App\Model\Core\Report;
+use Illuminate\Support\Facades\File;
+use Illuminate\Support\Facades\Log;
+
 class CompromiseQuery implements ICompromiseQuery
 {
 
@@ -110,6 +114,18 @@ class CompromiseQuery implements ICompromiseQuery
         if ($id) {
             try {
                 $Compromise = Compromise::findOrFail($id);
+
+                $report = Report::findOrFail($Compromise->report_id);            
+                $path = "storage/images/commerce/{$report->commerce_id}/report/{$report->id}/compromises/{$Compromise->id}";
+                
+
+                // Eliminamos los archivos o el directorio del EMPLOYEE_REPORT            
+                if(File::exists(public_path($path))){
+                    File::deleteDirectory(public_path($path));                                
+                }else{
+                    Log::notice('Borrar Carpeta/Directorio fallo: '.public_path($path));
+                }
+
                 $Compromise->delete();
                 return response()->json([
                     'data' => [
