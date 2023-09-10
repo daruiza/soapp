@@ -116,7 +116,7 @@ class CompromiseSSTQuery implements ICompromiseSSTQuery
                 $Compromise = CompromiseSST::findOrFail($id);
 
                 $report = Report::findOrFail($Compromise->report_id);            
-                $path = "storage/images/commerce/{$report->commerce_id}/report/{$report->id}/compromises/{$Compromise->id}";
+                $path = "storage/images/commerce/{$report->commerce_id}/report/{$report->id}/compromisessst/{$Compromise->id}";
                 
 
                 // Eliminamos los archivos o el directorio del EMPLOYEE_REPORT            
