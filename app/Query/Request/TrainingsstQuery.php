@@ -10,6 +10,11 @@ use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Validation\ValidationException;
 use App\Model\Core\Trainingsst;
 
+use App\Model\Core\Report;
+use Illuminate\Support\Facades\File;
+use Illuminate\Support\Facades\Log;
+
+
 class TrainingsstQuery implements ITrainingsstQuery
 {
 
@@ -106,7 +111,20 @@ private $approved = 'approved';
     {
         if ($id) {
             try {
-                $trainingsst = Trainingsst::findOrFail($id);            
+                $trainingsst = Trainingsst::findOrFail($id); 
+                
+                $report = Report::findOrFail($trainingsst->report_id);            
+                $path = "storage/images/commerce/{$report->commerce_id}/report/{$report->id}/trainingsst/{$trainingsst->id}";
+                
+
+                // Eliminamos los archivos o el directorio del EMPLOYEE_REPORT            
+                if(File::exists(public_path($path))){
+                    File::deleteDirectory(public_path($path));                                
+                }else{
+                    Log::notice('Borrar Carpeta/Directorio fallo: '.public_path($path));
+                }
+
+
                 $trainingsst->delete();
                 return response()->json([
                     'data' => [
