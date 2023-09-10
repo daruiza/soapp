@@ -9,6 +9,10 @@ use Illuminate\Database\Eloquent\ModelNotFoundException;
 
 use Illuminate\Validation\ValidationException;
 use App\Model\Core\Activity;
+use App\Model\Core\Report;
+
+use Illuminate\Support\Facades\File;
+use Illuminate\Support\Facades\Log;
 
 class ActivityQuery implements IActivityQuery
 {
@@ -98,11 +102,23 @@ private $approved = 'approved';
     {
         if ($id) {
             try {
-                $Activity = Activity::findOrFail($id);            
-                $Activity->delete();
+                $activity = Activity::findOrFail($id);  
+                
+                $report = Report::findOrFail($activity->report_id);            
+                $path = "storage/images/commerce/{$report->commerce_id}/report/{$report->id}/activities/{$activity->id}";
+                
+
+                // Eliminamos los archivos o el directorio del EMPLOYEE_REPORT            
+                if(File::exists(public_path($path))){
+                    File::deleteDirectory(public_path($path));                                
+                }else{
+                    Log::notice('Borrar Carpeta/Directorio fallo: '.public_path($path));
+                }
+
+                $activity->delete();
                 return response()->json([
                     'data' => [
-                        'activity' => $Activity,
+                        'activity' => $activity,
                     ],
                     'message' => 'Actividad eliminada exitosamente!'
                 ], 201);

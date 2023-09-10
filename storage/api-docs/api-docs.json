@@ -3162,6 +3162,12 @@
                         "type": "boolean",
                         "example": true
                     },
+                    "approved": {
+                        "title": "approved",
+                        "description": "approvedg Training SST",
+                        "type": "boolean",
+                        "example": 0
+                    },
                     "dateinit": {
                         "title": "dateinit",
                         "description": "Fecha de apertura",
