@@ -123,20 +123,22 @@ class ReportQuery implements IReportQuery
             $lastreport = Report::query()
                 ->where('commerce_id', $request->input('commerce_id'))
                 ->with(['employee'])
-                ->latest('id', 'desc')->first();           
+                ->latest('id', 'desc')->first();
 
             // Creamos el nuevo reporte
             $report = new Report();
             $newReport = $report->create($request->input());
 
             // llena el nuevo reporte con los colaboradores del último reporte en estado Pendiente
-            if (count($lastreport->employee)) {
-                foreach ($lastreport->employee as $employee) {
-                    DB::table('employee_report')->insert([
-                        'report_id' => $newReport->id,
-                        'employee_id' => $employee->id,
-                        'employee_state' => 'Pendiente',
-                    ]);
+            if ($lastreport) {
+                if (count($lastreport->employee)) {
+                    foreach ($lastreport->employee as $employee) {
+                        DB::table('employee_report')->insert([
+                            'report_id' => $newReport->id,
+                            'employee_id' => $employee->id,
+                            'employee_state' => 'Pendiente',
+                        ]);
+                    }
                 }
             }
 
@@ -147,7 +149,7 @@ class ReportQuery implements IReportQuery
                 'message' => 'Reporte creado correctamente!'
             ], 201);
         } catch (\Exception $e) {
-            return response()->json(['message' => 'Algo salio mal!', 'error' => $e], 403);
+            return response()->json(['message' => 'Algo salio mal!', 'error' => $e->getMessage()], 403);
         }
     }
 

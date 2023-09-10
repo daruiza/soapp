@@ -129,7 +129,7 @@ class CommerceQuery implements ICommerceQuery
         if ($id) {
             try {
                 $commerce = Commerce::where('user_id', '=', $id)->first();
-                $commerce->user;
+                if($commerce) $commerce->user;                
                 return response()->json([
                     'data' => [
                         'commerce' => $commerce,
