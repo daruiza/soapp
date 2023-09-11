@@ -77,6 +77,14 @@ use App\Query\Abstraction\ICompromiseSSTEvidenceQuery;
 use App\Query\Request\CompromiseSSTEvidenceQuery;
 use App\Http\Controllers\Api\CompromiseSSTEvidenceController;
 
+use App\Query\Abstraction\ICompromiseRSSTQuery;
+use App\Query\Request\CompromiseRSSTQuery;
+use App\Http\Controllers\Api\CompromiseRSSTController;
+
+use App\Query\Abstraction\ICompromiseRSSTEvidenceQuery;
+use App\Query\Request\CompromiseRSSTEvidenceQuery;
+use App\Http\Controllers\Api\CompromiseRSSTEvidenceController;
+
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -140,6 +148,12 @@ class AppServiceProvider extends ServiceProvider
 
         $this->app->bind(ICompromiseSSTEvidenceQuery::class, CompromiseSSTEvidenceQuery::class);
         $this->app->make(CompromiseSSTEvidenceController::class);
+
+        $this->app->bind(ICompromiseRSSTQuery::class, CompromiseRSSTQuery::class);
+        $this->app->make(CompromiseRSSTController::class);
+
+        $this->app->bind(ICompromiseRSSTEvidenceQuery::class, CompromiseRSSTEvidenceQuery::class);
+        $this->app->make(CompromiseRSSTEvidenceController::class);
 
     }
 
