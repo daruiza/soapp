@@ -3,7 +3,6 @@
 namespace App\Query\Abstraction;
 
 use Illuminate\Http\Request;
-use App\Http\Requests\StoreUser;
 
 interface IUserQuery
 {

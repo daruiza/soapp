@@ -15,9 +15,9 @@ class Activity extends Model
         'activity',
         'date',
         'approved',
-        'report_id'        
-    ]; 
-    
+        'report_id'
+    ];
+
     //a varias capacitacions pertenecesn a un reporte
     public function report()
     {
@@ -27,11 +27,10 @@ class Activity extends Model
     public function activity_evidences()
     {
         return $this->hasMany(ActivityEvidence::class);
-    }    
+    }
 
     public function scopeReportid($query, $report_id)
     {
-        return is_null($report_id) ?  $query : $query->where('report_id', $report_id );
+        return is_null($report_id) ?  $query : $query->where('report_id', $report_id);
     }
-   
 }
