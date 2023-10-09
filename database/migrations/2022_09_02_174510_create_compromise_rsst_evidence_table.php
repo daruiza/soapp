@@ -13,7 +13,7 @@ class CreateCompromiseRSSTEvidenceTable extends Migration
      */
     public function up()
     {
-        Schema::create('compromise_rsst_evidence', function (Blueprint $table) {
+        Schema::create('compromise_rsst_evidences', function (Blueprint $table) {
             $table->id();
             $table->string('name');
             $table->string('file');
@@ -25,7 +25,7 @@ class CreateCompromiseRSSTEvidenceTable extends Migration
             $table->foreign('compromise_id')
                 ->references('id')
                 ->on('compromises_rsst')
-                ->onDelete('cascade');            
+                ->onDelete('cascade');
 
             $table->timestamps();
         });
@@ -38,7 +38,7 @@ class CreateCompromiseRSSTEvidenceTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('compromise_rsst_evidence');
+        Schema::dropIfExists('compromise_rsst_evidences');
     }
 }
 
