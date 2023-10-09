@@ -4,7 +4,6 @@ namespace App\Query\Request;
 
 use App\User;
 use App\Model\Admin\Rol;
-use Illuminate\Support\Facades\DB;
 use Illuminate\Validation\Rule;
 use Illuminate\Validation\ValidationException;
 use Illuminate\Support\Facades\Validator;
@@ -28,7 +27,7 @@ class UserQuery implements IUserQuery
         $user = User::query()
             ->select(['id', 'name', 'lastname', 'phone', 'email', 'photo', 'theme', 'rol_id'])
             ->where('rol_id', '!=', 1)
-            ->where('id', '!=', $request->user()->id)
+            ->where('id', '!=', $request->user()->id)            
             ->with(['rol:id,name,description,active'])
             ->with(['commerce:id,name,nit,user_id'])
             ->name($request->name)
