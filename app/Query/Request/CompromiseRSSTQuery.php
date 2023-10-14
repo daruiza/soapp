@@ -21,6 +21,7 @@ class CompromiseRSSTQuery implements ICompromiseRSSTQuery
     private $name = 'name';
     private $rule = 'rule';
     private $detail = 'detail';
+    private $recommendations = 'recommendations';
     private $canon = 'canon';
     private $approved = 'approved';
     private $dateinit = 'dateinit';
@@ -86,6 +87,7 @@ class CompromiseRSSTQuery implements ICompromiseRSSTQuery
                     $Compromise->name = $request->name ?? $Compromise->name;
                     $Compromise->rule = $request->rule ?? $Compromise->rule;
                     $Compromise->detail = $request->detail ?? $Compromise->detail;
+                    $Compromise->recommendations = $request->recommendations ?? $Compromise->recommendations;
                     $Compromise->canon = $request->canon ?? $Compromise->canon;
                     $Compromise->approved = $request->approved ?? $Compromise->approved;
                     $Compromise->dateinit = $request->dateinit ?? $Compromise->dateinit;

@@ -52,7 +52,7 @@ class CompromiseRSSTController extends Controller
      *      security={ {"bearer": {} }},
      *      @OA\RequestBody(
      *          required=true,
-     *          @OA\JsonContent(ref="#/components/schemas/Compromise")
+     *          @OA\JsonContent(ref="#/components/schemas/CompromiseRSST")
      *      ),
      *      @OA\Response(
      *          response=200,
@@ -83,7 +83,7 @@ class CompromiseRSSTController extends Controller
      *      security={ {"bearer": {} }},
      *      @OA\Parameter(
      *          name="id",
-     *          description="Compromise Id",
+     *          description="CompromiseRSST Id",
      *          required=true,
      *          in="path",
      *          @OA\Schema(
@@ -92,7 +92,7 @@ class CompromiseRSSTController extends Controller
      *      ),
      *       @OA\RequestBody(
      *          required=true,
-     *          @OA\JsonContent(ref="#/components/schemas/Compromise")
+     *          @OA\JsonContent(ref="#/components/schemas/CompromiseRSST")
      *      ),
      *      @OA\Response(
      *          response=200,

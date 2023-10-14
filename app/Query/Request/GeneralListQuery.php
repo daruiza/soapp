@@ -92,7 +92,7 @@ class GeneralListQuery implements IGeneralListQuery
                             }
                         }
                         $orquery;
-                    })                    
+                    })
                     //->toSql();
                     ->get();
                 return response()->json([

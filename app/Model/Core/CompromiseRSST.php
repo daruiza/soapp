@@ -15,6 +15,7 @@ class CompromiseRSST extends Model
         'rule',
         'name',
         'detail',
+        'recommendations',
         'canon',
         'approved',
         'dateinit',
