@@ -63,7 +63,7 @@ class CommerceQuery implements ICommerceQuery
             // Ejecutamos el validador y en caso de que falle devolvemos la respuesta
             $validator = Validator::make($request->all(), $rules);
             if ($validator->fails()) {
-                throw (new ValidationException($validator->errors()->getMessages()));
+                throw new ValidationException($validator->errors()->getMessages());
             }
             // Creamos el nuevo comercio
             $commerce = new Commerce();
@@ -77,7 +77,7 @@ class CommerceQuery implements ICommerceQuery
                 'message' => 'Tienda creada correctamente!'
             ], 201);
         } catch (\Exception $e) {
-            return response()->json(['message' => 'Algo salio mal!', 'error' => $e], 403);
+            return response()->json(['message' => 'Algo salio mal!', 'error' => $e->getMessage()], 403);
         }
         // } else {
         //     return response()->json(['message' => 'No tiene permiso para crear tienda!'], 403);
@@ -117,7 +117,10 @@ class CommerceQuery implements ICommerceQuery
                     return response()->json(['message' => 'No tienes permiso para actualizar la tienda!'], 403);
                 }
             } catch (ModelNotFoundException $ex) {
-                return response()->json(['message' => "Tienda con id {$id} no existe!", 'error' => $ex->getMessage()], 404);
+                return response()->json([
+                    'message' => "Tienda con id {$id} no existe!",
+                    'error' => $ex->getMessage()
+                ], 404);
             } catch (\Exception $e) {
                 return response()->json(['message' => 'Algo salio mal!', 'error' => $e], 403);
             }
@@ -129,7 +132,7 @@ class CommerceQuery implements ICommerceQuery
         if ($id) {
             try {
                 $commerce = Commerce::where('user_id', '=', $id)->first();
-                if($commerce) $commerce->user;                
+                if ($commerce) $commerce->user;
                 return response()->json([
                     'data' => [
                         'commerce' => $commerce,
