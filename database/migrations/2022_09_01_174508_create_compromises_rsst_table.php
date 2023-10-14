@@ -14,15 +14,16 @@ class CreateCompromisesRSSTTable extends Migration
     public function up()
     {
         Schema::create('compromises_rsst', function (Blueprint $table) {
-            $table->id();            
+            $table->id();
             $table->string('item',16);
             $table->string('rule',32);
             $table->string('name');
             $table->string('detail');
+            $table->string('recommendations');
             $table->boolean('canon')->default(false);
-            $table->boolean('approved')->default(false);            
-            $table->date('dateinit')->nullable()->default(null);            
-            $table->date('dateclose')->nullable()->default(null);            
+            $table->boolean('approved')->default(false);
+            $table->date('dateinit')->nullable()->default(null);
+            $table->date('dateclose')->nullable()->default(null);
             
             $table->unsignedBigInteger('report_id');
             
