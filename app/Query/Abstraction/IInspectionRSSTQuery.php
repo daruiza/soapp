@@ -4,7 +4,7 @@ namespace App\Query\Abstraction;
 
 use Illuminate\Http\Request;
 
-interface ICompromiseQuery {
+interface IInspectionRSSTQuery {
     public function index(Request $request);
     public function store(Request $request);
     public function update(Request $request, int $id);
