@@ -112,10 +112,10 @@ class InspectionRSST
      * @OA\Property(
      *      title="other",
      *      description="Otra Inspección",
-     *      example="0"
+     *      example=null
      * )
      *
-     * @var boolean
+     * @var string
      */
     public $other;
     

@@ -219,3 +219,13 @@ Route::group(['prefix' => 'compromisersstevidence'], function () {
     });
 });
 
+Route::group(['prefix' => 'inspectionrsst'], function () {
+    Route::group(['middleware' => 'auth:api'], function () {
+        Route::get('index', 'Api\InspectionRSSTController@index');
+        Route::post('store', 'Api\InspectionRSSTController@store');
+        Route::put('update/{id}', 'Api\InspectionRSSTController@update');
+        Route::delete('destroy/{id}', 'Api\InspectionRSSTController@destroy');
+        Route::get('showbyreportid/{id}', 'Api\InspectionRSSTController@showByReportId');
+    });
+});
+
