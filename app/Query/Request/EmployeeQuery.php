@@ -108,9 +108,9 @@ class EmployeeQuery implements IEmployeeQuery
             $this->identification => 'required|string|max:128|unique:employees',
             $this->email          => 'required|string|max:128|email|unique:employees',
             $this->name           => 'required|string|min:1|max:128|',
-            $this->lastname       => 'required|string|min:1|max:128|',
-            $this->phone          => 'numeric|digits_between:7,10',
-            $this->eps            => 'required|string|min:1|max:128|',
+            // $this->lastname       => 'required|string|min:1|max:128|',
+            // $this->phone          => 'numeric|digits_between:7,10',
+            // $this->eps            => 'required|string|min:1|max:128|',
         ];
         try {
             // Ejecutamos el validador y en caso de que falle devolvemos la respuesta
