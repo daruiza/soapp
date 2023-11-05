@@ -48,7 +48,7 @@ Route::group(['prefix' => 'user'], function () {
 Route::group(['prefix' => 'upload'], function () {
     Route::group(['middleware' => 'auth:api'], function () {
         Route::post('photo', 'Api\UploadController@photo');
-        Route::get('downloadfile', 'Api\UploadController@downloadFile');        
+        Route::get('downloadfile', 'Api\UploadController@downloadFile');
         Route::get('getfile', 'Api\UploadController@getFile');
     });
 });
@@ -216,6 +216,16 @@ Route::group(['prefix' => 'compromisersstevidence'], function () {
         Route::delete('destroy/{id}', 'Api\CompromiseRSSTEvidenceController@destroy');
         Route::get('showbycompromiseevidenceid/{id}', 'Api\CompromiseRSSTEvidenceController@showByCompromiseEvidenceId');
         Route::get('showbycompromiseid/{id}', 'Api\CompromiseRSSTEvidenceController@showByCompromiseId');
+    });
+});
+
+Route::group(['prefix' => 'inspectionrsst'], function () {
+    Route::group(['middleware' => 'auth:api'], function () {
+        Route::get('index', 'Api\InspectionRSSTController@index');
+        Route::post('store', 'Api\InspectionRSSTController@store');
+        Route::put('update/{id}', 'Api\InspectionRSSTController@update');
+        Route::delete('destroy/{id}', 'Api\InspectionRSSTController@destroy');
+        Route::get('showbyreportid/{id}', 'Api\InspectionRSSTController@showByReportId');
     });
 });
 

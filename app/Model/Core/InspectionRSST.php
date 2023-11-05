@@ -1,0 +1,42 @@
+<?php
+
+namespace App\Model\Core;
+
+use Illuminate\Database\Eloquent\Model;
+use App\Model\Core\Report;
+use App\Model\Core\InspectionRSSTEvidence;
+
+class InspectionRSST extends Model
+{
+    protected $table = 'inspection_rsst';
+    protected $fillable = [
+        'id',
+        'work',
+        'machines',
+        'vehicles',
+        'tools',
+        'epp',
+        'cleanliness',
+        'chemicals',
+        'risk_work',
+        'emergency_item',
+        'other',
+        'report_id',
+    ];
+
+    //a varias capacitacions pertenecesn a un reporte
+    public function report()
+    {
+        return $this->belongsTo(Report::class);
+    }
+
+    public function inspection_evidences()
+    {
+        return $this->hasMany(InspectionRSSTEvidence::class);
+    }
+
+    public function scopeReportid($query, $report_id)
+    {
+        return is_null($report_id) ?  $query : $query->where('report_id', $report_id);
+    }
+}

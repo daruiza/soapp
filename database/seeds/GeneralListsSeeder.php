@@ -438,6 +438,16 @@ class GeneralListsSeeder extends Seeder
             'value' => 'Socialización del impacto del SG_SST',
             'class' => 'DOCUMENTOS SG-SST'
         ));
+
+        DB::table('general_lists')->insert(array(
+            'name' => 'inspection_work',
+            'value' => 'Administración',
+        ));
+
+        DB::table('general_lists')->insert(array(
+            'name' => 'inspection_work',
+            'value' => 'Producción',
+        ));
     }
 
 
