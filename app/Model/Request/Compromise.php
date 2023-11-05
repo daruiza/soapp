@@ -102,7 +102,7 @@ class Compromise
     /**
      * @OA\Property(
      *      title="report_id",
-     *      description="report_id of the Training SST",
+     *      description="report_id of the Compromisw SST",
      *      example=1
      * )
      *

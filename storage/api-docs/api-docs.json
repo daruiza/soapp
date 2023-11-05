@@ -1159,7 +1159,7 @@
                     "content": {
                         "application/json": {
                             "schema": {
-                                "$ref": "#/components/schemas/Compromise"
+                                "$ref": "#/components/schemas/CompromiseRSST"
                             }
                         }
                     }
@@ -1194,7 +1194,7 @@
                     {
                         "name": "id",
                         "in": "path",
-                        "description": "Compromise Id",
+                        "description": "CompromiseRSST Id",
                         "required": true,
                         "schema": {
                             "type": "integer"
@@ -1206,7 +1206,7 @@
                     "content": {
                         "application/json": {
                             "schema": {
-                                "$ref": "#/components/schemas/Compromise"
+                                "$ref": "#/components/schemas/CompromiseRSST"
                             }
                         }
                     }
@@ -2729,6 +2729,189 @@
                 ]
             }
         },
+        "/inspectionrsst/index": {
+            "get": {
+                "tags": [
+                    "Inspection"
+                ],
+                "summary": "Get All Inspection",
+                "description": "Return Inspection",
+                "operationId": "getInspection",
+                "responses": {
+                    "200": {
+                        "description": "Successful operation"
+                    },
+                    "401": {
+                        "description": "Unauthenticated"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    }
+                },
+                "security": [
+                    {
+                        "bearer": []
+                    }
+                ]
+            }
+        },
+        "/inspectionrsst/store": {
+            "post": {
+                "tags": [
+                    "Inspection"
+                ],
+                "summary": "Store A Inspection",
+                "description": "Store Inspection",
+                "operationId": "StoreInspection",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/InspectionRSST"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Successful operation"
+                    },
+                    "401": {
+                        "description": "Unauthenticated"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    }
+                },
+                "security": [
+                    {
+                        "bearer": []
+                    }
+                ]
+            }
+        },
+        "/inspectionrsst/update/{id}": {
+            "put": {
+                "tags": [
+                    "Inspection"
+                ],
+                "summary": "Update One Inspection By one Id",
+                "description": "Update One Inspection",
+                "operationId": "getUpdateInspectionById",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Inspection Id",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/InspectionRSST"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Successful operation"
+                    },
+                    "401": {
+                        "description": "Unauthenticated"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    }
+                },
+                "security": [
+                    {
+                        "bearer": []
+                    }
+                ]
+            }
+        },
+        "/inspectionrsst/destroy/{id}": {
+            "delete": {
+                "tags": [
+                    "Inspection"
+                ],
+                "summary": "Delete One Inspection By one Id",
+                "description": "Delete One Inspection",
+                "operationId": "getDestroyInspectionById",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Inspection Id",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful operation"
+                    },
+                    "401": {
+                        "description": "Unauthenticated"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    }
+                },
+                "security": [
+                    {
+                        "bearer": []
+                    }
+                ]
+            }
+        },
+        "/inspectionrsst/showbyreportid/{id}": {
+            "get": {
+                "tags": [
+                    "Inspection"
+                ],
+                "summary": "Get One Inspection By one Id",
+                "description": "Return One Inspection",
+                "operationId": "getInspectionById",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Inspection Id",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful operation"
+                    },
+                    "401": {
+                        "description": "Unauthenticated"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    }
+                },
+                "security": [
+                    {
+                        "bearer": []
+                    }
+                ]
+            }
+        },
         "/report/index": {
             "get": {
                 "tags": [
@@ -3938,7 +4121,7 @@
                     },
                     "report_id": {
                         "title": "report_id",
-                        "description": "report_id of the Training SST",
+                        "description": "report_id of the Compromisw SST",
                         "example": 1
                     }
                 },
@@ -3975,6 +4158,74 @@
                     "compromise_id": {
                         "title": "compromise_id",
                         "description": "compromise_id of the Evidence",
+                        "example": 1
+                    }
+                },
+                "type": "object"
+            },
+            "CompromiseRSST": {
+                "title": "CompromiseRSST",
+                "description": "CompromiseRSST body data",
+                "properties": {
+                    "item": {
+                        "title": "item",
+                        "description": "Item de Compromiso",
+                        "type": "string",
+                        "example": "4.15"
+                    },
+                    "rule": {
+                        "title": "rule",
+                        "description": "Norma de Compromiso",
+                        "type": "string",
+                        "example": "SGI"
+                    },
+                    "name": {
+                        "title": "name",
+                        "description": "Nombre de Compromiso",
+                        "type": "string",
+                        "example": "Responsable de SGT"
+                    },
+                    "detail": {
+                        "title": "detail",
+                        "description": "Detalle de Compromiso",
+                        "type": "string",
+                        "example": "ACTAS DE CONTROL INTERNO"
+                    },
+                    "recommendations": {
+                        "title": "recommendations",
+                        "description": "Recomendaciones de Compromiso",
+                        "type": "string",
+                        "example": "RECOMENDACION"
+                    },
+                    "canon": {
+                        "title": "canon",
+                        "description": "Criterio de Compromiso",
+                        "type": "boolean",
+                        "example": true
+                    },
+                    "approved": {
+                        "title": "approved",
+                        "description": "approvedg Training SST",
+                        "type": "boolean",
+                        "example": 0
+                    },
+                    "dateinit": {
+                        "title": "dateinit",
+                        "description": "Fecha de apertura",
+                        "type": "string",
+                        "format": "date",
+                        "example": "2023-09-01"
+                    },
+                    "dateclose": {
+                        "title": "dateclose",
+                        "description": "Fecha de cierre",
+                        "type": "string",
+                        "format": "date",
+                        "example": "2023-09-30"
+                    },
+                    "report_id": {
+                        "title": "report_id",
+                        "description": "report_id of the Training SST",
                         "example": 1
                     }
                 },
@@ -4030,7 +4281,7 @@
                     "phone": {
                         "title": "phone",
                         "description": "phone of the Employee",
-                        "example": 2147483647
+                        "example": 3194062550
                     },
                     "photo": {
                         "title": "photo",
@@ -4150,7 +4401,7 @@
                     "phone": {
                         "title": "phone",
                         "description": "phone of the Employee",
-                        "example": 2147483647
+                        "example": 3194062550
                     },
                     "photo": {
                         "title": "photo",
@@ -4253,6 +4504,78 @@
                         "description": "value of the General List",
                         "type": "string",
                         "example": "Femenino"
+                    }
+                },
+                "type": "object"
+            },
+            "InspectionRSST": {
+                "title": "InspectionRSST",
+                "description": "InspectionRSST body data",
+                "properties": {
+                    "work": {
+                        "title": "work",
+                        "description": "Obra/Frente/Area de Inspección",
+                        "type": "string",
+                        "example": "Administración"
+                    },
+                    "machines": {
+                        "title": "machines",
+                        "description": "Maquinas y Equió de la Inspección",
+                        "type": "boolean",
+                        "example": "0"
+                    },
+                    "vehicles": {
+                        "title": "vehicles",
+                        "description": "Vehiculos de la Inspección",
+                        "type": "boolean",
+                        "example": "0"
+                    },
+                    "tools": {
+                        "title": "tools",
+                        "description": "Herramientas de la Inspección",
+                        "type": "boolean",
+                        "example": "0"
+                    },
+                    "epp": {
+                        "title": "epp",
+                        "description": "EPP de la Inspección",
+                        "type": "boolean",
+                        "example": "0"
+                    },
+                    "cleanliness": {
+                        "title": "cleanliness",
+                        "description": "Orden y Aseo de la Inspección",
+                        "type": "boolean",
+                        "example": "0"
+                    },
+                    "chemicals": {
+                        "title": "chemicals",
+                        "description": "Sustancias Quimicas de la Inspección",
+                        "type": "boolean",
+                        "example": "0"
+                    },
+                    "risk_work": {
+                        "title": "risk_work",
+                        "description": "Trabajos de Ato Riesgo de la Inspección",
+                        "type": "boolean",
+                        "example": "0"
+                    },
+                    "emergency_item": {
+                        "title": "emergency_item",
+                        "description": "Elementos de emergencia de la Inspección",
+                        "type": "boolean",
+                        "example": "0"
+                    },
+                    "other": {
+                        "title": "other",
+                        "description": "Otra Inspección",
+                        "type": "string",
+                        "example": null
+                    },
+                    "report_id": {
+                        "title": "report_id",
+                        "description": "report_id of the Inspection SST",
+                        "example": 1
                     }
                 },
                 "type": "object"
@@ -4452,7 +4775,7 @@
                     "phone": {
                         "title": "phone",
                         "description": "phone of the user",
-                        "example": 2147483647
+                        "example": 3194062550
                     },
                     "theme": {
                         "title": "theme",
@@ -4499,7 +4822,7 @@
                     "phone": {
                         "title": "phone",
                         "description": "phone of the user",
-                        "example": 2147483647
+                        "example": 3194062550
                     },
                     "theme": {
                         "title": "theme",

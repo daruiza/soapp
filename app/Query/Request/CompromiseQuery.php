@@ -129,7 +129,7 @@ class CompromiseQuery implements ICompromiseQuery
                 $Compromise->delete();
                 return response()->json([
                     'data' => [
-                        'activity' => $Compromise,
+                        'compromise' => $Compromise,
                     ],
                     'message' => 'Compromiso eliminada exitosamente!'
                 ], 201);
