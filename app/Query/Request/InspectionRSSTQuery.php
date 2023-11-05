@@ -78,14 +78,17 @@ class InspectionRSSTQuery implements IInspectionRSSTQuery
                         throw new ValidationException($validator->errors()->getMessages());
                     }
 
-                    $inspection->item = $request->item ?? $inspection->item;
-                    $inspection->name = $request->name ?? $inspection->name;
-                    $inspection->rule = $request->rule ?? $inspection->rule;
-                    $inspection->detail = $request->detail ?? $inspection->detail;
-                    $inspection->canon = $request->canon ?? $inspection->canon;
-                    $inspection->approved = $request->approved ?? $inspection->approved;
-                    $inspection->dateinit = $request->dateinit ?? $inspection->dateinit;
-                    $inspection->dateclose = $request->dateclose ?? $inspection->dateclose;
+                    $inspection->work = $request->work ?? $inspection->work;
+                    $inspection->machines = $request->machines ?? $inspection->machines;
+                    $inspection->vehicles = $request->vehicles ?? $inspection->vehicles;
+                    $inspection->tools = $request->tools ?? $inspection->tools;
+                    $inspection->epp = $request->epp ?? $inspection->epp;
+                    $inspection->cleanliness = $request->cleanliness ?? $inspection->cleanliness;
+                    $inspection->chemicals = $request->chemicals ?? $inspection->chemicals;
+                    $inspection->risk_work = $request->risk_work ?? $inspection->risk_work;
+                    $inspection->emergency_item = $request->emergency_item ?? $inspection->emergency_item;
+                    $inspection->other = $request->other ?? $inspection->other;
+
                     $inspection->report_id = $request->report_id ?? $inspection->report_id;
 
                     $inspection->save();

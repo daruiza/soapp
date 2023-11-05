@@ -4281,7 +4281,7 @@
                     "phone": {
                         "title": "phone",
                         "description": "phone of the Employee",
-                        "example": 2147483647
+                        "example": 3194062550
                     },
                     "photo": {
                         "title": "photo",
@@ -4401,7 +4401,7 @@
                     "phone": {
                         "title": "phone",
                         "description": "phone of the Employee",
-                        "example": 2147483647
+                        "example": 3194062550
                     },
                     "photo": {
                         "title": "photo",
@@ -4775,7 +4775,7 @@
                     "phone": {
                         "title": "phone",
                         "description": "phone of the user",
-                        "example": 2147483647
+                        "example": 3194062550
                     },
                     "theme": {
                         "title": "theme",
@@ -4822,7 +4822,7 @@
                     "phone": {
                         "title": "phone",
                         "description": "phone of the user",
-                        "example": 2147483647
+                        "example": 3194062550
                     },
                     "theme": {
                         "title": "theme",
