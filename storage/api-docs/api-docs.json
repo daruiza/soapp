@@ -2912,6 +2912,200 @@
                 ]
             }
         },
+        "/inspectionrsstevidence/store": {
+            "post": {
+                "tags": [
+                    "InspectionRSSTEvidence"
+                ],
+                "summary": "Store Inspection Report",
+                "description": "Store Inspection Report",
+                "operationId": "storeReport",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/InspectionEvidence"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Successful operation"
+                    },
+                    "401": {
+                        "description": "Unauthenticated"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    }
+                },
+                "security": [
+                    {
+                        "bearer": []
+                    }
+                ]
+            }
+        },
+        "/inspectionrsstevidence/showbyinspectionevidenceid/{id}": {
+            "get": {
+                "tags": [
+                    "InspectionRSSTEvidence"
+                ],
+                "summary": "Get One InspectionEvidence",
+                "description": "Return Commerce",
+                "operationId": "get InspectionEvidence",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "training sst evedence Id",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful operation"
+                    },
+                    "401": {
+                        "description": "Unauthenticated"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    }
+                },
+                "security": [
+                    {
+                        "bearer": []
+                    }
+                ]
+            }
+        },
+        "/inspectionrsstevidence/showbyinspectionid/{id}": {
+            "get": {
+                "tags": [
+                    "InspectionRSSTEvidence"
+                ],
+                "summary": "Get One InspectionEvidence",
+                "description": "Return Commerce",
+                "operationId": "get ComromiseEvidence",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Training SST Id",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful operation"
+                    },
+                    "401": {
+                        "description": "Unauthenticated"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    }
+                },
+                "security": [
+                    {
+                        "bearer": []
+                    }
+                ]
+            }
+        },
+        "/inspectionrsstevidence/update/{id}": {
+            "put": {
+                "tags": [
+                    "InspectionRSSTEvidence"
+                ],
+                "summary": "Update One InspectionEvidence By one Id",
+                "description": "Update One InspectionEvidence",
+                "operationId": "getUpdateEvidenceById",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "InspectionEvidence Id",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/EvidenceUpdate"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Successful operation"
+                    },
+                    "401": {
+                        "description": "Unauthenticated"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    }
+                },
+                "security": [
+                    {
+                        "bearer": []
+                    }
+                ]
+            }
+        },
+        "/inspectionrsstevidence/destroy/{id}": {
+            "delete": {
+                "tags": [
+                    "InspectionRSSTEvidence"
+                ],
+                "summary": "Delete One InspectionEvidence By one Id",
+                "description": "Delete One InspectionEvidence",
+                "operationId": "getDestroyEvidenceById",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "InspectionEvidence Id",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful operation"
+                    },
+                    "401": {
+                        "description": "Unauthenticated"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    }
+                },
+                "security": [
+                    {
+                        "bearer": []
+                    }
+                ]
+            }
+        },
         "/report/index": {
             "get": {
                 "tags": [
@@ -4504,6 +4698,42 @@
                         "description": "value of the General List",
                         "type": "string",
                         "example": "Femenino"
+                    }
+                },
+                "type": "object"
+            },
+            "InspectionEvidence": {
+                "title": "Evidence",
+                "description": "Evidence body data",
+                "properties": {
+                    "name": {
+                        "title": "name",
+                        "description": "Name of the evidence",
+                        "type": "string",
+                        "example": "FileName"
+                    },
+                    "file": {
+                        "title": "file",
+                        "description": "File of the evidence",
+                        "type": "string",
+                        "example": "FileHostingName"
+                    },
+                    "type": {
+                        "title": "type",
+                        "description": "Type File",
+                        "type": "string",
+                        "example": "image/jpeg"
+                    },
+                    "approved": {
+                        "title": "approved",
+                        "description": "approved of the evidence",
+                        "type": "boolean",
+                        "example": true
+                    },
+                    "inspection_id": {
+                        "title": "inspection_id",
+                        "description": "inspection_id of the Evidence",
+                        "example": 1
                     }
                 },
                 "type": "object"
