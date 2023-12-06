@@ -89,6 +89,10 @@ use App\Query\Abstraction\IInspectionRSSTQuery;
 use App\Query\Request\InspectionRSSTQuery;
 use App\Http\Controllers\Api\InspectionRSSTController;
 
+use App\Query\Abstraction\IInspectionRSSTEvidenceQuery;
+use App\Query\Request\InspectionRSSTEvidenceQuery;
+use App\Http\Controllers\Api\InspectionRSSTEvidenceController;
+
 class AppServiceProvider extends ServiceProvider
 {
     /**
@@ -160,6 +164,9 @@ class AppServiceProvider extends ServiceProvider
 
         $this->app->bind(IInspectionRSSTQuery::class, InspectionRSSTQuery::class);
         $this->app->make(InspectionRSSTController::class);
+
+        $this->app->bind(IInspectionRSSTEvidenceQuery::class, InspectionRSSTEvidenceQuery::class);
+        $this->app->make(InspectionRSSTEvidenceController::class);
 
     }
 

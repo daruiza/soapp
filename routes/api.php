@@ -229,3 +229,14 @@ Route::group(['prefix' => 'inspectionrsst'], function () {
     });
 });
 
+Route::group(['prefix' => 'inspectionrsstevidence'], function () {
+    Route::group(['middleware' => 'auth:api'], function () {
+        Route::get('index', 'Api\InspectionRSSTEvidenceController@index');
+        Route::post('store', 'Api\InspectionRSSTEvidenceController@store');
+        Route::put('update/{id}', 'Api\InspectionRSSTEvidenceController@update');
+        Route::delete('destroy/{id}', 'Api\InspectionRSSTEvidenceController@destroy');
+        Route::get('showbyinspectionevidenceid/{id}', 'Api\InspectionRSSTEvidenceController@showByCompromiseEvidenceId');
+        Route::get('showbyinspectionid/{id}', 'Api\InspectionRSSTEvidenceController@showByCompromiseId');
+    });
+});
+
