@@ -19,7 +19,7 @@ class InspectionRSSTController extends Controller
      * @OA\Get(
      *      path="/inspectionrsst/index",
      *      operationId="getInspection",
-     *      tags={"Inspection"},
+     *      tags={"InspectionRSST"},
      *      summary="Get All Inspection",
      *      description="Return Inspection",
      *      security={ {"bearer": {} }},
@@ -46,7 +46,7 @@ class InspectionRSSTController extends Controller
      * @OA\Post(
      *      path="/inspectionrsst/store",
      *      operationId="StoreInspection",
-     *      tags={"Inspection"},
+     *      tags={"InspectionRSST"},
      *      summary="Store A Inspection",
      *      description="Store Inspection",
      *      security={ {"bearer": {} }},
@@ -77,7 +77,7 @@ class InspectionRSSTController extends Controller
      * @OA\Put(
      *      path="/inspectionrsst/update/{id}",
      *      operationId="getUpdateInspectionById",
-     *      tags={"Inspection"},
+     *      tags={"InspectionRSST"},
      *      summary="Update One Inspection By one Id",
      *      description="Update One Inspection",
      *      security={ {"bearer": {} }},
@@ -117,7 +117,7 @@ class InspectionRSSTController extends Controller
      * @OA\Delete(
      *      path="/inspectionrsst/destroy/{id}",
      *      operationId="getDestroyInspectionById",
-     *      tags={"Inspection"},
+     *      tags={"InspectionRSST"},
      *      summary="Delete One Inspection By one Id",
      *      description="Delete One Inspection",
      *      security={ {"bearer": {} }},
@@ -153,7 +153,7 @@ class InspectionRSSTController extends Controller
      * @OA\Get(
      *      path="/inspectionrsst/showbyreportid/{id}",
      *      operationId="getInspectionById",
-     *      tags={"Inspection"},
+     *      tags={"InspectionRSST"},
      *      summary="Get One Inspection By one Id",
      *      description="Return One Inspection",
      *      security={ {"bearer": {} }},
