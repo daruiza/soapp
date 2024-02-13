@@ -2732,7 +2732,7 @@
         "/inspectionrsst/index": {
             "get": {
                 "tags": [
-                    "Inspection"
+                    "InspectionRSST"
                 ],
                 "summary": "Get All Inspection",
                 "description": "Return Inspection",
@@ -2758,7 +2758,7 @@
         "/inspectionrsst/store": {
             "post": {
                 "tags": [
-                    "Inspection"
+                    "InspectionRSST"
                 ],
                 "summary": "Store A Inspection",
                 "description": "Store Inspection",
@@ -2794,7 +2794,7 @@
         "/inspectionrsst/update/{id}": {
             "put": {
                 "tags": [
-                    "Inspection"
+                    "InspectionRSST"
                 ],
                 "summary": "Update One Inspection By one Id",
                 "description": "Update One Inspection",
@@ -2841,7 +2841,7 @@
         "/inspectionrsst/destroy/{id}": {
             "delete": {
                 "tags": [
-                    "Inspection"
+                    "InspectionRSST"
                 ],
                 "summary": "Delete One Inspection By one Id",
                 "description": "Delete One Inspection",
@@ -2878,7 +2878,7 @@
         "/inspectionrsst/showbyreportid/{id}": {
             "get": {
                 "tags": [
-                    "Inspection"
+                    "InspectionRSST"
                 ],
                 "summary": "Get One Inspection By one Id",
                 "description": "Return One Inspection",
