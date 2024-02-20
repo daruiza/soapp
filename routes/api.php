@@ -64,11 +64,10 @@ Route::group(['prefix' => 'generallist'], function () {
         Route::get('index', 'Api\GeneralListController@index');
         Route::get('showbyid/{id}', 'Api\GeneralListController@showById');
         Route::get('showbyname', 'Api\GeneralListController@showByName');
-        Route::get('showbynamelist', 'Api\GeneralListController@showByNameList');        
+        Route::get('showbynamelist', 'Api\GeneralListController@showByNameList');
         Route::post('store', 'Api\GeneralListController@store');
         Route::delete('destroy/{id}', 'Api\GeneralListController@destroy');
         Route::put('update/{id}', 'Api\GeneralListController@update');
-
     });
 });
 
@@ -231,12 +230,10 @@ Route::group(['prefix' => 'inspectionrsst'], function () {
 
 Route::group(['prefix' => 'inspectionrsstevidence'], function () {
     Route::group(['middleware' => 'auth:api'], function () {
-        Route::get('index', 'Api\InspectionRSSTEvidenceController@index');
         Route::post('store', 'Api\InspectionRSSTEvidenceController@store');
         Route::put('update/{id}', 'Api\InspectionRSSTEvidenceController@update');
         Route::delete('destroy/{id}', 'Api\InspectionRSSTEvidenceController@destroy');
-        Route::get('showbyinspectionevidenceid/{id}', 'Api\InspectionRSSTEvidenceController@showByCompromiseEvidenceId');
-        Route::get('showbyinspectionid/{id}', 'Api\InspectionRSSTEvidenceController@showByCompromiseId');
+        Route::get('showbyinspectionevidenceid/{id}', 'Api\InspectionRSSTEvidenceController@showByInspectionEvidenceId');
+        Route::get('showbyinspectionid/{id}', 'Api\InspectionRSSTEvidenceController@showByInspectionId');
     });
-});
-
+}); 

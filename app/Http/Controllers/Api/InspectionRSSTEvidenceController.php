@@ -56,7 +56,7 @@ class InspectionRSSTEvidenceController extends Controller
      *      security={ {"bearer": {} }},
      *      @OA\Parameter(
      *          name="id",
-     *          description="training sst evedence Id",
+     *          description="InspectionEvidence RSST evedence Id",
      *          required=true,
      *          in="path",
      *          @OA\Schema(
@@ -92,7 +92,7 @@ class InspectionRSSTEvidenceController extends Controller
      *      security={ {"bearer": {} }},
      *      @OA\Parameter(
      *          name="id",
-     *          description="Training SST Id",
+     *          description="Ispection RSST Id",
      *          required=true,
      *          in="path",
      *          @OA\Schema(
