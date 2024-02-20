@@ -18,25 +18,7 @@ class InspectionRSSTEvidenceQuery implements IInspectionRSSTEvidenceQuery
     private $file = 'file';
     private $type = 'type';
     private $approved = 'approved';
-    private $inspection_id = 'inspection_id';
-
-    public function index(Request $request){
-        try {
-            $evidences = InspectionRSSTEvidence::select(['id', 'file', 'approved', 'inspection_id'])
-                ->orderBy('id', $request->sort ?? 'ASC')
-                ->paginate($request->limit ?? 10, ['*'], '', $request->page ?? 1);
-
-            return response()->json([
-                'data' => [
-                    'evidence' => $evidences,
-                ],
-                'message' => 'Datos de Evidencia Consultados Correctamente!'
-            ], 201);
-
-        } catch (\Exception $e) {
-            return response()->json(['message' => $e->getMessage()], 402);
-        }
-    }
+    private $inspection_id = 'inspection_id';    
     
     public function store(Request $request){
         
@@ -149,7 +131,7 @@ class InspectionRSSTEvidenceQuery implements IInspectionRSSTEvidenceQuery
                     'approved',
                     'inspection_id'
                 )
-                ->where('inspection_id',$id)
+                ->where('id',$id)
                 ->get();
                 
                 return response()->json([
