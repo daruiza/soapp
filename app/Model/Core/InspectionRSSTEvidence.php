@@ -2,7 +2,7 @@
 
 namespace App\Model\Core;
 
-use App\Model\Core\InspectionSST;
+use App\Model\Core\InspectionRSST;
 
 use Illuminate\Database\Eloquent\Model;
 
@@ -20,6 +20,6 @@ class InspectionRSSTEvidence extends Model
 
     public function inspection()
     {
-        return $this->belongsTo(InspectionSST::class);
+        return $this->belongsTo(InspectionRSST::class);
     }
 }

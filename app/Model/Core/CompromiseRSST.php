@@ -4,7 +4,7 @@ namespace App\Model\Core;
 
 use Illuminate\Database\Eloquent\Model;
 use App\Model\Core\Report;
-use App\Model\Core\CopromiseSSTEvidence;
+use App\Model\Core\CompromiseRSSTEvidence;
 
 class CompromiseRSST extends Model
 {
@@ -31,7 +31,7 @@ class CompromiseRSST extends Model
 
     public function compromise_evidences()
     {
-        return $this->hasMany(CopromiseRSSTEvidence::class);
+        return $this->hasMany(CompromiseRSSTEvidence::class);
     }    
 
     public function scopeReportid($query, $report_id)

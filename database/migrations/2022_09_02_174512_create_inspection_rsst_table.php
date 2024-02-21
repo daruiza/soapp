@@ -25,6 +25,7 @@ class CreateInspectionRSSTTable extends Migration
             $table->boolean('risk_work')->default(0);
             $table->boolean('emergency_item')->default(0);
             $table->string('other')->nullable();
+            $table->boolean('approved')->default(0);
             $table->unsignedBigInteger('report_id');
 
             $table->foreign('report_id')
