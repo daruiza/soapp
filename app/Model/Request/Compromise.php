@@ -67,7 +67,7 @@ class Compromise
     /**
      * @OA\Property(
      *      title="approved",
-     *      description="approvedg Training SST",
+     *      description="approvedg Compromise SST",
      *      example=0
      * )
      *

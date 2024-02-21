@@ -27,6 +27,7 @@ class InspectionRSSTQuery implements IInspectionRSSTQuery
     private $risk_work = 'risk_work';
     private $emergency_item = 'emergency_item';
     private $other = 'other';
+    private $approved = 'approved';
     private $report_id = 'report_id';
 
     public function index(Request $request)
@@ -88,6 +89,7 @@ class InspectionRSSTQuery implements IInspectionRSSTQuery
                     $inspection->risk_work = $request->risk_work ?? $inspection->risk_work;
                     $inspection->emergency_item = $request->emergency_item ?? $inspection->emergency_item;
                     $inspection->other = $request->other ?? $inspection->other;
+                    $inspection->approved = $request->approved ?? $inspection->approved;
 
                     $inspection->report_id = $request->report_id ?? $inspection->report_id;
 

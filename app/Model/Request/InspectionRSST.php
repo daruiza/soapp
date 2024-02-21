@@ -118,6 +118,17 @@ class InspectionRSST
      * @var string
      */
     public $other;
+
+    /**
+     * @OA\Property(
+     *      title="approved",
+     *      description="approved of the inspection",
+     *      example=true
+     * )
+     *
+     * @var boolean
+     */
+    public $approved;
     
 
     /**
