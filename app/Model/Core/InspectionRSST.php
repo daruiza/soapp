@@ -21,6 +21,7 @@ class InspectionRSST extends Model
         'risk_work',
         'emergency_item',
         'other',
+        'approved',
         'report_id',
     ];
 

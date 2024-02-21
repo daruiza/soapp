@@ -2960,7 +2960,7 @@
                     {
                         "name": "id",
                         "in": "path",
-                        "description": "training sst evedence Id",
+                        "description": "InspectionEvidence RSST evedence Id",
                         "required": true,
                         "schema": {
                             "type": "integer"
@@ -2997,7 +2997,7 @@
                     {
                         "name": "id",
                         "in": "path",
-                        "description": "Training SST Id",
+                        "description": "Ispection RSST Id",
                         "required": true,
                         "schema": {
                             "type": "integer"
@@ -4295,7 +4295,7 @@
                     },
                     "approved": {
                         "title": "approved",
-                        "description": "approvedg Training SST",
+                        "description": "approvedg Compromise SST",
                         "type": "boolean",
                         "example": 0
                     },
@@ -4801,6 +4801,12 @@
                         "description": "Otra Inspección",
                         "type": "string",
                         "example": null
+                    },
+                    "approved": {
+                        "title": "approved",
+                        "description": "approved of the inspection",
+                        "type": "boolean",
+                        "example": true
                     },
                     "report_id": {
                         "title": "report_id",
