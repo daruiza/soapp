@@ -2,12 +2,12 @@
 
 /**
  * @OA\Schema(
- *      title="CorrectiveMonitoringRSSTCorrective",
- *      description="CorrectiveMonitoringRSSTCorrective body data",
+ *      title="CorrectiveMonitoringRSSTEvidence",
+ *      description="CorrectiveMonitoringRSSTEvidence body data",
  *      type="object"
  * )
  */
-class CorrectiveMonitoringRSSTCorrective
+class CorrectiveMonitoringRSSTEvidence
 {
 
     /**
