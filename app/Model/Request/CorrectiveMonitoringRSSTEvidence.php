@@ -2,12 +2,12 @@
 
 /**
  * @OA\Schema(
- *      title="InspectionEvidence",
- *      description="InspectionEvidence body data",
+ *      title="CorrectiveMonitoringRSSTCorrective",
+ *      description="CorrectiveMonitoringRSSTCorrective body data",
  *      type="object"
  * )
  */
-class InspectionEvidence
+class CorrectiveMonitoringRSSTCorrective
 {
 
     /**
@@ -58,13 +58,13 @@ class InspectionEvidence
 
     /**
      * @OA\Property(
-     *      title="inspection_id",
-     *      description="inspection_id of the Evidence",
+     *      title="corrective_monitoring_id",
+     *      description="corrective_monitoring_id of the Corrective",
      *      example=1
      * )
      *
      * @var numeric
      */
-    public $inspection_id;
+    public $corrective_monitoring_id;
 
 }
