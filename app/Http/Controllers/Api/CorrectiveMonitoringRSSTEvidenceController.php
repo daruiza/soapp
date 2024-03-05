@@ -48,7 +48,7 @@ class CorrectiveMonitoringRSSTEvidenceController extends Controller
 
     /**
      * @OA\Get(
-     *      path="/correctivemonitoringrsstevidence/showbyinspectionevidenceid/{id}",
+     *      path="/correctivemonitoringrsstevidence/showbycorrectivemonitoringevidenceid/{id}",
      *      operationId="get Corrective Monitoring",
      *      tags={"CorrectiveMonitoringRSSTEvidence"},
      *      summary="Get One Corrective Monitoring",
@@ -77,16 +77,16 @@ class CorrectiveMonitoringRSSTEvidenceController extends Controller
      *      )
      *     )
      */
-    public function showByInspectionEvidenceId(Request $request, $id)
+    public function showByCorrectiveMonitoringEvidenceId(Request $request, $id)
     {
-        return $this->CorrectiveMonitoringRSSTEvidenceQuery->showByInspectionEvidenceId($request, $id);
+        return $this->CorrectiveMonitoringRSSTEvidenceQuery->showByCorrectiveMonitoringEvidenceId($request, $id);
     }
 
     /**
      * @OA\Get(
-     *      path="/correctivemonitoringrsstevidence/showbyinspectionid/{id}",
-     *      operationId="get CompromiseEvidence",
-     *      tags={"CorrectiveMonitoringRSSTEvidence"},
+     *      path="/correctivemonitoringrsstevidence/showbycorrectivemonitoringid/{id}",
+     *      operationId="get CompromiseEvidences",
+     *      tags={"CorrectiveMonitoringRSSTEvidences"},
      *      summary="Get One CompromiseEvidence",
      *      description="Return CompromiseEvidence",
      *      security={ {"bearer": {} }},
@@ -113,9 +113,9 @@ class CorrectiveMonitoringRSSTEvidenceController extends Controller
      *      )
      *     )
      */
-    public function showByInspectionId(Request $request, $id)
+    public function showByCorrectiveMonitoringId(Request $request, $id)
     {
-        return $this->CorrectiveMonitoringRSSTEvidenceQuery->showByInspectionId($request, $id);
+        return $this->CorrectiveMonitoringRSSTEvidenceQuery->showByCorrectiveMonitoringId($request, $id);
     }
 
     /**

@@ -119,7 +119,7 @@ class CorrectiveMonitoringRSSTEvidenceQuery implements ICorrectiveMonitoringRSST
         }
     }
 
-    public function showByInspectionEvidenceId(Request $request, int $id){
+    public function showByCorrectiveMonitoringEvidenceId(Request $request, int $id){
         
         if ($id) {
             try {
@@ -146,7 +146,7 @@ class CorrectiveMonitoringRSSTEvidenceQuery implements ICorrectiveMonitoringRSST
         }
     }
 
-    public function showByInspectionId(Request $request, int $id){        
+    public function showByCorrectiveMonitoringId(Request $request, int $id){        
         if ($id) {
             try {
                 $corrective = CorrectiveMonitoringRSSTEvidence::select(
