@@ -79,6 +79,7 @@
                 <a href="{{ url('/api/documentation') }}">DOCUMENTATION</a>
                 <a href="{{ url(env('WEB_URL')??'http://soapp.thinkwg.com') }}">WEB</a>
                 <a href="{{ url(env('WEB_URL')??'http://soapp.thinkwg.com') }}">APP</a>
+                <a href="http://filexplorer.thinkwg.com/">STORAGE</a>
             </div>
         </div>
     </div>
