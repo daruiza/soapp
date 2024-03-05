@@ -19,7 +19,7 @@ class CorrectiveMonitoringRSSTController extends Controller
      * @OA\Get(
      *      path="/correctiversst/index",
      *      operationId="getCorrective",
-     *      tags={"CorrectiveRSST"},
+     *      tags={"CorrectiveMonitoringRSST"},
      *      summary="Get All Corrective",
      *      description="Return Corrective",
      *      security={ {"bearer": {} }},
@@ -159,7 +159,7 @@ class CorrectiveMonitoringRSSTController extends Controller
      *      security={ {"bearer": {} }},
      *      @OA\Parameter(
      *          name="id",
-     *          description="Corrective Id",
+     *          description="Report Id",
      *          required=true,
      *          in="path",
      *          @OA\Schema(

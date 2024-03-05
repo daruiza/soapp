@@ -1877,7 +1877,7 @@
         "/correctiversst/index": {
             "get": {
                 "tags": [
-                    "CorrectiveRSST"
+                    "CorrectiveMonitoringRSST"
                 ],
                 "summary": "Get All Corrective",
                 "description": "Return Corrective",
@@ -2032,7 +2032,7 @@
                     {
                         "name": "id",
                         "in": "path",
-                        "description": "Corrective Id",
+                        "description": "Report Id",
                         "required": true,
                         "schema": {
                             "type": "integer"
