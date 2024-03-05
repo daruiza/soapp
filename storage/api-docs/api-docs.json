@@ -2057,6 +2057,200 @@
                 ]
             }
         },
+        "/correctivemonitoringrsstevidence/store": {
+            "post": {
+                "tags": [
+                    "CorrectiveMonitoringRSSTEvidence"
+                ],
+                "summary": "Store Corrective Monitoring Report",
+                "description": "Store Corrective Monitoring Report",
+                "operationId": "storeEvidence",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/CorrectiveMonitoringRSSTEvidence"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Successful operation"
+                    },
+                    "401": {
+                        "description": "Unauthenticated"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    }
+                },
+                "security": [
+                    {
+                        "bearer": []
+                    }
+                ]
+            }
+        },
+        "/correctivemonitoringrsstevidence/showbyinspectionevidenceid/{id}": {
+            "get": {
+                "tags": [
+                    "CorrectiveMonitoringRSSTEvidence"
+                ],
+                "summary": "Get One Corrective Monitoring",
+                "description": "Return Commerce",
+                "operationId": "get Corrective Monitoring",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Corrective Monitoring RSST evedence Id",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful operation"
+                    },
+                    "401": {
+                        "description": "Unauthenticated"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    }
+                },
+                "security": [
+                    {
+                        "bearer": []
+                    }
+                ]
+            }
+        },
+        "/correctivemonitoringrsstevidence/showbyinspectionid/{id}": {
+            "get": {
+                "tags": [
+                    "CorrectiveMonitoringRSSTEvidence"
+                ],
+                "summary": "Get One CompromiseEvidence",
+                "description": "Return CompromiseEvidence",
+                "operationId": "get CompromiseEvidence",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Ispection RSST Id",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful operation"
+                    },
+                    "401": {
+                        "description": "Unauthenticated"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    }
+                },
+                "security": [
+                    {
+                        "bearer": []
+                    }
+                ]
+            }
+        },
+        "/correctivemonitoringrsstevidence/update/{id}": {
+            "put": {
+                "tags": [
+                    "CorrectiveMonitoringRSSTEvidence"
+                ],
+                "summary": "Update One CompromiseEvidence By one Id",
+                "description": "Update One CompromiseEvidence",
+                "operationId": "getUpdateEvidenceById",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "CompromiseEvidence Id",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/EvidenceUpdate"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Successful operation"
+                    },
+                    "401": {
+                        "description": "Unauthenticated"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    }
+                },
+                "security": [
+                    {
+                        "bearer": []
+                    }
+                ]
+            }
+        },
+        "/correctivemonitoringrsstevidence/destroy/{id}": {
+            "delete": {
+                "tags": [
+                    "CorrectiveMonitoringRSSTEvidence"
+                ],
+                "summary": "Delete One CompromiseEvidence By one Id",
+                "description": "Delete One CompromiseEvidence",
+                "operationId": "getDestroyEvidenceById",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "CompromiseEvidence Id",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful operation"
+                    },
+                    "401": {
+                        "description": "Unauthenticated"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    }
+                },
+                "security": [
+                    {
+                        "bearer": []
+                    }
+                ]
+            }
+        },
         "/employee/index": {
             "get": {
                 "tags": [
@@ -3102,7 +3296,7 @@
                 ],
                 "summary": "Store Inspection Report",
                 "description": "Store Inspection Report",
-                "operationId": "storeReport",
+                "operationId": "storeEvidence",
                 "requestBody": {
                     "required": true,
                     "content": {
@@ -4679,9 +4873,9 @@
                         "type": "boolean",
                         "example": true
                     },
-                    "corrective_monitoring_id": {
-                        "title": "corrective_monitoring_id",
-                        "description": "corrective_monitoring_id of the Corrective",
+                    "corrective_id": {
+                        "title": "corrective_id",
+                        "description": "corrective_id of the Corrective",
                         "example": 1
                     }
                 },

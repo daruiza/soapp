@@ -58,13 +58,13 @@ class CorrectiveMonitoringRSSTEvidence
 
     /**
      * @OA\Property(
-     *      title="corrective_monitoring_id",
-     *      description="corrective_monitoring_id of the Corrective",
+     *      title="corrective_id",
+     *      description="corrective_id of the Corrective",
      *      example=1
      * )
      *
      * @var numeric
      */
-    public $corrective_monitoring_id;
+    public $corrective_id;
 
 }

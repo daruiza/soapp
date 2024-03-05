@@ -20,9 +20,9 @@ class CreateCorrectiveMonitoringRSSTEvidenceTable extends Migration
             $table->string('type');
             $table->boolean('approved')->default(0);
 
-            $table->unsignedBigInteger('corrective_monitoring_id');
+            $table->unsignedBigInteger('corrective_id');
 
-            $table->foreign('corrective_monitoring_id')
+            $table->foreign('corrective_id')
                 ->references('id')
                 ->on('corrective_monitoring_rsst')
                 ->onDelete('cascade');

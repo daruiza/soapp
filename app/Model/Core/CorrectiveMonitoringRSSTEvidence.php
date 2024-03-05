@@ -15,7 +15,7 @@ class CorrectiveMonitoringRSSTEvidence extends Model
         'file',
         'type',
         'approved',
-        'corrective_monitoring_id'
+        'corrective_id'
     ];
 
     public function inspection()

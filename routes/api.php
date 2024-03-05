@@ -248,4 +248,14 @@ Route::group(['prefix' => 'correctiversst'], function () {
     });
 });
 
+Route::group(['prefix' => 'correctivemonitoringrsstevidence'], function () {
+    Route::group(['middleware' => 'auth:api'], function () {
+        Route::get('index', 'Api\CorrectiveMonitoringRSSTEvidenceController@index');
+        Route::post('store', 'Api\CorrectiveMonitoringRSSTEvidenceController@store');
+        Route::put('update/{id}', 'Api\CorrectiveMonitoringRSSTEvidenceController@update');
+        Route::delete('destroy/{id}', 'Api\CorrectiveMonitoringRSSTEvidenceController@destroy');
+        Route::get('showbyreportid/{id}', 'Api\CorrectiveMonitoringRSSTEvidenceController@showByReportId');
+    });
+});
+
 

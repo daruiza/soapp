@@ -97,6 +97,10 @@ use App\Query\Abstraction\ICorrectiveMonitoringRSSTQuery;
 use App\Query\Request\CorrectiveMonitoringRSSTQuery;
 use App\Http\Controllers\Api\CorrectiveMonitoringRSSTController;
 
+use App\Query\Abstraction\ICorrectiveMonitoringRSSTEvidenceQuery;
+use App\Query\Request\CorrectiveMonitoringRSSTEvidenceQuery;
+use App\Http\Controllers\Api\CorrectiveMonitoringRSSTEvidenceController;
+
 class AppServiceProvider extends ServiceProvider
 {
     /**
@@ -174,6 +178,9 @@ class AppServiceProvider extends ServiceProvider
 
         $this->app->bind(ICorrectiveMonitoringRSSTQuery::class, CorrectiveMonitoringRSSTQuery::class);
         $this->app->make(CorrectiveMonitoringRSSTController::class);
+
+        $this->app->bind(ICorrectiveMonitoringRSSTEvidenceQuery::class, CorrectiveMonitoringRSSTEvidenceQuery::class);
+        $this->app->make(CorrectiveMonitoringRSSTEvidenceController::class);
 
     }
 
