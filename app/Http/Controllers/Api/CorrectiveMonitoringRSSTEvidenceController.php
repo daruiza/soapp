@@ -86,13 +86,13 @@ class CorrectiveMonitoringRSSTEvidenceController extends Controller
      * @OA\Get(
      *      path="/correctivemonitoringrsstevidence/showbycorrectivemonitoringid/{id}",
      *      operationId="get CompromiseEvidences",
-     *      tags={"CorrectiveMonitoringRSSTEvidences"},
+     *      tags={"CorrectiveMonitoringRSSTEvidence"},
      *      summary="Get One CompromiseEvidence",
      *      description="Return CompromiseEvidence",
      *      security={ {"bearer": {} }},
      *      @OA\Parameter(
      *          name="id",
-     *          description="Ispection RSST Id",
+     *          description="CorrectiveMonitoring RSST Id",
      *          required=true,
      *          in="path",
      *          @OA\Schema(

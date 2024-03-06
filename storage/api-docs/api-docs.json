@@ -2093,7 +2093,7 @@
                 ]
             }
         },
-        "/correctivemonitoringrsstevidence/showbyinspectionevidenceid/{id}": {
+        "/correctivemonitoringrsstevidence/showbycorrectivemonitoringevidenceid/{id}": {
             "get": {
                 "tags": [
                     "CorrectiveMonitoringRSSTEvidence"
@@ -2130,14 +2130,14 @@
                 ]
             }
         },
-        "/correctivemonitoringrsstevidence/showbyinspectionid/{id}": {
+        "/correctivemonitoringrsstevidence/showbycorrectivemonitoringid/{id}": {
             "get": {
                 "tags": [
                     "CorrectiveMonitoringRSSTEvidence"
                 ],
                 "summary": "Get One CompromiseEvidence",
                 "description": "Return CompromiseEvidence",
-                "operationId": "get CompromiseEvidence",
+                "operationId": "get CompromiseEvidences",
                 "parameters": [
                     {
                         "name": "id",
