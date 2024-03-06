@@ -4,28 +4,28 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Query\Abstraction\IInspectionRSSTEvidenceQuery;
+use App\Query\Abstraction\ICorrectiveMonitoringRSSTEvidenceQuery;
 
-class InspectionRSSTEvidenceController extends Controller
+class CorrectiveMonitoringRSSTEvidenceController extends Controller
 {
-    private $InspectionRSSTEvidenceQuery;
+    private $CorrectiveMonitoringRSSTEvidenceQuery;
 
-    public function __construct(IInspectionRSSTEvidenceQuery $InspectionRSSTEvidenceQuery)
+    public function __construct(ICorrectiveMonitoringRSSTEvidenceQuery $CorrectiveMonitoringRSSTEvidenceQuery)
     {
-        $this->InspectionRSSTEvidenceQuery = $InspectionRSSTEvidenceQuery;
+        $this->CorrectiveMonitoringRSSTEvidenceQuery = $CorrectiveMonitoringRSSTEvidenceQuery;
     }
 
         /**
      * @OA\Post(
-     *      path="/inspectionrsstevidence/store",
+     *      path="/correctivemonitoringrsstevidence/store",
      *      operationId="storeEvidence",
-     *      tags={"InspectionRSSTEvidence"},
-     *      summary="Store Inspection Report",
-     *      description="Store Inspection Report",
+     *      tags={"CorrectiveMonitoringRSSTEvidence"},
+     *      summary="Store Corrective Monitoring Report",
+     *      description="Store Corrective Monitoring Report",
      *      security={ {"bearer": {} }},
      *      @OA\RequestBody(
      *          required=true,
-     *          @OA\JsonContent(ref="#/components/schemas/InspectionEvidence")
+     *          @OA\JsonContent(ref="#/components/schemas/CorrectiveMonitoringRSSTEvidence")
      *      ),
      *      @OA\Response(
      *          response=200,
@@ -43,20 +43,20 @@ class InspectionRSSTEvidenceController extends Controller
      */
     public function store(Request $request)
     {
-        return $this->InspectionRSSTEvidenceQuery->store($request);
+        return $this->CorrectiveMonitoringRSSTEvidenceQuery->store($request);
     }
 
     /**
      * @OA\Get(
-     *      path="/inspectionrsstevidence/showbyinspectionevidenceid/{id}",
-     *      operationId="get InspectionEvidence",
-     *      tags={"InspectionRSSTEvidence"},
-     *      summary="Get One InspectionEvidence",
+     *      path="/correctivemonitoringrsstevidence/showbycorrectivemonitoringevidenceid/{id}",
+     *      operationId="get Corrective Monitoring",
+     *      tags={"CorrectiveMonitoringRSSTEvidence"},
+     *      summary="Get One Corrective Monitoring",
      *      description="Return Commerce",
      *      security={ {"bearer": {} }},
      *      @OA\Parameter(
      *          name="id",
-     *          description="InspectionEvidence RSST evedence Id",
+     *          description="Corrective Monitoring RSST evedence Id",
      *          required=true,
      *          in="path",
      *          @OA\Schema(
@@ -77,22 +77,22 @@ class InspectionRSSTEvidenceController extends Controller
      *      )
      *     )
      */
-    public function showByInspectionEvidenceId(Request $request, $id)
+    public function showByCorrectiveMonitoringEvidenceId(Request $request, $id)
     {
-        return $this->InspectionRSSTEvidenceQuery->showByInspectionEvidenceId($request, $id);
+        return $this->CorrectiveMonitoringRSSTEvidenceQuery->showByCorrectiveMonitoringEvidenceId($request, $id);
     }
 
     /**
      * @OA\Get(
-     *      path="/inspectionrsstevidence/showbyinspectionid/{id}",
-     *      operationId="get ComromiseEvidence",
-     *      tags={"InspectionRSSTEvidence"},
-     *      summary="Get One InspectionEvidence",
-     *      description="Return Commerce",
+     *      path="/correctivemonitoringrsstevidence/showbycorrectivemonitoringid/{id}",
+     *      operationId="get CompromiseEvidences",
+     *      tags={"CorrectiveMonitoringRSSTEvidence"},
+     *      summary="Get One CompromiseEvidence",
+     *      description="Return CompromiseEvidence",
      *      security={ {"bearer": {} }},
      *      @OA\Parameter(
      *          name="id",
-     *          description="Ispection RSST Id",
+     *          description="CorrectiveMonitoring RSST Id",
      *          required=true,
      *          in="path",
      *          @OA\Schema(
@@ -113,22 +113,22 @@ class InspectionRSSTEvidenceController extends Controller
      *      )
      *     )
      */
-    public function showByInspectionId(Request $request, $id)
+    public function showByCorrectiveMonitoringId(Request $request, $id)
     {
-        return $this->InspectionRSSTEvidenceQuery->showByInspectionId($request, $id);
+        return $this->CorrectiveMonitoringRSSTEvidenceQuery->showByCorrectiveMonitoringId($request, $id);
     }
 
     /**
      * @OA\Put(
-     *      path="/inspectionrsstevidence/update/{id}",
+     *      path="/correctivemonitoringrsstevidence/update/{id}",
      *      operationId="getUpdateEvidenceById",
-     *      tags={"InspectionRSSTEvidence"},
-     *      summary="Update One InspectionEvidence By one Id",
-     *      description="Update One InspectionEvidence",
+     *      tags={"CorrectiveMonitoringRSSTEvidence"},
+     *      summary="Update One CompromiseEvidence By one Id",
+     *      description="Update One CompromiseEvidence",
      *      security={ {"bearer": {} }},
      *      @OA\Parameter(
      *          name="id",
-     *          description="InspectionEvidence Id",
+     *          description="CompromiseEvidence Id",
      *          required=true,
      *          in="path",
      *          @OA\Schema(
@@ -155,20 +155,20 @@ class InspectionRSSTEvidenceController extends Controller
      */
     public function update(Request $request, $id)
     {
-        return $this->InspectionRSSTEvidenceQuery->update($request, $id);
+        return $this->CorrectiveMonitoringRSSTEvidenceQuery->update($request, $id);
     }
 
     /**
      * @OA\Delete(
-     *      path="/inspectionrsstevidence/destroy/{id}",
+     *      path="/correctivemonitoringrsstevidence/destroy/{id}",
      *      operationId="getDestroyEvidenceById",
-     *      tags={"InspectionRSSTEvidence"},
-     *      summary="Delete One InspectionEvidence By one Id",
-     *      description="Delete One InspectionEvidence",
+     *      tags={"CorrectiveMonitoringRSSTEvidence"},
+     *      summary="Delete One CompromiseEvidence By one Id",
+     *      description="Delete One CompromiseEvidence",
      *      security={ {"bearer": {} }},
      *      @OA\Parameter(
      *          name="id",
-     *          description="InspectionEvidence Id",
+     *          description="CompromiseEvidence Id",
      *          required=true,
      *          in="path",
      *          @OA\Schema(
@@ -191,7 +191,7 @@ class InspectionRSSTEvidenceController extends Controller
      */
     public function destroy($id)
     {
-        return $this->InspectionRSSTEvidenceQuery->destroy($id);
+        return $this->CorrectiveMonitoringRSSTEvidenceQuery->destroy($id);
     }
 
 
