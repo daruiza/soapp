@@ -236,4 +236,27 @@ Route::group(['prefix' => 'inspectionrsstevidence'], function () {
         Route::get('showbyinspectionevidenceid/{id}', 'Api\InspectionRSSTEvidenceController@showByInspectionEvidenceId');
         Route::get('showbyinspectionid/{id}', 'Api\InspectionRSSTEvidenceController@showByInspectionId');
     });
-}); 
+});
+
+Route::group(['prefix' => 'correctiversst'], function () {
+    Route::group(['middleware' => 'auth:api'], function () {
+        Route::get('index', 'Api\CorrectiveMonitoringRSSTController@index');
+        Route::post('store', 'Api\CorrectiveMonitoringRSSTController@store');
+        Route::put('update/{id}', 'Api\CorrectiveMonitoringRSSTController@update');
+        Route::delete('destroy/{id}', 'Api\CorrectiveMonitoringRSSTController@destroy');
+        Route::get('showbyreportid/{id}', 'Api\CorrectiveMonitoringRSSTController@showByReportId');
+    });
+});
+
+Route::group(['prefix' => 'correctivemonitoringrsstevidence'], function () {
+    Route::group(['middleware' => 'auth:api'], function () {
+        Route::get('index', 'Api\CorrectiveMonitoringRSSTEvidenceController@index');
+        Route::post('store', 'Api\CorrectiveMonitoringRSSTEvidenceController@store');
+        Route::put('update/{id}', 'Api\CorrectiveMonitoringRSSTEvidenceController@update');
+        Route::delete('destroy/{id}', 'Api\CorrectiveMonitoringRSSTEvidenceController@destroy');
+        Route::get('showbycorrectivemonitoringevidenceid/{id}', 'Api\CorrectiveMonitoringRSSTEvidenceController@showByCorrectiveMonitoringEvidenceId');
+        Route::get('showbycorrectivemonitoringid/{id}', 'Api\CorrectiveMonitoringRSSTEvidenceController@showByCorrectiveMonitoringId');
+    });
+});
+
+
