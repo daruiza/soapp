@@ -36,14 +36,14 @@ class CorrectiveMonitoringRSSTEvidenceQuery implements ICorrectiveMonitoringRSST
             }
 
             // Creamos la nueva evidencia
-            $corrective = new CorrectiveMonitoringRSSTEvidence();             
-            $newEvidence = $corrective->create($request->input());
+            $evidence = new CorrectiveMonitoringRSSTEvidence();             
+            $newEvidence = $evidence->create($request->input());
 
             return response()->json([
                 'data' => [
-                    'corrective' => $newEvidence,
+                    'evidence' => $newEvidence,
                 ],
-                'message' => 'Corrección creada correctamente!'
+                'message' => 'Evidencia creada correctamente!'
             ], 201);
  
 
@@ -56,7 +56,7 @@ class CorrectiveMonitoringRSSTEvidenceQuery implements ICorrectiveMonitoringRSST
     {
         if ($id) {
             try {
-                $corrective = CorrectiveMonitoringRSSTEvidence::findOrFail($id);
+                $evidence = CorrectiveMonitoringRSSTEvidence::findOrFail($id);
                 
                 if (auth()->check()) {
                     $rules = [                        
@@ -71,51 +71,51 @@ class CorrectiveMonitoringRSSTEvidenceQuery implements ICorrectiveMonitoringRSST
                         throw (new ValidationException($validator->errors()->getMessages()));
                     }
                                         
-                    $corrective->name = $request->name ?? $corrective->name;
-                    $corrective->type = $request->type ?? $corrective->type;
-                    $corrective->approved = $request->approved ?? $corrective->approved;
-                    $corrective->corrective_id = $request->corrective_id ?? $corrective->corrective_id;
+                    $evidence->name = $request->name ?? $evidence->name;
+                    $evidence->type = $request->type ?? $evidence->type;
+                    $evidence->approved = $request->approved ?? $evidence->approved;
+                    $evidence->corrective_id = $request->corrective_id ?? $evidence->corrective_id;
                     
-                    $corrective->save();
+                    $evidence->save();
                     return response()->json([
                         'data' => [
-                            'corrective' => $corrective,                            
+                            'evidence' => $evidence,                            
                         ],
-                        'message' => 'Corrección actualizado con éxito!'
+                        'message' => 'Evidencia actualizado con éxito!'
                     ], 201);
                 } else {
-                    return response()->json(['message' => 'No tienes permiso para actualizar la Corrección!'], 403);
+                    return response()->json(['message' => 'No tienes permiso para actualizar la Evidencia!'], 403);
                 }
                 
             } catch (ModelNotFoundException $ex) {
-                return response()->json(['message' => "Corrección con id {$id} no existe!", 'error' => $ex->getMessage()], 404);
+                return response()->json(['message' => "Evidencia con id {$id} no existe!", 'error' => $ex->getMessage()], 404);
             } catch (\Exception $e) {
                 return response()->json(['message' => 'Algo salio mal!', 'error' => $e], 403);
             }
         }
-        return response()->json(['message' => "Corrección con id {$id} no existe!", 'error' => 'No se suministrado un id valido'], 404);
+        return response()->json(['message' => "Evidencia con id {$id} no existe!", 'error' => 'No se suministrado un id valido'], 404);
     }
 
     public function destroy(int $id) {
         try {
-            $corrective = CorrectiveMonitoringRSSTEvidence::findOrFail($id);
+            $evidence = CorrectiveMonitoringRSSTEvidence::findOrFail($id);
             
             // Eliminamos el archivo relacionado            
-            if(File::exists(public_path($corrective->file))){
-                File::delete(public_path($corrective->file));                
+            if(File::exists(public_path($evidence->file))){
+                File::delete(public_path($evidence->file));                
             } else {
-                Log::notice('Borrar Archivo fallo: '.public_path($corrective->file));
+                Log::notice('Borrar Archivo fallo: '.public_path($evidence->file));
             }            
             
-            $corrective->delete();
+            $evidence->delete();
             return response()->json([
                 'data' => [
-                    'corrective' => $corrective,
+                    'evidence' => $evidence,
                 ],
-                'message' => 'Corrección eliminada exitosamente!'
+                'message' => 'Evidencia eliminada exitosamente!'
             ], 201);
         } catch (ModelNotFoundException $e) {
-            return response()->json(['message' => "Corrección con id {$id} no existe!", 'error' => $e->getMessage()], 403);
+            return response()->json(['message' => "Evidencia con id {$id} no existe!", 'error' => $e->getMessage()], 403);
         }
     }
 
@@ -123,7 +123,7 @@ class CorrectiveMonitoringRSSTEvidenceQuery implements ICorrectiveMonitoringRSST
         
         if ($id) {
             try {
-                $corrective = CorrectiveMonitoringRSSTEvidence::select(
+                $evidence = CorrectiveMonitoringRSSTEvidence::select(
                     'id',
                     'name',
                     'file',
@@ -136,12 +136,12 @@ class CorrectiveMonitoringRSSTEvidenceQuery implements ICorrectiveMonitoringRSST
                 
                 return response()->json([
                     'data' => [
-                        'corrective' => $corrective                     
+                        'evidence' => $evidence                     
                     ],
-                    'message' => 'Datos de Corrección consultados Correctamente!'
+                    'message' => 'Datos de Evidencia consultados Correctamente!'
                 ], 201);
             } catch (ModelNotFoundException $e) {
-                return response()->json(['message' => "Corrección con id {$id} no existe!", 'error' => $e->getMessage()], 403);
+                return response()->json(['message' => "Evidencia con id {$id} no existe!", 'error' => $e->getMessage()], 403);
             }
         }
     }
@@ -164,10 +164,10 @@ class CorrectiveMonitoringRSSTEvidenceQuery implements ICorrectiveMonitoringRSST
                     'data' => [
                         'corrective' => $corrective                     
                     ],
-                    'message' => 'Datos de Corrección consultados Correctamente!'
+                    'message' => 'Datos de Evidencia consultados Correctamente!'
                 ], 201);
             } catch (ModelNotFoundException $e) {
-                return response()->json(['message' => "Corrección con id {$id} no existe!", 'error' => $e->getMessage()], 403);
+                return response()->json(['message' => "Evidencia con id {$id} no existe!", 'error' => $e->getMessage()], 403);
             }
         }
     }
