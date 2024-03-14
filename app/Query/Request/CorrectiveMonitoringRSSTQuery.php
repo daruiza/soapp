@@ -22,6 +22,7 @@ class CorrectiveMonitoringRSSTQuery implements ICorrectiveMonitoringRSSTQuery
     private  $date = 'date';
     private  $executed = 'executed';
     private  $observations = 'observations';
+    private $approved = 'approved';
     private $report_id = 'report_id';
 
     public function index(Request $request)
@@ -78,7 +79,7 @@ class CorrectiveMonitoringRSSTQuery implements ICorrectiveMonitoringRSSTQuery
                     $corrective->date = $request->date ?? $corrective->date;
                     $corrective->executed = $request->executed ?? $corrective->executed;
                     $corrective->observations = $request->observations ?? $corrective->observations;
-                    
+                    $corrective->approved = $request->approved ?? $corrective->approved;
                     $corrective->report_id = $request->report_id ?? $corrective->report_id;
 
                     $corrective->save();
