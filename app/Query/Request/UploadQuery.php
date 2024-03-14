@@ -18,7 +18,7 @@ class UploadQuery implements IUploadQuery
             }
 
             $validator = Validator::make($request->all(), [
-                'file' => 'required|mimes:docx,xlsx,zip,tif,txt,csv,ppt,jpeg,png,jpg,gif,svg,pdf|max:20480'
+                'file' => 'required|mimes:docx,xlsx,zip,tif,txt,csv,ppt,potx,jpeg,png,jpg,gif,svg,pdf|max:20480'
             ]);
 
             if ($validator->fails()) {
