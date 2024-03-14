@@ -19,7 +19,8 @@ class CreateCorrectiveMonitoringRSSTTable extends Migration
             $table->boolean('corrective_action')->default(0);
             $table->date('date')->nullable()->default(null);
             $table->boolean('executed')->default(0);            
-            $table->string('observations')->nullable();            
+            $table->string('observations')->nullable();     
+            $table->boolean('approved')->default(0);       
             $table->unsignedBigInteger('report_id');
             $table->foreign('report_id')
                 ->references('id')
