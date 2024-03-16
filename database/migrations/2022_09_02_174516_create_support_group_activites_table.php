@@ -18,7 +18,8 @@ class CreateSupportGroupActivitesTable extends Migration
             $table->string('support_group', 128);
             $table->date('date_meet')->nullable()->default(null);                        
             $table->string('responsible')->nullable();     
-            $table->string('tasks_copas')->nullable();     
+            $table->string('tasks_copasst')->nullable();     
+            $table->boolean('approved')->default(0);     
             $table->unsignedBigInteger('report_id');
             $table->foreign('report_id')
                 ->references('id')

@@ -259,4 +259,25 @@ Route::group(['prefix' => 'correctivemonitoringrsstevidence'], function () {
     });
 });
 
+Route::group(['prefix' => 'supportgroupactivitiy'], function () {
+    Route::group(['middleware' => 'auth:api'], function () {
+        Route::get('index', 'Api\SupportGroupActivityController@index');
+        Route::post('store', 'Api\SupportGroupActivityController@store');
+        Route::put('update/{id}', 'Api\SupportGroupActivityController@update');
+        Route::delete('destroy/{id}', 'Api\SupportGroupActivityController@destroy');
+        Route::get('showbyreportid/{id}', 'Api\SupportGroupActivityController@showByReportId');
+    });
+});
+
+Route::group(['prefix' => 'supportgroupactivitiyevidence'], function () {
+    Route::group(['middleware' => 'auth:api'], function () {
+        Route::get('index', 'Api\SupportGroupActivityEvidenceController@index');
+        Route::post('store', 'Api\SupportGroupActivityEvidenceController@store');
+        Route::put('update/{id}', 'Api\SupportGroupActivityEvidenceController@update');
+        Route::delete('destroy/{id}', 'Api\SupportGroupActivityEvidenceController@destroy');
+        Route::get('showbysupportgroupactivityevidenceid/{id}', 'Api\SupportGroupActivityEvidenceController@showBySupportGroupActivityEvidenceId');
+        Route::get('showbysupportgroupactivityid/{id}', 'Api\SupportGroupActivityEvidenceController@showBySupportGroupActivityId');
+    });
+});
+
 
