@@ -4,18 +4,17 @@ namespace App\Model\Core;
 
 use Illuminate\Database\Eloquent\Model;
 use App\Model\Core\Report;
-use App\Model\Core\CorrectiveMonitoringRSSTEvidence;
+use App\Model\Core\SupportGroupActivityEvidence;
 
-class CorrectiveMonitoringRSST extends Model
+class SupportGroupActivity extends Model
 {
-    protected $table = 'corrective_monitoring_rsst';
+    protected $table = 'support_group_activities';
     protected $fillable = [
         'id',
-        'work',
-        'corrective_action',
-        'date',
-        'executed',
-        'observations',
+        'support_group',
+        'date_meet',
+        'responsible',
+        'tasks_copasst',
         'approved',
         'report_id',
     ];
@@ -26,9 +25,9 @@ class CorrectiveMonitoringRSST extends Model
         return $this->belongsTo(Report::class);
     }
 
-    public function corrective_monitoring_evidences()
+    public function support_group_activity_evidences()
     {
-        return $this->hasMany(CorrectiveMonitoringRSSTEvidence::class);
+        return $this->hasMany(SupportGroupActivityEvidence::class);
     }
 
     public function scopeReportid($query, $report_id)

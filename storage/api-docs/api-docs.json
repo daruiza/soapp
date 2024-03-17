@@ -3721,6 +3721,383 @@
                 ]
             }
         },
+        "/supportgroupactivitiy/index": {
+            "get": {
+                "tags": [
+                    "SupportGroupAction"
+                ],
+                "summary": "Get All Support",
+                "description": "Return Support",
+                "operationId": "getSupport",
+                "responses": {
+                    "200": {
+                        "description": "Successful operation"
+                    },
+                    "401": {
+                        "description": "Unauthenticated"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    }
+                },
+                "security": [
+                    {
+                        "bearer": []
+                    }
+                ]
+            }
+        },
+        "/supportgroupactivitiy/store": {
+            "post": {
+                "tags": [
+                    "SupportGroupAction"
+                ],
+                "summary": "Store A Support",
+                "description": "Store Support",
+                "operationId": "StoreSupport",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/SupportGroupActivity"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Successful operation"
+                    },
+                    "401": {
+                        "description": "Unauthenticated"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    }
+                },
+                "security": [
+                    {
+                        "bearer": []
+                    }
+                ]
+            }
+        },
+        "/supportgroupactivitiy/update/{id}": {
+            "put": {
+                "tags": [
+                    "SupportGroupAction"
+                ],
+                "summary": "Update One Support By one Id",
+                "description": "Update One Support",
+                "operationId": "getUpdateSupportById",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Support Id",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/SupportGroupActivity"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Successful operation"
+                    },
+                    "401": {
+                        "description": "Unauthenticated"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    }
+                },
+                "security": [
+                    {
+                        "bearer": []
+                    }
+                ]
+            }
+        },
+        "/supportgroupactivitiy/destroy/{id}": {
+            "delete": {
+                "tags": [
+                    "SupportGroupAction"
+                ],
+                "summary": "Delete One Support By one Id",
+                "description": "Delete One Support",
+                "operationId": "getDestroyCorrectveById",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Support Id",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful operation"
+                    },
+                    "401": {
+                        "description": "Unauthenticated"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    }
+                },
+                "security": [
+                    {
+                        "bearer": []
+                    }
+                ]
+            }
+        },
+        "/supportgroupactivitiy/showbyreportid/{id}": {
+            "get": {
+                "tags": [
+                    "SupportGroupAction"
+                ],
+                "summary": "Get One Support By one Id",
+                "description": "Return One Support",
+                "operationId": "getSupportById",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Report Id",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful operation"
+                    },
+                    "401": {
+                        "description": "Unauthenticated"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    }
+                },
+                "security": [
+                    {
+                        "bearer": []
+                    }
+                ]
+            }
+        },
+        "/supportgroupactivitiyevidence/store": {
+            "post": {
+                "tags": [
+                    "SupportGroupActivityEvidence"
+                ],
+                "summary": "Store Support Group Activity Report",
+                "description": "Store Support Group Activity Report",
+                "operationId": "storeEvidence",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/SupportGroupActivityEvidence"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Successful operation"
+                    },
+                    "401": {
+                        "description": "Unauthenticated"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    }
+                },
+                "security": [
+                    {
+                        "bearer": []
+                    }
+                ]
+            }
+        },
+        "/supportgroupactivitiyevidence/showbysupportgroupactivityevidenceid/{id}": {
+            "get": {
+                "tags": [
+                    "SupportGroupActivityEvidence"
+                ],
+                "summary": "Get One Support Group Activity",
+                "description": "Return Commerce",
+                "operationId": "get Support Group Activity",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Support Group Activity RSST evedence Id",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful operation"
+                    },
+                    "401": {
+                        "description": "Unauthenticated"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    }
+                },
+                "security": [
+                    {
+                        "bearer": []
+                    }
+                ]
+            }
+        },
+        "/supportgroupactivitiyevidence/showbysupportgroupactivityid/{id}": {
+            "get": {
+                "tags": [
+                    "SupportGroupActivityEvidence"
+                ],
+                "summary": "Get One SupportGroupEvidence",
+                "description": "Return SupportGroupEvidence",
+                "operationId": "get SupportGroupEvidences",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "SupportGroupActivity RSST Id",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful operation"
+                    },
+                    "401": {
+                        "description": "Unauthenticated"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    }
+                },
+                "security": [
+                    {
+                        "bearer": []
+                    }
+                ]
+            }
+        },
+        "/supportgroupactivitiyevidence/update/{id}": {
+            "put": {
+                "tags": [
+                    "SupportGroupActivityEvidence"
+                ],
+                "summary": "Update One SupportGroupEvidence By one Id",
+                "description": "Update One SupportGroupEvidence",
+                "operationId": "getUpdateEvidenceById",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "SupportGroupEvidence Id",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/EvidenceUpdate"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Successful operation"
+                    },
+                    "401": {
+                        "description": "Unauthenticated"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    }
+                },
+                "security": [
+                    {
+                        "bearer": []
+                    }
+                ]
+            }
+        },
+        "/supportgroupactivitiyevidence/destroy/{id}": {
+            "delete": {
+                "tags": [
+                    "SupportGroupActivityEvidence"
+                ],
+                "summary": "Delete One SupportGroupEvidence By one Id",
+                "description": "Delete One SupportGroupEvidence",
+                "operationId": "getDestroyEvidenceById",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "SupportGroupEvidence Id",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful operation"
+                    },
+                    "401": {
+                        "description": "Unauthenticated"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    }
+                },
+                "security": [
+                    {
+                        "bearer": []
+                    }
+                ]
+            }
+        },
         "/trainingsst/index": {
             "get": {
                 "tags": [
@@ -4837,9 +5214,15 @@
                         "type": "string",
                         "example": "Observaciones"
                     },
+                    "approved": {
+                        "title": "approved",
+                        "description": "approved",
+                        "type": "boolean",
+                        "example": "0"
+                    },
                     "report_id": {
                         "title": "report_id",
-                        "description": "report_id of the Inspection SST",
+                        "description": "report_id of the Corrective SST",
                         "example": 1
                     }
                 },
@@ -5310,6 +5693,85 @@
                     "commerce_id": {
                         "title": "commerce_id",
                         "description": "commerce_id of the Report",
+                        "example": 1
+                    }
+                },
+                "type": "object"
+            },
+            "SupportGroupActivity": {
+                "title": "SupportGroupActivity",
+                "description": "SupportGroupActivity body data",
+                "properties": {
+                    "support_group": {
+                        "title": "support_group",
+                        "description": "Grupo de Apoyo",
+                        "type": "string",
+                        "example": "COPASST"
+                    },
+                    "date_meet": {
+                        "title": "date_meet",
+                        "description": "Fecha de Reunión",
+                        "type": "string",
+                        "format": "date",
+                        "example": "2023-09-01"
+                    },
+                    "responsible": {
+                        "title": "responsible",
+                        "description": "Responsable",
+                        "type": "string",
+                        "example": "Cliente001"
+                    },
+                    "tasks_copasst": {
+                        "title": "tasks_copasst",
+                        "description": "Tareas de COPASST",
+                        "type": "string",
+                        "example": "Tarea01,tarea02"
+                    },
+                    "approved": {
+                        "title": "approved",
+                        "description": "approved of the evidence",
+                        "type": "boolean",
+                        "example": true
+                    },
+                    "report_id": {
+                        "title": "report_id",
+                        "description": "report_id of the SupporteGroup",
+                        "example": 1
+                    }
+                },
+                "type": "object"
+            },
+            "SupportGroupActivityEvidence": {
+                "title": "SupportGroupActivityEvidence",
+                "description": "SupportGroupActivityEvidence body data",
+                "properties": {
+                    "name": {
+                        "title": "name",
+                        "description": "Name of the evidence",
+                        "type": "string",
+                        "example": "FileName"
+                    },
+                    "file": {
+                        "title": "file",
+                        "description": "File of the evidence",
+                        "type": "string",
+                        "example": "FileHostingName"
+                    },
+                    "type": {
+                        "title": "type",
+                        "description": "Type File",
+                        "type": "string",
+                        "example": "image/jpeg"
+                    },
+                    "approved": {
+                        "title": "approved",
+                        "description": "approved of the evidence",
+                        "type": "boolean",
+                        "example": true
+                    },
+                    "support_group_id": {
+                        "title": "support_group_id",
+                        "description": "support_group_id of the SupportGroup",
                         "example": 1
                     }
                 },

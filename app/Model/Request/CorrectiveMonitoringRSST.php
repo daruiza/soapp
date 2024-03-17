@@ -62,12 +62,23 @@ class CorrectiveMonitoringRSST
      *
      * @var string
      */
-    public $observations;    
+    public $observations;  
+    
+    /**
+     * @OA\Property(
+     *      title="approved",
+     *      description="approved",
+     *      example="0"
+     * )
+     *
+     * @var boolean
+     */
+    public $approved;
 
     /**
      * @OA\Property(
      *      title="report_id",
-     *      description="report_id of the Inspection SST",
+     *      description="report_id of the Corrective SST",
      *      example=1
      * )
      *
