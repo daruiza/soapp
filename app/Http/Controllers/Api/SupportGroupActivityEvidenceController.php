@@ -4,28 +4,28 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Query\Abstraction\ICorrectiveMonitoringRSSTEvidenceQuery;
+use App\Query\Abstraction\ISupportGroupActivityEvidenceQuery;
 
 class SupportGroupActivityEvidenceController extends Controller
 {
-    private $CorrectiveMonitoringRSSTEvidenceQuery;
+    private $SupportGroupActivityEvidenceQuery;
 
-    public function __construct(ICorrectiveMonitoringRSSTEvidenceQuery $CorrectiveMonitoringRSSTEvidenceQuery)
+    public function __construct(ISupportGroupActivityEvidenceQuery $SupportGroupActivityEvidenceQuery)
     {
-        $this->CorrectiveMonitoringRSSTEvidenceQuery = $CorrectiveMonitoringRSSTEvidenceQuery;
+        $this->SupportGroupActivityEvidenceQuery = $SupportGroupActivityEvidenceQuery;
     }
 
         /**
      * @OA\Post(
-     *      path="/correctivemonitoringrsstevidence/store",
+     *      path="/supportgroupactivitiyevidence/store",
      *      operationId="storeEvidence",
-     *      tags={"CorrectiveMonitoringRSSTEvidence"},
-     *      summary="Store Corrective Monitoring Report",
-     *      description="Store Corrective Monitoring Report",
+     *      tags={"SupportGroupActivityEvidence"},
+     *      summary="Store Support Group Activity Report",
+     *      description="Store Support Group Activity Report",
      *      security={ {"bearer": {} }},
      *      @OA\RequestBody(
      *          required=true,
-     *          @OA\JsonContent(ref="#/components/schemas/CorrectiveMonitoringRSSTEvidence")
+     *          @OA\JsonContent(ref="#/components/schemas/SupportGroupActivityEvidence")
      *      ),
      *      @OA\Response(
      *          response=200,
@@ -43,20 +43,20 @@ class SupportGroupActivityEvidenceController extends Controller
      */
     public function store(Request $request)
     {
-        return $this->CorrectiveMonitoringRSSTEvidenceQuery->store($request);
+        return $this->SupportGroupActivityEvidenceQuery->store($request);
     }
 
     /**
      * @OA\Get(
-     *      path="/correctivemonitoringrsstevidence/showbycorrectivemonitoringevidenceid/{id}",
-     *      operationId="get Corrective Monitoring",
-     *      tags={"CorrectiveMonitoringRSSTEvidence"},
-     *      summary="Get One Corrective Monitoring",
+     *      path="/supportgroupactivitiyevidence/showbysupportgroupactivityevidenceid/{id}",
+     *      operationId="get Support Group Activity",
+     *      tags={"SupportGroupActivityEvidence"},
+     *      summary="Get One Support Group Activity",
      *      description="Return Commerce",
      *      security={ {"bearer": {} }},
      *      @OA\Parameter(
      *          name="id",
-     *          description="Corrective Monitoring RSST evedence Id",
+     *          description="Support Group Activity RSST evedence Id",
      *          required=true,
      *          in="path",
      *          @OA\Schema(
@@ -77,22 +77,22 @@ class SupportGroupActivityEvidenceController extends Controller
      *      )
      *     )
      */
-    public function showByCorrectiveMonitoringEvidenceId(Request $request, $id)
+    public function showBySupportGroupActivityEvidenceId(Request $request, $id)
     {
-        return $this->CorrectiveMonitoringRSSTEvidenceQuery->showByCorrectiveMonitoringEvidenceId($request, $id);
+        return $this->SupportGroupActivityEvidenceQuery->showBySupportGroupActivityEvidenceId($request, $id);
     }
 
     /**
      * @OA\Get(
-     *      path="/correctivemonitoringrsstevidence/showbycorrectivemonitoringid/{id}",
-     *      operationId="get CompromiseEvidences",
-     *      tags={"CorrectiveMonitoringRSSTEvidence"},
-     *      summary="Get One CompromiseEvidence",
-     *      description="Return CompromiseEvidence",
+     *      path="/supportgroupactivitiyevidence/showbysupportgroupactivityid/{id}",
+     *      operationId="get SupportGroupEvidences",
+     *      tags={"SupportGroupActivityEvidence"},
+     *      summary="Get One SupportGroupEvidence",
+     *      description="Return SupportGroupEvidence",
      *      security={ {"bearer": {} }},
      *      @OA\Parameter(
      *          name="id",
-     *          description="CorrectiveMonitoring RSST Id",
+     *          description="SupportGroupActivity RSST Id",
      *          required=true,
      *          in="path",
      *          @OA\Schema(
@@ -113,22 +113,22 @@ class SupportGroupActivityEvidenceController extends Controller
      *      )
      *     )
      */
-    public function showByCorrectiveMonitoringId(Request $request, $id)
+    public function showBySupportGroupActivityId(Request $request, $id)
     {
-        return $this->CorrectiveMonitoringRSSTEvidenceQuery->showByCorrectiveMonitoringId($request, $id);
+        return $this->SupportGroupActivityEvidenceQuery->showBySupportGroupActivityId($request, $id);
     }
 
     /**
      * @OA\Put(
-     *      path="/correctivemonitoringrsstevidence/update/{id}",
+     *      path="/supportgroupactivitiyevidence/update/{id}",
      *      operationId="getUpdateEvidenceById",
-     *      tags={"CorrectiveMonitoringRSSTEvidence"},
-     *      summary="Update One CompromiseEvidence By one Id",
-     *      description="Update One CompromiseEvidence",
+     *      tags={"SupportGroupActivityEvidence"},
+     *      summary="Update One SupportGroupEvidence By one Id",
+     *      description="Update One SupportGroupEvidence",
      *      security={ {"bearer": {} }},
      *      @OA\Parameter(
      *          name="id",
-     *          description="CompromiseEvidence Id",
+     *          description="SupportGroupEvidence Id",
      *          required=true,
      *          in="path",
      *          @OA\Schema(
@@ -155,20 +155,20 @@ class SupportGroupActivityEvidenceController extends Controller
      */
     public function update(Request $request, $id)
     {
-        return $this->CorrectiveMonitoringRSSTEvidenceQuery->update($request, $id);
+        return $this->SupportGroupActivityEvidenceQuery->update($request, $id);
     }
 
     /**
      * @OA\Delete(
-     *      path="/correctivemonitoringrsstevidence/destroy/{id}",
+     *      path="/supportgroupactivitiyevidence/destroy/{id}",
      *      operationId="getDestroyEvidenceById",
-     *      tags={"CorrectiveMonitoringRSSTEvidence"},
-     *      summary="Delete One CompromiseEvidence By one Id",
-     *      description="Delete One CompromiseEvidence",
+     *      tags={"SupportGroupActivityEvidence"},
+     *      summary="Delete One SupportGroupEvidence By one Id",
+     *      description="Delete One SupportGroupEvidence",
      *      security={ {"bearer": {} }},
      *      @OA\Parameter(
      *          name="id",
-     *          description="CompromiseEvidence Id",
+     *          description="SupportGroupEvidence Id",
      *          required=true,
      *          in="path",
      *          @OA\Schema(
@@ -191,7 +191,7 @@ class SupportGroupActivityEvidenceController extends Controller
      */
     public function destroy($id)
     {
-        return $this->CorrectiveMonitoringRSSTEvidenceQuery->destroy($id);
+        return $this->SupportGroupActivityEvidenceQuery->destroy($id);
     }
 
 

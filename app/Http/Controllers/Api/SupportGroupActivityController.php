@@ -3,25 +3,25 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
-use App\Query\Abstraction\ICorrectiveMonitoringRSSTQuery;
+use App\Query\Abstraction\ISupportGroupActivityQuery;
 use Illuminate\Http\Request;
 
 class SupportGroupActivityController extends Controller
 {
-    private $CorrectiveMonitoringRSSTQuery;
+    private $SupportGroupActivityQuery;
 
-    public function __construct(ICorrectiveMonitoringRSSTQuery $CorrectiveMonitoringQuery)
+    public function __construct(ISupportGroupActivityQuery $SupportGroupActivityQuery)
     {
-        $this->CorrectiveMonitoringRSSTQuery = $CorrectiveMonitoringQuery;
+        $this->SupportGroupActivityQuery = $SupportGroupActivityQuery;
     }
 
     /**
      * @OA\Get(
-     *      path="/correctiversst/index",
-     *      operationId="getCorrective",
-     *      tags={"CorrectiveMonitoringRSST"},
-     *      summary="Get All Corrective",
-     *      description="Return Corrective",
+     *      path="/supportgroupactivitiy/index",
+     *      operationId="getSupport",
+     *      tags={"SupportGroupAction"},
+     *      summary="Get All Support",
+     *      description="Return Support",
      *      security={ {"bearer": {} }},
      *      @OA\Response(
      *          response=200,
@@ -39,20 +39,20 @@ class SupportGroupActivityController extends Controller
      */
     public function index(Request $request)
     {
-        return $this->CorrectiveMonitoringRSSTQuery->index($request);
+        return $this->SupportGroupActivityQuery->index($request);
     }
 
     /**
      * @OA\Post(
-     *      path="/correctiversst/store",
-     *      operationId="StoreCorrective",
-     *      tags={"CorrectiveMonitoringRSST"},
-     *      summary="Store A Corrective",
-     *      description="Store Corrective",
+     *      path="/supportgroupactivitiy/store",
+     *      operationId="StoreSupport",
+     *      tags={"SupportGroupAction"},
+     *      summary="Store A Support",
+     *      description="Store Support",
      *      security={ {"bearer": {} }},
      *      @OA\RequestBody(
      *          required=true,
-     *          @OA\JsonContent(ref="#/components/schemas/CorrectiveMonitoringRSST")
+     *          @OA\JsonContent(ref="#/components/schemas/SupportGroupActivity")
      *      ),
      *      @OA\Response(
      *          response=200,
@@ -70,20 +70,20 @@ class SupportGroupActivityController extends Controller
      */
     public function store(Request $request)
     {
-        return $this->CorrectiveMonitoringRSSTQuery->store($request);
+        return $this->SupportGroupActivityQuery->store($request);
     }
 
     /**
      * @OA\Put(
-     *      path="/correctiversst/update/{id}",
-     *      operationId="getUpdateCorrectiveById",
-     *      tags={"CorrectiveMonitoringRSST"},
-     *      summary="Update One Corrective By one Id",
-     *      description="Update One Corrective",
+     *      path="/supportgroupactivitiy/update/{id}",
+     *      operationId="getUpdateSupportById",
+     *      tags={"SupportGroupAction"},
+     *      summary="Update One Support By one Id",
+     *      description="Update One Support",
      *      security={ {"bearer": {} }},
      *      @OA\Parameter(
      *          name="id",
-     *          description="Corrective Id",
+     *          description="Support Id",
      *          required=true,
      *          in="path",
      *          @OA\Schema(
@@ -92,7 +92,7 @@ class SupportGroupActivityController extends Controller
      *      ),
      *       @OA\RequestBody(
      *          required=true,
-     *          @OA\JsonContent(ref="#/components/schemas/CorrectiveMonitoringRSST")
+     *          @OA\JsonContent(ref="#/components/schemas/SupportGroupActivity")
      *      ),
      *      @OA\Response(
      *          response=200,
@@ -110,20 +110,20 @@ class SupportGroupActivityController extends Controller
      */
     public function update(Request $request, $id)
     {
-        return $this->CorrectiveMonitoringRSSTQuery->update($request, $id);
+        return $this->SupportGroupActivityQuery->update($request, $id);
     }
 
     /**
      * @OA\Delete(
-     *      path="/correctiversst/destroy/{id}",
+     *      path="/supportgroupactivitiy/destroy/{id}",
      *      operationId="getDestroyCorrectveById",
-     *      tags={"CorrectiveMonitoringRSST"},
-     *      summary="Delete One Corrective By one Id",
-     *      description="Delete One Corrective",
+     *      tags={"SupportGroupAction"},
+     *      summary="Delete One Support By one Id",
+     *      description="Delete One Support",
      *      security={ {"bearer": {} }},
      *      @OA\Parameter(
      *          name="id",
-     *          description="Corrective Id",
+     *          description="Support Id",
      *          required=true,
      *          in="path",
      *          @OA\Schema(
@@ -146,16 +146,16 @@ class SupportGroupActivityController extends Controller
      */
     public function destroy($id)
     {
-        return $this->CorrectiveMonitoringRSSTQuery->destroy($id);
+        return $this->SupportGroupActivityQuery->destroy($id);
     }
 
     /**
      * @OA\Get(
-     *      path="/correctiversst/showbyreportid/{id}",
-     *      operationId="getCorrectiveById",
-     *      tags={"CorrectiveMonitoringRSST"},
-     *      summary="Get One Corrective By one Id",
-     *      description="Return One Corrective",
+     *      path="/supportgroupactivitiy/showbyreportid/{id}",
+     *      operationId="getSupportById",
+     *      tags={"SupportGroupAction"},
+     *      summary="Get One Support By one Id",
+     *      description="Return One Support",
      *      security={ {"bearer": {} }},
      *      @OA\Parameter(
      *          name="id",
@@ -182,6 +182,6 @@ class SupportGroupActivityController extends Controller
      */
     public function showByReportId(Request $request, $id)
     {
-        return $this->CorrectiveMonitoringRSSTQuery->showByReportId($request, $id);
+        return $this->SupportGroupActivityQuery->showByReportId($request, $id);
     }
 }
