@@ -101,6 +101,15 @@ use App\Query\Abstraction\ICorrectiveMonitoringRSSTEvidenceQuery;
 use App\Query\Request\CorrectiveMonitoringRSSTEvidenceQuery;
 use App\Http\Controllers\Api\CorrectiveMonitoringRSSTEvidenceController;
 
+use App\Query\Abstraction\ISupportGroupActivityQuery;
+use App\Query\Request\SupportGroupActivityQuery;
+use App\Http\Controllers\Api\SupportGroupActivityController;
+
+use App\Query\Abstraction\ISupportGroupActivityEvidenceQuery;
+use App\Query\Request\SupportGroupActivityEvidenceQuery;
+use App\Http\Controllers\Api\SupportGroupActivityEvidenceController;
+
+
 class AppServiceProvider extends ServiceProvider
 {
     /**
@@ -181,6 +190,12 @@ class AppServiceProvider extends ServiceProvider
 
         $this->app->bind(ICorrectiveMonitoringRSSTEvidenceQuery::class, CorrectiveMonitoringRSSTEvidenceQuery::class);
         $this->app->make(CorrectiveMonitoringRSSTEvidenceController::class);
+
+        $this->app->bind(ISupportGroupActivityQuery::class, SupportGroupActivityQuery::class);
+        $this->app->make(SupportGroupActivityController::class);
+
+        $this->app->bind(ISupportGroupActivityEvidenceQuery::class, SupportGroupActivityEvidenceQuery::class);
+        $this->app->make(SupportGroupActivityEvidenceController::class);
 
     }
 
