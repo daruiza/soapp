@@ -1060,7 +1060,7 @@
                     "content": {
                         "application/json": {
                             "schema": {
-                                "$ref": "#/components/schemas/EvidenceUpdate"
+                                "$ref": "#/components/schemas/CompromiseEvidence"
                             }
                         }
                     }
@@ -2535,7 +2535,7 @@
                 ]
             }
         },
-        "/evidence/store": {
+        "/employeeevidence/store": {
             "post": {
                 "tags": [
                     "EmployeeEvidence"
@@ -2571,7 +2571,7 @@
                 ]
             }
         },
-        "/evidence/showbyevidenceid/{id}": {
+        "/employeeevidence/showbyevidenceid/{id}": {
             "get": {
                 "tags": [
                     "EmployeeEvidence"
@@ -2608,7 +2608,7 @@
                 ]
             }
         },
-        "/evidence/showbyempoyeereportid/{id}": {
+        "/employeeevidence/showbyempoyeereportid/{id}": {
             "get": {
                 "tags": [
                     "EmployeeEvidence"
@@ -2645,7 +2645,7 @@
                 ]
             }
         },
-        "/evidence/update/{id}": {
+        "/employeeevidence/update/{id}": {
             "put": {
                 "tags": [
                     "EmployeeEvidence"
@@ -2692,7 +2692,7 @@
                 ]
             }
         },
-        "/evidence/destroy/{id}": {
+        "/employeeevidence/destroy/{id}": {
             "delete": {
                 "tags": [
                     "EmployeeEvidence"

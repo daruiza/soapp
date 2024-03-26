@@ -17,7 +17,7 @@ class EmployeeEvidenceController extends Controller
 
         /**
      * @OA\Post(
-     *      path="/evidence/store",
+     *      path="/employeeevidence/store",
      *      operationId="storeReport",
      *      tags={"EmployeeEvidence"},
      *      summary="Store Report",
@@ -48,7 +48,7 @@ class EmployeeEvidenceController extends Controller
 
     /**
      * @OA\Get(
-     *      path="/evidence/showbyevidenceid/{id}",
+     *      path="/employeeevidence/showbyevidenceid/{id}",
      *      operationId="get Evidence",
      *      tags={"EmployeeEvidence"},
      *      summary="Get One Evidence",
@@ -84,7 +84,7 @@ class EmployeeEvidenceController extends Controller
 
     /**
      * @OA\Get(
-     *      path="/evidence/showbyempoyeereportid/{id}",
+     *      path="/employeeevidence/showbyempoyeereportid/{id}",
      *      operationId="get Evidence",
      *      tags={"EmployeeEvidence"},
      *      summary="Get One Evidence",
@@ -120,7 +120,7 @@ class EmployeeEvidenceController extends Controller
 
     /**
      * @OA\Put(
-     *      path="/evidence/update/{id}",
+     *      path="/employeeevidence/update/{id}",
      *      operationId="getUpdateEvidenceById",
      *      tags={"EmployeeEvidence"},
      *      summary="Update One Evidence By one Id",
@@ -160,7 +160,7 @@ class EmployeeEvidenceController extends Controller
 
     /**
      * @OA\Delete(
-     *      path="/evidence/destroy/{id}",
+     *      path="/employeeevidence/destroy/{id}",
      *      operationId="getDestroyEvidenceById",
      *      tags={"EmployeeEvidence"},
      *      summary="Delete One Evidence By one Id",
