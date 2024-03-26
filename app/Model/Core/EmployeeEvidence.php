@@ -5,9 +5,9 @@ namespace App\Model\Core;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\DB;
 
-class Evidence extends Model
+class EmployeeEvidence extends Model
 {
-    protected $table = 'evidences';
+    protected $table = 'employee_evidences';
     protected $fillable = [
         'id',        
         'name',

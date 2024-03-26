@@ -2,18 +2,18 @@
 
 /**
  * @OA\Schema(
- *      title="Evidence",
- *      description="Evidence body data",
+ *      title="EmployeeEvidence",
+ *      description="EmployeeEvidence body data",
  *      type="object"
  * )
  */
-class Evidence
+class EmployeeEvidence
 {
 
     /**
      * @OA\Property(
      *      title="name",
-     *      description="Name of the evidence",
+     *      description="Name of the EmployeeEvidence",
      *      example="FileName"
      * )
      *
@@ -24,7 +24,7 @@ class Evidence
     /**
      * @OA\Property(
      *      title="file",
-     *      description="File of the evidence",
+     *      description="File of the EmployeeEvidence",
      *      example="FileHostingName"
      * )
      *
@@ -47,7 +47,7 @@ class Evidence
     /**
      * @OA\Property(
      *      title="approved",
-     *      description="approved of the evidence",
+     *      description="approved of the EmployeeEvidence",
      *      example=true
      * )
      *
@@ -59,7 +59,7 @@ class Evidence
     /**
      * @OA\Property(
      *      title="employee_report_id",
-     *      description="employee_report_id of the Evidence",
+     *      description="employee_report_id of the EmployeeEvidence",
      *      example=1
      * )
      *

@@ -336,7 +336,7 @@
                     "content": {
                         "application/json": {
                             "schema": {
-                                "$ref": "#/components/schemas/EvidenceUpdate"
+                                "$ref": "#/components/schemas/ActivityEvidence"
                             }
                         }
                     }
@@ -1437,7 +1437,7 @@
                     "content": {
                         "application/json": {
                             "schema": {
-                                "$ref": "#/components/schemas/EvidenceUpdate"
+                                "$ref": "#/components/schemas/CompromiseEvidence"
                             }
                         }
                     }
@@ -1814,7 +1814,7 @@
                     "content": {
                         "application/json": {
                             "schema": {
-                                "$ref": "#/components/schemas/EvidenceUpdate"
+                                "$ref": "#/components/schemas/CompromiseEvidence"
                             }
                         }
                     }
@@ -2191,7 +2191,7 @@
                     "content": {
                         "application/json": {
                             "schema": {
-                                "$ref": "#/components/schemas/EvidenceUpdate"
+                                "$ref": "#/components/schemas/CorrectiveMonitoringRSSTEvidence"
                             }
                         }
                     }
@@ -2535,6 +2535,200 @@
                 ]
             }
         },
+        "/evidence/store": {
+            "post": {
+                "tags": [
+                    "EmployeeEvidence"
+                ],
+                "summary": "Store Report",
+                "description": "Store Report",
+                "operationId": "storeReport",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/EmployeeEvidence"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Successful operation"
+                    },
+                    "401": {
+                        "description": "Unauthenticated"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    }
+                },
+                "security": [
+                    {
+                        "bearer": []
+                    }
+                ]
+            }
+        },
+        "/evidence/showbyevidenceid/{id}": {
+            "get": {
+                "tags": [
+                    "EmployeeEvidence"
+                ],
+                "summary": "Get One Evidence",
+                "description": "Return Commerce",
+                "operationId": "get Evidence",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Evidence Id",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful operation"
+                    },
+                    "401": {
+                        "description": "Unauthenticated"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    }
+                },
+                "security": [
+                    {
+                        "bearer": []
+                    }
+                ]
+            }
+        },
+        "/evidence/showbyempoyeereportid/{id}": {
+            "get": {
+                "tags": [
+                    "EmployeeEvidence"
+                ],
+                "summary": "Get One Evidence",
+                "description": "Return Commerce",
+                "operationId": "get Evidence",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Employee Report Id",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful operation"
+                    },
+                    "401": {
+                        "description": "Unauthenticated"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    }
+                },
+                "security": [
+                    {
+                        "bearer": []
+                    }
+                ]
+            }
+        },
+        "/evidence/update/{id}": {
+            "put": {
+                "tags": [
+                    "EmployeeEvidence"
+                ],
+                "summary": "Update One Evidence By one Id",
+                "description": "Update One Evidence",
+                "operationId": "getUpdateEvidenceById",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Evidence Id",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/EmployeeEvidence"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Successful operation"
+                    },
+                    "401": {
+                        "description": "Unauthenticated"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    }
+                },
+                "security": [
+                    {
+                        "bearer": []
+                    }
+                ]
+            }
+        },
+        "/evidence/destroy/{id}": {
+            "delete": {
+                "tags": [
+                    "EmployeeEvidence"
+                ],
+                "summary": "Delete One Evidence By one Id",
+                "description": "Delete One Evidence",
+                "operationId": "getDestroyEvidenceById",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Evidence Id",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful operation"
+                    },
+                    "401": {
+                        "description": "Unauthenticated"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    }
+                },
+                "security": [
+                    {
+                        "bearer": []
+                    }
+                ]
+            }
+        },
         "/employeereport/store": {
             "post": {
                 "tags": [
@@ -2631,200 +2825,6 @@
                         "name": "id",
                         "in": "path",
                         "description": "Employee Report Id",
-                        "required": true,
-                        "schema": {
-                            "type": "integer"
-                        }
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "Successful operation"
-                    },
-                    "401": {
-                        "description": "Unauthenticated"
-                    },
-                    "403": {
-                        "description": "Forbidden"
-                    }
-                },
-                "security": [
-                    {
-                        "bearer": []
-                    }
-                ]
-            }
-        },
-        "/evidence/store": {
-            "post": {
-                "tags": [
-                    "Evidence"
-                ],
-                "summary": "Store Report",
-                "description": "Store Report",
-                "operationId": "storeReport",
-                "requestBody": {
-                    "required": true,
-                    "content": {
-                        "application/json": {
-                            "schema": {
-                                "$ref": "#/components/schemas/Evidence"
-                            }
-                        }
-                    }
-                },
-                "responses": {
-                    "200": {
-                        "description": "Successful operation"
-                    },
-                    "401": {
-                        "description": "Unauthenticated"
-                    },
-                    "403": {
-                        "description": "Forbidden"
-                    }
-                },
-                "security": [
-                    {
-                        "bearer": []
-                    }
-                ]
-            }
-        },
-        "/evidence/showbyevidenceid/{id}": {
-            "get": {
-                "tags": [
-                    "Evidence"
-                ],
-                "summary": "Get One Evidence",
-                "description": "Return Commerce",
-                "operationId": "get Evidence",
-                "parameters": [
-                    {
-                        "name": "id",
-                        "in": "path",
-                        "description": "Evidence Id",
-                        "required": true,
-                        "schema": {
-                            "type": "integer"
-                        }
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "Successful operation"
-                    },
-                    "401": {
-                        "description": "Unauthenticated"
-                    },
-                    "403": {
-                        "description": "Forbidden"
-                    }
-                },
-                "security": [
-                    {
-                        "bearer": []
-                    }
-                ]
-            }
-        },
-        "/evidence/showbyempoyeereportid/{id}": {
-            "get": {
-                "tags": [
-                    "Evidence"
-                ],
-                "summary": "Get One Evidence",
-                "description": "Return Commerce",
-                "operationId": "get Evidence",
-                "parameters": [
-                    {
-                        "name": "id",
-                        "in": "path",
-                        "description": "Employee Report Id",
-                        "required": true,
-                        "schema": {
-                            "type": "integer"
-                        }
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "Successful operation"
-                    },
-                    "401": {
-                        "description": "Unauthenticated"
-                    },
-                    "403": {
-                        "description": "Forbidden"
-                    }
-                },
-                "security": [
-                    {
-                        "bearer": []
-                    }
-                ]
-            }
-        },
-        "/evidence/update/{id}": {
-            "put": {
-                "tags": [
-                    "Evidence"
-                ],
-                "summary": "Update One Evidence By one Id",
-                "description": "Update One Evidence",
-                "operationId": "getUpdateEvidenceById",
-                "parameters": [
-                    {
-                        "name": "id",
-                        "in": "path",
-                        "description": "Evidence Id",
-                        "required": true,
-                        "schema": {
-                            "type": "integer"
-                        }
-                    }
-                ],
-                "requestBody": {
-                    "required": true,
-                    "content": {
-                        "application/json": {
-                            "schema": {
-                                "$ref": "#/components/schemas/EvidenceUpdate"
-                            }
-                        }
-                    }
-                },
-                "responses": {
-                    "200": {
-                        "description": "Successful operation"
-                    },
-                    "401": {
-                        "description": "Unauthenticated"
-                    },
-                    "403": {
-                        "description": "Forbidden"
-                    }
-                },
-                "security": [
-                    {
-                        "bearer": []
-                    }
-                ]
-            }
-        },
-        "/evidence/destroy/{id}": {
-            "delete": {
-                "tags": [
-                    "Evidence"
-                ],
-                "summary": "Delete One Evidence By one Id",
-                "description": "Delete One Evidence",
-                "operationId": "getDestroyEvidenceById",
-                "parameters": [
-                    {
-                        "name": "id",
-                        "in": "path",
-                        "description": "Evidence Id",
                         "required": true,
                         "schema": {
                             "type": "integer"
@@ -3423,7 +3423,7 @@
                     "content": {
                         "application/json": {
                             "schema": {
-                                "$ref": "#/components/schemas/EvidenceUpdate"
+                                "$ref": "#/components/schemas/InspectionEvidence"
                             }
                         }
                     }
@@ -4038,7 +4038,7 @@
                     "content": {
                         "application/json": {
                             "schema": {
-                                "$ref": "#/components/schemas/EvidenceUpdate"
+                                "$ref": "#/components/schemas/SupportGroupActivityEvidence"
                             }
                         }
                     }
@@ -4415,7 +4415,7 @@
                     "content": {
                         "application/json": {
                             "schema": {
-                                "$ref": "#/components/schemas/EvidenceUpdate"
+                                "$ref": "#/components/schemas/TrainingsstEvidence"
                             }
                         }
                     }
@@ -5342,6 +5342,42 @@
                 },
                 "type": "object"
             },
+            "EmployeeEvidence": {
+                "title": "EmployeeEvidence",
+                "description": "EmployeeEvidence body data",
+                "properties": {
+                    "name": {
+                        "title": "name",
+                        "description": "Name of the EmployeeEvidence",
+                        "type": "string",
+                        "example": "FileName"
+                    },
+                    "file": {
+                        "title": "file",
+                        "description": "File of the EmployeeEvidence",
+                        "type": "string",
+                        "example": "FileHostingName"
+                    },
+                    "type": {
+                        "title": "type",
+                        "description": "Type File",
+                        "type": "string",
+                        "example": "image/jpeg"
+                    },
+                    "approved": {
+                        "title": "approved",
+                        "description": "approved of the EmployeeEvidence",
+                        "type": "boolean",
+                        "example": true
+                    },
+                    "employee_report_id": {
+                        "title": "employee_report_id",
+                        "description": "employee_report_id of the EmployeeEvidence",
+                        "example": 1
+                    }
+                },
+                "type": "object"
+            },
             "EmployeeIndex": {
                 "title": "EmployeeIndex",
                 "description": "Employee body data Index",
@@ -5456,45 +5492,9 @@
                 },
                 "type": "object"
             },
-            "Evidence": {
-                "title": "Evidence",
-                "description": "Evidence body data",
-                "properties": {
-                    "name": {
-                        "title": "name",
-                        "description": "Name of the evidence",
-                        "type": "string",
-                        "example": "FileName"
-                    },
-                    "file": {
-                        "title": "file",
-                        "description": "File of the evidence",
-                        "type": "string",
-                        "example": "FileHostingName"
-                    },
-                    "type": {
-                        "title": "type",
-                        "description": "Type File",
-                        "type": "string",
-                        "example": "image/jpeg"
-                    },
-                    "approved": {
-                        "title": "approved",
-                        "description": "approved of the evidence",
-                        "type": "boolean",
-                        "example": true
-                    },
-                    "employee_report_id": {
-                        "title": "employee_report_id",
-                        "description": "employee_report_id of the Evidence",
-                        "example": 1
-                    }
-                },
-                "type": "object"
-            },
             "EvidenceUpdate": {
                 "title": "EvidenceUpdate",
-                "description": "EvidenceUpdate body data",
+                "description": "EmployeeEvidenceUpdate body data",
                 "properties": {
                     "name": {
                         "title": "name",

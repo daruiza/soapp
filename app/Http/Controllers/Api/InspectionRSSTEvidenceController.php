@@ -137,7 +137,7 @@ class InspectionRSSTEvidenceController extends Controller
      *      ),
      *       @OA\RequestBody(
      *          required=true,
-     *          @OA\JsonContent(ref="#/components/schemas/EvidenceUpdate")
+     *          @OA\JsonContent(ref="#/components/schemas/InspectionEvidence")
      *      ),
      *      @OA\Response(
      *          response=200,

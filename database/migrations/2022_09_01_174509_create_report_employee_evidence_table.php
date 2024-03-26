@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateReportEvidenceTable extends Migration
+class CreateReportEmployeeEvidenceTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,7 +13,7 @@ class CreateReportEvidenceTable extends Migration
      */
     public function up()
     {
-        Schema::create('evidences', function (Blueprint $table) {
+        Schema::create('employee_evidences', function (Blueprint $table) {
             $table->id();
             $table->string('name');
             $table->string('file');
@@ -38,7 +38,7 @@ class CreateReportEvidenceTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('evidences');
+        Schema::dropIfExists('employee_evidences');
     }
 }
 

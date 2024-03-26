@@ -3,7 +3,7 @@
 /**
  * @OA\Schema(
  *      title="EvidenceUpdate",
- *      description="EvidenceUpdate body data",
+ *      description="EmployeeEvidenceUpdate body data",
  *      type="object"
  * )
  */
