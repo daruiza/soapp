@@ -5492,36 +5492,6 @@
                 },
                 "type": "object"
             },
-            "EvidenceUpdate": {
-                "title": "EvidenceUpdate",
-                "description": "EmployeeEvidenceUpdate body data",
-                "properties": {
-                    "name": {
-                        "title": "name",
-                        "description": "Name of the evidence",
-                        "type": "string",
-                        "example": "FileName"
-                    },
-                    "type": {
-                        "title": "type",
-                        "description": "Type File",
-                        "type": "string",
-                        "example": "image/jpeg"
-                    },
-                    "approved": {
-                        "title": "approved",
-                        "description": "approved of the evidence",
-                        "type": "boolean",
-                        "example": 1
-                    },
-                    "employee_report_id": {
-                        "title": "employee_report_id",
-                        "description": "employee_report_id of the Evidence",
-                        "example": 1
-                    }
-                },
-                "type": "object"
-            },
             "GeneralList": {
                 "title": "GeneralList",
                 "description": "GeneralList body data",
