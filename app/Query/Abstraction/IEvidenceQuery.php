@@ -4,11 +4,11 @@ namespace App\Query\Abstraction;
 
 use Illuminate\Http\Request;
 
-interface IEmployeeEvidenceQuery {
+interface IEvidenceQuery {
     public function index(Request $request);
     public function store(Request $request);
     public function update(Request $request, int $id);
     public function destroy(Int $id);
-    public function showByEmployeeEvidenceId(Request $request, int $id);
-    public function showByEmployeeReportId(Request $request, int $id);    
+    public function showByEvidenceId(Request $request, int $id);
+    public function showByReportId(Request $request, int $id);    
 }
