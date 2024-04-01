@@ -91,7 +91,7 @@ Route::group(['prefix' => 'report'], function () {
     });
 });
 
-Route::group(['prefix' => 'evidence'], function () {
+Route::group(['prefix' => 'reportevidence'], function () {
     Route::group(['middleware' => 'auth:api'], function () {
         Route::get('index', 'Api\EvidenceController@index');
         Route::post('store', 'Api\EvidenceController@store');

@@ -2849,7 +2849,7 @@
                 ]
             }
         },
-        "/evidence/store": {
+        "/reportevidence/store": {
             "post": {
                 "tags": [
                     "ReportEvidence"
@@ -2885,7 +2885,7 @@
                 ]
             }
         },
-        "/evidence/showbyevidenceid/{id}": {
+        "/reportevidence/showbyevidenceid/{id}": {
             "get": {
                 "tags": [
                     "ReportEvidence"
@@ -2922,7 +2922,7 @@
                 ]
             }
         },
-        "/evidence/showbyempoyeereportid/{id}": {
+        "/reportevidence/showbyempoyeereportid/{id}": {
             "get": {
                 "tags": [
                     "ReportEvidence"
@@ -2959,7 +2959,7 @@
                 ]
             }
         },
-        "/evidence/update/{id}": {
+        "/reportevidence/update/{id}": {
             "put": {
                 "tags": [
                     "ReportEvidence"
@@ -3006,7 +3006,7 @@
                 ]
             }
         },
-        "/evidence/destroy/{id}": {
+        "/reportevidence/destroy/{id}": {
             "delete": {
                 "tags": [
                     "ReportEvidence"

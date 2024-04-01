@@ -13,7 +13,7 @@ class CreateReportEvidencesTable extends Migration
      */
     public function up()
     {
-        Schema::create('evidences', function (Blueprint $table) {
+        Schema::create('report_evidences', function (Blueprint $table) {
             $table->id();
             $table->string('name');
             $table->string('file');
@@ -38,7 +38,7 @@ class CreateReportEvidencesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('evidences');
+        Schema::dropIfExists('report_evidences');
     }
 }
 

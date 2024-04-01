@@ -7,7 +7,7 @@ use Illuminate\Support\Facades\DB;
 
 class Evidence extends Model
 {
-    protected $table = 'evidences';
+    protected $table = 'report_evidences';
     protected $fillable = [
         'id',        
         'name',

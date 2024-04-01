@@ -2,7 +2,7 @@
 
 namespace App\Query\Request;
 
-use App\Model\Core\EmployeeEvidence;
+use App\Model\Core\Evidence;
 use Illuminate\Http\Request;
 use Illuminate\Validation\ValidationException;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
@@ -22,7 +22,7 @@ class EvidenceQuery implements IEvidenceQuery
 
     public function index(Request $request){
         try {
-            $evidences = EmployeeEvidence::select(['id', 'file', 'approved', 'report_id'])
+            $evidences = Evidence::select(['id', 'file', 'approved', 'report_id'])
                 ->orderBy('id', $request->sort ?? 'ASC')
                 ->paginate($request->limit ?? 10, ['*'], '', $request->page ?? 1);
 
@@ -47,14 +47,13 @@ class EvidenceQuery implements IEvidenceQuery
             $this->report_id   => 'required'
         ];
         try {
-
             $validator = Validator::make($request->all(), $rules);
             if ($validator->fails()) {
                 throw (new ValidationException($validator->errors()->getMessages()));
             }
 
             // Creamos la nueva evidencia
-            $evidence = new EmployeeEvidence();             
+            $evidence = new Evidence();             
             $newEvidence = $evidence->create($request->input());
 
             return response()->json([
@@ -74,7 +73,7 @@ class EvidenceQuery implements IEvidenceQuery
     {
         if ($id) {
             try {
-                $evidence = EmployeeEvidence::findOrFail($id);
+                $evidence = Evidence::findOrFail($id);
                 
                 if (auth()->check()) {
                     $rules = [                        
@@ -116,7 +115,7 @@ class EvidenceQuery implements IEvidenceQuery
 
     public function destroy(int $id) {
         try {
-            $evidence = EmployeeEvidence::findOrFail($id);
+            $evidence = Evidence::findOrFail($id);
             
             // Eliminamos el archivo relacionado            
             if(File::exists(public_path($evidence->file))){
@@ -141,7 +140,7 @@ class EvidenceQuery implements IEvidenceQuery
         
         if ($id) {
             try {
-                $evidence = EmployeeEvidence::select(
+                $evidence = Evidence::select(
                     'id',
                     'name',
                     'file',
@@ -168,7 +167,7 @@ class EvidenceQuery implements IEvidenceQuery
         
         if ($id) {
             try {
-                $evidence = EmployeeEvidence::select(
+                $evidence = Evidence::select(
                     'id',
                     'name',
                     'file',
