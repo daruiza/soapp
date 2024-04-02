@@ -2,7 +2,7 @@
 
 namespace App\Query\Request;
 
-use App\Model\Core\EmployeeEvidence;
+use App\Model\Core\Evidence;
 use Illuminate\Http\Request;
 use Illuminate\Validation\ValidationException;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
@@ -10,19 +10,19 @@ use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Log;
 
-use App\Query\Abstraction\IEmployeeEvidenceQuery;
+use App\Query\Abstraction\IEvidenceQuery;
 
-class EmployeeEvidenceQuery implements IEmployeeEvidenceQuery
+class EvidenceQuery implements IEvidenceQuery
 {
     private $name = 'name';
     private $file = 'file';
     private $type = 'type';
     private $approved = 'approved';
-    private $employee_report_id = 'employee_report_id';
+    private $report_id = 'report_id';
 
     public function index(Request $request){
         try {
-            $evidences = EmployeeEvidence::select(['id', 'file', 'approved', 'employee_report_id'])
+            $evidences = Evidence::select(['id', 'file', 'approved', 'report_id'])
                 ->orderBy('id', $request->sort ?? 'ASC')
                 ->paginate($request->limit ?? 10, ['*'], '', $request->page ?? 1);
 
@@ -44,17 +44,16 @@ class EmployeeEvidenceQuery implements IEmployeeEvidenceQuery
             $this->name => 'required|string|min:1|max:128|',
             $this->file   => 'required',
             $this->type   => 'required',
-            $this->employee_report_id   => 'required'
+            $this->report_id   => 'required'
         ];
         try {
-
             $validator = Validator::make($request->all(), $rules);
             if ($validator->fails()) {
                 throw (new ValidationException($validator->errors()->getMessages()));
             }
 
             // Creamos la nueva evidencia
-            $evidence = new EmployeeEvidence();             
+            $evidence = new Evidence();             
             $newEvidence = $evidence->create($request->input());
 
             return response()->json([
@@ -74,14 +73,14 @@ class EmployeeEvidenceQuery implements IEmployeeEvidenceQuery
     {
         if ($id) {
             try {
-                $evidence = EmployeeEvidence::findOrFail($id);
+                $evidence = Evidence::findOrFail($id);
                 
                 if (auth()->check()) {
                     $rules = [                        
                         $this->name                 => 'required|string|min:1|max:128|',
                         $this->type                 => 'required|string|min:1|max:128|',
                         $this->approved             => 'numeric',
-                        $this->employee_report_id   => 'numeric',
+                        $this->report_id   => 'numeric',
                         
                     ];
                     $validator = Validator::make($request->all(), $rules);
@@ -92,7 +91,7 @@ class EmployeeEvidenceQuery implements IEmployeeEvidenceQuery
                     $evidence->name = $request->name ?? $evidence->name;
                     $evidence->type = $request->type ?? $evidence->type;
                     $evidence->approved = $request->approved ?? $evidence->approved;
-                    $evidence->employee_report_id = $request->employee_report_id ?? $evidence->employee_report_id;
+                    $evidence->report_id = $request->report_id ?? $evidence->report_id;
                     
                     $evidence->save();
                     return response()->json([
@@ -116,7 +115,7 @@ class EmployeeEvidenceQuery implements IEmployeeEvidenceQuery
 
     public function destroy(int $id) {
         try {
-            $evidence = EmployeeEvidence::findOrFail($id);
+            $evidence = Evidence::findOrFail($id);
             
             // Eliminamos el archivo relacionado            
             if(File::exists(public_path($evidence->file))){
@@ -137,19 +136,19 @@ class EmployeeEvidenceQuery implements IEmployeeEvidenceQuery
         }
     }
 
-    public function showByEmployeeEvidenceId(Request $request, int $id){
+    public function showByEvidenceId(Request $request, int $id){
         
         if ($id) {
             try {
-                $evidence = EmployeeEvidence::select(
+                $evidence = Evidence::select(
                     'id',
                     'name',
                     'file',
                     'type',
                     'approved',
-                    'employee_report_id'
+                    'report_id'
                 )
-                ->where('employee_report_id',$id)
+                ->where('report_id',$id)
                 ->get();
                 
                 return response()->json([
@@ -164,19 +163,19 @@ class EmployeeEvidenceQuery implements IEmployeeEvidenceQuery
         }
     }
 
-    public function showByEmployeeReportId(Request $request, int $id){
+    public function showByReportId(Request $request, int $id){
         
         if ($id) {
             try {
-                $evidence = EmployeeEvidence::select(
+                $evidence = Evidence::select(
                     'id',
                     'name',
                     'file',
                     'type',
                     'approved',
-                    'employee_report_id'
+                    'report_id'
                 )
-                ->where('employee_report_id',$id)
+                ->where('report_id',$id)
                 ->get();
                 
                 return response()->json([
