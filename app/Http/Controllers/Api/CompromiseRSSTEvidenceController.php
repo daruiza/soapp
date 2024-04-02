@@ -137,7 +137,7 @@ class CompromiseRSSTEvidenceController extends Controller
      *      ),
      *       @OA\RequestBody(
      *          required=true,
-     *          @OA\JsonContent(ref="#/components/schemas/EvidenceUpdate")
+     *          @OA\JsonContent(ref="#/components/schemas/CompromiseEvidence")
      *      ),
      *      @OA\Response(
      *          response=200,

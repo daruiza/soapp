@@ -448,6 +448,21 @@ class GeneralListsSeeder extends Seeder
             'name' => 'inspection_work',
             'value' => 'Producción',
         ));
+
+        DB::table('general_lists')->insert(array(
+            'name' => 'support_group',
+            'value' => 'COPASST',
+        ));
+
+        DB::table('general_lists')->insert(array(
+            'name' => 'support_group',
+            'value' => 'COCOLAB',
+        ));
+
+        DB::table('general_lists')->insert(array(
+            'name' => 'support_group',
+            'value' => 'BRIGADA DE EMERGENCIAS ',
+        ));
     }
 
 

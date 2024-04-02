@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateReportEvidenceTable extends Migration
+class CreateReportEvidencesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,18 +13,18 @@ class CreateReportEvidenceTable extends Migration
      */
     public function up()
     {
-        Schema::create('evidences', function (Blueprint $table) {
+        Schema::create('report_evidences', function (Blueprint $table) {
             $table->id();
             $table->string('name');
             $table->string('file');
             $table->string('type');
             $table->boolean('approved')->default(0);
             
-            $table->unsignedBigInteger('employee_report_id');
+            $table->unsignedBigInteger('report_id');
             
-            $table->foreign('employee_report_id')
+            $table->foreign('report_id')
                 ->references('id')
-                ->on('employee_report')
+                ->on('reports')
                 ->onDelete('cascade');            
 
             $table->timestamps();
@@ -38,7 +38,7 @@ class CreateReportEvidenceTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('evidences');
+        Schema::dropIfExists('report_evidences');
     }
 }
 

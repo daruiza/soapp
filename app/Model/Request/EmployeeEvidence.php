@@ -2,25 +2,35 @@
 
 /**
  * @OA\Schema(
- *      title="EvidenceUpdate",
- *      description="EvidenceUpdate body data",
+ *      title="EmployeeEvidence",
+ *      description="EmployeeEvidence body data",
  *      type="object"
  * )
  */
-class EvidenceUpdate
+class EmployeeEvidence
 {
 
     /**
      * @OA\Property(
      *      title="name",
-     *      description="Name of the evidence",
+     *      description="Name of the EmployeeEvidence",
      *      example="FileName"
      * )
      *
      * @var string
      */
     public $name;
-    
+
+    /**
+     * @OA\Property(
+     *      title="file",
+     *      description="File of the EmployeeEvidence",
+     *      example="FileHostingName"
+     * )
+     *
+     * @var string
+     */
+    public $file;
 
     /**
      * @OA\Property(
@@ -37,8 +47,8 @@ class EvidenceUpdate
     /**
      * @OA\Property(
      *      title="approved",
-     *      description="approved of the evidence",
-     *      example=1
+     *      description="approved of the EmployeeEvidence",
+     *      example=true
      * )
      *
      * @var boolean
@@ -49,7 +59,7 @@ class EvidenceUpdate
     /**
      * @OA\Property(
      *      title="employee_report_id",
-     *      description="employee_report_id of the Evidence",
+     *      description="employee_report_id of the EmployeeEvidence",
      *      example=1
      * )
      *

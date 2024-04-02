@@ -4,28 +4,28 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Query\Abstraction\IInspectionRSSTEvidenceQuery;
+use App\Query\Abstraction\IEmployeeEvidenceQuery;
 
-class InspectionRSSTEvidenceController extends Controller
+class EmployeeEvidenceController extends Controller
 {
-    private $InspectionRSSTEvidenceQuery;
+    private $EmployeeEvidenceQuery;
 
-    public function __construct(IInspectionRSSTEvidenceQuery $InspectionRSSTEvidenceQuery)
+    public function __construct(IEmployeeEvidenceQuery $EmployeeEvidenceQuery)
     {
-        $this->InspectionRSSTEvidenceQuery = $InspectionRSSTEvidenceQuery;
+        $this->EmployeeEvidenceQuery = $EmployeeEvidenceQuery;
     }
 
         /**
      * @OA\Post(
-     *      path="/inspectionrsstevidence/store",
-     *      operationId="storeEvidence",
-     *      tags={"InspectionRSSTEvidence"},
-     *      summary="Store Inspection Report",
-     *      description="Store Inspection Report",
+     *      path="/employeeevidence/store",
+     *      operationId="storeReport",
+     *      tags={"EmployeeEvidence"},
+     *      summary="Store Report",
+     *      description="Store Report",
      *      security={ {"bearer": {} }},
      *      @OA\RequestBody(
      *          required=true,
-     *          @OA\JsonContent(ref="#/components/schemas/InspectionEvidence")
+     *          @OA\JsonContent(ref="#/components/schemas/EmployeeEvidence")
      *      ),
      *      @OA\Response(
      *          response=200,
@@ -43,20 +43,20 @@ class InspectionRSSTEvidenceController extends Controller
      */
     public function store(Request $request)
     {
-        return $this->InspectionRSSTEvidenceQuery->store($request);
+        return $this->EmployeeEvidenceQuery->store($request);
     }
 
     /**
      * @OA\Get(
-     *      path="/inspectionrsstevidence/showbyinspectionevidenceid/{id}",
-     *      operationId="get InspectionEvidence",
-     *      tags={"InspectionRSSTEvidence"},
-     *      summary="Get One InspectionEvidence",
+     *      path="/employeeevidence/showbyevidenceid/{id}",
+     *      operationId="get Evidence",
+     *      tags={"EmployeeEvidence"},
+     *      summary="Get One Evidence",
      *      description="Return Commerce",
      *      security={ {"bearer": {} }},
      *      @OA\Parameter(
      *          name="id",
-     *          description="InspectionEvidence RSST evedence Id",
+     *          description="Evidence Id",
      *          required=true,
      *          in="path",
      *          @OA\Schema(
@@ -77,22 +77,22 @@ class InspectionRSSTEvidenceController extends Controller
      *      )
      *     )
      */
-    public function showByInspectionEvidenceId(Request $request, $id)
+    public function showByEmployeeEvidenceId(Request $request, $id)
     {
-        return $this->InspectionRSSTEvidenceQuery->showByInspectionEvidenceId($request, $id);
+        return $this->EmployeeEvidenceQuery->showByEmployeeEvidenceId($request, $id);
     }
 
     /**
      * @OA\Get(
-     *      path="/inspectionrsstevidence/showbyinspectionid/{id}",
-     *      operationId="get ComromiseEvidence",
-     *      tags={"InspectionRSSTEvidence"},
-     *      summary="Get One InspectionEvidence",
+     *      path="/employeeevidence/showbyempoyeereportid/{id}",
+     *      operationId="get Evidence",
+     *      tags={"EmployeeEvidence"},
+     *      summary="Get One Evidence",
      *      description="Return Commerce",
      *      security={ {"bearer": {} }},
      *      @OA\Parameter(
      *          name="id",
-     *          description="Ispection RSST Id",
+     *          description="Employee Report Id",
      *          required=true,
      *          in="path",
      *          @OA\Schema(
@@ -113,22 +113,22 @@ class InspectionRSSTEvidenceController extends Controller
      *      )
      *     )
      */
-    public function showByInspectionId(Request $request, $id)
+    public function showByEmployeeReportId(Request $request, $id)
     {
-        return $this->InspectionRSSTEvidenceQuery->showByInspectionId($request, $id);
+        return $this->EmployeeEvidenceQuery->showByEmployeeReportId($request, $id);
     }
 
     /**
      * @OA\Put(
-     *      path="/inspectionrsstevidence/update/{id}",
+     *      path="/employeeevidence/update/{id}",
      *      operationId="getUpdateEvidenceById",
-     *      tags={"InspectionRSSTEvidence"},
-     *      summary="Update One InspectionEvidence By one Id",
-     *      description="Update One InspectionEvidence",
+     *      tags={"EmployeeEvidence"},
+     *      summary="Update One Evidence By one Id",
+     *      description="Update One Evidence",
      *      security={ {"bearer": {} }},
      *      @OA\Parameter(
      *          name="id",
-     *          description="InspectionEvidence Id",
+     *          description="Evidence Id",
      *          required=true,
      *          in="path",
      *          @OA\Schema(
@@ -137,7 +137,7 @@ class InspectionRSSTEvidenceController extends Controller
      *      ),
      *       @OA\RequestBody(
      *          required=true,
-     *          @OA\JsonContent(ref="#/components/schemas/InspectionEvidence")
+     *          @OA\JsonContent(ref="#/components/schemas/EmployeeEvidence")
      *      ),
      *      @OA\Response(
      *          response=200,
@@ -155,20 +155,20 @@ class InspectionRSSTEvidenceController extends Controller
      */
     public function update(Request $request, $id)
     {
-        return $this->InspectionRSSTEvidenceQuery->update($request, $id);
+        return $this->EmployeeEvidenceQuery->update($request, $id);
     }
 
     /**
      * @OA\Delete(
-     *      path="/inspectionrsstevidence/destroy/{id}",
+     *      path="/employeeevidence/destroy/{id}",
      *      operationId="getDestroyEvidenceById",
-     *      tags={"InspectionRSSTEvidence"},
-     *      summary="Delete One InspectionEvidence By one Id",
-     *      description="Delete One InspectionEvidence",
+     *      tags={"EmployeeEvidence"},
+     *      summary="Delete One Evidence By one Id",
+     *      description="Delete One Evidence",
      *      security={ {"bearer": {} }},
      *      @OA\Parameter(
      *          name="id",
-     *          description="InspectionEvidence Id",
+     *          description="Evidence Id",
      *          required=true,
      *          in="path",
      *          @OA\Schema(
@@ -191,7 +191,7 @@ class InspectionRSSTEvidenceController extends Controller
      */
     public function destroy($id)
     {
-        return $this->InspectionRSSTEvidenceQuery->destroy($id);
+        return $this->EmployeeEvidenceQuery->destroy($id);
     }
 
 
