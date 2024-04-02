@@ -137,7 +137,7 @@ class CorrectiveMonitoringRSSTEvidenceController extends Controller
      *      ),
      *       @OA\RequestBody(
      *          required=true,
-     *          @OA\JsonContent(ref="#/components/schemas/EvidenceUpdate")
+     *          @OA\JsonContent(ref="#/components/schemas/CorrectiveMonitoringRSSTEvidence")
      *      ),
      *      @OA\Response(
      *          response=200,

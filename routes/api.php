@@ -91,6 +91,18 @@ Route::group(['prefix' => 'report'], function () {
     });
 });
 
+Route::group(['prefix' => 'reportevidence'], function () {
+    Route::group(['middleware' => 'auth:api'], function () {
+        Route::get('index', 'Api\EvidenceController@index');
+        Route::post('store', 'Api\EvidenceController@store');
+        Route::post('arraystore', 'Api\EvidenceController@arrayStore');
+        Route::put('update/{id}', 'Api\EvidenceController@update');
+        Route::get('showbyevidenceid/{id}', 'Api\EvidenceController@showByEvidenceId');
+        Route::get('showbyreportid/{id}', 'Api\EvidenceController@showByReportId');
+        Route::delete('destroy/{id}', 'Api\EvidenceController@destroy');
+    });
+});
+
 Route::group(['prefix' => 'employeereport'], function () {
     Route::group(['middleware' => 'auth:api'], function () {
         Route::get('index', 'Api\EmployeeReportController@index');
@@ -101,15 +113,15 @@ Route::group(['prefix' => 'employeereport'], function () {
     });
 });
 
-Route::group(['prefix' => 'evidence'], function () {
+Route::group(['prefix' => 'employeeevidence'], function () {
     Route::group(['middleware' => 'auth:api'], function () {
-        Route::get('index', 'Api\EvidenceController@index');
-        Route::post('store', 'Api\EvidenceController@store');
-        Route::post('arraystore', 'Api\EvidenceController@arrayStore');
-        Route::put('update/{id}', 'Api\EvidenceController@update');
-        Route::get('showbyevidenceid/{id}', 'Api\EvidenceController@showByEvidenceId');
-        Route::get('showbyempoyeereportid/{id}', 'Api\EvidenceController@showByEmployeeReportId');
-        Route::delete('destroy/{id}', 'Api\EvidenceController@destroy');
+        Route::get('index', 'Api\EmployeeEvidenceController@index');
+        Route::post('store', 'Api\EmployeeEvidenceController@store');
+        Route::post('arraystore', 'Api\EmployeeEvidenceController@arrayStore');
+        Route::put('update/{id}', 'Api\EmployeeEvidenceController@update');
+        Route::get('showbyemployeeevidenceid/{id}', 'Api\EmployeeEvidenceController@showByEmployeeEvidenceId');
+        Route::get('showbyempoyeereportid/{id}', 'Api\EmployeeEvidenceController@showByEmployeeReportId');
+        Route::delete('destroy/{id}', 'Api\EmployeeEvidenceController@destroy');
     });
 });
 
@@ -279,5 +291,3 @@ Route::group(['prefix' => 'supportgroupactivitiyevidence'], function () {
         Route::get('showbysupportgroupactivityid/{id}', 'Api\SupportGroupActivityEvidenceController@showBySupportGroupActivityId');
     });
 });
-
-

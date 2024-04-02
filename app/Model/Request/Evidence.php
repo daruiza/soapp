@@ -13,7 +13,7 @@ class Evidence
     /**
      * @OA\Property(
      *      title="name",
-     *      description="Name of the evidence",
+     *      description="Name of the Evidence",
      *      example="FileName"
      * )
      *
@@ -24,7 +24,7 @@ class Evidence
     /**
      * @OA\Property(
      *      title="file",
-     *      description="File of the evidence",
+     *      description="File of the Evidence",
      *      example="FileHostingName"
      * )
      *
@@ -47,7 +47,7 @@ class Evidence
     /**
      * @OA\Property(
      *      title="approved",
-     *      description="approved of the evidence",
+     *      description="approved of the Evidence",
      *      example=true
      * )
      *
@@ -58,13 +58,13 @@ class Evidence
 
     /**
      * @OA\Property(
-     *      title="employee_report_id",
-     *      description="employee_report_id of the Evidence",
+     *      title="report_id",
+     *      description="report_id of the Evidence",
      *      example=1
      * )
      *
      * @var numeric
      */
-    public $employee_report_id;
+    public $report_id;
 
 }
