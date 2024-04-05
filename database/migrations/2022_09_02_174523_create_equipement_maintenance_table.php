@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateWorkManagementTable extends Migration
+class CreateEquipementMaintenanceTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,13 +13,12 @@ class CreateWorkManagementTable extends Migration
      */
     public function up()
     {
-        Schema::create('work_management', function (Blueprint $table) {
+        Schema::create('equipement_maintenance', function (Blueprint $table) {
             $table->id();
-            $table->string('activity', 128);
-            $table->string('work_type', 128);
-            $table->unsignedInteger('workers_activity')->default(0);
-            $table->unsignedInteger('workers_trained')->default(0);
-            $table->boolean('permissions')->default(0);
+            $table->boolean('buildings')->default(0);
+            $table->boolean('tools')->default(0);
+            $table->boolean('teams')->default(0);
+            $table->date('date')->nullable()->default(null);
             $table->string('observations')->nullable();
             $table->unsignedBigInteger('report_id');
             $table->foreign('report_id')
@@ -38,6 +37,6 @@ class CreateWorkManagementTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('work_management');
+        Schema::dropIfExists('equipement_maintenance');
     }
 }
