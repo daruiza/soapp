@@ -7,6 +7,7 @@ use App\Model\Core\Commerce;
 use App\Model\Core\Employee;
 use App\Model\Core\Trainingsst;
 use App\Model\Core\Activity;
+use App\Model\Core\Evidence;
 
 use Illuminate\Database\Eloquent\Model;
 
@@ -59,6 +60,12 @@ class Report extends Model
     public function activities()
     {
         return $this->hasMany(Activity::class)->distinct();
+    }
+
+    //un reporte tiene varias evidencias
+    public function evidences()
+    {
+        return $this->hasMany(Evidence::class)->distinct();
     }
 
     public function scopeProject($query, $project)

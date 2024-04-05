@@ -218,6 +218,7 @@ class ReportQuery implements IReportQuery
                     ->with(['employee'])
                     ->with(['trainingsst'])
                     ->with(['activities'])
+                    ->with(['evidences'])
                     ->first();
                 // ->toSql();
 
