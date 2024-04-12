@@ -149,7 +149,7 @@ class CorrectiveMonitoringRSSTEvidenceQuery implements ICorrectiveMonitoringRSST
     public function showByCorrectiveMonitoringId(Request $request, int $id){        
         if ($id) {
             try {
-                $corrective = CorrectiveMonitoringRSSTEvidence::select(
+                $evidence = CorrectiveMonitoringRSSTEvidence::select(
                     'id',
                     'name',
                     'file',
@@ -162,7 +162,7 @@ class CorrectiveMonitoringRSSTEvidenceQuery implements ICorrectiveMonitoringRSST
                 
                 return response()->json([
                     'data' => [
-                        'corrective' => $corrective                     
+                        'evidence' => $evidence                     
                     ],
                     'message' => 'Datos de Evidencia consultados Correctamente!'
                 ], 201);
