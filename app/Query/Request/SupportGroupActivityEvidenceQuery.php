@@ -149,7 +149,7 @@ class SupportGroupActivityEvidenceQuery implements ISupportGroupActivityEvidence
     public function showBySupportGroupActivityId(Request $request, int $id){        
         if ($id) {
             try {
-                $corrective = SupportGroupActivityEvidence::select(
+                $evidence = SupportGroupActivityEvidence::select(
                     'id',
                     'name',
                     'file',
@@ -157,12 +157,12 @@ class SupportGroupActivityEvidenceQuery implements ISupportGroupActivityEvidence
                     'approved',
                     'support_group_id'
                 )
-                ->where('support_group_id',$id)
+                ->where('id',$id)
                 ->get();
                 
                 return response()->json([
                     'data' => [
-                        'corrective' => $corrective                     
+                        'evidence' => $evidence                     
                     ],
                     'message' => 'Datos de Evidencia consultados Correctamente!'
                 ], 201);
