@@ -157,7 +157,7 @@ class SupportGroupActivityEvidenceQuery implements ISupportGroupActivityEvidence
                     'approved',
                     'support_group_id'
                 )
-                ->where('id',$id)
+                ->where('support_group_id',$id)
                 ->get();
                 
                 return response()->json([
