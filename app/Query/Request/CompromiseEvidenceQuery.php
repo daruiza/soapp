@@ -80,7 +80,7 @@ class CompromiseEvidenceQuery implements ICompromiseEvidenceQuery
                     $rules = [                        
                         $this->name                 => 'required|string|min:1|max:128|',
                         $this->type                 => 'required|string|min:1|max:128|',
-                        $this->approved             => 'numeric',
+                        
                         $this->compromise_id   => 'numeric',
                         
                     ];
@@ -91,7 +91,7 @@ class CompromiseEvidenceQuery implements ICompromiseEvidenceQuery
                                         
                     $evidence->name = $request->name ?? $evidence->name;
                     $evidence->type = $request->type ?? $evidence->type;
-                    $evidence->approved = $request->approved ?? $evidence->approved;
+                    $evidence->approved = $request->approved ? 1 : 0;
                     $evidence->compromise_id = $request->compromise_id ?? $evidence->compromise_id;
                     
                     $evidence->save();

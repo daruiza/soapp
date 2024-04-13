@@ -5081,6 +5081,383 @@
                     }
                 ]
             }
+        },
+        "/workmanagement/index": {
+            "get": {
+                "tags": [
+                    "WorkManagement"
+                ],
+                "summary": "Get All Work Management",
+                "description": "Return Work Management",
+                "operationId": "getWork Management",
+                "responses": {
+                    "200": {
+                        "description": "Successful operation"
+                    },
+                    "401": {
+                        "description": "Unauthenticated"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    }
+                },
+                "security": [
+                    {
+                        "bearer": []
+                    }
+                ]
+            }
+        },
+        "/workmanagement/store": {
+            "post": {
+                "tags": [
+                    "WorkManagement"
+                ],
+                "summary": "Store A Work Management",
+                "description": "Store Work Management",
+                "operationId": "StoreWork Management",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/WorkManagement"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Successful operation"
+                    },
+                    "401": {
+                        "description": "Unauthenticated"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    }
+                },
+                "security": [
+                    {
+                        "bearer": []
+                    }
+                ]
+            }
+        },
+        "/workmanagement/update/{id}": {
+            "put": {
+                "tags": [
+                    "WorkManagement"
+                ],
+                "summary": "Update One Work Management By one Id",
+                "description": "Update One Work Management",
+                "operationId": "getUpdateWork ManagementById",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Work Management Id",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/WorkManagement"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Successful operation"
+                    },
+                    "401": {
+                        "description": "Unauthenticated"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    }
+                },
+                "security": [
+                    {
+                        "bearer": []
+                    }
+                ]
+            }
+        },
+        "/workmanagement/destroy/{id}": {
+            "delete": {
+                "tags": [
+                    "WorkManagement"
+                ],
+                "summary": "Delete One Work Management By one Id",
+                "description": "Delete One Work Management",
+                "operationId": "getDestroyCorrectveById",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Work Management Id",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful operation"
+                    },
+                    "401": {
+                        "description": "Unauthenticated"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    }
+                },
+                "security": [
+                    {
+                        "bearer": []
+                    }
+                ]
+            }
+        },
+        "/workmanagement/showbyreportid/{id}": {
+            "get": {
+                "tags": [
+                    "WorkManagement"
+                ],
+                "summary": "Get One Work Management By one Id",
+                "description": "Return One Work Management",
+                "operationId": "getWork ManagementById",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Report Id",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful operation"
+                    },
+                    "401": {
+                        "description": "Unauthenticated"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    }
+                },
+                "security": [
+                    {
+                        "bearer": []
+                    }
+                ]
+            }
+        },
+        "/workmanagementevidence/store": {
+            "post": {
+                "tags": [
+                    "WorkManagementEvidence"
+                ],
+                "summary": "Store Work Management Evidence Report",
+                "description": "Store Work Management Evidence Report",
+                "operationId": "storeEvidence",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/WorkManagementEvidence"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Successful operation"
+                    },
+                    "401": {
+                        "description": "Unauthenticated"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    }
+                },
+                "security": [
+                    {
+                        "bearer": []
+                    }
+                ]
+            }
+        },
+        "/workmanagementevidence/showbyworkmanagementevidenceid/{id}": {
+            "get": {
+                "tags": [
+                    "WorkManagementEvidence"
+                ],
+                "summary": "Get One Work Management Evidence",
+                "description": "Return Commerce",
+                "operationId": "get Work Management Evidence",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Work Management Evidence evedence Id",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful operation"
+                    },
+                    "401": {
+                        "description": "Unauthenticated"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    }
+                },
+                "security": [
+                    {
+                        "bearer": []
+                    }
+                ]
+            }
+        },
+        "/workmanagementevidence/showbyworkmanagementid/{id}": {
+            "get": {
+                "tags": [
+                    "WorkManagementEvidence"
+                ],
+                "summary": "Get One Work Management Evidence",
+                "description": "Return Work Management Evidence",
+                "operationId": "get SupportGroupEvidences",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "SupportGroupActivity Id",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful operation"
+                    },
+                    "401": {
+                        "description": "Unauthenticated"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    }
+                },
+                "security": [
+                    {
+                        "bearer": []
+                    }
+                ]
+            }
+        },
+        "/workmanagementevidence/update/{id}": {
+            "put": {
+                "tags": [
+                    "WorkManagementEvidence"
+                ],
+                "summary": "Update One Work Management Evidence By one Id",
+                "description": "Update One Work Management Evidence",
+                "operationId": "getUpdateEvidenceById",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Work Management Evidence Id",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/WorkManagementEvidence"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Successful operation"
+                    },
+                    "401": {
+                        "description": "Unauthenticated"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    }
+                },
+                "security": [
+                    {
+                        "bearer": []
+                    }
+                ]
+            }
+        },
+        "/workmanagementevidence/destroy/{id}": {
+            "delete": {
+                "tags": [
+                    "WorkManagementEvidence"
+                ],
+                "summary": "Delete One Work Management Evidence By one Id",
+                "description": "Delete One Work Management Evidence",
+                "operationId": "getDestroyEvidenceById",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Work Management Evidence Id",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful operation"
+                    },
+                    "401": {
+                        "description": "Unauthenticated"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    }
+                },
+                "security": [
+                    {
+                        "bearer": []
+                    }
+                ]
+            }
         }
     },
     "components": {
@@ -6193,6 +6570,94 @@
                     "rol_id": {
                         "title": "rol_id",
                         "description": "rol_id of the user",
+                        "example": 1
+                    }
+                },
+                "type": "object"
+            },
+            "WorkManagement": {
+                "title": "WorkManagement",
+                "description": "WorkManagement body data",
+                "properties": {
+                    "activity": {
+                        "title": "activity",
+                        "description": "Activity",
+                        "type": "string",
+                        "example": "En Alturas"
+                    },
+                    "work_type": {
+                        "title": "work_type",
+                        "description": "Tipos de Trabajo",
+                        "type": "string",
+                        "example": "Work"
+                    },
+                    "workers_activity": {
+                        "title": "workers_activity",
+                        "description": "# trabajadores en la actividad",
+                        "example": 1
+                    },
+                    "workers_trained": {
+                        "title": "workers_trained",
+                        "description": "# trabajadores capacitados",
+                        "example": 1
+                    },
+                    "permissions": {
+                        "title": "permissions",
+                        "description": "Permisos",
+                        "type": "boolean",
+                        "example": true
+                    },
+                    "observations": {
+                        "title": "observations",
+                        "description": "Observaciones",
+                        "type": "string",
+                        "example": "OBS"
+                    },
+                    "approved": {
+                        "title": "approved",
+                        "description": "approved of the evidence",
+                        "type": "boolean",
+                        "example": true
+                    },
+                    "report_id": {
+                        "title": "report_id",
+                        "description": "report_id of the SupporteGroup",
+                        "example": 1
+                    }
+                },
+                "type": "object"
+            },
+            "WorkManagementEvidence": {
+                "title": "WorkManagementEvidence",
+                "description": "WorkManagementEvidence body data",
+                "properties": {
+                    "name": {
+                        "title": "name",
+                        "description": "Name of the evidence",
+                        "type": "string",
+                        "example": "FileName"
+                    },
+                    "file": {
+                        "title": "file",
+                        "description": "File of the evidence",
+                        "type": "string",
+                        "example": "FileHostingName"
+                    },
+                    "type": {
+                        "title": "type",
+                        "description": "Type File",
+                        "type": "string",
+                        "example": "image/jpeg"
+                    },
+                    "approved": {
+                        "title": "approved",
+                        "description": "approved of the evidence",
+                        "type": "boolean",
+                        "example": true
+                    },
+                    "work_management_id": {
+                        "title": "work_management_id",
+                        "description": "work_management_id of the WorkManagement",
                         "example": 1
                     }
                 },

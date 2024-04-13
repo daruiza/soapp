@@ -20,6 +20,7 @@ class CreateEquipementMaintenanceTable extends Migration
             $table->boolean('teams')->default(0);
             $table->date('date')->nullable()->default(null);
             $table->string('observations')->nullable();
+            $table->boolean('approved')->default(0); 
             $table->unsignedBigInteger('report_id');
             $table->foreign('report_id')
                 ->references('id')

@@ -291,3 +291,25 @@ Route::group(['prefix' => 'supportgroupactivitiyevidence'], function () {
         Route::get('showbysupportgroupactivityid/{id}', 'Api\SupportGroupActivityEvidenceController@showBySupportGroupActivityId');
     });
 });
+
+Route::group(['prefix' => 'workmanagement'], function () {
+    Route::group(['middleware' => 'auth:api'], function () {
+        Route::get('index', 'Api\WorkManagementController@index');
+        Route::post('store', 'Api\WorkManagementController@store');
+        Route::put('update/{id}', 'Api\WorkManagementController@update');
+        Route::delete('destroy/{id}', 'Api\WorkManagementController@destroy');
+        Route::get('showbyreportid/{id}', 'Api\WorkManagementController@showByReportId');
+    });
+});
+
+Route::group(['prefix' => 'workmanagementevidence'], function () {
+    Route::group(['middleware' => 'auth:api'], function () {
+        Route::get('index', 'Api\WorkManagementEvidenceController@index');
+        Route::post('store', 'Api\WorkManagementEvidenceController@store');
+        Route::put('update/{id}', 'Api\WorkManagementEvidenceController@update');
+        Route::delete('destroy/{id}', 'Api\WorkManagementEvidenceController@destroy');
+        Route::get('showbyworkmanagementevidenceid/{id}', 'Api\WorkManagementEvidenceController@showByWorkManagementEvidenceId');
+        Route::get('showbyworkmanagementid/{id}', 'Api\WorkManagementEvidenceController@showByWorkManagementId');
+    });
+});
+

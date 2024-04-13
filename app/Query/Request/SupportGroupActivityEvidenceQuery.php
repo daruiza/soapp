@@ -61,8 +61,7 @@ class SupportGroupActivityEvidenceQuery implements ISupportGroupActivityEvidence
                 if (auth()->check()) {
                     $rules = [                        
                         $this->name                 => 'required|string|min:1|max:128|',
-                        $this->type                 => 'required|string|min:1|max:128|',
-                        $this->approved             => 'numeric',
+                        $this->type                 => 'required|string|min:1|max:128|',                        
                         $this->support_group_id   => 'numeric',
                         
                     ];
@@ -73,7 +72,7 @@ class SupportGroupActivityEvidenceQuery implements ISupportGroupActivityEvidence
                                         
                     $evidence->name = $request->name ?? $evidence->name;
                     $evidence->type = $request->type ?? $evidence->type;
-                    $evidence->approved = $request->approved ?? $evidence->approved;
+                    $evidence->approved = $request->approved ? 1 : 0;
                     $evidence->support_group_id = $request->support_group_id ?? $evidence->support_group_id;
                     
                     $evidence->save();
