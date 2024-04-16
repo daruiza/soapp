@@ -54,7 +54,7 @@ class WorkManagementQuery implements IWorkManagementQuery
                 'data' => [
                     'workmanagement' => $newworkmanagement,
                 ],
-                'message' => 'Gestión de Trabajo  creadó correctamente!'
+                'message' => 'Gestión de Trabajo creadó correctamente!'
             ], 201);
         } catch (\Exception $e) {
             return response()->json(['message' => 'Algo salio mal!', 'error' => $e], 403);
@@ -93,7 +93,7 @@ class WorkManagementQuery implements IWorkManagementQuery
                     ], 201);
                 }
             } catch (ModelNotFoundException $ex) {
-                return response()->json(['message' => "Correción con id {$id} no existe!", 'error' => $ex->getMessage()], 404);
+                return response()->json(['message' => "Gestión de Trabajo con id {$id} no existe!", 'error' => $ex->getMessage()], 404);
             } catch (\Exception $e) {
                 return response()->json(['message' => 'Algo salio mal!', 'error' => $e], 403);
             }
@@ -129,7 +129,7 @@ class WorkManagementQuery implements IWorkManagementQuery
                 return response()->json(['message' => "Gestión de Trabajo  con id {$id} no existe!", 'error' => $e->getMessage()], 403);
             }
         }
-        return response()->json(['message' => "Gestión de Trabajo  con id {$id} no existe!", 'error' => 'No se suministrado un id valido'], 404);
+        return response()->json(['message' => "Gestión de Trabajo con id {$id} no existe!", 'error' => 'No se suministrado un id valido'], 404);
     }
 
     public function showByReportId(Request $request, int $id)
@@ -139,12 +139,12 @@ class WorkManagementQuery implements IWorkManagementQuery
 
                 return response()->json([
                     'data' => WorkManagement::query()->reportid($id)->get(),
-                    'message' => 'Trabajos consultados correctamente'
+                    'message' => 'Gestión de Trabajo consultados correctamente'
                 ], 200);
             } catch (ModelNotFoundException $e) {
-                return response()->json(['message' => "Trabajo con id {$id} no existe!", 'error' => $e->getMessage()], 403);
+                return response()->json(['message' => "Gestión de Trabajo con id {$id} no existe!", 'error' => $e->getMessage()], 403);
             }
         }
-        return response()->json(['message' => "Trabajo con id {$id} no existe!", 'error' => 'No se suministrado un id valido'], 404);
+        return response()->json(['message' => "Gestión de Trabajo con id {$id} no existe!", 'error' => 'No se suministrado un id valido'], 404);
     }
 }

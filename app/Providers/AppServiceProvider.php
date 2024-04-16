@@ -121,6 +121,14 @@ use App\Query\Abstraction\IWorkManagementEvidenceQuery;
 use App\Query\Request\WorkManagementEvidenceQuery;
 use App\Http\Controllers\Api\WorkManagementEvidenceController;
 
+use App\Query\Abstraction\IEquipementMaintenanceQuery;
+use App\Query\Request\EquipementMaintenanceQuery;
+use App\Http\Controllers\Api\EquipementMaintenanceController;
+
+use App\Query\Abstraction\IEquipementMaintenanceEvidenceQuery;
+use App\Query\Request\EquipementMaintenanceEvidenceQuery;
+use App\Http\Controllers\Api\EquipementMaintenanceEvidenceController;
+
 
 class AppServiceProvider extends ServiceProvider
 {

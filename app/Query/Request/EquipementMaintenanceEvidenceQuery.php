@@ -2,7 +2,7 @@
 
 namespace App\Query\Request;
 
-use App\Model\Core\SupportGroupActivityEvidence;
+use App\Model\Core\EquipementMaintenanceEvidence;
 use Illuminate\Http\Request;
 use Illuminate\Validation\ValidationException;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
@@ -36,7 +36,7 @@ class EquipementMaintenanceEvidenceQuery implements IEquipementMaintenanceEviden
             }
 
             // Creamos la nueva evidencia
-            $evidence = new SupportGroupActivityEvidence();             
+            $evidence = new EquipementMaintenanceEvidence();             
             $newEvidence = $evidence->create($request->input());
 
             return response()->json([
@@ -56,13 +56,13 @@ class EquipementMaintenanceEvidenceQuery implements IEquipementMaintenanceEviden
     {
         if ($id) {
             try {
-                $evidence = SupportGroupActivityEvidence::findOrFail($id);
+                $evidence = EquipementMaintenanceEvidence::findOrFail($id);
                 
                 if (auth()->check()) {
                     $rules = [                        
-                        $this->name                 => 'required|string|min:1|max:128|',
-                        $this->type                 => 'required|string|min:1|max:128|',                        
-                        $this->equipement_id   => 'numeric',
+                        $this->name          => 'required|string|min:1|max:128|',
+                        $this->type          => 'required|string|min:1|max:128|',                        
+                        $this->equipement_id => 'numeric',
                         
                     ];
                     $validator = Validator::make($request->all(), $rules);
@@ -97,7 +97,7 @@ class EquipementMaintenanceEvidenceQuery implements IEquipementMaintenanceEviden
 
     public function destroy(int $id) {
         try {
-            $evidence = SupportGroupActivityEvidence::findOrFail($id);
+            $evidence = EquipementMaintenanceEvidence::findOrFail($id);
             
             // Eliminamos el archivo relacionado            
             if(File::exists(public_path($evidence->file))){
@@ -122,7 +122,7 @@ class EquipementMaintenanceEvidenceQuery implements IEquipementMaintenanceEviden
         
         if ($id) {
             try {
-                $evidence = SupportGroupActivityEvidence::select(
+                $evidence = EquipementMaintenanceEvidence::select(
                     'id',
                     'name',
                     'file',
@@ -148,7 +148,7 @@ class EquipementMaintenanceEvidenceQuery implements IEquipementMaintenanceEviden
     public function showByEquipementMaintenanceId(Request $request, int $id){        
         if ($id) {
             try {
-                $evidence = SupportGroupActivityEvidence::select(
+                $evidence = EquipementMaintenanceEvidence::select(
                     'id',
                     'name',
                     'file',
