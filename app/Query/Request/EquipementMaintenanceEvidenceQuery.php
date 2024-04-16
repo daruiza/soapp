@@ -118,7 +118,7 @@ class EquipementMaintenanceEvidenceQuery implements IEquipementMaintenanceEviden
         }
     }
 
-    public function showBySupportGroupActivityEvidenceId(Request $request, int $id){
+    public function showByEquipementMaintenanceEvidenceId(Request $request, int $id){
         
         if ($id) {
             try {
@@ -145,7 +145,7 @@ class EquipementMaintenanceEvidenceQuery implements IEquipementMaintenanceEviden
         }
     }
 
-    public function showBySupportGroupActivityId(Request $request, int $id){        
+    public function showByEquipementMaintenanceId(Request $request, int $id){        
         if ($id) {
             try {
                 $evidence = SupportGroupActivityEvidence::select(
