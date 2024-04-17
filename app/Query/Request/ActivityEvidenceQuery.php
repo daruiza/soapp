@@ -80,7 +80,7 @@ class ActivityEvidenceQuery implements IActivityEvidenceQuery
                     $rules = [                        
                         $this->name                 => 'required|string|min:1|max:128|',
                         $this->type                 => 'required|string|min:1|max:128|',
-                        $this->approved             => 'numeric',
+                        
                         $this->activity_id   => 'numeric',
                         
                     ];
@@ -91,7 +91,7 @@ class ActivityEvidenceQuery implements IActivityEvidenceQuery
                                         
                     $evidence->name = $request->name ?? $evidence->name;
                     $evidence->type = $request->type ?? $evidence->type;
-                    $evidence->approved = $request->approved ?? $evidence->approved;
+                    $evidence->approved = $request->approved ? 1 : 0;
                     $evidence->activity_id = $request->activity_id ?? $evidence->activity_id;
                     
                     $evidence->save();

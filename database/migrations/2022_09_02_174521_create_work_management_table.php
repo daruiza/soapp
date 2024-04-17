@@ -19,8 +19,9 @@ class CreateWorkManagementTable extends Migration
             $table->string('work_type', 128);
             $table->unsignedInteger('workers_activity')->default(0);
             $table->unsignedInteger('workers_trained')->default(0);
-            $table->boolean('permissions')->default(0);
+            $table->boolean('permissions')->default(0);            
             $table->string('observations')->nullable();
+            $table->boolean('approved')->default(0);     
             $table->unsignedBigInteger('report_id');
             $table->foreign('report_id')
                 ->references('id')

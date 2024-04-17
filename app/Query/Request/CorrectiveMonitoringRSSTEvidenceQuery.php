@@ -62,7 +62,7 @@ class CorrectiveMonitoringRSSTEvidenceQuery implements ICorrectiveMonitoringRSST
                     $rules = [                        
                         $this->name                 => 'required|string|min:1|max:128|',
                         $this->type                 => 'required|string|min:1|max:128|',
-                        $this->approved             => 'numeric',
+                        
                         $this->corrective_id   => 'numeric',
                         
                     ];
@@ -73,7 +73,7 @@ class CorrectiveMonitoringRSSTEvidenceQuery implements ICorrectiveMonitoringRSST
                                         
                     $evidence->name = $request->name ?? $evidence->name;
                     $evidence->type = $request->type ?? $evidence->type;
-                    $evidence->approved = $request->approved ?? $evidence->approved;
+                    $evidence->approved = $request->approved ? 1 : 0;
                     $evidence->corrective_id = $request->corrective_id ?? $evidence->corrective_id;
                     
                     $evidence->save();
