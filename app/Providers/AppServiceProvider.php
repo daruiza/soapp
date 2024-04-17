@@ -226,6 +226,12 @@ class AppServiceProvider extends ServiceProvider
         $this->app->bind(IWorkManagementEvidenceQuery::class, WorkManagementEvidenceQuery::class);
         $this->app->make(WorkManagementEvidenceController::class);
 
+        $this->app->bind(IEquipementMaintenanceQuery::class, EquipementMaintenanceQuery::class);
+        $this->app->make(EquipementMaintenanceController::class);
+
+        $this->app->bind(IEquipementMaintenanceEvidenceQuery::class, EquipementMaintenanceEvidenceQuery::class);
+        $this->app->make(EquipementMaintenanceEvidenceController::class);        
+
     }
 
     /**

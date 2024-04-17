@@ -313,3 +313,24 @@ Route::group(['prefix' => 'workmanagementevidence'], function () {
     });
 });
 
+Route::group(['prefix' => 'equipementmaintenance'], function () {
+    Route::group(['middleware' => 'auth:api'], function () {
+        Route::get('index', 'Api\EquipementMaintenanceController@index');
+        Route::post('store', 'Api\EquipementMaintenanceController@store');
+        Route::put('update/{id}', 'Api\EquipementMaintenanceController@update');
+        Route::delete('destroy/{id}', 'Api\EquipementMaintenanceController@destroy');
+        Route::get('showbyreportid/{id}', 'Api\EquipementMaintenanceController@showByReportId');
+    });
+});
+
+Route::group(['prefix' => 'equipementmaintenanceevidence'], function () {
+    Route::group(['middleware' => 'auth:api'], function () {
+        Route::get('index', 'Api\EquipementMaintenanceEvidenceController@index');
+        Route::post('store', 'Api\EquipementMaintenanceEvidenceController@store');
+        Route::put('update/{id}', 'Api\EquipementMaintenanceEvidenceController@update');
+        Route::delete('destroy/{id}', 'Api\EquipementMaintenanceEvidenceController@destroy');
+        Route::get('showbyworkmanagementevidenceid/{id}', 'Api\EquipementMaintenanceEvidenceController@showByEquipementMaintenanceEvidenceId');
+        Route::get('showbyworkmanagementid/{id}', 'Api\EquipementMaintenanceEvidenceController@showByEquipementMaintenanceId');
+    });
+});
+
