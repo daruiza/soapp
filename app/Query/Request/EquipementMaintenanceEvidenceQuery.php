@@ -2,7 +2,7 @@
 
 namespace App\Query\Request;
 
-use App\Model\Core\Evidence;
+use App\Model\Core\EquipementMaintenanceEvidence;
 use Illuminate\Http\Request;
 use Illuminate\Validation\ValidationException;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
@@ -10,33 +10,15 @@ use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Log;
 
-use App\Query\Abstraction\IEvidenceQuery;
+use App\Query\Abstraction\IEquipementMaintenanceEvidenceQuery;
 
-class EvidenceQuery implements IEvidenceQuery
+class EquipementMaintenanceEvidenceQuery implements IEquipementMaintenanceEvidenceQuery
 {
     private $name = 'name';
     private $file = 'file';
     private $type = 'type';
     private $approved = 'approved';
-    private $report_id = 'report_id';
-
-    public function index(Request $request){
-        try {
-            $evidences = Evidence::select(['id', 'file', 'approved', 'report_id'])
-                ->orderBy('id', $request->sort ?? 'ASC')
-                ->paginate($request->limit ?? 10, ['*'], '', $request->page ?? 1);
-
-            return response()->json([
-                'data' => [
-                    'evidence' => $evidences,
-                ],
-                'message' => 'Datos de Evidencia Consultados Correctamente!'
-            ], 201);
-
-        } catch (\Exception $e) {
-            return response()->json(['message' => $e->getMessage()], 402);
-        }
-    }
+    private $equipement_id = 'equipement_id';    
     
     public function store(Request $request){
         
@@ -44,16 +26,17 @@ class EvidenceQuery implements IEvidenceQuery
             $this->name => 'required|string|min:1|max:128|',
             $this->file   => 'required',
             $this->type   => 'required',
-            $this->report_id   => 'required'
+            $this->equipement_id   => 'required'
         ];
         try {
+
             $validator = Validator::make($request->all(), $rules);
             if ($validator->fails()) {
                 throw (new ValidationException($validator->errors()->getMessages()));
             }
 
             // Creamos la nueva evidencia
-            $evidence = new Evidence();             
+            $evidence = new EquipementMaintenanceEvidence();             
             $newEvidence = $evidence->create($request->input());
 
             return response()->json([
@@ -73,13 +56,13 @@ class EvidenceQuery implements IEvidenceQuery
     {
         if ($id) {
             try {
-                $evidence = Evidence::findOrFail($id);
+                $evidence = EquipementMaintenanceEvidence::findOrFail($id);
                 
                 if (auth()->check()) {
                     $rules = [                        
-                        $this->name                 => 'required|string|min:1|max:128|',
-                        $this->type                 => 'required|string|min:1|max:128|',                        
-                        $this->report_id   => 'numeric',
+                        $this->name          => 'required|string|min:1|max:128|',
+                        $this->type          => 'required|string|min:1|max:128|',                        
+                        $this->equipement_id => 'numeric',
                         
                     ];
                     $validator = Validator::make($request->all(), $rules);
@@ -90,7 +73,7 @@ class EvidenceQuery implements IEvidenceQuery
                     $evidence->name = $request->name ?? $evidence->name;
                     $evidence->type = $request->type ?? $evidence->type;
                     $evidence->approved = $request->approved ? 1 : 0;
-                    $evidence->report_id = $request->report_id ?? $evidence->report_id;
+                    $evidence->equipement_id = $request->equipement_id ?? $evidence->equipement_id;
                     
                     $evidence->save();
                     return response()->json([
@@ -109,12 +92,12 @@ class EvidenceQuery implements IEvidenceQuery
                 return response()->json(['message' => 'Algo salio mal!', 'error' => $e], 403);
             }
         }
-        return response()->json(['message' => "Evidence con id {$id} no existe!", 'error' => 'No se suministrado un id valido'], 404);
+        return response()->json(['message' => "Evidencia con id {$id} no existe!", 'error' => 'No se suministrado un id valido'], 404);
     }
 
     public function destroy(int $id) {
         try {
-            $evidence = Evidence::findOrFail($id);
+            $evidence = EquipementMaintenanceEvidence::findOrFail($id);
             
             // Eliminamos el archivo relacionado            
             if(File::exists(public_path($evidence->file))){
@@ -135,19 +118,19 @@ class EvidenceQuery implements IEvidenceQuery
         }
     }
 
-    public function showByEvidenceId(Request $request, int $id){
+    public function showByEquipementMaintenanceEvidenceId(Request $request, int $id){
         
         if ($id) {
             try {
-                $evidence = Evidence::select(
+                $evidence = EquipementMaintenanceEvidence::select(
                     'id',
                     'name',
                     'file',
                     'type',
                     'approved',
-                    'report_id'
+                    'equipement_id'
                 )
-                ->where('report_id',$id)
+                ->where('id',$id)
                 ->get();
                 
                 return response()->json([
@@ -162,19 +145,18 @@ class EvidenceQuery implements IEvidenceQuery
         }
     }
 
-    public function showByReportId(Request $request, int $id){
-        
+    public function showByEquipementMaintenanceId(Request $request, int $id){        
         if ($id) {
             try {
-                $evidence = Evidence::select(
+                $evidence = EquipementMaintenanceEvidence::select(
                     'id',
                     'name',
                     'file',
                     'type',
                     'approved',
-                    'report_id'
+                    'equipement_id'
                 )
-                ->where('report_id',$id)
+                ->where('equipement_id',$id)
                 ->get();
                 
                 return response()->json([

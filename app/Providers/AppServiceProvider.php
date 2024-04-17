@@ -113,6 +113,22 @@ use App\Query\Abstraction\ISupportGroupActivityEvidenceQuery;
 use App\Query\Request\SupportGroupActivityEvidenceQuery;
 use App\Http\Controllers\Api\SupportGroupActivityEvidenceController;
 
+use App\Query\Abstraction\IWorkManagementQuery;
+use App\Query\Request\WorkManagementQuery;
+use App\Http\Controllers\Api\WorkManagementController;
+
+use App\Query\Abstraction\IWorkManagementEvidenceQuery;
+use App\Query\Request\WorkManagementEvidenceQuery;
+use App\Http\Controllers\Api\WorkManagementEvidenceController;
+
+use App\Query\Abstraction\IEquipementMaintenanceQuery;
+use App\Query\Request\EquipementMaintenanceQuery;
+use App\Http\Controllers\Api\EquipementMaintenanceController;
+
+use App\Query\Abstraction\IEquipementMaintenanceEvidenceQuery;
+use App\Query\Request\EquipementMaintenanceEvidenceQuery;
+use App\Http\Controllers\Api\EquipementMaintenanceEvidenceController;
+
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -203,6 +219,18 @@ class AppServiceProvider extends ServiceProvider
 
         $this->app->bind(ISupportGroupActivityEvidenceQuery::class, SupportGroupActivityEvidenceQuery::class);
         $this->app->make(SupportGroupActivityEvidenceController::class);
+
+        $this->app->bind(IWorkManagementQuery::class, WorkManagementQuery::class);
+        $this->app->make(WorkManagementController::class);
+
+        $this->app->bind(IWorkManagementEvidenceQuery::class, WorkManagementEvidenceQuery::class);
+        $this->app->make(WorkManagementEvidenceController::class);
+
+        $this->app->bind(IEquipementMaintenanceQuery::class, EquipementMaintenanceQuery::class);
+        $this->app->make(EquipementMaintenanceController::class);
+
+        $this->app->bind(IEquipementMaintenanceEvidenceQuery::class, EquipementMaintenanceEvidenceQuery::class);
+        $this->app->make(EquipementMaintenanceEvidenceController::class);        
 
     }
 

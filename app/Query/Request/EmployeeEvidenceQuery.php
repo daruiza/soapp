@@ -80,7 +80,7 @@ class EmployeeEvidenceQuery implements IEmployeeEvidenceQuery
                     $rules = [                        
                         $this->name                 => 'required|string|min:1|max:128|',
                         $this->type                 => 'required|string|min:1|max:128|',
-                        $this->approved             => 'numeric',
+                        
                         $this->employee_report_id   => 'numeric',
                         
                     ];
@@ -91,7 +91,7 @@ class EmployeeEvidenceQuery implements IEmployeeEvidenceQuery
                                         
                     $evidence->name = $request->name ?? $evidence->name;
                     $evidence->type = $request->type ?? $evidence->type;
-                    $evidence->approved = $request->approved ?? $evidence->approved;
+                    $evidence->approved = $request->approved ? 1 : 0;
                     $evidence->employee_report_id = $request->employee_report_id ?? $evidence->employee_report_id;
                     
                     $evidence->save();
