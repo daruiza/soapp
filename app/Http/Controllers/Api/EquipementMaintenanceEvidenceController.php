@@ -48,7 +48,7 @@ class EquipementMaintenanceEvidenceController extends Controller
 
     /**
      * @OA\Get(
-     *      path="/equipementmaintenanceevidence/showbyworkmanagementevidenceid/{id}",
+     *      path="/equipementmaintenanceevidence/showbyequipementmaintenanceevidenceid/{id}",
      *      operationId="get Equipement Maintenance Evidence",
      *      tags={"EquipementMaintenanceEvidence"},
      *      summary="Get One Equipement Maintenance Evidence",
@@ -84,7 +84,7 @@ class EquipementMaintenanceEvidenceController extends Controller
 
     /**
      * @OA\Get(
-     *      path="/equipementmaintenanceevidence/showbyworkmanagementid/{id}",
+     *      path="/equipementmaintenanceevidence/showbyequipementmaintenanceid/{id}",
      *      operationId="get SupportGroupEvidences",
      *      tags={"EquipementMaintenanceEvidence"},
      *      summary="Get One Equipement Maintenance Evidence",

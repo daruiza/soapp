@@ -329,8 +329,8 @@ Route::group(['prefix' => 'equipementmaintenanceevidence'], function () {
         Route::post('store', 'Api\EquipementMaintenanceEvidenceController@store');
         Route::put('update/{id}', 'Api\EquipementMaintenanceEvidenceController@update');
         Route::delete('destroy/{id}', 'Api\EquipementMaintenanceEvidenceController@destroy');
-        Route::get('showbyworkmanagementevidenceid/{id}', 'Api\EquipementMaintenanceEvidenceController@showByEquipementMaintenanceEvidenceId');
-        Route::get('showbyworkmanagementid/{id}', 'Api\EquipementMaintenanceEvidenceController@showByEquipementMaintenanceId');
+        Route::get('showbyequipementmaintenanceevidenceid/{id}', 'Api\EquipementMaintenanceEvidenceController@showByEquipementMaintenanceEvidenceId');
+        Route::get('showbyequipementmaintenanceid/{id}', 'Api\EquipementMaintenanceEvidenceController@showByEquipementMaintenanceId');
     });
 });
 
