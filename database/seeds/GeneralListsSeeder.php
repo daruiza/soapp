@@ -463,6 +463,16 @@ class GeneralListsSeeder extends Seeder
             'name' => 'support_group',
             'value' => 'BRIGADA DE EMERGENCIAS ',
         ));
+
+        DB::table('general_lists')->insert(array(
+            'name' => 'work_activity',
+            'value' => 'WORK ACTIVITY',
+        ));
+
+        DB::table('general_lists')->insert(array(
+            'name' => 'work_type',
+            'value' => 'WORK TYPE',
+        ));
     }
 
 
