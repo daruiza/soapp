@@ -3068,7 +3068,7 @@
                 ]
             }
         },
-        "/equipementmaintenanceevidence/showbyworkmanagementevidenceid/{id}": {
+        "/equipementmaintenanceevidence/showbyequipementmaintenanceevidenceid/{id}": {
             "get": {
                 "tags": [
                     "EquipementMaintenanceEvidence"
@@ -3105,7 +3105,7 @@
                 ]
             }
         },
-        "/equipementmaintenanceevidence/showbyworkmanagementid/{id}": {
+        "/equipementmaintenanceevidence/showbyequipementmaintenanceid/{id}": {
             "get": {
                 "tags": [
                     "EquipementMaintenanceEvidence"
