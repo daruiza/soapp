@@ -743,6 +743,383 @@
                 ]
             }
         },
+        "/complianceschedule/index": {
+            "get": {
+                "tags": [
+                    "ComplianceSchedule"
+                ],
+                "summary": "Get All ComplianceSchedule",
+                "description": "Return ComplianceSchedule",
+                "operationId": "getComplianceSchedule",
+                "responses": {
+                    "200": {
+                        "description": "Successful operation"
+                    },
+                    "401": {
+                        "description": "Unauthenticated"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    }
+                },
+                "security": [
+                    {
+                        "bearer": []
+                    }
+                ]
+            }
+        },
+        "/complianceschedule/store": {
+            "post": {
+                "tags": [
+                    "ComplianceSchedule"
+                ],
+                "summary": "Store A ComplianceSchedule",
+                "description": "Store ComplianceSchedule",
+                "operationId": "StoreComplianceSchedule",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/ComplianceSchedule"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Successful operation"
+                    },
+                    "401": {
+                        "description": "Unauthenticated"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    }
+                },
+                "security": [
+                    {
+                        "bearer": []
+                    }
+                ]
+            }
+        },
+        "/complianceschedule/update/{id}": {
+            "put": {
+                "tags": [
+                    "ComplianceSchedule"
+                ],
+                "summary": "Update One ComplianceSchedule By one Id",
+                "description": "Update One ComplianceSchedule",
+                "operationId": "getUpdateComplianceScheduleById",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ComplianceSchedule Id",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/ComplianceSchedule"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Successful operation"
+                    },
+                    "401": {
+                        "description": "Unauthenticated"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    }
+                },
+                "security": [
+                    {
+                        "bearer": []
+                    }
+                ]
+            }
+        },
+        "/complianceschedule/destroy/{id}": {
+            "delete": {
+                "tags": [
+                    "ComplianceSchedule"
+                ],
+                "summary": "Delete One ComplianceSchedule By one Id",
+                "description": "Delete One ComplianceSchedule",
+                "operationId": "getDestroyComplianceScheduleById",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ComplianceSchedule Id",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful operation"
+                    },
+                    "401": {
+                        "description": "Unauthenticated"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    }
+                },
+                "security": [
+                    {
+                        "bearer": []
+                    }
+                ]
+            }
+        },
+        "/complianceschedule/showbyreportid/{id}": {
+            "get": {
+                "tags": [
+                    "ComplianceSchedule"
+                ],
+                "summary": "Get One ComplianceSchedule By one Id",
+                "description": "Return One ComplianceSchedule",
+                "operationId": "getComplianceScheduleById",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ComplianceSchedule Id",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful operation"
+                    },
+                    "401": {
+                        "description": "Unauthenticated"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    }
+                },
+                "security": [
+                    {
+                        "bearer": []
+                    }
+                ]
+            }
+        },
+        "/compliancescheduleevidence/store": {
+            "post": {
+                "tags": [
+                    "ComplianceScheduleEvidence"
+                ],
+                "summary": "Store Report",
+                "description": "Store Report",
+                "operationId": "storeReport",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/ComplianceScheduleEvidence"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Successful operation"
+                    },
+                    "401": {
+                        "description": "Unauthenticated"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    }
+                },
+                "security": [
+                    {
+                        "bearer": []
+                    }
+                ]
+            }
+        },
+        "/compliancescheduleevidence/showbycompliancescheduleevidenceid/{id}": {
+            "get": {
+                "tags": [
+                    "ComplianceScheduleEvidence"
+                ],
+                "summary": "Get One ComplianceScheduleEvidence",
+                "description": "Return Commerce",
+                "operationId": "get ComplianceScheduleEvidence",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "training sst evedence Id",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful operation"
+                    },
+                    "401": {
+                        "description": "Unauthenticated"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    }
+                },
+                "security": [
+                    {
+                        "bearer": []
+                    }
+                ]
+            }
+        },
+        "/compliancescheduleevidence/showbycompliancescheduleid/{id}": {
+            "get": {
+                "tags": [
+                    "ComplianceScheduleEvidence"
+                ],
+                "summary": "Get One ComplianceScheduleEvidence",
+                "description": "Return Commerce",
+                "operationId": "get ComromiseEvidence",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Training SST Id",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful operation"
+                    },
+                    "401": {
+                        "description": "Unauthenticated"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    }
+                },
+                "security": [
+                    {
+                        "bearer": []
+                    }
+                ]
+            }
+        },
+        "/compliancescheduleevidence/update/{id}": {
+            "put": {
+                "tags": [
+                    "ComplianceScheduleEvidence"
+                ],
+                "summary": "Update One ComplianceScheduleEvidence By one Id",
+                "description": "Update One ComplianceScheduleEvidence",
+                "operationId": "getUpdateEvidenceById",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ComplianceScheduleEvidence Id",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/ComplianceScheduleEvidence"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Successful operation"
+                    },
+                    "401": {
+                        "description": "Unauthenticated"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    }
+                },
+                "security": [
+                    {
+                        "bearer": []
+                    }
+                ]
+            }
+        },
+        "/compliancescheduleevidence/destroy/{id}": {
+            "delete": {
+                "tags": [
+                    "ComplianceScheduleEvidence"
+                ],
+                "summary": "Delete One ComplianceScheduleEvidence By one Id",
+                "description": "Delete One ComplianceScheduleEvidence",
+                "operationId": "getDestroyEvidenceById",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ComplianceScheduleEvidence Id",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful operation"
+                    },
+                    "401": {
+                        "description": "Unauthenticated"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    }
+                },
+                "security": [
+                    {
+                        "bearer": []
+                    }
+                ]
+            }
+        },
         "/compromise/index": {
             "get": {
                 "tags": [
@@ -5957,6 +6334,81 @@
                         "description": "user_id of the commerce",
                         "type": "string",
                         "example": "1"
+                    }
+                },
+                "type": "object"
+            },
+            "ComplianceSchedule": {
+                "title": "ComplianceSchedule",
+                "description": "ComplianceSchedule body data",
+                "properties": {
+                    "company": {
+                        "title": "company",
+                        "description": "Company of the ComplianceSchedule",
+                        "type": "string",
+                        "example": "Cliente"
+                    },
+                    "planned_activities": {
+                        "title": "planned_activities",
+                        "description": "planned_activities ComplianceSchedule",
+                        "example": "0"
+                    },
+                    "executed_activities": {
+                        "title": "executed_activities",
+                        "description": "executed_activities ComplianceSchedule",
+                        "example": "0"
+                    },
+                    "compliance": {
+                        "title": "compliance",
+                        "description": "compliance ComplianceSchedule",
+                        "example": "0"
+                    },
+                    "approved": {
+                        "title": "approved",
+                        "description": "approved",
+                        "type": "boolean",
+                        "example": "0"
+                    },
+                    "report_id": {
+                        "title": "report_id",
+                        "description": "report_id of the ComplianceSchedule",
+                        "example": 1
+                    }
+                },
+                "type": "object"
+            },
+            "ComplianceScheduleEvidence": {
+                "title": "ComplianceScheduleEvidence",
+                "description": "ComplianceScheduleEvidence body data",
+                "properties": {
+                    "name": {
+                        "title": "name",
+                        "description": "Name of the evidence",
+                        "type": "string",
+                        "example": "FileName"
+                    },
+                    "file": {
+                        "title": "file",
+                        "description": "File of the evidence",
+                        "type": "string",
+                        "example": "FileHostingName"
+                    },
+                    "type": {
+                        "title": "type",
+                        "description": "Type File",
+                        "type": "string",
+                        "example": "image/jpeg"
+                    },
+                    "approved": {
+                        "title": "approved",
+                        "description": "approved of the evidence",
+                        "type": "boolean",
+                        "example": true
+                    },
+                    "compliance_schedule_id": {
+                        "title": "compliance_schedule_id",
+                        "description": "compliance_schedule_id of the Compliance",
+                        "example": 1
                     }
                 },
                 "type": "object"

@@ -17,7 +17,7 @@ class ComplianceScheduleEvidenceController extends Controller
 
         /**
      * @OA\Post(
-     *      path="/complianceschedule/store",
+     *      path="/compliancescheduleevidence/store",
      *      operationId="storeReport",
      *      tags={"ComplianceScheduleEvidence"},
      *      summary="Store Report",
@@ -48,7 +48,7 @@ class ComplianceScheduleEvidenceController extends Controller
 
     /**
      * @OA\Get(
-     *      path="/complianceschedule/showbycompromiseevidenceid/{id}",
+     *      path="/compliancescheduleevidence/showbycompliancescheduleevidenceid/{id}",
      *      operationId="get ComplianceScheduleEvidence",
      *      tags={"ComplianceScheduleEvidence"},
      *      summary="Get One ComplianceScheduleEvidence",
@@ -84,7 +84,7 @@ class ComplianceScheduleEvidenceController extends Controller
 
     /**
      * @OA\Get(
-     *      path="/complianceschedule/showbycompromiseid/{id}",
+     *      path="/compliancescheduleevidence/showbycompliancescheduleid/{id}",
      *      operationId="get ComromiseEvidence",
      *      tags={"ComplianceScheduleEvidence"},
      *      summary="Get One ComplianceScheduleEvidence",
@@ -120,7 +120,7 @@ class ComplianceScheduleEvidenceController extends Controller
 
     /**
      * @OA\Put(
-     *      path="/complianceschedule/update/{id}",
+     *      path="/compliancescheduleevidence/update/{id}",
      *      operationId="getUpdateEvidenceById",
      *      tags={"ComplianceScheduleEvidence"},
      *      summary="Update One ComplianceScheduleEvidence By one Id",
@@ -160,7 +160,7 @@ class ComplianceScheduleEvidenceController extends Controller
 
     /**
      * @OA\Delete(
-     *      path="/complianceschedule/destroy/{id}",
+     *      path="/compliancescheduleevidence/destroy/{id}",
      *      operationId="getDestroyEvidenceById",
      *      tags={"ComplianceScheduleEvidence"},
      *      summary="Delete One ComplianceScheduleEvidence By one Id",
