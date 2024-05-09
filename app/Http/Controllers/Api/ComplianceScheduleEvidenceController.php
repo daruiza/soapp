@@ -52,11 +52,11 @@ class ComplianceScheduleEvidenceController extends Controller
      *      operationId="get ComplianceScheduleEvidence",
      *      tags={"ComplianceScheduleEvidence"},
      *      summary="Get One ComplianceScheduleEvidence",
-     *      description="Return Commerce",
+     *      description="Return ComplianceSchedule",
      *      security={ {"bearer": {} }},
      *      @OA\Parameter(
      *          name="id",
-     *          description="training sst evedence Id",
+     *          description="ComplianceSchedule evedence Id",
      *          required=true,
      *          in="path",
      *          @OA\Schema(
@@ -85,14 +85,14 @@ class ComplianceScheduleEvidenceController extends Controller
     /**
      * @OA\Get(
      *      path="/compliancescheduleevidence/showbycompliancescheduleid/{id}",
-     *      operationId="get ComromiseEvidence",
+     *      operationId="get ComplianceScheduleEvidence",
      *      tags={"ComplianceScheduleEvidence"},
      *      summary="Get One ComplianceScheduleEvidence",
-     *      description="Return Commerce",
+     *      description="Return ComplianceSchedule",
      *      security={ {"bearer": {} }},
      *      @OA\Parameter(
      *          name="id",
-     *          description="Training SST Id",
+     *          description="ComplianceSchedule Id",
      *          required=true,
      *          in="path",
      *          @OA\Schema(
