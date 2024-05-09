@@ -129,6 +129,14 @@ use App\Query\Abstraction\IEquipementMaintenanceEvidenceQuery;
 use App\Query\Request\EquipementMaintenanceEvidenceQuery;
 use App\Http\Controllers\Api\EquipementMaintenanceEvidenceController;
 
+use App\Query\Abstraction\IComplianceScheduleQuery;
+use App\Query\Request\ComplianceScheduleQuery;
+use App\Http\Controllers\Api\ComplianceScheduleController;
+
+use App\Query\Abstraction\IComplianceScheduleEvidenceQuery;
+use App\Query\Request\ComplianceScheduleEvidenceQuery;
+use App\Http\Controllers\Api\ComplianceScheduleEvidenceController;
+
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -231,6 +239,12 @@ class AppServiceProvider extends ServiceProvider
 
         $this->app->bind(IEquipementMaintenanceEvidenceQuery::class, EquipementMaintenanceEvidenceQuery::class);
         $this->app->make(EquipementMaintenanceEvidenceController::class);        
+
+        $this->app->bind(IComplianceScheduleQuery::class, ComplianceScheduleQuery::class);
+        $this->app->make(ComplianceScheduleController::class);
+
+        $this->app->bind(IComplianceScheduleEvidenceQuery::class, ComplianceScheduleEvidenceQuery::class);
+        $this->app->make(ComplianceScheduleEvidenceController::class);
 
     }
 
