@@ -27,7 +27,7 @@ class ComplianceScheduleQuery implements IComplianceScheduleQuery
     {
         return response()->json([
             'data' => ComplianceSchedule::all(),
-            'message' => 'Compromisos Consultadas correctamente'
+            'message' => 'Cumplimientos de calendario consultados correctamente'
         ], 200);
     }
 
