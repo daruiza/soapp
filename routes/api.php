@@ -167,66 +167,66 @@ Route::group(['prefix' => 'activityevidence'], function () {
     });
 });
 
-Route::group(['prefix' => 'complianceschedule'], function () {
+Route::group(['prefix' => 'compromise'], function () {
     Route::group(['middleware' => 'auth:api'], function () {
-        Route::get('index', 'Api\compliancescheduleController@index');
-        Route::post('store', 'Api\compliancescheduleController@store');
-        Route::put('update/{id}', 'Api\compliancescheduleController@update');
-        Route::delete('destroy/{id}', 'Api\compliancescheduleController@destroy');
-        Route::get('showbyreportid/{id}', 'Api\compliancescheduleController@showByReportId');
+        Route::get('index', 'Api\CompromiseController@index');
+        Route::post('store', 'Api\CompromiseController@store');
+        Route::put('update/{id}', 'Api\CompromiseController@update');
+        Route::delete('destroy/{id}', 'Api\CompromiseController@destroy');
+        Route::get('showbyreportid/{id}', 'Api\CompromiseController@showByReportId');
     });
 });
 
-Route::group(['prefix' => 'compliancescheduleevidence'], function () {
+Route::group(['prefix' => 'compromiseevidence'], function () {
     Route::group(['middleware' => 'auth:api'], function () {
-        Route::get('index', 'Api\compliancescheduleEvidenceController@index');
-        Route::post('store', 'Api\compliancescheduleEvidenceController@store');
-        Route::put('update/{id}', 'Api\compliancescheduleEvidenceController@update');
-        Route::delete('destroy/{id}', 'Api\compliancescheduleEvidenceController@destroy');
-        Route::get('showbycompliancescheduleevidenceid/{id}', 'Api\compliancescheduleEvidenceController@showBycompliancescheduleEvidenceId');
-        Route::get('showbycompliancescheduleid/{id}', 'Api\compliancescheduleEvidenceController@showBycompliancescheduleId');
+        Route::get('index', 'Api\CompromiseEvidenceController@index');
+        Route::post('store', 'Api\CompromiseEvidenceController@store');
+        Route::put('update/{id}', 'Api\CompromiseEvidenceController@update');
+        Route::delete('destroy/{id}', 'Api\CompromiseEvidenceController@destroy');
+        Route::get('showbycompromiseevidenceid/{id}', 'Api\CompromiseEvidenceController@showByCompromiseEvidenceId');
+        Route::get('showbycompromiseid/{id}', 'Api\CompromiseEvidenceController@showByCompromiseId');
     });
 });
 
-Route::group(['prefix' => 'complianceschedulesst'], function () {
+Route::group(['prefix' => 'compromisesst'], function () {
     Route::group(['middleware' => 'auth:api'], function () {
-        Route::get('index', 'Api\compliancescheduleSSTController@index');
-        Route::post('store', 'Api\compliancescheduleSSTController@store');
-        Route::put('update/{id}', 'Api\compliancescheduleSSTController@update');
-        Route::delete('destroy/{id}', 'Api\compliancescheduleSSTController@destroy');
-        Route::get('showbyreportid/{id}', 'Api\compliancescheduleSSTController@showByReportId');
+        Route::get('index', 'Api\CompromiseSSTController@index');
+        Route::post('store', 'Api\CompromiseSSTController@store');
+        Route::put('update/{id}', 'Api\CompromiseSSTController@update');
+        Route::delete('destroy/{id}', 'Api\CompromiseSSTController@destroy');
+        Route::get('showbyreportid/{id}', 'Api\CompromiseSSTController@showByReportId');
     });
 });
 
-Route::group(['prefix' => 'complianceschedulesstevidence'], function () {
+Route::group(['prefix' => 'compromisesstevidence'], function () {
     Route::group(['middleware' => 'auth:api'], function () {
-        Route::get('index', 'Api\compliancescheduleSSTEvidenceController@index');
-        Route::post('store', 'Api\compliancescheduleSSTEvidenceController@store');
-        Route::put('update/{id}', 'Api\compliancescheduleSSTEvidenceController@update');
-        Route::delete('destroy/{id}', 'Api\compliancescheduleSSTEvidenceController@destroy');
-        Route::get('showbycompliancescheduleevidenceid/{id}', 'Api\compliancescheduleSSTEvidenceController@showBycompliancescheduleEvidenceId');
-        Route::get('showbycompliancescheduleid/{id}', 'Api\compliancescheduleSSTEvidenceController@showBycompliancescheduleId');
+        Route::get('index', 'Api\CompromiseSSTEvidenceController@index');
+        Route::post('store', 'Api\CompromiseSSTEvidenceController@store');
+        Route::put('update/{id}', 'Api\CompromiseSSTEvidenceController@update');
+        Route::delete('destroy/{id}', 'Api\CompromiseSSTEvidenceController@destroy');
+        Route::get('showbycompromiseevidenceid/{id}', 'Api\CompromiseSSTEvidenceController@showByCompromiseEvidenceId');
+        Route::get('showbycompromiseid/{id}', 'Api\CompromiseSSTEvidenceController@showByCompromiseId');
     });
 });
 
-Route::group(['prefix' => 'complianceschedulersst'], function () {
+Route::group(['prefix' => 'compromisersst'], function () {
     Route::group(['middleware' => 'auth:api'], function () {
-        Route::get('index', 'Api\compliancescheduleRSSTController@index');
-        Route::post('store', 'Api\compliancescheduleRSSTController@store');
-        Route::put('update/{id}', 'Api\compliancescheduleRSSTController@update');
-        Route::delete('destroy/{id}', 'Api\compliancescheduleRSSTController@destroy');
-        Route::get('showbyreportid/{id}', 'Api\compliancescheduleRSSTController@showByReportId');
+        Route::get('index', 'Api\CompromiseRSSTController@index');
+        Route::post('store', 'Api\CompromiseRSSTController@store');
+        Route::put('update/{id}', 'Api\CompromiseRSSTController@update');
+        Route::delete('destroy/{id}', 'Api\CompromiseRSSTController@destroy');
+        Route::get('showbyreportid/{id}', 'Api\CompromiseRSSTController@showByReportId');
     });
 });
 
-Route::group(['prefix' => 'complianceschedulersstevidence'], function () {
+Route::group(['prefix' => 'compromisersstevidence'], function () {
     Route::group(['middleware' => 'auth:api'], function () {
-        Route::get('index', 'Api\compliancescheduleRSSTEvidenceController@index');
-        Route::post('store', 'Api\compliancescheduleRSSTEvidenceController@store');
-        Route::put('update/{id}', 'Api\compliancescheduleRSSTEvidenceController@update');
-        Route::delete('destroy/{id}', 'Api\compliancescheduleRSSTEvidenceController@destroy');
-        Route::get('showbycompliancescheduleevidenceid/{id}', 'Api\compliancescheduleRSSTEvidenceController@showBycompliancescheduleEvidenceId');
-        Route::get('showbycompliancescheduleid/{id}', 'Api\compliancescheduleRSSTEvidenceController@showBycompliancescheduleId');
+        Route::get('index', 'Api\CompromiseRSSTEvidenceController@index');
+        Route::post('store', 'Api\CompromiseRSSTEvidenceController@store');
+        Route::put('update/{id}', 'Api\CompromiseRSSTEvidenceController@update');
+        Route::delete('destroy/{id}', 'Api\CompromiseRSSTEvidenceController@destroy');
+        Route::get('showbycompromiseevidenceid/{id}', 'Api\CompromiseRSSTEvidenceController@showByCompromiseEvidenceId');
+        Route::get('showbycompromiseid/{id}', 'Api\CompromiseRSSTEvidenceController@showByCompromiseId');
     });
 });
 
