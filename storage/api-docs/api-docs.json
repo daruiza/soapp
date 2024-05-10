@@ -968,13 +968,13 @@
                     "ComplianceScheduleEvidence"
                 ],
                 "summary": "Get One ComplianceScheduleEvidence",
-                "description": "Return Commerce",
+                "description": "Return ComplianceSchedule",
                 "operationId": "get ComplianceScheduleEvidence",
                 "parameters": [
                     {
                         "name": "id",
                         "in": "path",
-                        "description": "training sst evedence Id",
+                        "description": "ComplianceSchedule evedence Id",
                         "required": true,
                         "schema": {
                             "type": "integer"
@@ -1005,13 +1005,13 @@
                     "ComplianceScheduleEvidence"
                 ],
                 "summary": "Get One ComplianceScheduleEvidence",
-                "description": "Return Commerce",
-                "operationId": "get ComromiseEvidence",
+                "description": "Return ComplianceSchedule",
+                "operationId": "get ComplianceScheduleEvidence",
                 "parameters": [
                     {
                         "name": "id",
                         "in": "path",
-                        "description": "Training SST Id",
+                        "description": "ComplianceSchedule Id",
                         "required": true,
                         "schema": {
                             "type": "integer"
