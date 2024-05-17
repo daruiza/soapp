@@ -49,7 +49,7 @@ class ComplianceScheduleEvidenceController extends Controller
     /**
      * @OA\Get(
      *      path="/compliancescheduleevidence/showbycompliancescheduleevidenceid/{id}",
-     *      operationId="get ComplianceScheduleEvidence",
+     *      operationId="getByComplianceScheduleEvidenceId",
      *      tags={"ComplianceScheduleEvidence"},
      *      summary="Get One ComplianceScheduleEvidence",
      *      description="Return ComplianceSchedule",
@@ -85,7 +85,7 @@ class ComplianceScheduleEvidenceController extends Controller
     /**
      * @OA\Get(
      *      path="/compliancescheduleevidence/showbycompliancescheduleid/{id}",
-     *      operationId="get ComplianceScheduleEvidence",
+     *      operationId="getByComplianceScheduleId",
      *      tags={"ComplianceScheduleEvidence"},
      *      summary="Get One ComplianceScheduleEvidence",
      *      description="Return ComplianceSchedule",
