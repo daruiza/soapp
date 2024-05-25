@@ -969,7 +969,7 @@
                 ],
                 "summary": "Get One ComplianceScheduleEvidence",
                 "description": "Return ComplianceSchedule",
-                "operationId": "get ComplianceScheduleEvidence",
+                "operationId": "getByComplianceScheduleEvidenceId",
                 "parameters": [
                     {
                         "name": "id",
@@ -1006,7 +1006,7 @@
                 ],
                 "summary": "Get One ComplianceScheduleEvidence",
                 "description": "Return ComplianceSchedule",
-                "operationId": "get ComplianceScheduleEvidence",
+                "operationId": "getByComplianceScheduleId",
                 "parameters": [
                     {
                         "name": "id",
