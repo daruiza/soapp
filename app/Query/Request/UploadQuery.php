@@ -87,4 +87,26 @@ class UploadQuery implements IUploadQuery
             return response()->json(['message' => $e->getMessage()], 402);
         }
     }
+
+    public function deleteFile(Request $request) {
+        try{
+            if (!$request->input('path')) {
+                return response()->json(['message' => 'No se ha suministrado una ruta de Archivo!!!'], 402);
+            }
+            $headers = array(
+                'Content-Description: File Transfer',
+                'Content-Type: application/octet-stream',
+            );     
+            
+            // dir2/cyptBoUPXEteQz4eJ8mjo77NQcjnwfGY9Xjhff3h.pdf
+            
+            return response(Storage::disk('s3')->exists(($request->input('path'))));
+
+            // return response()->file(Storage::disk('s3')->get($request->input('path')), $headers);
+
+        } catch (\Exception $e) {
+            return response()->json(['message' => $e->getMessage()], 402);
+        }
+    }
+
 }

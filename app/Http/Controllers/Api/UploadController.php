@@ -117,4 +117,36 @@ class UploadController extends Controller
     {
         return $this->UploadQuery->getFile($request);
     }
+
+    /**
+     * @OA\Delete(
+     *      path="/upload/deletefile",
+     *      operationId="delete File",
+     *      tags={"Upload"},
+     *      summary="Delete file by url",
+     *      description="Return a Boolean",
+     *      security={ {"bearer": {} }},
+     *      @OA\Parameter(
+     *          name="path",
+     *          description="File path",
+     *          required=true,
+     *          in="query",
+     *          @OA\Schema(
+     *              type="string"
+     *          )
+     *      ),
+     *      @OA\Response(
+     *          response=200,
+     *          description="Successful operation",
+     *       ),
+     *      @OA\Response(
+     *          response=401,
+     *          description="Unauthenticated",
+     *      )
+     *     )
+     */
+    public function deleteFile(Request $request)
+    {
+        return $this->UploadQuery->deleteFile($request);
+    }
 }
