@@ -7,8 +7,7 @@ use App\Query\Abstraction\IUploadQuery;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\File;
-use Illuminate\Support\Facades\Response as Download;
-use Symfony\Component\HttpFoundation\Response;
+use Illuminate\Support\Facades\Log;
 
 class UploadQuery implements IUploadQuery
 {
@@ -88,21 +87,34 @@ class UploadQuery implements IUploadQuery
         }
     }
 
-    public function deleteFile(Request $request) {
+    public static function deleteFile(Request $request) {
         try{
             if (!$request->input('path')) {
                 return response()->json(['message' => 'No se ha suministrado una ruta de Archivo!!!'], 402);
-            }
-            $headers = array(
-                'Content-Description: File Transfer',
-                'Content-Type: application/octet-stream',
-            );     
-            
-            // dir2/cyptBoUPXEteQz4eJ8mjo77NQcjnwfGY9Xjhff3h.pdf
-            
-            return response(Storage::disk('s3')->exists(($request->input('path'))));
+            }                 
 
-            // return response()->file(Storage::disk('s3')->get($request->input('path')), $headers);
+            if(Storage::disk('s3')->exists($request->input('path'))){
+                return response(Storage::disk('s3')->delete($request->input('path')));                
+            } else {
+                Log::notice('Borrar Archivo fallo: '.$request->input('path'));
+            }
+
+        } catch (\Exception $e) {
+            return response()->json(['message' => $e->getMessage()], 402);
+        }
+    }
+
+    public static function deleteDirectory(Request $request) {
+        try{
+            if (!$request->input('path')) {
+                return response()->json(['message' => 'No se ha suministrado una ruta de Directorio!!!'], 402);
+            }
+
+            if(Storage::disk('s3')->exists($request->input('path'))){
+                return response(Storage::disk('s3')->deleteDirectory($request->input('path')));                
+            } else {
+                Log::notice('Borrar directorio fallo: '.$request->input('path'));
+            }
 
         } catch (\Exception $e) {
             return response()->json(['message' => $e->getMessage()], 402);

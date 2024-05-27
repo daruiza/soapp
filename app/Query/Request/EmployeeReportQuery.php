@@ -98,15 +98,13 @@ class EmployeeReportQuery implements IEmployeeReportQuery
         try {
             $employee_report = EmployeeReport::findOrFail($id);
             $report = Report::findOrFail($employee_report->report_id);            
-            $path = "storage/images/commerce/{$report->commerce_id}/report/{$report->id}/employee_report/{$employee_report->id}";
+            $path = "commerce/{$report->commerce_id}/report/{$report->id}/employee_report/{$employee_report->id}";
             
-
-            // Eliminamos los archivos o el directorio del EMPLOYEE_REPORT            
-            if(File::exists(public_path($path))){
-                File::deleteDirectory(public_path($path));                                
-            }else{
-                Log::notice('Borrar Carpeta/Directorio fallo: '.public_path($path));
-            }
+            // LLamado de delete de UploadQuery
+            $request = new Request();
+            $request->setMethod('DELETE');
+            $request->request->add(['path' => $path]);
+            UploadQuery::deleteFile($request);
             
             $employee_report->delete();
             return response()->json([

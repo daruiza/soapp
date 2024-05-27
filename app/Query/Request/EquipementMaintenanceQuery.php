@@ -106,15 +106,13 @@ class EquipementMaintenanceQuery implements IEquipementMaintenanceQuery
                 $equipementmaintenence = EquipementMaintenance::findOrFail($id);
 
                 $report = Report::findOrFail($equipementmaintenence->report_id);
-                $path = "storage/images/commerce/{$report->commerce_id}/report/{$report->id}/equipementmaintenance/{$equipementmaintenence->id}";
+                $path = "commerce/{$report->commerce_id}/report/{$report->id}/equipementmaintenance/{$equipementmaintenence->id}";
 
-
-                // Eliminamos los archivos o el directorio del EMPLOYEE_REPORT            
-                if (File::exists(public_path($path))) {
-                    File::deleteDirectory(public_path($path));
-                } else {
-                    Log::notice('Borrar Carpeta/Directorio fallo: ' . public_path($path));
-                }
+                // LLamado de delete de UploadQuery
+                $request = new Request();
+                $request->setMethod('DELETE');
+                $request->request->add(['path' => $path]);
+                UploadQuery::deleteFile($request);
 
                 $equipementmaintenence->delete();
                 return response()->json([

@@ -8,5 +8,6 @@ interface IUploadQuery {
     public function photo(Request $request);       
     public function downloadFile(Request $request); 
     public function getFile(Request $request); 
-    public function deleteFile(Request $request);        
+    public static function deleteFile(Request $request);   
+    public static function deleteDirectory(Request $request);            
 }
