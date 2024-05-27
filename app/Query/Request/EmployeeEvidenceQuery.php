@@ -79,8 +79,7 @@ class EmployeeEvidenceQuery implements IEmployeeEvidenceQuery
                 if (auth()->check()) {
                     $rules = [                        
                         $this->name                 => 'required|string|min:1|max:128|',
-                        $this->type                 => 'required|string|min:1|max:128|',
-                        
+                        $this->type                 => 'required|string|min:1|max:128|',                        
                         $this->employee_report_id   => 'numeric',
                         
                     ];

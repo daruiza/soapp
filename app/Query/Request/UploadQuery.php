@@ -7,6 +7,7 @@ use App\Query\Abstraction\IUploadQuery;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\File;
+use Illuminate\Support\Facades\Log;
 
 class UploadQuery implements IUploadQuery
 {
@@ -28,7 +29,8 @@ class UploadQuery implements IUploadQuery
                 ], 500);
             }
 
-            $image_path = $request->file('file')->store($request->input('folder') ?? '', 'public');
+            // $image_path = $request->file('file')->store($request->input('folder') ?? '', 'public');
+            $image_path = $request->file('file')->store($request->input('folder') ?? '', 's3');
 
             return response()->json([
                 'image_path' => $image_path,
@@ -53,9 +55,17 @@ class UploadQuery implements IUploadQuery
                 'Content-Description: File Transfer',
                 'Content-Type: application/octet-stream',
                 'Content-Disposition: attachment; filename="' . $request->input('name') ?? 'name' . '"',
-                );
-            return response()->download(public_path($request->input('path')), $request->input('name') ?? 'name', $headers);
-            //return response()->file(public_path($request->input('path')));
+            );           
+
+            $respuesta = response(Storage::disk('s3')->get($request->input('path')), 200, $headers);
+            $respuesta->header("Content-Description", 'File Transfer');
+            $respuesta->header("Content-Type", 'application/octet-stream');
+            $respuesta->header("Content-Disposition", 'attachment; filename="'.$request->input('name') ?? 'name'.'"');
+                        
+            // return response(Storage::disk('s3')->get($request->input('path')), 200, $headers);
+            // return response()->download(public_path($request->input('path')), $request->input('name') ?? 'name', $headers);
+            return $respuesta;           
+            
         } catch (\Exception $e) {
             return response()->json(['message' => $e->getMessage()], 402);
         }
@@ -70,9 +80,45 @@ class UploadQuery implements IUploadQuery
                 'Content-Description: File Transfer',
                 'Content-Type: application/octet-stream',
                 );            
-            return response()->file(public_path($request->input('path')), $headers);
+            // return response()->file(public_path($request->input('path')), $headers);
+            return response()->file(Storage::disk('s3')->get($request->input('path')), $headers);
         } catch (\Exception $e) {
             return response()->json(['message' => $e->getMessage()], 402);
         }
     }
+
+    public static function deleteFile(Request $request) {
+        try{
+            if (!$request->input('path')) {
+                return response()->json(['message' => 'No se ha suministrado una ruta de Archivo!!!'], 402);
+            }                 
+
+            if(Storage::disk('s3')->exists($request->input('path'))){
+                return response(Storage::disk('s3')->delete($request->input('path')));                
+            } else {
+                Log::notice('Borrar Archivo fallo: '.$request->input('path'));
+            }
+
+        } catch (\Exception $e) {
+            return response()->json(['message' => $e->getMessage()], 402);
+        }
+    }
+
+    public static function deleteDirectory(Request $request) {
+        try{
+            if (!$request->input('path')) {
+                return response()->json(['message' => 'No se ha suministrado una ruta de Directorio!!!'], 402);
+            }
+
+            if(Storage::disk('s3')->exists($request->input('path'))){
+                return response(Storage::disk('s3')->deleteDirectory($request->input('path')));                
+            } else {
+                Log::notice('Borrar directorio fallo: '.$request->input('path'));
+            }
+
+        } catch (\Exception $e) {
+            return response()->json(['message' => $e->getMessage()], 402);
+        }
+    }
+
 }

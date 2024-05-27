@@ -18,12 +18,12 @@ use Illuminate\Support\Facades\Log;
 class TrainingsstQuery implements ITrainingsstQuery
 {
 
-private $topic = 'topic';
-private $date = 'date';
-private $hours = 'hours';
-private $assistants = 'assistants';
-private $report_id = 'report_id';
-private $approved = 'approved';
+    private $topic = 'topic';
+    private $date = 'date';
+    private $hours = 'hours';
+    private $assistants = 'assistants';
+    private $report_id = 'report_id';
+    private $approved = 'approved';
 
     public function index(Request $request)
     {
@@ -40,7 +40,7 @@ private $approved = 'approved';
             $this->date         => 'required|string',
             $this->hours        => 'required|numeric',
             $this->assistants   => 'required|numeric',
-            $this->report_id    => 'required|numeric',            
+            $this->report_id    => 'required|numeric',
         ];
 
         try {
@@ -52,7 +52,7 @@ private $approved = 'approved';
 
             $Trainingsst = new Trainingsst();
             $newTrainingsst = $Trainingsst->create($request->input());
-            
+
             return response()->json([
                 'data' => [
                     'testingsst' => $newTrainingsst,
@@ -61,7 +61,7 @@ private $approved = 'approved';
             ], 201);
         } catch (\Exception $e) {
             return response()->json(['message' => 'Algo salio mal!', 'error' => $e], 403);
-        }        
+        }
     }
 
     public function update(Request $request, int $id)
@@ -70,12 +70,12 @@ private $approved = 'approved';
             try {
                 $trainingsst = Trainingsst::findOrFail($id);
                 if (auth()->check()) {
-                    $rules = [                        
+                    $rules = [
                         $this->topic        => 'required|string',
                         $this->date         => 'required|string',
                         $this->hours        => 'required|numeric',
                         $this->assistants   => 'required|numeric',
-                        $this->report_id    => 'required|numeric',                        
+                        $this->report_id    => 'required|numeric',
                     ];
                     $validator = Validator::make($request->all(), $rules);
                     if ($validator->fails()) {
@@ -92,37 +92,34 @@ private $approved = 'approved';
                     $trainingsst->save();
                     return response()->json([
                         'data' => [
-                            'trainingsst' => $trainingsst,                            
+                            'trainingsst' => $trainingsst,
                         ],
                         'message' => 'Capacitación actualizada con éxito!'
                     ], 201);
-                }   
-                
+                }
             } catch (ModelNotFoundException $ex) {
                 return response()->json(['message' => "Capacitación con id {$id} no existe!", 'error' => $ex->getMessage()], 404);
             } catch (\Exception $e) {
                 return response()->json(['message' => 'Algo salio mal!', 'error' => $e], 403);
             }
         }
-        return response()->json(['message' => "Capacitación con id {$id} no existe!", 'error' => 'No se suministrado un id valido'], 404);        
+        return response()->json(['message' => "Capacitación con id {$id} no existe!", 'error' => 'No se suministrado un id valido'], 404);
     }
 
     public function destroy(int $id)
     {
         if ($id) {
             try {
-                $trainingsst = Trainingsst::findOrFail($id); 
-                
-                $report = Report::findOrFail($trainingsst->report_id);            
-                $path = "storage/images/commerce/{$report->commerce_id}/report/{$report->id}/trainingsst/{$trainingsst->id}";
-                
+                $trainingsst = Trainingsst::findOrFail($id);
 
-                // Eliminamos los archivos o el directorio del EMPLOYEE_REPORT            
-                if(File::exists(public_path($path))){
-                    File::deleteDirectory(public_path($path));                                
-                }else{
-                    Log::notice('Borrar Carpeta/Directorio fallo: '.public_path($path));
-                }
+                $report = Report::findOrFail($trainingsst->report_id);
+                $path = "commerce/{$report->commerce_id}/report/{$report->id}/trainingsst/{$trainingsst->id}";
+
+                // LLamado de delete de UploadQuery
+                $request = new Request();
+                $request->setMethod('DELETE');
+                $request->request->add(['path' => $path]);
+                UploadQuery::deleteFile($request);
 
 
                 $trainingsst->delete();
@@ -132,15 +129,15 @@ private $approved = 'approved';
                     ],
                     'message' => 'Capacitación eliminada exitosamente!'
                 ], 201);
-    
             } catch (ModelNotFoundException $e) {
                 return response()->json(['message' => "Capacitación con id {$id} no existe!", 'error' => $e->getMessage()], 403);
             }
         }
-        return response()->json(['message' => "Capacitación con id {$id} no existe!", 'error' => 'No se suministrado un id valido'], 404);    
+        return response()->json(['message' => "Capacitación con id {$id} no existe!", 'error' => 'No se suministrado un id valido'], 404);
     }
-    
-    public function showByReportId(Request $request, int $id){
+
+    public function showByReportId(Request $request, int $id)
+    {
         if ($id) {
             try {
 
@@ -149,12 +146,10 @@ private $approved = 'approved';
                     'data' => Trainingsst::query()->reportid($id)->get(),
                     'message' => 'Capacitaciónes Consultadas correctamente'
                 ], 200);
-                
             } catch (ModelNotFoundException $e) {
                 return response()->json(['message' => "Capacitación con id {$id} no existe!", 'error' => $e->getMessage()], 403);
             }
         }
-        return response()->json(['message' => "Capacitación con id {$id} no existe!", 'error' => 'No se suministrado un id valido'], 404);        
+        return response()->json(['message' => "Capacitación con id {$id} no existe!", 'error' => 'No se suministrado un id valido'], 404);
     }
-
 }
