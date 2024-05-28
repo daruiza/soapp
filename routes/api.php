@@ -50,6 +50,9 @@ Route::group(['prefix' => 'upload'], function () {
         Route::post('photo', 'Api\UploadController@photo');
         Route::get('downloadfile', 'Api\UploadController@downloadFile');
         Route::get('getfile', 'Api\UploadController@getFile');
+        Route::delete('deletefile', 'Api\UploadController@deleteFile');
+        Route::delete('deletedirectory', 'Api\UploadController@deleteDirectory');
+        
     });
 });
 

@@ -115,16 +115,14 @@ class CompromiseSSTQuery implements ICompromiseSSTQuery
             try {
                 $Compromise = CompromiseSST::findOrFail($id);
 
-                $report = Report::findOrFail($Compromise->report_id);            
-                $path = "storage/images/commerce/{$report->commerce_id}/report/{$report->id}/compromisessst/{$Compromise->id}";
-                
+                $report = Report::findOrFail($Compromise->report_id);
+                $path = "commerce/{$report->commerce_id}/report/{$report->id}/compromisessst/{$Compromise->id}";
 
-                // Eliminamos los archivos o el directorio del EMPLOYEE_REPORT            
-                if(File::exists(public_path($path))){
-                    File::deleteDirectory(public_path($path));                                
-                }else{
-                    Log::notice('Borrar Carpeta/Directorio fallo: '.public_path($path));
-                }
+                // LLamado de delete de UploadQuery
+                $request = new Request();
+                $request->setMethod('DELETE');
+                $request->request->add(['path' => $path]);
+                UploadQuery::deleteFile($request);
 
                 $Compromise->delete();
                 return response()->json([

@@ -109,15 +109,13 @@ class ComplianceScheduleQuery implements IComplianceScheduleQuery
                 $ComplianceSchedule = ComplianceSchedule::findOrFail($id);
 
                 $report = Report::findOrFail($ComplianceSchedule->report_id);
-                $path = "storage/images/commerce/{$report->commerce_id}/report/{$report->id}/complianceschedule/{$ComplianceSchedule->id}";
+                $path = "commerce/{$report->commerce_id}/report/{$report->id}/complianceschedule/{$ComplianceSchedule->id}";
 
-
-                // Eliminamos los archivos o el directorio del EMPLOYEE_REPORT            
-                if (File::exists(public_path($path))) {
-                    File::deleteDirectory(public_path($path));
-                } else {
-                    Log::notice('Borrar Carpeta/Directorio fallo: ' . public_path($path));
-                }
+                // LLamado de delete de UploadQuery
+                $request = new Request();
+                $request->setMethod('DELETE');
+                $request->request->add(['path' => $path]);
+                UploadQuery::deleteFile($request);
 
                 $ComplianceSchedule->delete();
                 return response()->json([

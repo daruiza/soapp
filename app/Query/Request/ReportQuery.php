@@ -257,13 +257,13 @@ class ReportQuery implements IReportQuery
                 $report = Report::findOrFail($id);
             
                 //Borramos el directorio
-                $path = "storage/images/commerce/{$report->commerce_id}/report/{$report->id}";
-                // Eliminamos los archivos o el directorio Report            
-                if(File::exists(public_path($path))){
-                    File::deleteDirectory(public_path($path));                                
-                }else{
-                    Log::notice('Borrar Carpeta/Directorio fallo: '.public_path($path));
-                }
+                $path = "commerce/{$report->commerce_id}/report/{$report->id}";
+
+                // LLamado de delete de UploadQuery
+                $request = new Request();
+                $request->setMethod('DELETE');
+                $request->request->add(['path' => $path]);
+                UploadQuery::deleteDirectory($request);
 
                 $report->delete();
                 return response()->json([

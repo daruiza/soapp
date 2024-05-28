@@ -5533,6 +5533,74 @@
                 ]
             }
         },
+        "/upload/deletefile": {
+            "delete": {
+                "tags": [
+                    "Upload"
+                ],
+                "summary": "Delete file by url",
+                "description": "Return a Boolean",
+                "operationId": "delete File",
+                "parameters": [
+                    {
+                        "name": "path",
+                        "in": "query",
+                        "description": "File path",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful operation"
+                    },
+                    "401": {
+                        "description": "Unauthenticated"
+                    }
+                },
+                "security": [
+                    {
+                        "bearer": []
+                    }
+                ]
+            }
+        },
+        "/upload/deletedirectory": {
+            "delete": {
+                "tags": [
+                    "Upload"
+                ],
+                "summary": "Delete directory by url",
+                "description": "Return a Boolean",
+                "operationId": "delete Directory",
+                "parameters": [
+                    {
+                        "name": "path",
+                        "in": "query",
+                        "description": "Directory path",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful operation"
+                    },
+                    "401": {
+                        "description": "Unauthenticated"
+                    }
+                },
+                "security": [
+                    {
+                        "bearer": []
+                    }
+                ]
+            }
+        },
         "/user/index": {
             "get": {
                 "tags": [
