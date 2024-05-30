@@ -20,7 +20,7 @@ class UserSeeder extends Seeder
             'email' => 'superadmin@yopmail.com',
             'password' => Hash::make('0000'),
             'theme' => 'super',
-            'photo' => 'avatar',
+            'photo' => null,
             'rol_id' => '1',
         ));
 
@@ -31,7 +31,7 @@ class UserSeeder extends Seeder
             'email' => 'cliente@gmail.com',
             'password' => Hash::make('0000'),
             'theme' => 'skyblue',
-            'photo' => 'avatar',
+            'photo' => null,
             'rol_id' => '2',
         ));
 
@@ -42,7 +42,7 @@ class UserSeeder extends Seeder
             'email' => 'agente@gmail.com',
             'password' => Hash::make('0000'),
             'theme' => 'skyblue',
-            'photo' => 'avatar',
+            'photo' => null,
             'rol_id' => '3',
         ));
 
@@ -53,7 +53,7 @@ class UserSeeder extends Seeder
             'email' => 'agente02@gmail.com',
             'password' => Hash::make('0000'),
             'theme' => 'skyblue',
-            'photo' => 'avatar',
+            'photo' => null,
             'rol_id' => '3',
         ));
 
@@ -64,7 +64,7 @@ class UserSeeder extends Seeder
             'email' => 'cliente2@gmail.com',
             'password' => Hash::make('0000'),
             'theme' => 'skyblue',
-            'photo' => 'avatar',
+            'photo' => null,
             'rol_id' => '2',
         ));
     }
