@@ -116,12 +116,11 @@ class EvidenceQuery implements IEvidenceQuery
         try {
             $evidence = Evidence::findOrFail($id);
             
-            // Eliminamos el archivo relacionado            
-            if(File::exists(public_path($evidence->file))){
-                File::delete(public_path($evidence->file));                
-            } else {
-                Log::notice('Borrar Archivo fallo: '.public_path($evidence->file));
-            }            
+            // LLamado de delete de UploadQuery
+            $request = new Request();
+            $request->setMethod('DELETE');
+            $request->request->add(['path' => $evidence->file]);
+            UploadQuery::deleteFile($request);       
             
             $evidence->delete();
             return response()->json([
