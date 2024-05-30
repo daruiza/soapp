@@ -21,7 +21,7 @@ class CommercesSeeder extends Seeder
                 'city' => 'Medellín',
                 'adress' => 'Cr 1 - 1 # 1',
                 'description' => 'default store',
-                'logo' => 'default.png',
+                'logo' => null,
                 'user_id' => '2'
             )
         );
@@ -35,7 +35,7 @@ class CommercesSeeder extends Seeder
                 'city' => 'Tarso',
                 'adress' => 'Cr 2 - 2 # 1',
                 'description' => 'tempo store',
-                'logo' => 'tempo.png',
+                'logo' => null,
                 'user_id' => '5',
             )
         );
@@ -49,7 +49,7 @@ class CommercesSeeder extends Seeder
                 'city' => 'Amaga',
                 'adress' => 'Cr 3 - 3 # 1',
                 'description' => 'mrs store',
-                'logo' => 'mrs.png',
+                'logo' => null,
                 'user_id' => '2',
             )
         );
