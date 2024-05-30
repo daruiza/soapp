@@ -32,12 +32,13 @@ class EmployeeQuery implements IEmployeeQuery
     {
         $commerceid = $request->commerce_id ?? 1;
         $employee = Employee::query()
-            ->select('employee_last_report.max_report_id','employees.*', 'reports.date as reports_date', 'employee_report.employee_state')
+            ->select('employee_last_report.max_report_id', 'employees.*', 'reports.date as reports_date', 'employee_report.employee_state')
             ->from(function ($query) use ($commerceid) {
                 $query
                     ->select(
                         DB::raw('MAX(employee_report.report_id) as max_report_id'),
-                        'employees.id')
+                        'employees.id'
+                    )
                     ->from('employees')
                     ->leftJoin('employee_report', 'employees.id', '=', 'employee_report.employee_id')
                     ->where('employees.commerce_id', $commerceid)
@@ -48,7 +49,7 @@ class EmployeeQuery implements IEmployeeQuery
             ->leftJoin('employees', 'employee_last_report.id', '=', 'employees.id')
             ->leftJoin('reports', 'employee_last_report.max_report_id', '=', 'reports.id')
             ->leftJoin('employee_report', 'employee_last_report.id', '=', 'employee_report.id')
-            
+
             ->where(function ($orquery) use ($request) {
                 $this->setAtributeIndexQuery(
                     $request->identification_type,
@@ -90,9 +91,9 @@ class EmployeeQuery implements IEmployeeQuery
             })
             ->orderBy('employee_report.id', $request->sort ?? 'DESC')
             ->paginate($request->limit ?? 7, ['*'], '', $request->page ?? 1);
-            
-            //->get();
-            //->toSql();
+
+        //->get();
+        //->toSql();
 
         return response()->json([
             'data' => [
@@ -161,7 +162,7 @@ class EmployeeQuery implements IEmployeeQuery
                     auth()->check()
                     // && auth()->user()->rol_id == 1 
                     // || !is_null($update)
-                    ) {
+                ) {
                     $rules = [
                         $this->identification => 'required|string|max:128|', Rule::unique('employees')->ignore($employee->id),
                         $this->email          => 'required|string|max:128|email|', Rule::unique('employees')->ignore($employee->id),
@@ -209,6 +210,15 @@ class EmployeeQuery implements IEmployeeQuery
     {
         try {
             $employee = Employee::findOrFail($id);
+
+            // Borrado de Imagen
+            // LLamado de delete de UploadQuery
+            $request = new Request();
+            $request->setMethod('DELETE');
+            $request->request->add(['path' => $employee->photo]);
+            UploadQuery::deleteFile($request);
+
+            // Eliminamos si esres rol_id = 1 o si eres el dueño del empleado
             if (auth()->check() && auth()->user()->rol_id == 1) {
                 $employee->delete();
                 return response()->json([
