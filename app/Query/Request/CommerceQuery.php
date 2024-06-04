@@ -168,6 +168,13 @@ class CommerceQuery implements ICommerceQuery
         try {
             $commerce = Commerce::findOrFail($id);
             if (auth()->check() && auth()->user()->rol_id == 1) {
+                // Borrado de Imagen
+                // LLamado de delete de UploadQuery
+                $request = new Request();
+                $request->setMethod('DELETE');
+                $request->request->add(['path' => $commerce->logo]);
+                UploadQuery::deleteFile($request);
+
                 $commerce->delete();
                 return response()->json([
                     'data' => [
@@ -176,6 +183,13 @@ class CommerceQuery implements ICommerceQuery
                     'message' => 'Tienda eliminada exitosamente!'
                 ], 201);
             } elseif ($commerce) {
+                // Borrado de Imagen
+                // LLamado de delete de UploadQuery
+                $request = new Request();
+                $request->setMethod('DELETE');
+                $request->request->add(['path' => $commerce->logo]);
+                UploadQuery::deleteFile($request);
+                
                 $eliminado = DB::table('commerces as C')
                     ->join('users as U', 'C.user_id', '=', 'U.id')
                     ->select('C.*')
