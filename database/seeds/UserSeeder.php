@@ -17,7 +17,7 @@ class UserSeeder extends Seeder
             'name' => 'super-admin',
             'lastname' => 'super',
             'phone' => '3194065226',
-            'email' => 'superadmin@yopmail.com',
+            'email' => 'super@mail.com',
             'password' => Hash::make('0000'),
             'theme' => 'super',
             'photo' => null,

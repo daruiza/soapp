@@ -19,7 +19,7 @@ class UserQuery implements IUserQuery
     private $email      = 'email';
     private $password   = 'password';
     private $theme      = 'theme';
-    private $photo      = 'photo';    
+    private $photo      = 'photo';
     private $rol_id     = 'rol_id';
 
     public function index(Request $request)
@@ -27,7 +27,7 @@ class UserQuery implements IUserQuery
         $user = User::query()
             ->select(['id', 'name', 'lastname', 'phone', 'email', 'photo', 'theme', 'rol_id'])
             ->where('rol_id', '!=', 1)
-            ->where('id', '!=', $request->user()->id)            
+            ->where('id', '!=', $request->user()->id)
             ->with(['rol:id,name,description,active'])
             ->with(['commerce:id,name,nit,user_id'])
             ->name($request->name)
@@ -41,7 +41,7 @@ class UserQuery implements IUserQuery
 
         return response()->json([
             'data' => [
-                'users' => $user,                
+                'users' => $user,
             ],
             'message' => 'Usuarios consultados correctamente!'
         ], 200);
@@ -80,7 +80,7 @@ class UserQuery implements IUserQuery
                         $this->phone    => $request->phone ?? 0,
                         $this->password => bcrypt($request->password ?? '0000'),
                         $this->theme    => $request->theme ?? 'skyblue',
-                        $this->photo    => $request->photo ?? '',                        
+                        $this->photo    => $request->photo ?? '',
                         $this->rol_id   => $request->rol_id,
                     ]);
                     $user->save();
@@ -221,11 +221,11 @@ class UserQuery implements IUserQuery
             $role = Rol::findOrFail($id);
             if ($role) {
                 $users = User::query()
-                ->select(['id', 'name', 'lastname', 'phone', 'email', 'photo', 'theme', 'rol_id'])
-                ->where('rol_id', '!=', 1)
-                ->where('rol_id', '=', $id)
-                ->with(['rol:id,name,description,active'])
-                ->get();
+                    ->select(['id', 'name', 'lastname', 'phone', 'email', 'photo', 'theme', 'rol_id'])
+                    ->where('rol_id', '!=', 1)
+                    ->where('rol_id', '=', $id)
+                    ->with(['rol:id,name,description,active'])
+                    ->get();
                 return response()->json([
                     'data' => [
                         'users' => $users,
@@ -245,6 +245,14 @@ class UserQuery implements IUserQuery
             if ($id) {
                 try {
                     $user = User::findOrFail($id);
+
+                    // Borrado de Imagen
+                    // LLamado de delete de UploadQuery
+                    $request = new Request();
+                    $request->setMethod('DELETE');
+                    $request->request->add(['path' => $user->photo]);
+                    UploadQuery::deleteFile($request);
+
                     $user->delete();
                     return response()->json([
                         'data' => [
