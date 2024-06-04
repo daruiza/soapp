@@ -24,7 +24,7 @@ class User
      * @OA\Property(
      *      title="email",
      *      description="Email of the user",
-     *      example="superadmin@yopmail.com"
+     *      example="super@mail.com"
      * )
      *
      * @var string

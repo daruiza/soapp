@@ -253,6 +253,19 @@ class UserQuery implements IUserQuery
                     $request->request->add(['path' => $user->photo]);
                     UploadQuery::deleteFile($request);
 
+                    // Eliminar los comercios asocioados, ->onDelete('cascade');
+                    // Eliminar imagen de comercio STORAGE
+                    $request = new Request();
+                    $request->setMethod('DELETE');
+                    $request->request->add(['path' =>  $user->commerce->logo]);
+                    UploadQuery::deleteFile($request);
+
+                    // Eliminar directorio de Comercio
+                    $request = new Request();
+                    $request->setMethod('DELETE');
+                    $request->request->add(['path' => 'commerce/'.$user->commerce->id]);
+                    UploadQuery::deleteDirectory($request);
+
                     $user->delete();
                     return response()->json([
                         'data' => [

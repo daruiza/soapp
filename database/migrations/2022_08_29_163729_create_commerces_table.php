@@ -17,7 +17,7 @@ class CreateCommercesTable extends Migration
             $table->id('id');
             $table->string('name', 128)->unique();
             $table->string('nit', 128)->unique();
-            $table->string('phone', 16);
+            $table->string('phone', 16)->default(null);
             $table->string('department', 128)->nullable()->default(null);
             $table->string('city', 128)->nullable()->default(null);
             $table->string('adress', 256)->nullable()->default(null);
@@ -31,7 +31,7 @@ class CreateCommercesTable extends Migration
                 ->references('id')
                 ->on('users')
                 ->onUpdate('cascade')
-                ->onDelete('set null');
+                ->onDelete('cascade');
         });
     }
 

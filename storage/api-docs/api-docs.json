@@ -7446,7 +7446,7 @@
                         "title": "email",
                         "description": "Email of the user",
                         "type": "string",
-                        "example": "superadmin@yopmail.com"
+                        "example": "super@mail.com"
                     },
                     "password": {
                         "title": "password",

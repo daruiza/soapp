@@ -36,7 +36,7 @@ class CreateReportsTable extends Migration
                 ->references('id')
                 ->on('commerces')
                 ->onUpdate('cascade')
-                ->onDelete('set null');
+                ->onDelete('cascade');
 
             $table->timestamps();
         });
