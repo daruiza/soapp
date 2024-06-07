@@ -68,13 +68,10 @@
 
 <body>
     <div class="flex-center position-ref full-height">
-
-
         <div class="content">
             <div class="title m-b-md">
-            SOAPP
+                SOAPP
             </div>
-
             <div class="links">
                 <a href="{{ url('/api/documentation') }}">DOCUMENTATION</a>
                 <a href="{{ url(env('WEB_URL')??'http://soapp.thinkwg.com') }}">WEB</a>
