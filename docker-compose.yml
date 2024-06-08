@@ -1,1 +1,58 @@
-version: 3
+version: '3'
+
+#networks:
+#  netsoapplaravel:
+
+services:
+  #web:
+  #  image: httpd:2.4.59-alpine3.20
+  #  container_name: soapp_laravel
+  #  working_dir: /app
+  #  links:
+  #   - php
+  #   - composer
+  #  volumes:
+  #   - /home/david/Software/soapp_laravel:/app
+  #  ports:
+  #    - "0.0.0.0:8080:8080" 
+  #    - ":::8080:8080"
+  #php:
+  #  container_name: soapp_laravel
+  #  image: php:7.2.5-zts-alpine3.6
+  #  working_dir: /app
+  #  networks:
+  #    - netsoapplaravel
+  #  command: >
+  #    sh -c 
+  #    "php -v
+  #    "
+  composer:    
+    image: composer:1.4.3    
+    volumes:
+      - /home/david/Software/soapp_laravel:/app
+    ports:
+      #- "0.0.0.0:8080:8080" 
+      - ":::8080:8080"
+      - "127.0.0.1:8080:8080"   
+    command: >
+      sh -c 
+      "php artisan serve --port=8080 --host 0.0.0.0"   
+
+
+#se necesita una imagen de servidor web (apache,nginx, node) que exponga un puerto    
+#imagen de apache/nginx en lugar de imagen de php
+#docker pull php:7.2.5-zts-alpine3.6
+#tambien hay que colocar node como dependencia
+#composer 2.7.6
+#mysql
+
+
+# Solo PHP
+#php:
+#  container_name: soapp_laravel
+#  image: php:7.2.5-zts-alpine3.6
+#  volumes:
+#    - .:/var/www/html
+#  ports:
+#    - "8888:80"
+#  command: php -S 0.0.0.0:80 -t /var/www/html
