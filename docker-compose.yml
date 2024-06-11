@@ -1,58 +1,51 @@
 version: '3'
 
-#networks:
-#  netsoapplaravel:
-
 services:
-  #web:
-  #  image: httpd:2.4.59-alpine3.20
-  #  container_name: soapp_laravel
-  #  working_dir: /app
-  #  links:
-  #   - php
-  #   - composer
-  #  volumes:
-  #   - /home/david/Software/soapp_laravel:/app
-  #  ports:
-  #    - "0.0.0.0:8080:8080" 
-  #    - ":::8080:8080"
-  #php:
-  #  container_name: soapp_laravel
-  #  image: php:7.2.5-zts-alpine3.6
-  #  working_dir: /app
-  #  networks:
-  #    - netsoapplaravel
-  #  command: >
-  #    sh -c 
-  #    "php -v
-  #    "
-  composer:    
-    image: composer:1.4.3    
+  mariadb:
+    container_name: mariadb
+    image: bitnami/mariadb:10.6-debian-12
+    environment:
+      - ALLOW_EMPTY_PASSWORD=yes
+      - MARIADB_DATABASE=${DB_DATABASE}
+      - MARIADB_ROOT_USER=${DB_USERNAME}
+      - MARIADB_ROOT_PASSWORD=${DB_PASSWORD}
+    ports:
+      - 3306:3306
+    volumes:
+      - mariadb_data:/var/lib/mysql
+  bitnami:
+    container_name: bitnami
+    image: bitnami/laravel:7.0.0-debian-10-r7
+    working_dir: /app
     volumes:
       - /home/david/Software/soapp_laravel:/app
     ports:
-      #- "0.0.0.0:8080:8080" 
+      - "0.0.0.0:8080:8080" 
       - ":::8080:8080"
-      - "127.0.0.1:8080:8080"   
+    environment:
+      - DB_HOST=mariadb
+      - DB_DATABASE=${DB_DATABASE}
+      - DB_USERNAME=${DB_USERNAME}
+      - DB_PASSWORD=${DB_PASSWORD}     
     command: >
       sh -c 
-      "php artisan serve --port=8080 --host 0.0.0.0"   
-
-
-#se necesita una imagen de servidor web (apache,nginx, node) que exponga un puerto    
-#imagen de apache/nginx en lugar de imagen de php
-#docker pull php:7.2.5-zts-alpine3.6
-#tambien hay que colocar node como dependencia
-#composer 2.7.6
-#mysql
-
-
-# Solo PHP
-#php:
-#  container_name: soapp_laravel
-#  image: php:7.2.5-zts-alpine3.6
-#  volumes:
-#    - .:/var/www/html
-#  ports:
-#    - "8888:80"
-#  command: php -S 0.0.0.0:80 -t /var/www/html
+      "
+      sleep 30 &&
+      php -v &&
+      node -v &&     
+      composer -v &&
+      php artisan migrate:refresh --seed &&
+      php artisan serve --port=8080 --host 0.0.0.0      
+      "    
+    depends_on:
+      - mariadb     
+  phpmyadmin:
+    container_name: phpmyadmin
+    image: bitnami/phpmyadmin:5.2.1
+    ports:
+      - '8081:8080'
+    depends_on:
+      - mariadb   
+volumes:
+  mariadb_data:
+    # external: true
