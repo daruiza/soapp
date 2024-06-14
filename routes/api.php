@@ -77,6 +77,7 @@ Route::group(['prefix' => 'generallist'], function () {
 Route::group(['prefix' => 'employee'], function () {
     Route::group(['middleware' => 'auth:api'], function () {
         Route::get('index', 'Api\EmployeeController@index');
+        Route::get('getallbycommerceid/{commerce_id}', 'Api\EmployeeController@getAllByCommerceId');
         Route::post('store', 'Api\EmployeeController@store');
         Route::put('update/{id}', 'Api\EmployeeController@update');
         Route::get('showbyemployeeid/{user_id}', 'Api\EmployeeController@showByEmployeeId');

@@ -1,0 +1,51 @@
+version: '3'
+
+services:
+  mariadb:
+    container_name: mariadb
+    image: bitnami/mariadb:10.6-debian-12
+    environment:
+      - ALLOW_EMPTY_PASSWORD=yes
+      - MARIADB_DATABASE=${DB_DATABASE}
+      - MARIADB_ROOT_USER=${DB_USERNAME}
+      - MARIADB_ROOT_PASSWORD=${DB_PASSWORD}
+    ports:
+      - 3306:3306
+    volumes:
+      - mariadb_data:/var/lib/mysql
+  bitnami:
+    container_name: bitnami
+    image: bitnami/laravel:7.0.0-debian-10-r7
+    working_dir: /app
+    volumes:
+      - /home/david/Software/soapp_laravel:/app
+    ports:
+      - "0.0.0.0:8080:8080" 
+      - ":::8080:8080"
+    environment:
+      - DB_HOST=mariadb
+      - DB_DATABASE=${DB_DATABASE}
+      - DB_USERNAME=${DB_USERNAME}
+      - DB_PASSWORD=${DB_PASSWORD}     
+    command: >
+      sh -c 
+      "
+      sleep 30 &&
+      php -v &&
+      node -v &&     
+      composer -v &&
+      php artisan migrate:refresh --seed &&
+      php artisan serve --port=8080 --host 0.0.0.0      
+      "    
+    depends_on:
+      - mariadb     
+  phpmyadmin:
+    container_name: phpmyadmin
+    image: bitnami/phpmyadmin:5.2.1
+    ports:
+      - '8081:8080'
+    depends_on:
+      - mariadb   
+volumes:
+  mariadb_data:
+    # external: true

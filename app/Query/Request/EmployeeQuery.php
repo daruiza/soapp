@@ -103,6 +103,24 @@ class EmployeeQuery implements IEmployeeQuery
         ], 200);
     }
 
+    public function getAllByCommerceId(Request $request, int $commerce_id){
+        try {
+            $commerce = Commerce::findOrFail($commerce_id);
+            $employees = Employee::query()
+            ->commerce_id($commerce->id)
+            ->active()
+            ->get();
+
+            return response()->json([
+                'data' => [
+                    'employees' => $employees,
+                ]
+            ], 201);
+        } catch (\Exception $e) {
+            return response()->json(['message' => 'Algo salio mal!', 'error' => $e->getMessage()], 403);
+        }       
+    }
+
     public function store(Request $request)
     {
         $rules = [
