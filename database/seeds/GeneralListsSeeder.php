@@ -182,11 +182,27 @@ class GeneralListsSeeder extends Seeder
         ));
         DB::table('general_lists')->insert(array(
             'name' => 'project',
-            'value' => 'CAIDAD'
+            'value' => 'CALIDAD'
         ));
         DB::table('general_lists')->insert(array(
             'name' => 'project',
             'value' => 'MEDIOAMBIENTE'
+        ));
+        DB::table('general_lists')->insert(array(
+            'name' => 'project',
+            'value' => 'MERCADEOYVENTAS'
+        ));
+        DB::table('general_lists')->insert(array(
+            'name' => 'project',
+            'value' => 'TALENTOHUMANO'
+        ));
+        DB::table('general_lists')->insert(array(
+            'name' => 'project',
+            'value' => 'CAONTABILIDAD'
+        ));
+        DB::table('general_lists')->insert(array(
+            'name' => 'project',
+            'value' => 'LOGISTICA'
         ));
 
         DB::table('general_lists')->insert(array(
