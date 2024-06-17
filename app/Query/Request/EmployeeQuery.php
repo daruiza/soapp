@@ -104,6 +104,7 @@ class EmployeeQuery implements IEmployeeQuery
     }
 
     public function getAllByCommerceId(Request $request, int $commerce_id){
+        
         try {
             $commerce = Commerce::findOrFail($commerce_id);
             $employees = Employee::query()

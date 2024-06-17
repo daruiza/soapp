@@ -22,18 +22,7 @@ class UserSeeder extends Seeder
             'theme' => 'super',
             'photo' => null,
             'rol_id' => '1',
-        ));
-
-        DB::table('users')->insert(array(
-            'name' => 'cliente',
-            'lastname' => 'super',
-            'phone' => '3164056225',
-            'email' => 'cliente@mail.com',
-            'password' => Hash::make('0000'),
-            'theme' => 'skyblue',
-            'photo' => null,
-            'rol_id' => '2',
-        ));
+        ));      
 
         DB::table('users')->insert(array(
             'name' => 'Agente',
@@ -46,26 +35,37 @@ class UserSeeder extends Seeder
             'rol_id' => '3',
         ));
 
-        DB::table('users')->insert(array(
-            'name' => 'Agente01',
-            'lastname' => 'AGT002',
-            'phone' => '3124567891',
-            'email' => 'agente02gmail.com',
-            'password' => Hash::make('0000'),
-            'theme' => 'skyblue',
-            'photo' => null,
-            'rol_id' => '3',
-        ));
+        // DB::table('users')->insert(array(
+        //     'name' => 'Agente01',
+        //     'lastname' => 'AGT002',
+        //     'phone' => '3124567891',
+        //     'email' => 'agente02gmail.com',
+        //     'password' => Hash::make('0000'),
+        //     'theme' => 'skyblue',
+        //     'photo' => null,
+        //     'rol_id' => '3',
+        // ));
 
-        DB::table('users')->insert(array(
-            'name' => 'cliente2',
-            'lastname' => 'super2',
-            'phone' => '3107894561',
-            'email' => 'cliente2gmail.com',
-            'password' => Hash::make('0000'),
-            'theme' => 'skyblue',
-            'photo' => null,
-            'rol_id' => '2',
-        ));
+        // DB::table('users')->insert(array(
+        //     'name' => 'cliente',
+        //     'lastname' => 'super',
+        //     'phone' => '3164056225',
+        //     'email' => 'cliente@mail.com',
+        //     'password' => Hash::make('0000'),
+        //     'theme' => 'skyblue',
+        //     'photo' => null,
+        //     'rol_id' => '2',
+        // ));
+
+        // DB::table('users')->insert(array(
+        //     'name' => 'cliente2',
+        //     'lastname' => 'super2',
+        //     'phone' => '3107894561',
+        //     'email' => 'cliente2gmail.com',
+        //     'password' => Hash::make('0000'),
+        //     'theme' => 'skyblue',
+        //     'photo' => null,
+        //     'rol_id' => '2',
+        // ));
     }
 }
