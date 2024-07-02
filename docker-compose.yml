@@ -12,7 +12,7 @@ services:
     ports:
       - 3306:3306
     volumes:
-      - mariadb_data:/var/lib/mysql
+      - tmpss_volume:/bitnami/mariadb
   bitnami:
     container_name: bitnami
     image: bitnami/laravel:7.0.0-debian-10-r7
@@ -30,11 +30,7 @@ services:
     command: >
       sh -c 
       "
-      sleep 30 &&
-      php -v &&
-      node -v &&     
-      composer -v &&
-      php artisan migrate:refresh --seed &&
+      sleep 30 &&      
       php artisan serve --port=8080 --host 0.0.0.0      
       "    
     depends_on:
@@ -47,5 +43,5 @@ services:
     depends_on:
       - mariadb   
 volumes:
-  mariadb_data:
-    # external: true
+  tmpss_volume:
+    external: true
