@@ -10,7 +10,7 @@ services:
       - MARIADB_ROOT_USER=${DB_USERNAME}
       - MARIADB_ROOT_PASSWORD=${DB_PASSWORD}
     ports:
-      - 3306:3306
+      - 3310:3306
     volumes:
       - tmpss_volume:/bitnami/mariadb
   bitnami:
@@ -18,7 +18,8 @@ services:
     image: bitnami/laravel:7.0.0-debian-10-r7
     working_dir: /app
     volumes:
-      - /home/david/Software/soapp_laravel:/app
+      #- /home/david/Software/soapp_laravel:/app
+      - /mnt/c/software/soapp_laravel:/app
     ports:
       - "0.0.0.0:8080:8000" 
       - ":::8010:8000"
@@ -31,7 +32,7 @@ services:
       sh -c 
       "
       sleep 30 &&      
-      php artisan serve --port=8080 --host 0.0.0.0      
+      php artisan serve --port=8010 --host 0.0.0.0      
       "    
     depends_on:
       - mariadb     
