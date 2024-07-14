@@ -20,8 +20,8 @@ services:
     volumes:
       - /home/david/Software/soapp_laravel:/app
     ports:
-      - "0.0.0.0:8080:8080" 
-      - ":::8080:8080"
+      - "0.0.0.0:8080:8000" 
+      - ":::8010:8000"
     environment:
       - DB_HOST=mariadb
       - DB_DATABASE=${DB_DATABASE}
@@ -35,13 +35,14 @@ services:
       "    
     depends_on:
       - mariadb     
-  phpmyadmin:
-    container_name: phpmyadmin
-    image: bitnami/phpmyadmin:5.2.1
-    ports:
-      - '8081:8080'
-    depends_on:
-      - mariadb   
+  #phpmyadmin:
+    #container_name: phpmyadmin
+    #image: bitnami/phpmyadmin:5.2.1
+    #ports:
+      #- '8081:8080'
+    #depends_on:
+      #- mariadb   
+      
 volumes:
   tmpss_volume:
     external: true
