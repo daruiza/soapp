@@ -14,7 +14,7 @@
     },
     "servers": [
         {
-            "url": "http://127.0.0.1:8080/api",
+            "url": "http://127.0.0.1:8010/api",
             "description": "SOAPP API Server"
         }
     ],
