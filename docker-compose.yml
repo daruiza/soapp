@@ -2,7 +2,7 @@ version: '3'
 
 services:
   mariadb:
-    container_name: mariadb
+    container_name: mariadb_soapp
     image: bitnami/mariadb:10.6-debian-12
     environment:
       - ALLOW_EMPTY_PASSWORD=yes
@@ -12,38 +12,37 @@ services:
     ports:
       - 3310:3306
     volumes:
-      - tmpss_volume:/bitnami/mariadb
+      - soapp_volume:/bitnami/mariadb
   bitnami:
-    container_name: bitnami
+    container_name: bitnami_soapp
     image: bitnami/laravel:7.0.0-debian-10-r7
     working_dir: /app
     volumes:
-      #- /home/david/Software/soapp_laravel:/app
-      - /mnt/c/software/soapp_laravel:/app
+      - /home/david/Software/soapp_laravel:/app
+      #- /mnt/c/software/soapp_laravel:/app
     ports:
-      - "0.0.0.0:8080:8000" 
-      - ":::8010:8000"
+      #- "0.0.0.0:8080:8000" 
+      #- ":::8010:8000"
+      - 8010:8000
     environment:
       - DB_HOST=mariadb
       - DB_DATABASE=${DB_DATABASE}
       - DB_USERNAME=${DB_USERNAME}
       - DB_PASSWORD=${DB_PASSWORD}     
     command: >
-      sh -c 
-      "
-      sleep 30 &&      
-      php artisan serve --port=8010 --host 0.0.0.0      
-      "    
+      sh -c "npm run start"    
     depends_on:
       - mariadb     
-  #phpmyadmin:
-    #container_name: phpmyadmin
-    #image: bitnami/phpmyadmin:5.2.1
-    #ports:
-      #- '8081:8080'
-    #depends_on:
-      #- mariadb   
+
+  phpmyadmin:
+    container_name: phpmyadmin_soapp
+    image: bitnami/phpmyadmin:5.2.1-debian-12-r33
+    ports:
+      - '8081:8080'
+      - '443:8443'
+    depends_on:
+      - mariadb
       
 volumes:
-  tmpss_volume:
+  soapp_volume:
     external: true
