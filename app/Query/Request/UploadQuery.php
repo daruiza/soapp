@@ -9,6 +9,8 @@ use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Log;
 
+use App\Enums\FileTypeEnum;
+
 class UploadQuery implements IUploadQuery
 {
     public function photo(Request $request)
@@ -46,7 +48,7 @@ class UploadQuery implements IUploadQuery
         }
     }
 
-    public function downloadFile(Request $request){
+    public function downloadFile(Request $request) {
         try{
             if (!$request->input('path')) {
                 return response()->json(['message' => 'No se ha suministrado una ruta de Archivo!!!'], 402);
@@ -59,7 +61,10 @@ class UploadQuery implements IUploadQuery
 
             $respuesta = response(Storage::disk('s3')->get($request->input('path')), 200, $headers);
             $respuesta->header("Content-Description", 'File Transfer');
-            $respuesta->header("Content-Type", 'application/octet-stream');
+            $respuesta->header(
+                "Content-Type", 
+                FileTypeEnum::type(pathinfo($request->input('path'),PATHINFO_EXTENSION))            
+            );
             $respuesta->header("Content-Disposition", 'attachment; filename="'.$request->input('name') ?? 'name'.'"');
                         
             // return response(Storage::disk('s3')->get($request->input('path')), 200, $headers);
