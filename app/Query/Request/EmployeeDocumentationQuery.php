@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Query\Abstraction;
+namespace App\Query\Request;
 
 use Illuminate\Http\Request;
 

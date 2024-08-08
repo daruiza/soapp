@@ -2949,6 +2949,200 @@
                 ]
             }
         },
+        "/empleyeedocumentation/store": {
+            "post": {
+                "tags": [
+                    "EmployeeDocumentation"
+                ],
+                "summary": "Store EmployeeDocumentation",
+                "description": "Store EmployeeDocumentation",
+                "operationId": "storeEmployeeDocumentation",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/EmployeeDocumentation"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Successful operation"
+                    },
+                    "401": {
+                        "description": "Unauthenticated"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    }
+                },
+                "security": [
+                    {
+                        "bearer": []
+                    }
+                ]
+            }
+        },
+        "/empleyeedocumentation/showbyemployeedocumentid/{id}": {
+            "get": {
+                "tags": [
+                    "EmployeeDocumentation"
+                ],
+                "summary": "Get One Documentation",
+                "description": "Return Documentation",
+                "operationId": "get Documentation",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Evidence Id",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful operation"
+                    },
+                    "401": {
+                        "description": "Unauthenticated"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    }
+                },
+                "security": [
+                    {
+                        "bearer": []
+                    }
+                ]
+            }
+        },
+        "/empleyeedocumentation/showbyemployeeid/{id}": {
+            "get": {
+                "tags": [
+                    "EmployeeDocumentation"
+                ],
+                "summary": "Get One Documentation",
+                "description": "Return Documentation",
+                "operationId": "get Documentation",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Employee Id",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful operation"
+                    },
+                    "401": {
+                        "description": "Unauthenticated"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    }
+                },
+                "security": [
+                    {
+                        "bearer": []
+                    }
+                ]
+            }
+        },
+        "/empleyeedocumentation/update/{id}": {
+            "put": {
+                "tags": [
+                    "EmployeeDocumentation"
+                ],
+                "summary": "Update One Documentation By one Id",
+                "description": "Update One Evidence",
+                "operationId": "getUpdateEvidenceById",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Documentation Id",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/EmployeeDocumentation"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Successful operation"
+                    },
+                    "401": {
+                        "description": "Unauthenticated"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    }
+                },
+                "security": [
+                    {
+                        "bearer": []
+                    }
+                ]
+            }
+        },
+        "/empleyeedocumentation/destroy/{id}": {
+            "delete": {
+                "tags": [
+                    "EmployeeDocumentation"
+                ],
+                "summary": "Delete One Documentation By one Id",
+                "description": "Delete One Documentation",
+                "operationId": "getDestroyDocumentationById",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Documentation Id",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful operation"
+                    },
+                    "401": {
+                        "description": "Unauthenticated"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    }
+                },
+                "security": [
+                    {
+                        "bearer": []
+                    }
+                ]
+            }
+        },
         "/employeeevidence/store": {
             "post": {
                 "tags": [
@@ -6843,6 +7037,42 @@
                         "description": "is_employee of the user",
                         "type": "boolean",
                         "example": "1"
+                    }
+                },
+                "type": "object"
+            },
+            "EmployeeDocumentation": {
+                "title": "EmployeeDocumentation",
+                "description": "EmployeeDocumentation body data",
+                "properties": {
+                    "name": {
+                        "title": "name",
+                        "description": "Name of the EmployeeDocumentation",
+                        "type": "string",
+                        "example": "FileName"
+                    },
+                    "file": {
+                        "title": "file",
+                        "description": "File of the EmployeeDocumentation",
+                        "type": "string",
+                        "example": "FileHostingName"
+                    },
+                    "type": {
+                        "title": "type",
+                        "description": "Type File",
+                        "type": "string",
+                        "example": "image/jpeg"
+                    },
+                    "approved": {
+                        "title": "approved",
+                        "description": "approved of the EmployeeDocumentation",
+                        "type": "boolean",
+                        "example": true
+                    },
+                    "employee_id": {
+                        "title": "employee_id",
+                        "description": "employee_id of the EmployeeDocumentation",
+                        "example": 1
                     }
                 },
                 "type": "object"

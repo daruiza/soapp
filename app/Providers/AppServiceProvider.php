@@ -31,7 +31,7 @@ use App\Query\Request\EmployeeQuery;
 
 use App\Http\Controllers\Api\EmployeeDocumentationController;
 use App\Query\Abstraction\IEmployeeDocumentationQuery;
-use App\Query\Abstraction\EmployeeDocumentationQuery;
+use App\Query\Request\EmployeeDocumentationQuery;
 
 use App\Http\Controllers\Api\GeneralListController;
 use App\Query\Abstraction\IGeneralListQuery;
