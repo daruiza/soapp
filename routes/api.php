@@ -85,6 +85,17 @@ Route::group(['prefix' => 'employee'], function () {
     });
 });
 
+Route::group(['prefix' => 'empleyeedocumentation'], function () {
+    Route::group(['middleware' => 'auth:api'], function () {
+        Route::get('index', 'Api\EmployeeDocumentationController@index');
+        Route::post('store', 'Api\EmployeeDocumentationController@store');
+        Route::put('update/{id}', 'Api\EmployeeDocumentationController@update');
+        Route::delete('destroy/{id}', 'Api\EmployeeDocumentationController@destroy');
+        Route::get('showbyemployeedocumentid/{id}', 'Api\EmployeeDocumentationController@showByEmployeeDocumentId');
+        Route::get('showbyemployeeid/{id}', 'Api\EmployeeDocumentationController@showByEmployeeId');
+    });
+});
+
 Route::group(['prefix' => 'report'], function () {
     Route::group(['middleware' => 'auth:api'], function () {
         Route::get('index', 'Api\ReportController@index');

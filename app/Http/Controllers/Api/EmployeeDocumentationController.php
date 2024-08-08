@@ -4,28 +4,28 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Query\Abstraction\IEmployeeEvidenceQuery;
+use App\Query\Abstraction\IEmployeeDocumentationQuery;
 
-class EmployeeEvidenceController extends Controller
+class EmployeeDocumentationController extends Controller
 {
-    private $EmployeeEvidenceQuery;
+    private $EmployeeDocumentationQuery;
 
-    public function __construct(IEmployeeEvidenceQuery $EmployeeEvidenceQuery)
+    public function __construct(IEmployeeDocumentationQuery $EmployeeDocumentationQuery)
     {
-        $this->EmployeeEvidenceQuery = $EmployeeEvidenceQuery;
+        $this->EmployeeDocumentationQuery = $EmployeeDocumentationQuery;
     }
 
-     /**
+    /**
      * @OA\Post(
-     *      path="/employeeevidence/store",
-     *      operationId="storeReport",
-     *      tags={"EmployeeEvidence"},
-     *      summary="Store Report",
-     *      description="Store Report",
+     *      path="/empleyeedocumentation/store",
+     *      operationId="storeEmployeeDocumentation",
+     *      tags={"EmployeeDocumentation"},
+     *      summary="Store EmployeeDocumentation",
+     *      description="Store EmployeeDocumentation",
      *      security={ {"bearer": {} }},
      *      @OA\RequestBody(
      *          required=true,
-     *          @OA\JsonContent(ref="#/components/schemas/EmployeeEvidence")
+     *          @OA\JsonContent(ref="#/components/schemas/EmployeeDocumentation")
      *      ),
      *      @OA\Response(
      *          response=200,
@@ -43,16 +43,16 @@ class EmployeeEvidenceController extends Controller
      */
     public function store(Request $request)
     {
-        return $this->EmployeeEvidenceQuery->store($request);
+        return $this->EmployeeDocumentationQuery->store($request);
     }
 
     /**
      * @OA\Get(
-     *      path="/employeeevidence/showbyevidenceid/{id}",
-     *      operationId="get Evidence",
-     *      tags={"EmployeeEvidence"},
-     *      summary="Get One Evidence",
-     *      description="Return Commerce",
+     *      path="/empleyeedocumentation/showbyemployeedocumentid/{id}",
+     *      operationId="get Documentation",
+     *      tags={"EmployeeDocumentation"},
+     *      summary="Get One Documentation",
+     *      description="Return Documentation",
      *      security={ {"bearer": {} }},
      *      @OA\Parameter(
      *          name="id",
@@ -77,22 +77,22 @@ class EmployeeEvidenceController extends Controller
      *      )
      *     )
      */
-    public function showByEmployeeEvidenceId(Request $request, $id)
+    public function showByEmployeeDocumentId(Request $request, $id)
     {
-        return $this->EmployeeEvidenceQuery->showByEmployeeEvidenceId($request, $id);
+        return $this->EmployeeDocumentationQuery->showByEmployeeDocumentId($request, $id);
     }
 
     /**
      * @OA\Get(
-     *      path="/employeeevidence/showbyempoyeereportid/{id}",
-     *      operationId="get Evidence",
-     *      tags={"EmployeeEvidence"},
-     *      summary="Get One Evidence",
-     *      description="Return Commerce",
+     *      path="/empleyeedocumentation/showbyemployeeid/{id}",
+     *      operationId="get Documentation",
+     *      tags={"EmployeeDocumentation"},
+     *      summary="Get One Documentation",
+     *      description="Return Documentation",
      *      security={ {"bearer": {} }},
      *      @OA\Parameter(
      *          name="id",
-     *          description="Employee Report Id",
+     *          description="Employee Id",
      *          required=true,
      *          in="path",
      *          @OA\Schema(
@@ -113,22 +113,22 @@ class EmployeeEvidenceController extends Controller
      *      )
      *     )
      */
-    public function showByEmployeeReportId(Request $request, $id)
+    public function showByEmployeeId(Request $request, $id)
     {
-        return $this->EmployeeEvidenceQuery->showByEmployeeReportId($request, $id);
+        return $this->EmployeeDocumentationQuery->showByEmployeeId($request, $id);
     }
 
-    /**
+     /**
      * @OA\Put(
-     *      path="/employeeevidence/update/{id}",
+     *      path="/empleyeedocumentation/update/{id}",
      *      operationId="getUpdateEvidenceById",
-     *      tags={"EmployeeEvidence"},
-     *      summary="Update One Evidence By one Id",
+     *      tags={"EmployeeDocumentation"},
+     *      summary="Update One Documentation By one Id",
      *      description="Update One Evidence",
      *      security={ {"bearer": {} }},
      *      @OA\Parameter(
      *          name="id",
-     *          description="Evidence Id",
+     *          description="Documentation Id",
      *          required=true,
      *          in="path",
      *          @OA\Schema(
@@ -137,7 +137,7 @@ class EmployeeEvidenceController extends Controller
      *      ),
      *       @OA\RequestBody(
      *          required=true,
-     *          @OA\JsonContent(ref="#/components/schemas/EmployeeEvidence")
+     *          @OA\JsonContent(ref="#/components/schemas/EmployeeDocumentation")
      *      ),
      *      @OA\Response(
      *          response=200,
@@ -155,20 +155,20 @@ class EmployeeEvidenceController extends Controller
      */
     public function update(Request $request, $id)
     {
-        return $this->EmployeeEvidenceQuery->update($request, $id);
+        return $this->EmployeeDocumentationQuery->update($request, $id);
     }
 
-    /**
+     /**
      * @OA\Delete(
-     *      path="/employeeevidence/destroy/{id}",
-     *      operationId="getDestroyEvidenceById",
-     *      tags={"EmployeeEvidence"},
-     *      summary="Delete One Evidence By one Id",
-     *      description="Delete One Evidence",
+     *      path="/empleyeedocumentation/destroy/{id}",
+     *      operationId="getDestroyDocumentationById",
+     *      tags={"EmployeeDocumentation"},
+     *      summary="Delete One Documentation By one Id",
+     *      description="Delete One Documentation",
      *      security={ {"bearer": {} }},
      *      @OA\Parameter(
      *          name="id",
-     *          description="Evidence Id",
+     *          description="Documentation Id",
      *          required=true,
      *          in="path",
      *          @OA\Schema(
@@ -191,9 +191,8 @@ class EmployeeEvidenceController extends Controller
      */
     public function destroy($id)
     {
-        return $this->EmployeeEvidenceQuery->destroy($id);
+        return $this->EmployeeDocumentationQuery->destroy($id);
     }
-
 
 
 }

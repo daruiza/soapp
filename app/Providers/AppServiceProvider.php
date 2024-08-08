@@ -29,6 +29,10 @@ use App\Http\Controllers\Api\EmployeeController;
 use App\Query\Abstraction\IEmployeeQuery;
 use App\Query\Request\EmployeeQuery;
 
+use App\Http\Controllers\Api\EmployeeDocumentationController;
+use App\Query\Abstraction\IEmployeeDocumentationQuery;
+use App\Query\Abstraction\EmployeeDocumentationQuery;
+
 use App\Http\Controllers\Api\GeneralListController;
 use App\Query\Abstraction\IGeneralListQuery;
 use App\Query\Request\GeneralListQuery;
@@ -167,6 +171,9 @@ class AppServiceProvider extends ServiceProvider
 
         $this->app->bind(IEmployeeQuery::class, EmployeeQuery::class);
         $this->app->make(EmployeeController::class);
+
+        $this->app->bind(IEmployeeDocumentationQuery::class, EmployeeDocumentationQuery::class);
+        $this->app->make(EmployeeDocumentationController::class);
 
         $this->app->bind(IReportQuery::class, ReportQuery::class);
         $this->app->make(ReportController::class);
