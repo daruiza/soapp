@@ -78,8 +78,8 @@ class CompromiseRSSTEvidenceQuery implements ICompromiseRSSTEvidenceQuery
                 
                 if (auth()->check()) {
                     $rules = [                        
-                        $this->name                 => 'required|string|min:1|max:128|',
-                        $this->type                 => 'required|string|min:1|max:128|',
+                        $this->name => 'required|string|min:1|max:128|',
+                        $this->type => 'required|string|min:1|max:128|',
                         
                         $this->compromise_id   => 'numeric',
                         
