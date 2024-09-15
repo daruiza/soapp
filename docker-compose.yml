@@ -19,7 +19,8 @@ services:
     working_dir: /app
     volumes:
       #- /home/david/Software/soapp_laravel:/app
-      - /mnt/c/software/soapp_laravel:/app
+      # - /mnt/c/software/soapp_laravel:/app
+      - ./:/app
     ports:
       #- "0.0.0.0:8080:8000" 
       #- ":::8010:8000"
@@ -29,8 +30,8 @@ services:
       - DB_DATABASE=${DB_DATABASE}
       - DB_USERNAME=${DB_USERNAME}
       - DB_PASSWORD=${DB_PASSWORD}     
-    command: >
-      sh -c "composer install && npm run start"    
+    # command: sh -c "composer install && npm run reisntall && npm run start"    
+    command: sh -c "composer install && npm run start"    
     depends_on:
       - mariadb     
 
