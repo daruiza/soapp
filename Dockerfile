@@ -4,9 +4,9 @@ WORKDIR /app
 COPY . .
 EXPOSE 8000
 
-# ENV COMPOSER_ALLOW_SUPERUSER=1
+ENV COMPOSER_ALLOW_SUPERUSER=1
+RUN composer install
 # RUN composer install --no-dev --optimize-autoloader
-RUN composer install 
 # RUN composer update
 
 # TODO
@@ -18,6 +18,8 @@ RUN composer install
 # copy: ./.env:/.env
 
 
+CMD php artisan serve --host=0.0.0.0 --port=8000
+
 # CMD php artisan serve --host=0.0.0.0 --port=8000
 # CMD ["php" "--version"]
-CMD ["php" "artisan" "serve" "--host=0.0.0.0" "--port=8000"]
+# CMD ["php" "artisan" "serve" "--host=0.0.0.0" "--port=8000"]
